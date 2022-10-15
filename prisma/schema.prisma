@@ -8,11 +8,13 @@ datasource db {
 }
 
 model Home {
-  id   Int     @id @default(autoincrement())
-  lat  String?
-  lng  String?
-  Room Room[]
-  User User[]
+  id      Int     @id @default(autoincrement())
+  lat     Float?
+  lng     Float?
+  city    String?
+  zipCode String?
+  rooms   Room[]
+  users   User[]
 }
 
 model Room {
@@ -20,12 +22,12 @@ model Room {
   name   String
   state  Boolean
   homeId Int
-  Home   Home    @relation(fields: [homeId], references: [id])
+  home   Home    @relation(fields: [homeId], references: [id])
 }
 
 model User {
   id     Int    @id @default(autoincrement())
   name   String
   homeId Int
-  Home   Home   @relation(fields: [homeId], references: [id])
+  home   Home   @relation(fields: [homeId], references: [id])
 }

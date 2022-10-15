@@ -14,7 +14,25 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@smart-home/api/core/feature": ["libs/api/core/feature/src/index.ts"],
+      "@smart-home/api/core/shared/pipes/validation": [
+        "libs/api/core/shared/pipes/validation/src/index.ts"
+      ],
+      "@smart-home/api/core/shared/services/prisma-service": [
+        "libs/api/core/shared/services/prisma-service/src/index.ts"
+      ],
+      "@smart-home/api/core/shared/services/waether-api": [
+        "libs/api/core/shared/services/waether-api/src/index.ts"
+      ],
+      "@smart-home/api/core/utils": ["libs/api/core/utils/src/index.ts"],
+      "@smart-home/api/homes/data-access": [
+        "libs/api/homes/data-access/src/index.ts"
+      ],
+      "@smart-home/api/homes/feature": ["libs/api/homes/feature/src/index.ts"],
+      "@smart-home/api/homes/utils": ["libs/api/homes/utils/src/index.ts"],
+      "@smart-home/shared/data-access": ["libs/shared/data-access/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
