@@ -24,14 +24,7 @@
       ],
       "@smart-home/api/core/shared/services/waether-api": [
         "libs/api/core/shared/services/waether-api/src/index.ts"
-      ],
-      "@smart-home/api/core/utils": ["libs/api/core/utils/src/index.ts"],
-      "@smart-home/api/homes/data-access": [
-        "libs/api/homes/data-access/src/index.ts"
-      ],
-      "@smart-home/api/homes/feature": ["libs/api/homes/feature/src/index.ts"],
-      "@smart-home/api/homes/utils": ["libs/api/homes/utils/src/index.ts"],
-      "@smart-home/shared/data-access": ["libs/shared/data-access/src/index.ts"]
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
