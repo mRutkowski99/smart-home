@@ -31,11 +31,17 @@
       "@smart-home/mobile/home/ui/notification": [
         "libs/mobile/home/ui/notification/src/index.ts"
       ],
+      "@smart-home/mobile/home/ui/summary-silder": [
+        "libs/mobile/home/ui/summary-silder/src/index.ts"
+      ],
       "@smart-home/mobile/home/ui/welcome": [
         "libs/mobile/home/ui/welcome/src/index.ts"
       ],
       "@smart-home/mobile/shell/feature": [
         "libs/mobile/shell/feature/src/index.ts"
+      ],
+      "@smart-home/mobile/shell/ui/slider": [
+        "libs/mobile/shell/ui/slider/src/index.ts"
       ]
     }
   },
