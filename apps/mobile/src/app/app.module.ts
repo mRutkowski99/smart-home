@@ -1,25 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {
-  PreloadAllModules,
-  RouteReuseStrategy,
-  RouterModule,
-  Routes,
-} from '@angular/router';
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
-
-const routes: Routes = [];
+import { MobileShellModule } from '@smart-home/mobile/shell/feature';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(),
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
-  ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  imports: [BrowserModule, IonicModule.forRoot(), MobileShellModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

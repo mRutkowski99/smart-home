@@ -1,0 +1,27 @@
+{
+  "name": "mobile-home-ui-notification",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mobile/home/ui/notification/src",
+  "prefix": "smart-home",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mobile/home/ui/notification"],
+      "options": {
+        "jestConfig": "libs/mobile/home/ui/notification/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/mobile/home/ui/notification/**/*.ts",
+          "libs/mobile/home/ui/notification/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
