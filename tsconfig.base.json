@@ -37,6 +37,12 @@
       "@smart-home/mobile/home/ui/welcome": [
         "libs/mobile/home/ui/welcome/src/index.ts"
       ],
+      "@smart-home/mobile/shared/ui/nav": [
+        "libs/mobile/shared/ui/nav/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/utils": [
+        "libs/mobile/shared/utils/src/index.ts"
+      ],
       "@smart-home/mobile/shell/feature": [
         "libs/mobile/shell/feature/src/index.ts"
       ],

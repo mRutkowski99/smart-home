@@ -1,0 +1,11 @@
+ion-icon {
+  font-size: 32px;
+}
+
+.active ion-icon {
+  // color: green;
+}
+
+.nav {
+  @apply flex justify-between items-center py-3 px-5;
+}

@@ -1,10 +1,13 @@
-<ion-header class="flex justify-between py-2 px-3 items-center">
+<ion-header class="flex justify-between py-3 px-4 items-center">
   <smart-home-welcome name="Miłosz"></smart-home-welcome>
   <smart-home-notification-icon
     routerLink="/notifications"
     [hasNotifications]="false"
   ></smart-home-notification-icon>
 </ion-header>
-<nav class="py-2 px-3">
+
+<nav class="py-3 px-4">
   <smart-home-summary-slider [items]="summaries"></smart-home-summary-slider>
 </nav>
+
+<smart-home-nav></smart-home-nav>

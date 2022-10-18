@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { UiUtil } from '@smart-home/shared/utils';
+import { UiUtil } from '@smart-home/mobile/shared/utils';
 
 export interface Summary {
   value: string | boolean;

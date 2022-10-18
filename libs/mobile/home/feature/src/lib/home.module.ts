@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { WelcomeModule } from '@smart-home/mobile/home/ui/welcome';
 import { NotificationIconModule } from 'libs/mobile/home/ui/notification/src';
 import { SummarySilderModule } from '@smart-home/mobile/home/ui/summary-silder';
+import { NavModule } from '@smart-home/mobile/shared/ui/nav';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { SummarySilderModule } from '@smart-home/mobile/home/ui/summary-silder';
     WelcomeModule,
     NotificationIconModule,
     SummarySilderModule,
+    NavModule,
   ],
   declarations: [HomeComponent],
   exports: [HomeComponent],
