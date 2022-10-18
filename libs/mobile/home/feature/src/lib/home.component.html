@@ -5,11 +5,6 @@
     [hasNotifications]="false"
   ></smart-home-notification-icon>
 </ion-header>
-
-<smart-home-slider></smart-home-slider>
-
-<!-- <ion-slides pager="false" [options]="slideOptions">
-  <ion-slide style="width: auto" *ngFor="let s of slides">
-    <div class="slide">{{ s }}</div>
-  </ion-slide>
-</ion-slides> -->
+<nav class="py-2 px-3">
+  <smart-home-summary-slider [items]="summaries"></smart-home-summary-slider>
+</nav>

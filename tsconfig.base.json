@@ -40,9 +40,7 @@
       "@smart-home/mobile/shell/feature": [
         "libs/mobile/shell/feature/src/index.ts"
       ],
-      "@smart-home/mobile/shell/ui/slider": [
-        "libs/mobile/shell/ui/slider/src/index.ts"
-      ]
+      "@smart-home/shared/utils": ["libs/shared/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,1 +1,23 @@
-<p>summary-slider works!</p>
+<ion-slides pager="false" [options]="sliderOptions">
+  <ion-slide style="width: auto">
+    <a routerLink="./controls" class="link">
+      <div class="link__circle">
+        <ion-icon name="home-outline"></ion-icon>
+      </div>
+      <span class="link__text">Home</span>
+    </a>
+  </ion-slide>
+
+  <ion-slide style="width: auto" *ngFor="let item of items">
+    <a [routerLink]="'./' + item.url" [ngSwitch]="item.value" class="link">
+      <div class="link__circle">
+        <ion-icon *ngSwitchCase="true" name="checkmark-outline"></ion-icon>
+
+        <ion-icon *ngSwitchCase="false" name="alert-circle-outline"></ion-icon>
+
+        <span *ngSwitchDefault>{{ item.value }}</span>
+      </div>
+      <span class="link__text">{{ item.text }}</span>
+    </a>
+  </ion-slide>
+</ion-slides>

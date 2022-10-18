@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { UiUtil } from '@smart-home/shared/utils';
+
+export interface Summary {
+  value: string | boolean;
+  text: string;
+  url: string;
+}
 
 @Component({
   selector: 'smart-home-summary-slider',
@@ -6,8 +13,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./summary-slider.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SummarySliderComponent implements OnInit {
-  constructor() {}
+export class SummarySliderComponent {
+  @Input() items!: Summary[] | null;
 
-  ngOnInit(): void {}
+  readonly sliderOptions = UiUtil.sliderOptions;
 }

@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { WelcomeModule } from '@smart-home/mobile/home/ui/welcome';
 import { NotificationIconModule } from 'libs/mobile/home/ui/notification/src';
-import { SliderModule } from '@smart-home/mobile/shell/ui/slider';
+import { SummarySilderModule } from '@smart-home/mobile/home/ui/summary-silder';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { SliderModule } from '@smart-home/mobile/shell/ui/slider';
     RouterModule.forChild([{ path: '', component: HomeComponent }]),
     WelcomeModule,
     NotificationIconModule,
-    SliderModule,
+    SummarySilderModule,
   ],
   declarations: [HomeComponent],
   exports: [HomeComponent],

@@ -1,0 +1,15 @@
+.link {
+  width: 9rem;
+  display: flex;
+  @apply flex-col items-center;
+
+  &__circle {
+    @apply bg-gray-200 rounded-full flex justify-center items-center;
+    width: 5rem;
+    aspect-ratio: 1;
+
+    ion-icon {
+      font-size: 24px;
+    }
+  }
+}

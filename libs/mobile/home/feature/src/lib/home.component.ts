@@ -11,16 +11,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  slides = [1, 2, 3, 4, 5, 6, 7];
-  slideOptions = {
-    initialSlide: 0,
-    slidesPerView: 2,
-    loop: true,
-    centeredSlides: true,
-    spaceBetween: 20,
-  };
-  // slideOptions = {
-  //   slidesPerView: 'auto',
-  //   spaceBetween: 30,
-  // };
+  summaries = [
+    { value: true, text: 'Alarms', url: 'alarms' },
+    { value: false, text: 'Security', url: 'security' },
+    { value: '25', text: 'Sunny', url: 'weather' },
+    { value: '12 ', text: 'Power', url: 'power' },
+    { value: '8 ', text: 'Water', url: 'water' },
+    { value: '9 ', text: 'Gas', url: 'gas' },
+  ];
 }
