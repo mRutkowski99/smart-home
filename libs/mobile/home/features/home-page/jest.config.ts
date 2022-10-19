@@ -1,7 +1,7 @@
 /* eslint-disable */
 export default {
-  displayName: 'mobile-home-feature',
-  preset: '../../../../jest.preset.js',
+  displayName: 'mobile-home-features-home-page',
+  preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -9,7 +9,8 @@ export default {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../../coverage/libs/mobile/home/feature',
+  coverageDirectory:
+    '../../../../../coverage/libs/mobile/home/features/home-page',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

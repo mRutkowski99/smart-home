@@ -25,8 +25,11 @@
       "@smart-home/api/core/shared/services/waether-api": [
         "libs/api/core/shared/services/waether-api/src/index.ts"
       ],
-      "@smart-home/mobile/home/feature": [
-        "libs/mobile/home/feature/src/index.ts"
+      "@smart-home/mobile/home/features/home-controls": [
+        "libs/mobile/home/features/home-controls/src/index.ts"
+      ],
+      "@smart-home/mobile/home/features/home-page": [
+        "libs/mobile/home/features/home-page/src/index.ts"
       ],
       "@smart-home/mobile/home/ui/notification": [
         "libs/mobile/home/ui/notification/src/index.ts"

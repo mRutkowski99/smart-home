@@ -10,8 +10,10 @@ import { IonicRouteStrategy } from '@ionic/angular';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     loadChildren: async () =>
-      (await import('@smart-home/mobile/home/feature')).HomeModule,
+      (await import('@smart-home/mobile/home/features/home-page'))
+        .HomePageModule,
   },
 ];
 

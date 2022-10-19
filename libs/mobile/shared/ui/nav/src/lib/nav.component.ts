@@ -13,7 +13,7 @@ interface NavItem {
 })
 export class NavComponent {
   readonly navItems: NavItem[] = [
-    { url: 'home', icon: 'home-sharp' },
+    { url: '', icon: 'home-sharp' },
     { url: 'rooms', icon: 'bed-sharp' },
     { url: 'scenes', icon: 'play-circle-sharp' },
     { url: 'schedule', icon: 'calendar-clear-sharp' },
