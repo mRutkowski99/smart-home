@@ -8,4 +8,6 @@ ion-icon {
 
 .nav {
   @apply flex justify-between items-center py-3 px-5;
+  max-width: 50rem;
+  margin: 0 auto;
 }

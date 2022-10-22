@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { UiUtil } from '@smart-home/mobile/shared/utils';
 
 @Component({
   selector: 'smart-home-home-controls',
@@ -11,8 +10,6 @@ export class HomeControlsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
-  sliderOptions = UiUtil.sliderOptions;
 
   roomCards = [
     {

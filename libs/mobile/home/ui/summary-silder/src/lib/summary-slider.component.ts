@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { UiUtil } from '@smart-home/mobile/shared/utils';
 
 export interface Summary {
   value: string | boolean;
@@ -15,6 +14,4 @@ export interface Summary {
 })
 export class SummarySliderComponent {
   @Input() items!: Summary[] | null;
-
-  readonly sliderOptions = UiUtil.sliderOptions;
 }
