@@ -1,1 +1,12 @@
-<p>home-controls works!</p>
+<div class="row">
+  <span class="text-3xl font-semibold">Rooms</span>
+</div>
+
+<smart-home-slider>
+  <ion-slide
+    style="width: auto; height: min-content"
+    *ngFor="let room of roomCards"
+  >
+    <smart-home-room-card [room]="room"></smart-home-room-card>
+  </ion-slide>
+</smart-home-slider>

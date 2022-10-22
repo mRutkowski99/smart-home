@@ -1,4 +1,4 @@
-<ion-header class="flex justify-between py-3 px-4 items-center">
+<ion-header class="flex justify-between padding items-center">
   <smart-home-welcome name="Miłosz"></smart-home-welcome>
   <smart-home-notification-icon
     routerLink="/notifications"
@@ -6,12 +6,12 @@
   ></smart-home-notification-icon>
 </ion-header>
 
-<nav class="py-3 px-4">
+<nav class="padding">
   <smart-home-summary-slider [items]="summaries"></smart-home-summary-slider>
 </nav>
 
-<ion-content>
-  <ion-router-outlet></ion-router-outlet>
-</ion-content>
+<main class="padding">
+  <router-outlet></router-outlet>
+</main>
 
 <smart-home-nav></smart-home-nav>

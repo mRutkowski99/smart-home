@@ -1,0 +1,25 @@
+@mixin slider {
+  max-width: min-content;
+  margin: 0 auto;
+}
+
+@mixin page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+  overflow-y: auto;
+
+  main {
+    flex: 1 1 0;
+  }
+
+  & > *:last-child:not(main) {
+    margin-top: auto;
+  }
+}
+
+@mixin layout-padding {
+  padding-block: 1rem;
+  padding-inline: 1rem;
+}

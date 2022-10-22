@@ -1,0 +1,10 @@
+<ion-card role="link" class="card" [routerLink]="'rooms/' + room?.id">
+  <div
+    class="card__bg"
+    [style]="'background-image: url(' + room?.img + ');'"
+  ></div>
+  <div class="card__blur-box">
+    <span class="text-2xl font-semibold">{{ room?.name }}</span>
+    <span>Devices: {{ room?.devices }}</span>
+  </div>
+</ion-card>
