@@ -28,9 +28,6 @@
       "@smart-home/mobile/home/features/home-page": [
         "libs/mobile/home/features/home-page/src/index.ts"
       ],
-      "@smart-home/mobile/home/ui/controls-layout": [
-        "libs/mobile/home/ui/controls-layout/src/index.ts"
-      ],
       "@smart-home/mobile/home/ui/notification": [
         "libs/mobile/home/ui/notification/src/index.ts"
       ],

@@ -6,15 +6,6 @@ const routes: Routes = [
   {
     path: '',
     component: HomePageComponent,
-    children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        loadChildren: async () =>
-          (await import('@smart-home/mobile/home/ui/controls-layout'))
-            .ControlsLayoutModule,
-      },
-    ],
   },
 ];
 

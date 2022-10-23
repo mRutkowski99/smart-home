@@ -4,9 +4,16 @@ import { SummarySliderComponent } from './summary-slider.component';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { SliderModule } from '@smart-home/mobile/shared/ui/slider';
+import { FaIconModule } from '@smart-home/shared/utils/fa-icon';
 
 @NgModule({
-  imports: [CommonModule, IonicModule, RouterModule, SliderModule],
+  imports: [
+    CommonModule,
+    IonicModule,
+    RouterModule,
+    SliderModule,
+    FaIconModule,
+  ],
   declarations: [SummarySliderComponent],
   exports: [SummarySliderComponent],
 })
