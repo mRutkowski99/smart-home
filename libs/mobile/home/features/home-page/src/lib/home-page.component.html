@@ -22,6 +22,18 @@
       </ion-slide>
     </smart-home-slider>
   </section>
+
+  <section>
+    <div class="flex justify-between items-center mb-3">
+      <h3>Scenes</h3>
+      <a>View all</a>
+    </div>
+    <smart-home-slider>
+      <ion-slide style="width: auto" *ngFor="let scene of scenes">
+        <smart-home-scene-card [scene]="scene"></smart-home-scene-card>
+      </ion-slide>
+    </smart-home-slider>
+  </section>
 </main>
 
 <smart-home-nav class="padding"></smart-home-nav>

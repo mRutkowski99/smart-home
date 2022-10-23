@@ -10,6 +10,7 @@ import { WelcomeModule } from '@smart-home/mobile/home/ui/welcome';
 import { NavModule } from '@smart-home/mobile/shared/ui/nav';
 import { SliderModule } from '@smart-home/mobile/shared/ui/slider';
 import { RoomCardModule } from '@smart-home/mobile/shared/ui/room-card';
+import { SceneCardModule } from '@smart-home/mobile/shared/ui/scene-card';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { RoomCardModule } from '@smart-home/mobile/shared/ui/room-card';
     NavModule,
     SliderModule,
     RoomCardModule,
+    SceneCardModule,
   ],
   declarations: [HomePageComponent],
   exports: [HomePageComponent],

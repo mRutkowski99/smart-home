@@ -1,0 +1,9 @@
+<ion-card role="link" class="card" [routerLink]="'scenes/' + scene.id">
+  <div class="card__section">
+    <span>Activated</span>
+    <ion-toggle slot="end" [checked]="scene.active"></ion-toggle>
+  </div>
+  <div class="card__section">
+    <span>{{ scene.name }}</span>
+  </div>
+</ion-card>

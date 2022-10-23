@@ -41,4 +41,37 @@ export class HomePageComponent implements OnInit {
       temperature: 25,
     },
   ];
+
+  scenes = [
+    {
+      id: 1,
+      name: 'Good morning!',
+      active: false,
+    },
+    {
+      id: 2,
+      name: 'Bye, bye my home',
+      active: false,
+    },
+    {
+      id: 3,
+      name: "I'm coming home!",
+      active: false,
+    },
+    {
+      id: 4,
+      name: 'Netflix & chill',
+      active: true,
+    },
+    {
+      id: 5,
+      name: 'Good night',
+      active: false,
+    },
+    {
+      id: 3,
+      name: 'A scene with longer name',
+      active: false,
+    },
+  ];
 }
