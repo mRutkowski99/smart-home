@@ -25,11 +25,11 @@
       "@smart-home/api/core/shared/services/waether-api": [
         "libs/api/core/shared/services/waether-api/src/index.ts"
       ],
-      "@smart-home/mobile/home/features/home-controls": [
-        "libs/mobile/home/features/home-controls/src/index.ts"
-      ],
       "@smart-home/mobile/home/features/home-page": [
         "libs/mobile/home/features/home-page/src/index.ts"
+      ],
+      "@smart-home/mobile/home/ui/controls-layout": [
+        "libs/mobile/home/ui/controls-layout/src/index.ts"
       ],
       "@smart-home/mobile/home/ui/notification": [
         "libs/mobile/home/ui/notification/src/index.ts"
@@ -40,11 +40,11 @@
       "@smart-home/mobile/home/ui/welcome": [
         "libs/mobile/home/ui/welcome/src/index.ts"
       ],
+      "@smart-home/mobile/room/ui/room-card": [
+        "libs/mobile/room/ui/room-card/src/index.ts"
+      ],
       "@smart-home/mobile/shared/ui/nav": [
         "libs/mobile/shared/ui/nav/src/index.ts"
-      ],
-      "@smart-home/mobile/shared/ui/room-card": [
-        "libs/mobile/shared/ui/room-card/src/index.ts"
       ],
       "@smart-home/mobile/shared/ui/slider": [
         "libs/mobile/shared/ui/slider/src/index.ts"

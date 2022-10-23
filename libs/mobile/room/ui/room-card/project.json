@@ -1,15 +1,15 @@
 {
-  "name": "mobile-home-features-home-controls",
+  "name": "mobile-room-ui-room-card",
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "libs/mobile/home/features/home-controls/src",
+  "sourceRoot": "libs/mobile/room/ui/room-card/src",
   "prefix": "smart-home",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/mobile/home/features/home-controls"],
+      "outputs": ["coverage/libs/mobile/room/ui/room-card"],
       "options": {
-        "jestConfig": "libs/mobile/home/features/home-controls/jest.config.ts",
+        "jestConfig": "libs/mobile/room/ui/room-card/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -17,8 +17,8 @@
       "executor": "@nrwl/linter:eslint",
       "options": {
         "lintFilePatterns": [
-          "libs/mobile/home/features/home-controls/**/*.ts",
-          "libs/mobile/home/features/home-controls/**/*.html"
+          "libs/mobile/room/ui/room-card/**/*.ts",
+          "libs/mobile/room/ui/room-card/**/*.html"
         ]
       }
     }

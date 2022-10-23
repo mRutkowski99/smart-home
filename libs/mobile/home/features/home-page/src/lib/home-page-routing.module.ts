@@ -11,8 +11,8 @@ const routes: Routes = [
         path: '',
         pathMatch: 'full',
         loadChildren: async () =>
-          (await import('@smart-home/mobile/home/features/home-controls'))
-            .HomeControlsModule,
+          (await import('@smart-home/mobile/home/ui/controls-layout'))
+            .ControlsLayoutModule,
       },
     ],
   },

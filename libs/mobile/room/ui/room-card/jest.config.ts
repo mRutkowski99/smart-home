@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'mobile-home-features-home-controls',
+  displayName: 'mobile-room-ui-room-card',
   preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -9,8 +9,7 @@ export default {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory:
-    '../../../../../coverage/libs/mobile/home/features/home-controls',
+  coverageDirectory: '../../../../../coverage/libs/mobile/room/ui/room-card',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },
