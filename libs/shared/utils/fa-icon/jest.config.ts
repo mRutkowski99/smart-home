@@ -1,7 +1,7 @@
 /* eslint-disable */
 export default {
-  displayName: 'shared-utils',
-  preset: '../../../jest.preset.js',
+  displayName: 'shared-utils-fa-icon',
+  preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -9,7 +9,7 @@ export default {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../coverage/libs/shared/utils',
+  coverageDirectory: '../../../../coverage/libs/shared/utils/fa-icon',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

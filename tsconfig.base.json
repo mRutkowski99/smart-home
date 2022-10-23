@@ -55,7 +55,9 @@
       "@smart-home/mobile/shell/feature": [
         "libs/mobile/shell/feature/src/index.ts"
       ],
-      "@smart-home/shared/utils": ["libs/shared/utils/src/index.ts"]
+      "@smart-home/shared/utils/fa-icon": [
+        "libs/shared/utils/fa-icon/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
