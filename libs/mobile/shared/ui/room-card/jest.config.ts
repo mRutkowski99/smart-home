@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'mobile-room-ui-room-card',
+  displayName: 'mobile-shared-ui-room-card',
   preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -9,7 +9,7 @@ export default {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../../../coverage/libs/mobile/room/ui/room-card',
+  coverageDirectory: '../../../../../coverage/libs/mobile/shared/ui/room-card',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

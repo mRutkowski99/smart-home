@@ -6,12 +6,22 @@
   ></smart-home-notification-icon>
 </ion-header>
 
-<nav class="padding">
-  <smart-home-summary-slider></smart-home-summary-slider>
-</nav>
+<main class="padding flex flex-col justify-start gap-4">
+  <nav>
+    <smart-home-summary-slider></smart-home-summary-slider>
+  </nav>
 
-<main class="padding">
-  <router-outlet></router-outlet>
+  <section>
+    <div class="flex justify-between items-center mb-3">
+      <h3>Rooms</h3>
+      <a>View all</a>
+    </div>
+    <smart-home-slider>
+      <ion-slide style="width: auto" *ngFor="let room of rooms">
+        <smart-home-room-card [room]="room"></smart-home-room-card>
+      </ion-slide>
+    </smart-home-slider>
+  </section>
 </main>
 
 <smart-home-nav class="padding"></smart-home-nav>

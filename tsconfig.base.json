@@ -37,11 +37,11 @@
       "@smart-home/mobile/home/ui/welcome": [
         "libs/mobile/home/ui/welcome/src/index.ts"
       ],
-      "@smart-home/mobile/room/ui/room-card": [
-        "libs/mobile/room/ui/room-card/src/index.ts"
-      ],
       "@smart-home/mobile/shared/ui/nav": [
         "libs/mobile/shared/ui/nav/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/ui/room-card": [
+        "libs/mobile/shared/ui/room-card/src/index.ts"
       ],
       "@smart-home/mobile/shared/ui/slider": [
         "libs/mobile/shared/ui/slider/src/index.ts"

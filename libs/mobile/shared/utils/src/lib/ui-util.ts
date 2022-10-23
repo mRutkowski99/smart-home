@@ -1,7 +1,7 @@
 export class UiUtil {
   static readonly sliderOptions = {
     slidesPerView: 'auto',
-    spaceBetween: 0,
+    spaceBetween: 20,
     freeMode: true,
   };
 }
