@@ -7,27 +7,34 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Home {
-  id      Int     @id @default(autoincrement())
-  lat     Float?
-  lng     Float?
-  city    String?
-  zipCode String?
-  rooms   Room[]
-  users   User[]
+model HomeSchema {
+  id     String        @id @default(uuid())
+  rooms  RoomSchema[]
+  scenes SceneSchema[]
 }
 
-model Room {
-  id     Int     @id @default(autoincrement())
-  name   String
-  state  Boolean
-  homeId Int
-  home   Home    @relation(fields: [homeId], references: [id])
+model RoomSchema {
+  id          String  @id @default(uuid())
+  name        String
+  temperature Float
+  humidity    Int
+  imgUrl      String
+  favourite   Boolean @default(false)
+
+  home   HomeSchema? @relation(fields: [homeId], references: [id])
+  homeId String?
+
+  @@unique([id, homeId])
 }
 
-model User {
-  id     Int    @id @default(autoincrement())
-  name   String
-  homeId Int
-  home   Home   @relation(fields: [homeId], references: [id])
+model SceneSchema {
+  id        String  @id @default(uuid())
+  name      String
+  active    Boolean @default(false)
+  favourite Boolean @default(false)
+
+  Home   HomeSchema? @relation(fields: [homeId], references: [id])
+  homeId String?
+
+  @@unique([id, homeId])
 }

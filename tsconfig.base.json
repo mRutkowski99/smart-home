@@ -22,9 +22,6 @@
       "@smart-home/api/core/shared/services/prisma-service": [
         "libs/api/core/shared/services/prisma-service/src/index.ts"
       ],
-      "@smart-home/api/core/shared/services/waether-api": [
-        "libs/api/core/shared/services/waether-api/src/index.ts"
-      ],
       "@smart-home/mobile/home/features/home-page": [
         "libs/mobile/home/features/home-page/src/index.ts"
       ],
@@ -55,6 +52,8 @@
       "@smart-home/mobile/shell/feature": [
         "libs/mobile/shell/feature/src/index.ts"
       ],
+      "@smart-home/shared/dto": ["libs/shared/dto/src/index.ts"],
+      "@smart-home/shared/requests": ["libs/shared/requests/src/index.ts"],
       "@smart-home/shared/ui/favourite-icon": [
         "libs/shared/ui/favourite-icon/src/index.ts"
       ],
