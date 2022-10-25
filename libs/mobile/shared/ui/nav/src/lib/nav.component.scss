@@ -2,8 +2,12 @@ ion-icon {
   font-size: 32px;
 }
 
+a {
+  @apply text-gray-400;
+}
+
 .active ion-icon {
-  // color: green;
+  color: var(--ion-color-primary);
 }
 
 .nav {

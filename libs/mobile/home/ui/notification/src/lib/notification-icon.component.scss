@@ -2,6 +2,10 @@
   position: relative;
 }
 
+div {
+  background-color: var(--ion-color-warning);
+}
+
 ion-icon {
   font-size: 30px;
 }

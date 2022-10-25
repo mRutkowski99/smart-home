@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { IconUtil } from '@smart-home/shared/utils/fa-icon';
 
 @Component({
   selector: 'smart-home-home-page',
@@ -10,6 +11,8 @@ export class HomePageComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  readonly arrowIcon = IconUtil.arrowRigth;
 
   rooms = [
     {

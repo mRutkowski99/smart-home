@@ -18,6 +18,10 @@ section {
 }
 
 ion-header {
-  // background-color: var(--ion-color-primary);
-  // color: #fff;
+  background-color: var(--ion-color-primary);
+  color: #fff;
+}
+
+.link {
+  color: var(--ion-color-tertiary);
 }
