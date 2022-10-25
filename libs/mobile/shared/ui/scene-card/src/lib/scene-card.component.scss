@@ -1,6 +1,6 @@
 .card {
   width: 15rem;
-  min-height: 10rem;
+  min-height: 15rem;
   margin: 0.25rem;
   display: flex;
   flex-direction: column;
@@ -8,7 +8,7 @@
 
   &__section {
     text-align: left;
-    padding: 0.5rem;
+    padding: 0.5rem 0.75rem;
     display: flex;
     justify-content: space-between;
     align-items: center;

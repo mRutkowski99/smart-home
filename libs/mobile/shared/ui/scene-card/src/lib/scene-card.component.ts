@@ -1,9 +1,12 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { IconUtil } from '@smart-home/shared/utils/fa-icon';
 
 export interface SceneCard {
+  id: number;
   name: string;
   active: boolean;
-  id: number;
+  schedule?: string;
+  favourite: boolean;
 }
 
 @Component({
@@ -14,4 +17,6 @@ export interface SceneCard {
 })
 export class SceneCardComponent {
   @Input() scene!: SceneCard;
+
+  readonly clockIcon = IconUtil.clock;
 }
