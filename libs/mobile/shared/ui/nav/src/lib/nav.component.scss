@@ -1,0 +1,17 @@
+ion-icon {
+  font-size: 32px;
+}
+
+a {
+  @apply text-gray-400;
+}
+
+.active ion-icon {
+  color: var(--ion-color-primary);
+}
+
+.nav {
+  @apply flex justify-between items-center py-3 px-5;
+  max-width: 50rem;
+  margin: 0 auto;
+}

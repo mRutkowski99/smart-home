@@ -25,13 +25,42 @@
       "@smart-home/api/core/shared/services/waether-api": [
         "libs/api/core/shared/services/waether-api/src/index.ts"
       ],
-      "@smart-home/api/core/utils": ["libs/api/core/utils/src/index.ts"],
-      "@smart-home/api/homes/data-access": [
-        "libs/api/homes/data-access/src/index.ts"
+      "@smart-home/mobile/home/features/home-page": [
+        "libs/mobile/home/features/home-page/src/index.ts"
       ],
-      "@smart-home/api/homes/feature": ["libs/api/homes/feature/src/index.ts"],
-      "@smart-home/api/homes/utils": ["libs/api/homes/utils/src/index.ts"],
-      "@smart-home/shared/data-access": ["libs/shared/data-access/src/index.ts"]
+      "@smart-home/mobile/home/ui/notification": [
+        "libs/mobile/home/ui/notification/src/index.ts"
+      ],
+      "@smart-home/mobile/home/ui/summary-silder": [
+        "libs/mobile/home/ui/summary-silder/src/index.ts"
+      ],
+      "@smart-home/mobile/home/ui/welcome": [
+        "libs/mobile/home/ui/welcome/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/ui/nav": [
+        "libs/mobile/shared/ui/nav/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/ui/room-card": [
+        "libs/mobile/shared/ui/room-card/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/ui/scene-card": [
+        "libs/mobile/shared/ui/scene-card/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/ui/slider": [
+        "libs/mobile/shared/ui/slider/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/utils": [
+        "libs/mobile/shared/utils/src/index.ts"
+      ],
+      "@smart-home/mobile/shell/feature": [
+        "libs/mobile/shell/feature/src/index.ts"
+      ],
+      "@smart-home/shared/ui/favourite-icon": [
+        "libs/shared/ui/favourite-icon/src/index.ts"
+      ],
+      "@smart-home/shared/utils/fa-icon": [
+        "libs/shared/utils/fa-icon/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

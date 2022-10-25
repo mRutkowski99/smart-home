@@ -1,0 +1,45 @@
+<ion-header class="flex justify-between padding items-center">
+  <smart-home-welcome name="Miłosz"></smart-home-welcome>
+  <smart-home-notification-icon
+    routerLink="/notifications"
+    [hasNotifications]="true"
+  ></smart-home-notification-icon>
+</ion-header>
+
+<main class="padding flex flex-col justify-start gap-5">
+  <nav>
+    <smart-home-summary-slider></smart-home-summary-slider>
+  </nav>
+
+  <section>
+    <div class="flex justify-between items-center mb-3">
+      <h3>Rooms</h3>
+      <a routerLink="rooms" class="flex gap-2 link">
+        <span>View all</span>
+        <smart-home-fa-icon [icon]="arrowIcon" size="sm"></smart-home-fa-icon>
+      </a>
+    </div>
+    <smart-home-slider>
+      <ion-slide style="width: auto" *ngFor="let room of rooms">
+        <smart-home-room-card [room]="room"></smart-home-room-card>
+      </ion-slide>
+    </smart-home-slider>
+  </section>
+
+  <section>
+    <div class="flex justify-between items-center mb-3">
+      <h3>Scenes</h3>
+      <a routerLink="scenes" class="flex gap-2 link">
+        <span>View all</span>
+        <smart-home-fa-icon [icon]="arrowIcon" size="sm"></smart-home-fa-icon>
+      </a>
+    </div>
+    <smart-home-slider>
+      <ion-slide style="width: auto" *ngFor="let scene of scenes">
+        <smart-home-scene-card [scene]="scene"></smart-home-scene-card>
+      </ion-slide>
+    </smart-home-slider>
+  </section>
+</main>
+
+<smart-home-nav class="padding"></smart-home-nav>

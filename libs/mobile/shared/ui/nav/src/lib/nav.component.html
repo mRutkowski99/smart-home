@@ -1,0 +1,9 @@
+<ion-card role="navigation" aria-label="Main navigation" class="nav">
+  <a
+    *ngFor="let item of navItems"
+    [routerLink]="item.url"
+    routerLinkActive="active"
+  >
+    <ion-icon [name]="item.icon"></ion-icon>
+  </a>
+</ion-card>

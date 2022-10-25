@@ -1,0 +1,27 @@
+{
+  "name": "mobile-home-features-home-page",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mobile/home/features/home-page/src",
+  "prefix": "smart-home",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mobile/home/features/home-page"],
+      "options": {
+        "jestConfig": "libs/mobile/home/features/home-page/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/mobile/home/features/home-page/**/*.ts",
+          "libs/mobile/home/features/home-page/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

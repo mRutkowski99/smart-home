@@ -1,0 +1,11 @@
+<smart-home-slider>
+  <ion-slide style="width: auto" *ngFor="let link of links">
+    <a [routerLink]="[link.url]" class="link">
+      <smart-home-fa-icon
+        class="link__circle"
+        [icon]="link.icon"
+      ></smart-home-fa-icon>
+      <span class="link__text">{{ link.text }}</span>
+    </a>
+  </ion-slide>
+</smart-home-slider>

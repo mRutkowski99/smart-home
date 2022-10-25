@@ -14,11 +14,14 @@
         "main": "apps/mobile/src/main.ts",
         "polyfills": "apps/mobile/src/polyfills.ts",
         "tsConfig": "apps/mobile/tsconfig.app.json",
+        "stylePreprocessorOptions": {
+          "includePaths": ["apps/mobile/src"]
+        },
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
-            "input": "src/assets",
+            "input": "apps/mobile/src/assets",
             "output": "assets"
           },
           {
@@ -27,7 +30,10 @@
             "output": "./svg"
           }
         ],
-        "styles": ["src/theme/variables.scss", "src/global.scss"],
+        "styles": [
+          "apps/mobile/src/theme/variables.scss",
+          "apps/mobile/src/global.scss"
+        ],
         "scripts": []
       },
       "configurations": {

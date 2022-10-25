@@ -1,0 +1,27 @@
+{
+  "name": "mobile-home-ui-summary-silder",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mobile/home/ui/summary-silder/src",
+  "prefix": "smart-home",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mobile/home/ui/summary-silder"],
+      "options": {
+        "jestConfig": "libs/mobile/home/ui/summary-silder/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/mobile/home/ui/summary-silder/**/*.ts",
+          "libs/mobile/home/ui/summary-silder/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

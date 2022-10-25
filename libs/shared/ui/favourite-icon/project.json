@@ -1,0 +1,27 @@
+{
+  "name": "shared-ui-favourite-icon",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/favourite-icon/src",
+  "prefix": "smart-home",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/favourite-icon"],
+      "options": {
+        "jestConfig": "libs/shared/ui/favourite-icon/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/favourite-icon/**/*.ts",
+          "libs/shared/ui/favourite-icon/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
