@@ -1,5 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { PrismaService } from '@smart-home/api/core/services/prisma-service';
 
 import { AppModule } from './app/app.module';
 
@@ -13,8 +14,8 @@ async function bootstrap() {
     `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
   );
 
-  // const prismaService = app.get(PrismaService);
-  // await prismaService.enableShutdownHooks(app);
+  const prismaService = app.get(PrismaService);
+  await prismaService.enableShutdownHooks(app);
 }
 
 bootstrap();

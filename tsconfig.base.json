@@ -16,11 +16,15 @@
     "baseUrl": ".",
     "paths": {
       "@smart-home/api/core/feature": ["libs/api/core/feature/src/index.ts"],
-      "@smart-home/api/core/shared/pipes/validation": [
-        "libs/api/core/shared/pipes/validation/src/index.ts"
+      "@smart-home/api/core/services/prisma-service": [
+        "libs/api/core/services/prisma-service/src/index.ts"
       ],
-      "@smart-home/api/core/shared/services/prisma-service": [
-        "libs/api/core/shared/services/prisma-service/src/index.ts"
+      "@smart-home/api/home/domain": ["libs/api/home/domain/src/index.ts"],
+      "@smart-home/api/room/cqrs": ["libs/api/room/cqrs/src/index.ts"],
+      "@smart-home/api/room/domain": ["libs/api/room/domain/src/index.ts"],
+      "@smart-home/api/room/feature": ["libs/api/room/feature/src/index.ts"],
+      "@smart-home/api/room/infrastructure": [
+        "libs/api/room/infrastructure/src/index.ts"
       ],
       "@smart-home/mobile/home/features/home-page": [
         "libs/mobile/home/features/home-page/src/index.ts"

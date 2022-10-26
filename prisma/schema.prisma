@@ -22,7 +22,7 @@ model RoomSchema {
   favourite   Boolean @default(false)
 
   home   HomeSchema? @relation(fields: [homeId], references: [id])
-  homeId String?
+  homeId String?     @unique
 
   @@unique([id, homeId])
 }

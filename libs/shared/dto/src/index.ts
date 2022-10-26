@@ -1,1 +1,1 @@
-export * from './lib/shared-dto';
+export * from './lib/room-dtos';
