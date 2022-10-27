@@ -14,12 +14,10 @@ model HomeSchema {
 }
 
 model RoomSchema {
-  id          String  @id @default(uuid())
-  name        String
-  temperature Float
-  humidity    Int
-  imgUrl      String
-  favourite   Boolean @default(false)
+  id        String  @id @default(uuid())
+  name      String
+  imgUrl    String
+  favourite Boolean @default(false)
 
   home   HomeSchema? @relation(fields: [homeId], references: [id])
   homeId String?     @unique

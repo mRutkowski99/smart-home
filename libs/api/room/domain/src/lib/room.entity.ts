@@ -10,14 +10,16 @@ export class Room extends AggregateRoot {
     private readonly _id: string,
     private readonly _homeId: string,
     private readonly _name: string,
-    _temperature: number,
-    _humidity: number,
     private readonly _imgUrl: string,
-    private readonly _favourite: boolean
+    private _favourite: boolean,
+    _temperature?: number,
+    _humidity?: number
   ) {
     super();
-    this._temperature = new Temperature(_temperature);
-    this._humidity = new Humidity(_humidity);
+
+    //These properties don't comes from db so can be omitted unless are necessary
+    this._temperature = _temperature && new Temperature(_temperature);
+    this._humidity = _humidity && new Humidity(_humidity);
   }
 
   get id(): string {
@@ -46,5 +48,17 @@ export class Room extends AggregateRoot {
 
   get isFavourite(): boolean {
     return this._favourite;
+  }
+
+  addToFavourites() {
+    if (this._favourite) throw new Error('Room is already in favourites');
+
+    this._favourite = true;
+  }
+
+  removeFromFavourites() {
+    if (!this._favourite) throw new Error("Room isn't in favourites");
+
+    this._favourite = false;
   }
 }
