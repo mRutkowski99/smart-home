@@ -11,7 +11,7 @@ import { NavModule } from '@smart-home/mobile/shared/ui/nav';
 import { SliderModule } from '@smart-home/mobile/shared/ui/slider';
 import { RoomCardModule } from '@smart-home/mobile/shared/ui/room-card';
 import { SceneCardModule } from '@smart-home/mobile/shared/ui/scene-card';
-import { FaIconModule } from '@smart-home/shared/utils/fa-icon';
+import { FaIconModule } from '@smart-home/shared/ui/fa-icon';
 
 @NgModule({
   imports: [

@@ -1,15 +1,15 @@
 {
-  "name": "shared-utils-fa-icon",
+  "name": "shared-ui-fa-icon",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "libs/shared/utils/fa-icon/src",
+  "sourceRoot": "libs/shared/ui/fa-icon/src",
   "prefix": "smart-home",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/shared/utils/fa-icon"],
+      "outputs": ["coverage/libs/shared/ui/fa-icon"],
       "options": {
-        "jestConfig": "libs/shared/utils/fa-icon/jest.config.ts",
+        "jestConfig": "libs/shared/ui/fa-icon/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -17,8 +17,8 @@
       "executor": "@nrwl/linter:eslint",
       "options": {
         "lintFilePatterns": [
-          "libs/shared/utils/fa-icon/**/*.ts",
-          "libs/shared/utils/fa-icon/**/*.html"
+          "libs/shared/ui/fa-icon/**/*.ts",
+          "libs/shared/ui/fa-icon/**/*.html"
         ]
       }
     }

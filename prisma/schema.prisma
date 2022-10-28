@@ -26,10 +26,12 @@ model RoomSchema {
 }
 
 model SceneSchema {
-  id        String  @id @default(uuid())
-  name      String
-  active    Boolean @default(false)
-  favourite Boolean @default(false)
+  id         String    @id @default(uuid())
+  name       String
+  active     Boolean   @default(false)
+  cron       String?
+  expireDate DateTime?
+  favourite  Boolean   @default(false)
 
   Home   HomeSchema? @relation(fields: [homeId], references: [id])
   homeId String?
