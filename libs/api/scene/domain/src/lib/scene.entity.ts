@@ -1,5 +1,4 @@
 import { AggregateRoot } from '@nestjs/cqrs';
-import { Time } from '@smart-home/api/core/utils';
 import { Schedule } from './schedule.model';
 
 export class Scene extends AggregateRoot {

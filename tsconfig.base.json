@@ -29,6 +29,7 @@
       ],
       "@smart-home/api/scene/cqrs": ["libs/api/scene/cqrs/src/index.ts"],
       "@smart-home/api/scene/domain": ["libs/api/scene/domain/src/index.ts"],
+      "@smart-home/api/scene/feature": ["libs/api/scene/feature/src/index.ts"],
       "@smart-home/api/scene/infrastructure": [
         "libs/api/scene/infrastructure/src/index.ts"
       ],

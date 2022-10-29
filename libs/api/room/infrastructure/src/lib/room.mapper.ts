@@ -35,11 +35,7 @@ export class RoomMapper {
     return new RoomOverviewDto(domain.id, domain.name, 5, domain.imgUrl);
   }
 
-  schemaToOverviewDto(schema: RoomSchema): RoomOverviewDto {
-    return new RoomOverviewDto(schema.id, schema.name, 5, schema.imgUrl);
-  }
-
-  toDto(domain: Room): RoomDto {
+  domainToDto(domain: Room): RoomDto {
     return new RoomDto(
       domain.id,
       domain.name,

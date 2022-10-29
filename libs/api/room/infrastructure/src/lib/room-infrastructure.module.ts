@@ -7,6 +7,6 @@ import { RoomsRepository } from './rooms.repository';
   imports: [PrismaServiceModule],
   controllers: [],
   providers: [RoomMapper, RoomsRepository],
-  exports: [],
+  exports: [RoomMapper, RoomsRepository],
 })
 export class RoomInfrastructureModule {}
