@@ -5,11 +5,12 @@ import { RegexUtil } from '../regex';
 
 type CronField = 'minute' | 'hour' | 'day' | 'month' | 'weekday';
 
-export class AppCron {
+export class SceneCron {
   private readonly cronMap: Map<CronField, string>;
 
   constructor(private readonly _cron: string) {
-    if (!RegexUtil.isValidCron(_cron)) throw new Error('Provide valid CRON');
+    if (!RegexUtil.isValidSceneCron(_cron))
+      throw new Error('Provide valid CRON');
 
     const cronArray = this._cron.split(' ');
     this.cronMap = new Map<CronField, string>([

@@ -1,13 +1,13 @@
-import { AppCron, Time } from '@smart-home/api/core/utils';
+import { SceneCron, Time } from '@smart-home/api/core/utils';
 
 export class Schedule {
-  private readonly _cron: AppCron;
+  private readonly _cron: SceneCron;
 
   constructor(_cron: string, private readonly _expireDate: Date) {
-    this._cron = new AppCron(_cron);
+    this._cron = new SceneCron(_cron);
   }
 
-  get cron(): AppCron {
+  get cron(): SceneCron {
     return this._cron;
   }
 

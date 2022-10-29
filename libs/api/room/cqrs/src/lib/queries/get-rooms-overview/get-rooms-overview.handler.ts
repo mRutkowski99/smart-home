@@ -19,6 +19,6 @@ export class GetRoomsOverviewHandler
     const { houseId } = query;
     const rooms = await this.repository.getAllForHome(houseId);
 
-    return rooms.map((room) => this.mapper.schemaToOverviewDto(room));
+    return rooms.map((room) => this.mapper.domainToOverviewDto(room));
   }
 }

@@ -34,7 +34,7 @@ async function main() {
         name: 'Good morning',
         active: false,
         favourite: true,
-        cron: '15 7 * * 1',
+        cron: '15 7 * * 1,2,3,4,5,6',
         expireDate: tommorow,
       },
       {
@@ -42,7 +42,7 @@ async function main() {
         name: "I'm leaving",
         active: false,
         favourite: false,
-        cron: '0 8 * * 1',
+        cron: '0 8 * * 1,2,3,4,5,6',
         expireDate: tommorow,
       },
       {

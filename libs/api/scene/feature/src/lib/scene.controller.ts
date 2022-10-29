@@ -10,7 +10,7 @@ export class SceneController {
     private readonly commandBus: CommandBus
   ) {}
 
-  @Get('overview/:homeId')
+  @Get('overviews/:homeId')
   async getScenesOverviews(
     @Param('homeId') homeId: string
   ): Promise<SceneOverviewDto[]> {
