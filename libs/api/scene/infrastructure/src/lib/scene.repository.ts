@@ -22,4 +22,16 @@ export class SceneRepository {
 
     return scenes.map((scene) => this.mapper.schemaToDomain(scene));
   }
+
+  async getById(id: string): Promise<Scene> {
+    const scene = await this.prisma.sceneSchema.findUnique({ where: { id } });
+    return this.mapper.schemaToDomain(scene);
+  }
+
+  async findAndReplace(id: string, scene: Scene): Promise<void> {
+    await this.prisma.sceneSchema.update({
+      where: { id },
+      data: { ...this.mapper.domainToSchema(scene) },
+    });
+  }
 }

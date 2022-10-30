@@ -2,7 +2,6 @@ import { DayOfWeek } from '@smart-home/shared/utils';
 import { RegexUtil } from '../regex';
 
 //Utility class for CRON which exposes methods usefull in application
-
 type CronField = 'minute' | 'hour' | 'day' | 'month' | 'weekday';
 
 export class SceneCron {
@@ -63,7 +62,7 @@ export class SceneCron {
     ...dayOfWeeks: DayOfWeek[]
   ): string {
     if (minute < 0 || minute > 59)
-      throw new Error(`Invalid minutes - ${minute}`);
+      throw new Error(`Invalid minute - ${minute}`);
 
     if (hour < 0 || hour > 23) throw new Error(`Invalid hour - ${hour}`);
 

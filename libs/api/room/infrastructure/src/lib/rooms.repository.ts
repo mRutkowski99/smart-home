@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '@smart-home/api/core/services/prisma-service';
 import { Room } from '@smart-home/api/room/domain';
 import { RoomMapper } from './room.mapper';
@@ -26,7 +26,7 @@ export class RoomsRepository {
   }
 
   async findAndReplace(id: string, room: Room): Promise<void> {
-    this.prisma.roomSchema.update({
+    await this.prisma.roomSchema.update({
       where: { id },
       data: { ...this.mapper.domainToSchema(room) },
     });

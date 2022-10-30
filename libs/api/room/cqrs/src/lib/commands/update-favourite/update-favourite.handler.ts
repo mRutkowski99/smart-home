@@ -1,4 +1,4 @@
-import { BadRequestException } from '@nestjs/common';
+import { BadRequestException, Logger } from '@nestjs/common';
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import { RoomsRepository } from '@smart-home/api/room/infrastructure';
 import { UpdateFavouriteCommand } from './update-favourite.command';
@@ -14,10 +14,9 @@ export class UpdateFavouriteHandler
 
   async execute(command: UpdateFavouriteCommand): Promise<any> {
     const { roomId, newValue } = command;
-    // const roomRecord = await this.repository.getById(roomId);
 
-    // if (roomRecord === null)
-    //   throw new BadRequestException(`Room with id: ${roomId} not found`);
+    if ((await this.repository.exist(roomId)) === false)
+      throw new BadRequestException(`Room with id ${roomId} not found`);
 
     const room = this.eventPublisher.mergeObjectContext(
       await this.repository.getById(roomId)

@@ -1,7 +1,9 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { GetScenesOverviewQuery } from '@smart-home/api/scene/cqrs';
 import { SceneOverviewDto } from '@smart-home/shared/dto';
-import { GetScenesOverviewQuery } from 'libs/api/scene/cqrs/src/lib/queries/get-scenes-overview/get-scenes-overview.query';
+import { ToggleSceneFavouriteRequest } from '@smart-home/shared/requests';
+import { UpdateFavouriteCommand } from '@smart-home/api/scene/cqrs';
 
 @Controller('scene')
 export class SceneController {
@@ -16,6 +18,16 @@ export class SceneController {
   ): Promise<SceneOverviewDto[]> {
     return this.queryBus.execute<GetScenesOverviewQuery, SceneOverviewDto[]>(
       new GetScenesOverviewQuery(homeId)
+    );
+  }
+
+  @Patch(':id/toggleFavourite')
+  async toggleFavourite(
+    @Param('id') id: string,
+    @Body() request: ToggleSceneFavouriteRequest
+  ): Promise<void> {
+    await this.commandBus.execute<UpdateFavouriteCommand, void>(
+      new UpdateFavouriteCommand(id, request.value)
     );
   }
 }

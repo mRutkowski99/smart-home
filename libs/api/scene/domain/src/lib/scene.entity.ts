@@ -1,4 +1,3 @@
-import { Logger } from '@nestjs/common';
 import { AggregateRoot } from '@nestjs/cqrs';
 import { Schedule } from './schedule.model';
 
