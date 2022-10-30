@@ -15,10 +15,8 @@ export class Scene extends AggregateRoot {
   ) {
     super();
 
-    if (cron === null || expireDate === null) this._schedule = null;
-    else this._schedule = new Schedule(cron!, expireDate!);
-
-    if (this._schedule?.isExpired) this.removeExpiredSchedule();
+    if (cron === null) this._schedule = null;
+    else this._schedule = new Schedule(cron!, expireDate);
   }
 
   get id(): string {
@@ -68,10 +66,6 @@ export class Scene extends AggregateRoot {
     if (!this._active) throw new Error('Scene is already disabled');
 
     this._active = false;
-    //todo: send event
-  }
-
-  private removeExpiredSchedule() {
     //todo: send event
   }
 }
