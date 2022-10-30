@@ -19,11 +19,7 @@
         <smart-home-fa-icon [icon]="arrowIcon" size="sm"></smart-home-fa-icon>
       </a>
     </div>
-    <smart-home-slider>
-      <ion-slide style="width: auto" *ngFor="let room of rooms">
-        <smart-home-room-card [room]="room"></smart-home-room-card>
-      </ion-slide>
-    </smart-home-slider>
+    <smart-home-rooms-list></smart-home-rooms-list>
   </section>
 
   <section>

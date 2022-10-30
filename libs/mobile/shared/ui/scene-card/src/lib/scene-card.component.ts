@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { IconUtil } from '@smart-home/shared/utils/fa-icon';
+import { IconUtil } from '@smart-home/shared/utils';
 
 export interface SceneCard {
   id: number;
