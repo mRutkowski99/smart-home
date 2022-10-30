@@ -1,15 +1,15 @@
 {
-  "name": "mobile-shared-ui-scene-card",
+  "name": "mobile-scene-ui-scene-card",
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "libs/mobile/shared/ui/scene-card/src",
+  "sourceRoot": "libs/mobile/scene/ui/scene-card/src",
   "prefix": "smart-home",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/mobile/shared/ui/scene-card"],
+      "outputs": ["coverage/libs/mobile/scene/ui/scene-card"],
       "options": {
-        "jestConfig": "libs/mobile/shared/ui/scene-card/jest.config.ts",
+        "jestConfig": "libs/mobile/scene/ui/scene-card/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -17,8 +17,8 @@
       "executor": "@nrwl/linter:eslint",
       "options": {
         "lintFilePatterns": [
-          "libs/mobile/shared/ui/scene-card/**/*.ts",
-          "libs/mobile/shared/ui/scene-card/**/*.html"
+          "libs/mobile/scene/ui/scene-card/**/*.ts",
+          "libs/mobile/scene/ui/scene-card/**/*.html"
         ]
       }
     }

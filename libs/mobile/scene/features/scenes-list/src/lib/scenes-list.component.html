@@ -1,0 +1,7 @@
+<ng-container *ngIf="layout === 'slides'">
+  <smart-home-slider>
+    <ion-slide style="width: auto" *ngFor="let scene of scenes">
+      <smart-home-scene-card [scene]="scene"></smart-home-scene-card>
+    </ion-slide>
+  </smart-home-slider>
+</ng-container>

@@ -9,9 +9,9 @@ import { SummarySilderModule } from '@smart-home/mobile/home/ui/summary-silder';
 import { WelcomeModule } from '@smart-home/mobile/home/ui/welcome';
 import { NavModule } from '@smart-home/mobile/shared/ui/nav';
 import { SliderModule } from '@smart-home/mobile/shared/ui/slider';
-import { SceneCardModule } from '@smart-home/mobile/shared/ui/scene-card';
 import { FaIconModule } from '@smart-home/shared/ui/fa-icon';
 import { RoomsListModule } from '@smart-home/mobile/room/features/rooms-list';
+import { ScenesListModule } from '@smart-home/mobile/scene/features/scenes-list';
 
 @NgModule({
   imports: [
@@ -23,9 +23,9 @@ import { RoomsListModule } from '@smart-home/mobile/room/features/rooms-list';
     SummarySilderModule,
     NavModule,
     SliderModule,
-    SceneCardModule,
     FaIconModule,
     RoomsListModule,
+    ScenesListModule,
   ],
   declarations: [HomePageComponent],
   exports: [HomePageComponent],

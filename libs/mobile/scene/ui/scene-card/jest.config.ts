@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'mobile-shared-ui-scene-card',
+  displayName: 'mobile-scene-ui-scene-card',
   preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -9,7 +9,7 @@ export default {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../../../coverage/libs/mobile/shared/ui/scene-card',
+  coverageDirectory: '../../../../../coverage/libs/mobile/scene/ui/scene-card',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

@@ -51,11 +51,14 @@
       "@smart-home/mobile/room/ui/room-card": [
         "libs/mobile/room/ui/room-card/src/index.ts"
       ],
+      "@smart-home/mobile/scene/features/scenes-list": [
+        "libs/mobile/scene/features/scenes-list/src/index.ts"
+      ],
+      "@smart-home/mobile/scene/ui/scene-card": [
+        "libs/mobile/scene/ui/scene-card/src/index.ts"
+      ],
       "@smart-home/mobile/shared/ui/nav": [
         "libs/mobile/shared/ui/nav/src/index.ts"
-      ],
-      "@smart-home/mobile/shared/ui/scene-card": [
-        "libs/mobile/shared/ui/scene-card/src/index.ts"
       ],
       "@smart-home/mobile/shared/ui/slider": [
         "libs/mobile/shared/ui/slider/src/index.ts"
