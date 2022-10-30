@@ -1,12 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ApiCoreFeatureModule } from '@smart-home/api/core/feature';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-
 @Module({
   imports: [ApiCoreFeatureModule],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

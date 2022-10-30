@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FavouriteIconComponent } from './favourite-icon.component';
-import { FaIconModule } from '@smart-home/shared/utils/fa-icon';
+import { FaIconModule } from '@smart-home/shared/ui/fa-icon';
 
 @NgModule({
   imports: [CommonModule, FaIconModule],

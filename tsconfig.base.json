@@ -16,14 +16,22 @@
     "baseUrl": ".",
     "paths": {
       "@smart-home/api/core/feature": ["libs/api/core/feature/src/index.ts"],
-      "@smart-home/api/core/shared/pipes/validation": [
-        "libs/api/core/shared/pipes/validation/src/index.ts"
+      "@smart-home/api/core/services/prisma-service": [
+        "libs/api/core/services/prisma-service/src/index.ts"
       ],
-      "@smart-home/api/core/shared/services/prisma-service": [
-        "libs/api/core/shared/services/prisma-service/src/index.ts"
+      "@smart-home/api/core/utils": ["libs/api/core/utils/src/index.ts"],
+      "@smart-home/api/home/domain": ["libs/api/home/domain/src/index.ts"],
+      "@smart-home/api/room/cqrs": ["libs/api/room/cqrs/src/index.ts"],
+      "@smart-home/api/room/domain": ["libs/api/room/domain/src/index.ts"],
+      "@smart-home/api/room/feature": ["libs/api/room/feature/src/index.ts"],
+      "@smart-home/api/room/infrastructure": [
+        "libs/api/room/infrastructure/src/index.ts"
       ],
-      "@smart-home/api/core/shared/services/waether-api": [
-        "libs/api/core/shared/services/waether-api/src/index.ts"
+      "@smart-home/api/scene/cqrs": ["libs/api/scene/cqrs/src/index.ts"],
+      "@smart-home/api/scene/domain": ["libs/api/scene/domain/src/index.ts"],
+      "@smart-home/api/scene/feature": ["libs/api/scene/feature/src/index.ts"],
+      "@smart-home/api/scene/infrastructure": [
+        "libs/api/scene/infrastructure/src/index.ts"
       ],
       "@smart-home/mobile/home/features/home-page": [
         "libs/mobile/home/features/home-page/src/index.ts"
@@ -55,12 +63,13 @@
       "@smart-home/mobile/shell/feature": [
         "libs/mobile/shell/feature/src/index.ts"
       ],
+      "@smart-home/shared/dto": ["libs/shared/dto/src/index.ts"],
+      "@smart-home/shared/requests": ["libs/shared/requests/src/index.ts"],
+      "@smart-home/shared/ui/fa-icon": ["libs/shared/ui/fa-icon/src/index.ts"],
       "@smart-home/shared/ui/favourite-icon": [
         "libs/shared/ui/favourite-icon/src/index.ts"
       ],
-      "@smart-home/shared/utils/fa-icon": [
-        "libs/shared/utils/fa-icon/src/index.ts"
-      ]
+      "@smart-home/shared/utils": ["libs/shared/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
