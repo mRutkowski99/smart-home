@@ -4,6 +4,7 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
+import { RoomsListComponentStore } from '@smart-home/mobile/room/data-access/rooms-list-data';
 
 type Layout = 'slides' | 'grid';
 
@@ -16,38 +17,11 @@ type Layout = 'slides' | 'grid';
 export class RoomsListComponent implements OnInit {
   @Input() layout: Layout = 'slides';
 
-  constructor() {}
+  constructor(private readonly store: RoomsListComponentStore) {}
 
-  ngOnInit(): void {}
+  readonly vm$ = this.store.vm$;
 
-  rooms = [
-    {
-      id: 1,
-      name: 'Living room',
-      devices: 5,
-      img: 'https://images.unsplash.com/photo-1623920996377-9c5cd536143e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80',
-      temperature: 25,
-    },
-    {
-      id: 1,
-      name: 'Living room',
-      devices: 5,
-      img: 'https://images.unsplash.com/photo-1623920996377-9c5cd536143e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80',
-      temperature: 25,
-    },
-    {
-      id: 1,
-      name: 'Living room',
-      devices: 5,
-      img: 'https://images.unsplash.com/photo-1623920996377-9c5cd536143e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80',
-      temperature: 25,
-    },
-    {
-      id: 1,
-      name: 'Living room',
-      devices: 5,
-      img: 'https://images.unsplash.com/photo-1623920996377-9c5cd536143e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80',
-      temperature: 25,
-    },
-  ];
+  ngOnInit(): void {
+    this.store.getRooms();
+  }
 }

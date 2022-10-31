@@ -1,11 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-
-export interface RoomCard {
-  id: number;
-  name: string;
-  devices: number;
-  img: string;
-}
+import { RoomOverviewDto } from '@smart-home/shared/dto';
 
 @Component({
   selector: 'smart-home-room-card',
@@ -14,5 +8,5 @@ export interface RoomCard {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoomCardComponent {
-  @Input() room!: RoomCard | null;
+  @Input() room!: RoomOverviewDto | null;
 }

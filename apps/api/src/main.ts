@@ -10,6 +10,8 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3333;
 
+  app.enableCors();
+
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
   const prismaService = app.get(PrismaService);
