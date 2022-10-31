@@ -3,7 +3,8 @@ export class RoomOverviewDto {
     public readonly id: string,
     public readonly name: string,
     public readonly devicesCount: number,
-    public readonly imgUrl: string
+    public readonly imgUrl: string,
+    public readonly favourite: boolean
   ) {}
 }
 

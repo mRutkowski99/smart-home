@@ -18,6 +18,7 @@ export class SceneRepository {
   async getAllForHome(homeId: string): Promise<Scene[]> {
     const scenes = await this.prisma.sceneSchema.findMany({
       where: { homeId },
+      orderBy: [{ active: 'desc' }, { favourite: 'desc' }],
     });
 
     return scenes.map((scene) => this.mapper.schemaToDomain(scene));

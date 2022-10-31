@@ -11,7 +11,10 @@ export class RoomsRepository {
   ) {}
 
   async getAllForHome(homeId: string): Promise<Room[]> {
-    const rooms = await this.prisma.roomSchema.findMany({ where: { homeId } });
+    const rooms = await this.prisma.roomSchema.findMany({
+      where: { homeId },
+      orderBy: [{ favourite: 'desc' }],
+    });
     return rooms.map((room) => this.mapper.schemaToDomain(room));
   }
 
