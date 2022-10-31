@@ -1,11 +1,13 @@
 <ion-card role="link" class="card" [routerLink]="'scenes/' + scene.id">
   <div class="card__section">
-    <smart-home-favourite-icon [isFavourite]="true"></smart-home-favourite-icon>
-    <ion-toggle slot="end" class="px-0" [checked]="scene.active"></ion-toggle>
+    <smart-home-favourite-icon
+      [isFavourite]="scene.isFavourite"
+    ></smart-home-favourite-icon>
+    <ion-toggle slot="end" class="px-0" [checked]="scene.isActive"></ion-toggle>
   </div>
   <div class="card__section">
     <smart-home-fa-icon [icon]="clockIcon" size="lg"></smart-home-fa-icon>
-    <span>{{ scene.schedule || 'Not scheduled' }}</span>
+    <span>{{ scene.todaySchedule || 'Not scheduled' }}</span>
   </div>
   <div class="card__section">
     <span class="font-semibold text-2xl text-black">{{ scene.name }}</span>

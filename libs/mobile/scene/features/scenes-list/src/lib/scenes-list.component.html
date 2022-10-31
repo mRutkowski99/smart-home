@@ -1,7 +1,17 @@
-<ng-container *ngIf="layout === 'slides'">
-  <smart-home-slider>
-    <ion-slide style="width: auto" *ngFor="let scene of scenes">
-      <smart-home-scene-card [scene]="scene"></smart-home-scene-card>
-    </ion-slide>
-  </smart-home-slider>
+<ng-container *ngIf="vm$ | async as vm">
+  <ng-container *ngIf="layout === 'slides'">
+    <!-- Success -->
+    <smart-home-slider *ngIf="vm.status === 'success'">
+      <ion-slide style="width: auto" *ngFor="let scene of vm.scenes">
+        <smart-home-scene-card [scene]="scene"></smart-home-scene-card>
+      </ion-slide>
+    </smart-home-slider>
+
+    <!-- Loading -->
+    <smart-home-slider *ngIf="vm.status === 'loading'">
+      <ion-slide style="width: auto" *ngFor="let skeleton of skeletonCards">
+        <smart-home-skeleton [factory]="skeleton"></smart-home-skeleton>
+      </ion-slide>
+    </smart-home-slider>
+  </ng-container>
 </ng-container>

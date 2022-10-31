@@ -1,13 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { SceneOverviewDto } from '@smart-home/shared/dto';
 import { IconUtil } from '@smart-home/shared/utils';
-
-export interface SceneCard {
-  id: number;
-  name: string;
-  active: boolean;
-  schedule?: string;
-  favourite: boolean;
-}
 
 @Component({
   selector: 'smart-home-scene-card',
@@ -16,7 +9,7 @@ export interface SceneCard {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SceneCardComponent {
-  @Input() scene!: SceneCard;
+  @Input() scene!: SceneOverviewDto;
 
   readonly clockIcon = IconUtil.clock;
 }

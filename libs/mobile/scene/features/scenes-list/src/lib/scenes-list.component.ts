@@ -4,6 +4,8 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
+import { ScenesListComponentStore } from '@smart-home/mobile/scene/data-access/scenes-list-data';
+import { SkeletonFactory } from '@smart-home/mobile/shared/utils';
 
 type Layout = 'slides' | 'grid';
 
@@ -16,49 +18,36 @@ type Layout = 'slides' | 'grid';
 export class ScenesListComponent implements OnInit {
   @Input() layout: Layout = 'slides';
 
-  constructor() {}
+  constructor(private readonly store: ScenesListComponentStore) {}
 
-  ngOnInit(): void {}
+  readonly vm$ = this.store.vm$;
 
-  scenes = [
-    {
-      id: 1,
-      name: 'Good morning!',
-      active: false,
-      schedule: '7:00',
-      favourite: true,
-    },
-    {
-      id: 2,
-      name: 'Bye, bye my home',
-      active: false,
-      schedule: '8:00',
-      favourite: true,
-    },
-    {
-      id: 3,
-      name: "I'm coming home!",
-      active: false,
-      favourite: false,
-    },
-    {
-      id: 4,
-      name: 'Netflix & chill',
-      active: true,
-      favourite: true,
-    },
-    {
-      id: 5,
-      name: 'Good night',
-      active: false,
-      schedule: '23:00',
-      favourite: false,
-    },
-    {
-      id: 3,
-      name: 'A scene with longer name',
-      active: false,
-      favourite: true,
-    },
-  ];
+  ngOnInit(): void {
+    this.store.getScenes();
+  }
+
+  readonly skeletonCards = Array.from(
+    { length: 5 },
+    (_) =>
+      new SkeletonFactory({ width: '15rem', height: '15rem' }, [
+        {
+          height: '1.6rem',
+          width: '13rem',
+          horizontalOffset: '1rem',
+          verticalOffset: '1rem',
+        },
+        {
+          height: '1.6rem',
+          width: '13rem',
+          horizontalOffset: '1rem',
+          verticalOffset: '3.6rem',
+        },
+        {
+          height: '4rem',
+          width: '13rem',
+          horizontalOffset: '1rem',
+          verticalOffset: '7rem',
+        },
+      ])
+  );
 }

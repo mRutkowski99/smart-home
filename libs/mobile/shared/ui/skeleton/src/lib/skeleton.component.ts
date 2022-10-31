@@ -34,11 +34,16 @@ export class SkeletonComponent {
     this.itemsStyles = props.items.map((item) => ({
       height: item.height,
       width: item.width,
-      top: item.verticalOrigin === 'top' ? item.verticalOffset : 'initial',
+      top:
+        item.verticalOrigin === 'top' || !item.verticalOrigin
+          ? item.verticalOffset
+          : 'initial',
       bottom:
         item.verticalOrigin === 'bottom' ? item.verticalOffset : 'initial',
       left:
-        item.horizontalOrigin === 'left' ? item.horizontalOffset : 'initial',
+        item.horizontalOrigin === 'left' || !item.horizontalOrigin
+          ? item.horizontalOffset
+          : 'initial',
       right:
         item.horizontalOrigin === 'rigth' ? item.horizontalOffset : 'initial',
       transformOrigin: item.transformOrigin || 'top left',

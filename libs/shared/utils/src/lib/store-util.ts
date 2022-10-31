@@ -13,10 +13,10 @@ export class StoreUtils {
     return { status: 'loading', error: null };
   }
 
-  static errorState(error: HttpErrorResponse): Partial<unknown> {
+  static errorState(error: string): Partial<unknown> {
     return {
       status: 'error',
-      error: error.message,
+      error,
     };
   }
 

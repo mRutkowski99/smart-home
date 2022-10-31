@@ -7,11 +7,11 @@ interface SkeletonItemProps {
   width: string;
   height: string;
   verticalOffset: string;
-  verticalOrigin: 'top' | 'bottom';
+  verticalOrigin?: 'top' | 'bottom';
   horizontalOffset: string;
-  horizontalOrigin: 'left' | 'rigth';
+  horizontalOrigin?: 'left' | 'rigth';
   transformOrigin?: string;
-  rounded: boolean;
+  rounded?: boolean;
 }
 
 export class SkeletonFactory {

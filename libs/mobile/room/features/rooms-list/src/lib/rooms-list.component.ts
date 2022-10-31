@@ -22,6 +22,10 @@ export class RoomsListComponent implements OnInit {
 
   readonly vm$ = this.store.vm$;
 
+  ngOnInit(): void {
+    this.store.getRooms();
+  }
+
   readonly skeletonCards = Array.from(
     { length: 5 },
     (_) =>
@@ -30,15 +34,9 @@ export class RoomsListComponent implements OnInit {
           height: '5rem',
           width: '13rem',
           horizontalOffset: '1rem',
-          horizontalOrigin: 'left',
           verticalOffset: '1rem',
           verticalOrigin: 'bottom',
-          rounded: false,
         },
       ])
   );
-
-  ngOnInit(): void {
-    this.store.getRooms();
-  }
 }

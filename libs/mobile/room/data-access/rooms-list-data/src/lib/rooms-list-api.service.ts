@@ -1,15 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RoomOverviewDto } from '@smart-home/shared/dto';
 import { Observable } from 'rxjs';
-import { environment } from 'apps/mobile/src/environments/environment';
-import { ToggleRoomFavouriteRequest } from '@smart-home/shared/requests';
+import { RoomOverviewDto } from '@smart-home/shared/dto';
+import { ApiUrlUtil } from '@smart-home/shared/utils';
 
 @Injectable()
 export class RoomsListApiService {
   constructor(private readonly http: HttpClient) {}
 
-  private readonly url = environment.apiUrl + 'room/';
+  private readonly url = ApiUrlUtil.roomController;
 
   getRooms(homeId: string): Observable<RoomOverviewDto[]> {
     return this.http.get<RoomOverviewDto[]>(this.url + 'overviews/' + homeId);

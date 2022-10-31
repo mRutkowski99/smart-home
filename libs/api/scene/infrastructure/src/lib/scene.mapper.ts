@@ -35,7 +35,7 @@ export class SceneMapper {
       name: domain.name,
       isActive: domain.isActive,
       isFavourite: domain.isFavourite,
-      todaySchedule: domain.schedule?.todaySchedule || null,
+      todaySchedule: domain.schedule?.todaySchedule?.toString() || null,
     };
   }
 }
