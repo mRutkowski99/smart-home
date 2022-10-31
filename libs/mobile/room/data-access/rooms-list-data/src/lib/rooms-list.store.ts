@@ -52,7 +52,7 @@ export class RoomsListComponentStore extends ComponentStore<State> {
     super({
       data: null,
       error: null,
-      status: 'pending',
+      status: 'loading',
     });
   }
 }

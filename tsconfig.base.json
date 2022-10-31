@@ -63,6 +63,9 @@
       "@smart-home/mobile/shared/ui/nav": [
         "libs/mobile/shared/ui/nav/src/index.ts"
       ],
+      "@smart-home/mobile/shared/ui/skeleton": [
+        "libs/mobile/shared/ui/skeleton/src/index.ts"
+      ],
       "@smart-home/mobile/shared/ui/slider": [
         "libs/mobile/shared/ui/slider/src/index.ts"
       ],

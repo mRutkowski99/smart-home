@@ -5,6 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { RoomsListComponentStore } from '@smart-home/mobile/room/data-access/rooms-list-data';
+import { SkeletonFactory } from '@smart-home/mobile/shared/utils';
 
 type Layout = 'slides' | 'grid';
 
@@ -20,6 +21,22 @@ export class RoomsListComponent implements OnInit {
   constructor(private readonly store: RoomsListComponentStore) {}
 
   readonly vm$ = this.store.vm$;
+
+  readonly skeletonCards = Array.from(
+    { length: 5 },
+    (_) =>
+      new SkeletonFactory({ height: '20rem', width: '15rem' }, [
+        {
+          height: '5rem',
+          width: '13rem',
+          horizontalOffset: '1rem',
+          horizontalOrigin: 'left',
+          verticalOffset: '1rem',
+          verticalOrigin: 'bottom',
+          rounded: false,
+        },
+      ])
+  );
 
   ngOnInit(): void {
     this.store.getRooms();
