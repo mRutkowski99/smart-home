@@ -45,14 +45,29 @@
       "@smart-home/mobile/home/ui/welcome": [
         "libs/mobile/home/ui/welcome/src/index.ts"
       ],
+      "@smart-home/mobile/room/data-access/rooms-list-data": [
+        "libs/mobile/room/data-access/rooms-list-data/src/index.ts"
+      ],
+      "@smart-home/mobile/room/features/rooms-list": [
+        "libs/mobile/room/features/rooms-list/src/index.ts"
+      ],
+      "@smart-home/mobile/room/ui/room-card": [
+        "libs/mobile/room/ui/room-card/src/index.ts"
+      ],
+      "@smart-home/mobile/scene/data-access/scenes-list-data": [
+        "libs/mobile/scene/data-access/scenes-list-data/src/index.ts"
+      ],
+      "@smart-home/mobile/scene/features/scenes-list": [
+        "libs/mobile/scene/features/scenes-list/src/index.ts"
+      ],
+      "@smart-home/mobile/scene/ui/scene-card": [
+        "libs/mobile/scene/ui/scene-card/src/index.ts"
+      ],
       "@smart-home/mobile/shared/ui/nav": [
         "libs/mobile/shared/ui/nav/src/index.ts"
       ],
-      "@smart-home/mobile/shared/ui/room-card": [
-        "libs/mobile/shared/ui/room-card/src/index.ts"
-      ],
-      "@smart-home/mobile/shared/ui/scene-card": [
-        "libs/mobile/shared/ui/scene-card/src/index.ts"
+      "@smart-home/mobile/shared/ui/skeleton": [
+        "libs/mobile/shared/ui/skeleton/src/index.ts"
       ],
       "@smart-home/mobile/shared/ui/slider": [
         "libs/mobile/shared/ui/slider/src/index.ts"

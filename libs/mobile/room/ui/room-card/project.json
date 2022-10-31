@@ -1,0 +1,27 @@
+{
+  "name": "mobile-room-ui-room-card",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mobile/room/ui/room-card/src",
+  "prefix": "smart-home",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mobile/room/ui/room-card"],
+      "options": {
+        "jestConfig": "libs/mobile/room/ui/room-card/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/mobile/room/ui/room-card/**/*.ts",
+          "libs/mobile/room/ui/room-card/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

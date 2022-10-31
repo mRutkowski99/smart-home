@@ -1,0 +1,27 @@
+{
+  "name": "mobile-scene-data-access-scenes-list-data",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mobile/scene/data-access/scenes-list-data/src",
+  "prefix": "smart-home",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mobile/scene/data-access/scenes-list-data"],
+      "options": {
+        "jestConfig": "libs/mobile/scene/data-access/scenes-list-data/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/mobile/scene/data-access/scenes-list-data/**/*.ts",
+          "libs/mobile/scene/data-access/scenes-list-data/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

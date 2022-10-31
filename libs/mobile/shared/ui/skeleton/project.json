@@ -1,0 +1,27 @@
+{
+  "name": "mobile-shared-ui-skeleton",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mobile/shared/ui/skeleton/src",
+  "prefix": "smart-home",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mobile/shared/ui/skeleton"],
+      "options": {
+        "jestConfig": "libs/mobile/shared/ui/skeleton/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/mobile/shared/ui/skeleton/**/*.ts",
+          "libs/mobile/shared/ui/skeleton/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

@@ -32,7 +32,13 @@ export class RoomMapper {
   }
 
   domainToOverviewDto(domain: Room): RoomOverviewDto {
-    return new RoomOverviewDto(domain.id, domain.name, 5, domain.imgUrl);
+    return new RoomOverviewDto(
+      domain.id,
+      domain.name,
+      5,
+      domain.imgUrl,
+      domain.isFavourite
+    );
   }
 
   domainToDto(domain: Room): RoomDto {

@@ -6,7 +6,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { IconUtil } from '@smart-home/shared/utils/fa-icon';
+import { IconUtil } from '@smart-home/shared/utils';
 
 @Component({
   selector: 'smart-home-favourite-icon',
