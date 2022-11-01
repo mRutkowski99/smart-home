@@ -17,7 +17,7 @@ CREATE TABLE "AlarmLogSchema" (
     "createDate" TIMESTAMP(3) NOT NULL,
     "confirmed" BOOLEAN,
     "confirmedAt" TIMESTAMP(3),
-    "confirmedBy" TEXT NOT NULL,
+    "confirmedBy" TEXT,
     "alarmId" TEXT NOT NULL,
 
     CONSTRAINT "AlarmLogSchema_pkey" PRIMARY KEY ("id")

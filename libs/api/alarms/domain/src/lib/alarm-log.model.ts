@@ -1,6 +1,9 @@
+// Only instances with 'danger' state equals true need to be confirmed by user
+
 export class AlarmLog {
   constructor(
     public readonly id: string,
+    public readonly alarmId: string,
     public readonly createDate: Date,
     public readonly danger: boolean,
     public readonly message: string,
@@ -21,13 +24,14 @@ export class AlarmLog {
     return this._confirmedBy;
   }
 
-  static create(danger: boolean, message: string): AlarmLog {
+  static create(alarmId: string, danger: boolean, message: string): AlarmLog {
     return new AlarmLog(
       crypto.randomUUID(),
+      alarmId,
       new Date(),
       danger,
       message,
-      null,
+      danger ? false : null,
       null,
       null
     );

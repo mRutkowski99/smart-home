@@ -60,7 +60,7 @@ model AlarmLogSchema {
   createDate  DateTime
   confirmed   Boolean?
   confirmedAt DateTime?
-  confirmedBy String
+  confirmedBy String?
 
   alarm   AlarmSchema @relation(fields: [alarmId], references: [id])
   alarmId String

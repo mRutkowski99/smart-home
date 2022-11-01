@@ -44,6 +44,11 @@ export class Alarm extends AggregateRoot {
     return [...this._logs];
   }
 
+  get unconfirmed(): AlarmLog[] | null {
+    const unconfirmed = this._logs.filter((log) => log.confirmed === false);
+    return unconfirmed.length === 0 ? null : unconfirmed;
+  }
+
   activate() {
     if (this._windowsToClose.length !== 0)
       throw new Error(
@@ -65,7 +70,7 @@ export class Alarm extends AggregateRoot {
   }
 
   addLog(message: string, danger: boolean = false) {
-    const newLog = AlarmLog.create(danger, message);
+    const newLog = AlarmLog.create(this.id, danger, message);
     this._logs = [...this._logs, newLog];
 
     if (danger) {
