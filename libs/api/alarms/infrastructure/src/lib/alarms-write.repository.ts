@@ -1,34 +1,36 @@
 import { Injectable } from '@nestjs/common';
+import { AlarmLogSchema, AlarmSchema } from '@prisma/client';
 import { Alarm } from '@smart-home/api/alarms/domain';
 import { PrismaService } from '@smart-home/api/core/services/prisma-service';
 import dayjs = require('dayjs');
 import { AlarmSchemaFactory } from './alarm-schema.factory';
 
+type AlarmDomainSchema = AlarmSchema & {
+  alarmLogs: AlarmLogSchema[];
+};
+
 @Injectable()
 export class AlarmsWriteRepository {
-  constructor(
-    private readonly prisma: PrismaService,
-    private readonly factory: AlarmSchemaFactory
-  ) {}
+  constructor(private readonly prisma: PrismaService) {}
 
-  async findAlarmById(id: string): Promise<Alarm> {
-    const alarm = await this.prisma.alarmSchema.findUnique({
+  async findAlarmById(id: string): Promise<AlarmDomainSchema | null> {
+    return await this.prisma.alarmSchema.findUnique({
       where: { id },
       include: {
         alarmLogs: { where: { createDate: { gte: this.threeMonthsAgo } } },
       },
     });
-
-    return this.factory.createFromSchema(alarm, [], []);
   }
 
-  async findAndReplace(id: string, alarm: Alarm): Promise<void> {
-    const { alarm: alarmSchema, logs } = this.factory.create(alarm);
-
+  async findAndReplace(
+    id: string,
+    alarm: AlarmSchema,
+    logs: AlarmLogSchema[]
+  ): Promise<void> {
     await this.prisma.alarmSchema.update({
       where: { id },
       data: {
-        ...alarmSchema,
+        ...alarm,
         alarmLogs: {
           deleteMany: { alarmId: id },
           createMany: { data: [...logs] },

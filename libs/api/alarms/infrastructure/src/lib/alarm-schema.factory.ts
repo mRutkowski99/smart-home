@@ -6,6 +6,7 @@ import { Alarm, AlarmLog } from '@smart-home/api/alarms/domain';
 type AlarmDomainSchema = AlarmSchema & {
   alarmLogs: AlarmLogSchema[];
 };
+type AlarmSchemas = [AlarmSchema, AlarmLogSchema[]];
 
 @Injectable()
 export class AlarmSchemaFactory {
@@ -28,17 +29,17 @@ export class AlarmSchemaFactory {
     );
   }
 
-  create(domain: Alarm): { alarm: AlarmSchema; logs: AlarmLogSchema[] } {
-    return {
-      alarm: {
+  create(domain: Alarm): AlarmSchemas {
+    return [
+      {
         id: domain.id,
         homeId: domain.homeId,
         name: domain.name,
         active: domain.isActive,
         defaulState: domain.defaultState,
       },
-      logs: [...domain.logs],
-    };
+      [...domain.logs],
+    ];
   }
 
   private createLogFromSchema(schema: AlarmLogSchema): AlarmLog {
