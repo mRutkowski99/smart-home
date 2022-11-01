@@ -15,6 +15,14 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@smart-home/api/alarms/cqrs": ["libs/api/alarms/cqrs/src/index.ts"],
+      "@smart-home/api/alarms/domain": ["libs/api/alarms/domain/src/index.ts"],
+      "@smart-home/api/alarms/feature": [
+        "libs/api/alarms/feature/src/index.ts"
+      ],
+      "@smart-home/api/alarms/infrastructure": [
+        "libs/api/alarms/infrastructure/src/index.ts"
+      ],
       "@smart-home/api/core/feature": ["libs/api/core/feature/src/index.ts"],
       "@smart-home/api/core/services/prisma-service": [
         "libs/api/core/services/prisma-service/src/index.ts"

@@ -54,10 +54,13 @@ model AlarmSchema {
 }
 
 model AlarmLogSchema {
-  id         String   @id @default(uuid())
-  danger     Boolean
-  message    String
-  createDate DateTime @default(now())
+  id          String    @id @default(uuid())
+  danger      Boolean
+  message     String
+  createDate  DateTime
+  confirmed   Boolean?
+  confirmedAt DateTime?
+  confirmedBy String
 
   alarm   AlarmSchema @relation(fields: [alarmId], references: [id])
   alarmId String

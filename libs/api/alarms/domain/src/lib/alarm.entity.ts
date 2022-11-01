@@ -1,0 +1,90 @@
+import { AggregateRoot } from '@nestjs/cqrs';
+import { AlarmTriggeredEvent } from '@smart-home/api/alarms/cqrs';
+import { AlarmLog } from './alarm-log.model';
+
+export class Alarm extends AggregateRoot {
+  constructor(
+    private readonly _id: string,
+    private readonly _homeId: string,
+    private readonly _name: string,
+    private _defaultState: boolean,
+    private _active: boolean,
+    private _logs: AlarmLog[],
+    private readonly _windowsToClose: string[],
+    private readonly _doorsToClose: string[]
+  ) {
+    super();
+  }
+
+  get id(): string {
+    return this._id;
+  }
+
+  get homeId(): string {
+    return this._homeId;
+  }
+
+  get name(): string {
+    return this._name;
+  }
+
+  get defaultState(): boolean {
+    return this._defaultState;
+  }
+
+  set defaultState(value: boolean) {
+    this._defaultState = value;
+  }
+
+  get isActive(): boolean {
+    return this._active;
+  }
+
+  get logs(): AlarmLog[] {
+    return [...this._logs];
+  }
+
+  activate() {
+    if (this._windowsToClose.length !== 0)
+      throw new Error(
+        "Can't activate alarm. Following windows aren't closed:" +
+          this._windowsToClose.join(', ')
+      );
+
+    if (this._doorsToClose.length !== 0)
+      throw new Error(
+        "Can't activate alarm. Following doors aren't closed:" +
+          this._doorsToClose.join(', ')
+      );
+
+    this._active = true;
+  }
+
+  deactivate() {
+    this._active = false;
+  }
+
+  addLog(message: string, danger: boolean = false) {
+    const newLog = AlarmLog.create(danger, message);
+    this._logs = [...this._logs, newLog];
+
+    if (danger) {
+      this.apply(
+        new AlarmTriggeredEvent(this.id, this.name, newLog.id, message)
+      );
+    }
+  }
+
+  confirm(logId: string, userId: string) {
+    const exist = this._logs.find(
+      (log) => log.id === logId && log.confirmed === false
+    );
+
+    if (exist === undefined)
+      throw new Error(`Can\'t find log to confirm with id ${logId}`);
+
+    this._logs.forEach((log) => {
+      if (log.id === logId) log.confirm(userId);
+    });
+  }
+}

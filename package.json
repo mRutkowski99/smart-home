@@ -40,6 +40,7 @@
     "class-validator": "^0.13.2",
     "dayjs": "^1.11.6",
     "joi": "^17.6.3",
+    "prisma-client": "^0.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
