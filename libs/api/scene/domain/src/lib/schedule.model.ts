@@ -1,4 +1,4 @@
-import { SceneCron, Time } from '@smart-home/api/core/utils';
+import { SceneCron } from '@smart-home/api/core/utils';
 
 export class Schedule {
   private readonly _cron: SceneCron;
@@ -19,9 +19,9 @@ export class Schedule {
     return this._expireDate !== null && new Date() > this._expireDate;
   }
 
-  get todaySchedule(): Time | null {
+  get todaySchedule(): Date | null {
     if (this.isExpired) return null;
     if (!this.cron.isDayOfWeekIncluded()) return null;
-    return new Time(this.cron.getAsDate());
+    return this.cron.getAsDate();
   }
 }

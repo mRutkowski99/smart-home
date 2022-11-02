@@ -1,38 +1,26 @@
 import { Injectable } from '@nestjs/common';
+import { SceneSchema } from '@prisma/client';
 import { PrismaService } from '@smart-home/api/core/services/prisma-service';
-import { Scene } from '@smart-home/api/scene/domain';
-import { SceneMapper } from './scene.mapper';
 
 @Injectable()
 export class SceneRepository {
-  constructor(
-    private readonly prisma: PrismaService,
-    private readonly mapper: SceneMapper
-  ) {}
+  constructor(private readonly prisma: PrismaService) {}
 
-  async exist(id: string): Promise<boolean> {
-    const scene = await this.prisma.sceneSchema.findUnique({ where: { id } });
-    return !!scene;
-  }
-
-  async getAllForHome(homeId: string): Promise<Scene[]> {
-    const scenes = await this.prisma.sceneSchema.findMany({
+  async getAllForHome(homeId: string): Promise<SceneSchema[]> {
+    return await this.prisma.sceneSchema.findMany({
       where: { homeId },
       orderBy: [{ active: 'desc' }, { favourite: 'desc' }],
     });
-
-    return scenes.map((scene) => this.mapper.schemaToDomain(scene));
   }
 
-  async getById(id: string): Promise<Scene> {
-    const scene = await this.prisma.sceneSchema.findUnique({ where: { id } });
-    return this.mapper.schemaToDomain(scene);
+  async findById(id: string): Promise<SceneSchema | null> {
+    return await this.prisma.sceneSchema.findUnique({ where: { id } });
   }
 
-  async findAndReplace(id: string, scene: Scene): Promise<void> {
+  async findAndReplace(id: string, scene: SceneSchema): Promise<void> {
     await this.prisma.sceneSchema.update({
       where: { id },
-      data: { ...this.mapper.domainToSchema(scene) },
+      data: { ...scene },
     });
   }
 }

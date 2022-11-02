@@ -34,17 +34,15 @@ export class SceneCron {
   }
 
   get weekdays(): DayOfWeek[] {
-    return this.cronMap
-      .get('weekday')!
-      .split(',')
-      .map((weekday) => +weekday);
+    const weekdays = this.cronMap.get('weekday')!;
+
+    if (weekdays.includes(''))
+      return weekdays.split(',').map((weekday) => +weekday);
+    else return [+weekdays];
   }
 
   isDayOfWeekIncluded(weekday: DayOfWeek = new Date().getDay()): boolean {
-    return this.cronMap
-      .get('weekday')!
-      .split(',')
-      .some((wd) => +wd === weekday);
+    return this.weekdays.some((wd) => +wd === weekday);
   }
 
   // Returns minute and hour as Date type with current day

@@ -4,6 +4,6 @@ export class SceneOverviewDto {
     public readonly name: string,
     public readonly isActive: boolean,
     public readonly isFavourite: boolean,
-    public readonly todaySchedule: string
+    public readonly todaySchedule: Date | null
   ) {}
 }
