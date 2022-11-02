@@ -1,0 +1,27 @@
+{
+  "name": "mobile-alarm-feature-alarms-page",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mobile/alarm/feature/alarms-page/src",
+  "prefix": "smart-home",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mobile/alarm/feature/alarms-page"],
+      "options": {
+        "jestConfig": "libs/mobile/alarm/feature/alarms-page/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/mobile/alarm/feature/alarms-page/**/*.ts",
+          "libs/mobile/alarm/feature/alarms-page/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

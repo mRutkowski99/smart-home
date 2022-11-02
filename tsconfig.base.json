@@ -41,6 +41,9 @@
       "@smart-home/api/scene/infrastructure": [
         "libs/api/scene/infrastructure/src/index.ts"
       ],
+      "@smart-home/mobile/alarm/feature/alarms-page": [
+        "libs/mobile/alarm/feature/alarms-page/src/index.ts"
+      ],
       "@smart-home/mobile/home/features/home-page": [
         "libs/mobile/home/features/home-page/src/index.ts"
       ],
