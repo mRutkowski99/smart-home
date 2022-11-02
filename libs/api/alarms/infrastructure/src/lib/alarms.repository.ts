@@ -2,11 +2,9 @@ import { Injectable } from '@nestjs/common';
 import * as dayjs from 'dayjs';
 import { PrismaService } from '@smart-home/api/core/services/prisma-service';
 import { AlarmLogSchema, AlarmSchema } from '@prisma/client';
+import { AlarmDomainSchema, AlarmLogInput } from './alarm-schema.factory';
 
 type FilterFromParam = 'lastWeek' | 'lastMonth' | 'lastThreeMonths';
-type AlarmDomainSchema = AlarmSchema & {
-  alarmLogs: AlarmLogSchema[];
-};
 
 @Injectable()
 export class AlarmsRepository {
@@ -59,7 +57,7 @@ export class AlarmsRepository {
   async findAndReplace(
     id: string,
     alarm: AlarmSchema,
-    logs: AlarmLogSchema[]
+    logs: AlarmLogInput[]
   ): Promise<void> {
     await this.prisma.alarmSchema.update({
       where: { id },

@@ -9,7 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 interface State extends GenericState<SceneOverviewDto[]> {}
 
 //todo: Get from auth store
-const homeId = '8feb19a0-531c-475e-8a91-4257d96e08b9';
+const homeId = '51e93387-8e2c-4b59-88ca-e6f4f43c56f6';
 
 @Injectable()
 export class ScenesListComponentStore extends ComponentStore<State> {

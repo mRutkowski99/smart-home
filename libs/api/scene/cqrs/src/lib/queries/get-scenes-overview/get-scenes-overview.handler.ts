@@ -1,6 +1,6 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import {
-  SceneMapper,
+  SceneDtoFactory,
   SceneRepository,
 } from '@smart-home/api/scene/infrastructure';
 import { GetScenesOverviewQuery } from './get-scenes-overview.query';
@@ -12,12 +12,12 @@ export class GetScenesOverviewHandler
 {
   constructor(
     private readonly repository: SceneRepository,
-    private readonly mapper: SceneMapper
+    private readonly factory: SceneDtoFactory
   ) {}
 
   async execute(query: GetScenesOverviewQuery): Promise<SceneOverviewDto[]> {
     const { homeId } = query;
     const scenes = await this.repository.getAllForHome(homeId);
-    return scenes.map((scene) => this.mapper.domainToOverviewDto(scene));
+    return scenes.map((scene) => this.factory.toSceneOverviewDto(scene));
   }
 }

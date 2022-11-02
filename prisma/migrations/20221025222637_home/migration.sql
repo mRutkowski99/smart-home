@@ -35,7 +35,7 @@ CREATE TABLE "RoomSchema" (
     "devices" INTEGER NOT NULL,
     "imgUrl" TEXT NOT NULL,
     "favourite" BOOLEAN NOT NULL DEFAULT false,
-    "homeId" TEXT,
+    "homeId" TEXT NOT NULL,
 
     CONSTRAINT "RoomSchema_pkey" PRIMARY KEY ("id")
 );
@@ -46,7 +46,7 @@ CREATE TABLE "SceneSchema" (
     "name" TEXT NOT NULL,
     "active" BOOLEAN NOT NULL DEFAULT false,
     "favourite" BOOLEAN NOT NULL DEFAULT false,
-    "homeId" TEXT,
+    "homeId" TEXT NOT NULL,
 
     CONSTRAINT "SceneSchema_pkey" PRIMARY KEY ("id")
 );

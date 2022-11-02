@@ -12,20 +12,36 @@ async function main() {
   await prisma.roomSchema.deleteMany();
   await prisma.homeSchema.deleteMany();
 
-  await prisma.homeSchema.createMany({ data: [{}, {}, {}] });
+  await prisma.homeSchema.createMany({
+    data: [{ id: '51e93387-8e2c-4b59-88ca-e6f4f43c56f6' }],
+  });
 
-  const homes = await prisma.homeSchema.findMany();
+  const [home] = await prisma.homeSchema.findMany({
+    where: { id: '51e93387-8e2c-4b59-88ca-e6f4f43c56f6' },
+  });
+
+  const imgUrl =
+    'https://images.unsplash.com/photo-1623920996377-9c5cd536143e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80';
 
   await prisma.roomSchema.createMany({
     data: [
-      { homeId: homes[0].id, name: 'Living room', favourite: true, imgUrl: '' },
-      { homeId: homes[0].id, name: 'Kitchen', favourite: true, imgUrl: '' },
-      { homeId: homes[0].id, name: 'Batchroom', favourite: false, imgUrl: '' },
       {
-        homeId: homes[1].id,
-        name: 'Living room 2nd floor',
+        homeId: home.id,
+        name: 'Living room',
+        favourite: true,
+        imgUrl,
+      },
+      {
+        homeId: home.id,
+        name: 'Kitchen',
+        favourite: true,
+        imgUrl,
+      },
+      {
+        homeId: home.id,
+        name: 'Batchroom',
         favourite: false,
-        imgUrl: '',
+        imgUrl,
       },
     ],
   });
@@ -33,7 +49,7 @@ async function main() {
   await prisma.sceneSchema.createMany({
     data: [
       {
-        homeId: homes[0].id,
+        homeId: home.id,
         name: 'Good morning',
         active: false,
         favourite: true,
@@ -41,7 +57,7 @@ async function main() {
         expireDate: tommorow,
       },
       {
-        homeId: homes[0].id,
+        homeId: home.id,
         name: "I'm leaving",
         active: false,
         favourite: false,
@@ -49,7 +65,7 @@ async function main() {
         expireDate: tommorow,
       },
       {
-        homeId: homes[1].id,
+        homeId: home.id,
         name: 'Good night',
         active: false,
         favourite: false,
@@ -60,13 +76,13 @@ async function main() {
   await prisma.alarmSchema.createMany({
     data: [
       {
-        homeId: homes[0].id,
+        homeId: home.id,
         name: 'Alarm 1',
         active: false,
         defaulState: false,
       },
       {
-        homeId: homes[0].id,
+        homeId: home.id,
         name: 'Alarm 2',
         active: true,
         defaulState: false,

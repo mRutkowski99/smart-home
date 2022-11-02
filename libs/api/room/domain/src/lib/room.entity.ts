@@ -3,8 +3,8 @@ import { Humidity } from './humidity.model';
 import { Temperature } from './temperature.model';
 
 export class Room extends AggregateRoot {
-  private readonly _temperature: Temperature;
-  private readonly _humidity: Humidity;
+  private readonly _temperature: Temperature | undefined;
+  private readonly _humidity: Humidity | undefined;
 
   constructor(
     private readonly _id: string,
@@ -18,8 +18,10 @@ export class Room extends AggregateRoot {
     super();
 
     //These properties don't comes from db so can be omitted unless are necessary
-    this._temperature = _temperature && new Temperature(_temperature);
-    this._humidity = _humidity && new Humidity(_humidity);
+    if (_temperature !== undefined)
+      this._temperature = new Temperature(_temperature);
+
+    if (_humidity !== undefined) this._humidity = new Humidity(_humidity);
   }
 
   get id(): string {
@@ -34,12 +36,12 @@ export class Room extends AggregateRoot {
     return this._name;
   }
 
-  get temperature(): number {
-    return this._temperature.value;
+  get temperature(): number | undefined {
+    return this._temperature?.value;
   }
 
-  get humidity(): number {
-    return this._humidity.value;
+  get humidity(): number | undefined {
+    return this._humidity?.value;
   }
 
   get imgUrl(): string {

@@ -1,6 +1,8 @@
-import { BadRequestException } from '@nestjs/common';
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
-import { SceneRepository } from '@smart-home/api/scene/infrastructure';
+import {
+  SceneRepository,
+  SceneSchemaFactory,
+} from '@smart-home/api/scene/infrastructure';
 import { UpdateFavouriteCommand } from './update-favourite.command';
 
 @CommandHandler(UpdateFavouriteCommand)
@@ -9,22 +11,20 @@ export class UpdateFavouriteHandler
 {
   constructor(
     private readonly repository: SceneRepository,
+    private readonly factory: SceneSchemaFactory,
     private readonly eventPublisher: EventPublisher
   ) {}
 
   async execute(command: UpdateFavouriteCommand): Promise<void> {
     const { id, newValue } = command;
 
-    if ((await this.repository.exist(id)) === false)
-      throw new BadRequestException(`Scene with id ${id} not found`);
-
     const scene = this.eventPublisher.mergeObjectContext(
-      await this.repository.getById(id)
+      this.factory.createFromSchema(await this.repository.findById(id))
     );
 
     newValue ? scene.addToFavourites() : scene.removeFromFavourites();
 
     scene.commit();
-    await this.repository.findAndReplace(scene.id, scene);
+    await this.repository.findAndReplace(scene.id, this.factory.create(scene));
   }
 }
