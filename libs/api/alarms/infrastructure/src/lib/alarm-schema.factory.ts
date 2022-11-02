@@ -2,11 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { AlarmLogSchema, AlarmSchema } from '@prisma/client';
 import { NotFoundError } from '@prisma/client/runtime';
 import { Alarm, AlarmLog } from '@smart-home/api/alarms/domain';
+import { Prisma } from '@prisma/client';
 
 type AlarmDomainSchema = AlarmSchema & {
   alarmLogs: AlarmLogSchema[];
 };
-type AlarmSchemas = [AlarmSchema, AlarmLogSchema[]];
+
+type AlarmSchemas = [AlarmSchema, Prisma.AlarmLogSchemaCreateManyAlarmInput[]];
 
 @Injectable()
 export class AlarmSchemaFactory {
@@ -38,7 +40,7 @@ export class AlarmSchemaFactory {
         active: domain.isActive,
         defaulState: domain.defaultState,
       },
-      [...domain.logs],
+      domain.logs.map((log) => this.createLog(log)),
     ];
   }
 
@@ -53,5 +55,20 @@ export class AlarmSchemaFactory {
       schema.confirmedAt,
       schema.confirmedBy
     );
+  }
+
+  // Alarm logs can be created only as includes of Alarm (needs type without alramId which is defined in relationship)
+  private createLog(
+    domain: AlarmLog
+  ): Prisma.AlarmLogSchemaCreateManyAlarmInput {
+    return {
+      id: domain.id,
+      createDate: domain.createDate,
+      danger: domain.danger,
+      message: domain.message,
+      confirmed: domain.confirmed,
+      confirmedAt: domain.confirmedAt,
+      confirmedBy: domain.confirmedBy,
+    };
   }
 }

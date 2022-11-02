@@ -41,7 +41,7 @@ export class AlarmsFeatureController {
     );
   }
 
-  @Patch(':id/confirm/:logId')
+  @Patch(':id/confirm')
   async confirmLog(
     @Param('id') id: string,
     @Body() body: ConfirmLogBody

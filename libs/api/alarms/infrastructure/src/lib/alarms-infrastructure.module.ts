@@ -7,5 +7,6 @@ import { AlarmsRepository } from './alarms.repository';
 @Module({
   imports: [PrismaServiceModule],
   providers: [AlarmDtoFactory, AlarmSchemaFactory, AlarmsRepository],
+  exports: [AlarmDtoFactory, AlarmSchemaFactory, AlarmsRepository],
 })
 export class AlarmsInfrastructureModule {}

@@ -6,12 +6,16 @@ tommorow.setDate(tommorow.getDate() + 1);
 const prisma = new PrismaClient();
 
 async function main() {
+  await prisma.alarmLogSchema.deleteMany();
+  await prisma.alarmSchema.deleteMany();
+  await prisma.sceneSchema.deleteMany();
+  await prisma.roomSchema.deleteMany();
   await prisma.homeSchema.deleteMany();
+
   await prisma.homeSchema.createMany({ data: [{}, {}, {}] });
 
   const homes = await prisma.homeSchema.findMany();
 
-  await prisma.roomSchema.deleteMany();
   await prisma.roomSchema.createMany({
     data: [
       { homeId: homes[0].id, name: 'Living room', favourite: true, imgUrl: '' },
@@ -26,7 +30,6 @@ async function main() {
     ],
   });
 
-  await prisma.sceneSchema.deleteMany();
   await prisma.sceneSchema.createMany({
     data: [
       {
@@ -50,6 +53,51 @@ async function main() {
         name: 'Good night',
         active: false,
         favourite: false,
+      },
+    ],
+  });
+
+  await prisma.alarmSchema.createMany({
+    data: [
+      {
+        homeId: homes[0].id,
+        name: 'Alarm 1',
+        active: false,
+        defaulState: false,
+      },
+      {
+        homeId: homes[0].id,
+        name: 'Alarm 2',
+        active: true,
+        defaulState: false,
+      },
+    ],
+  });
+
+  const alarms = await prisma.alarmSchema.findMany();
+
+  await prisma.alarmLogSchema.createMany({
+    data: [
+      {
+        alarmId: alarms[0].id,
+        createDate: new Date(),
+        danger: false,
+        message: 'Message 1',
+        confirmed: null,
+      },
+      {
+        alarmId: alarms[0].id,
+        createDate: new Date(),
+        danger: false,
+        message: 'Message 2',
+        confirmed: null,
+      },
+      {
+        alarmId: alarms[0].id,
+        createDate: new Date(),
+        danger: true,
+        message: 'Message 3',
+        confirmed: false,
       },
     ],
   });
