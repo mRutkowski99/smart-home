@@ -1,5 +1,9 @@
 import { AggregateRoot } from '@nestjs/cqrs';
-import { AlarmTriggeredEvent } from '@smart-home/api/alarms/cqrs';
+import {
+  AlarmActivatedEvent,
+  ALarmDeactivatedEvent,
+  AlarmTriggeredEvent,
+} from '@smart-home/api/alarms/cqrs';
 import { AlarmLog } from './alarm-log.model';
 
 export class Alarm extends AggregateRoot {
@@ -44,31 +48,33 @@ export class Alarm extends AggregateRoot {
     return [...this._logs];
   }
 
-  get unconfirmed(): AlarmLog[] | null {
+  get unconfirmedLogs(): AlarmLog[] | null {
     const unconfirmed = this._logs.filter((log) => log.confirmed === false);
     return unconfirmed.length === 0 ? null : unconfirmed;
   }
 
-  activate() {
+  activate(force = false) {
     if (this.isActive) return;
 
-    if (this._windowsToClose.length !== 0)
+    if (this._windowsToClose.length !== 0 && !force)
       throw new Error(
         "Can't activate alarm. Following windows aren't closed:" +
           this._windowsToClose.join(', ')
       );
 
-    if (this._doorsToClose.length !== 0)
+    if (this._doorsToClose.length !== 0 && !force)
       throw new Error(
         "Can't activate alarm. Following doors aren't closed:" +
           this._doorsToClose.join(', ')
       );
 
     this._active = true;
+    this.apply(new AlarmActivatedEvent(this.id));
   }
 
   deactivate() {
     this._active = false;
+    this.apply(new ALarmDeactivatedEvent(this.id));
   }
 
   setToDefault() {
