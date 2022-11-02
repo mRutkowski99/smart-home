@@ -1,4 +1,4 @@
-import { IsDefined, IsUUID } from 'class-validator';
+import { IsBoolean, IsUUID } from 'class-validator';
 
 export class GetAlarmWithLogsQuery {
   constructor(
@@ -9,15 +9,22 @@ export class GetAlarmWithLogsQuery {
 
 export class ConfirmLogBody {
   @IsUUID()
-  @IsDefined()
   readonly logId: string;
 
   @IsUUID()
-  @IsDefined()
   readonly userId: string;
 
   constructor(logId: string, userId: string) {
     this.logId = logId;
     this.userId = userId;
+  }
+}
+
+export class UpdateDefaultStateBody {
+  @IsBoolean()
+  newDefaultState: boolean;
+
+  constructor(newDefaultState: boolean) {
+    this.newDefaultState = newDefaultState;
   }
 }
