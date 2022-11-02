@@ -69,7 +69,7 @@ export class Alarm extends AggregateRoot {
     this._active = false;
   }
 
-  addLog(message: string, danger: boolean = false) {
+  addLog(message: string, danger: boolean) {
     const newLog = AlarmLog.create(this.id, danger, message);
     this._logs = [...this._logs, newLog];
 
