@@ -1,0 +1,34 @@
+{
+  "name": "api-alarms-domain",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/api/alarms/domain/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/api/alarms/domain",
+        "main": "libs/api/alarms/domain/src/index.ts",
+        "tsConfig": "libs/api/alarms/domain/tsconfig.lib.json",
+        "assets": ["libs/api/alarms/domain/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/alarms/domain/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/alarms/domain"],
+      "options": {
+        "jestConfig": "libs/api/alarms/domain/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

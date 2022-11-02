@@ -1,4 +1,4 @@
-import { Controller, Get, Logger } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { Body, Param, Patch } from '@nestjs/common/decorators';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ToggleRoomFavouriteRequest } from '@smart-home/shared/requests';

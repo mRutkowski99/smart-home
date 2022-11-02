@@ -1,4 +1,4 @@
-import { BadRequestException, Logger } from '@nestjs/common';
+import { BadRequestException } from '@nestjs/common';
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import { RoomsRepository } from '@smart-home/api/room/infrastructure';
 import { UpdateFavouriteCommand } from './update-favourite.command';

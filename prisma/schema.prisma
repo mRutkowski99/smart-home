@@ -11,6 +11,7 @@ model HomeSchema {
   id     String        @id @default(uuid())
   rooms  RoomSchema[]
   scenes SceneSchema[]
+  alarms AlarmSchema[]
 }
 
 model RoomSchema {
@@ -37,4 +38,32 @@ model SceneSchema {
   homeId String?
 
   @@unique([id, homeId])
+}
+
+model AlarmSchema {
+  id          String  @id @default(uuid())
+  name        String
+  active      Boolean
+  defaulState Boolean
+
+  Home      HomeSchema?      @relation(fields: [homeId], references: [id])
+  homeId    String
+  alarmLogs AlarmLogSchema[]
+
+  @@unique([id, homeId])
+}
+
+model AlarmLogSchema {
+  id          String    @id @default(uuid())
+  danger      Boolean
+  message     String
+  createDate  DateTime
+  confirmed   Boolean?
+  confirmedAt DateTime?
+  confirmedBy String?
+
+  alarm   AlarmSchema @relation(fields: [alarmId], references: [id])
+  alarmId String
+
+  @@unique([id, alarmId])
 }
