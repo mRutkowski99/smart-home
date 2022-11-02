@@ -50,6 +50,8 @@ export class Alarm extends AggregateRoot {
   }
 
   activate() {
+    if (this.isActive) return;
+
     if (this._windowsToClose.length !== 0)
       throw new Error(
         "Can't activate alarm. Following windows aren't closed:" +
@@ -70,6 +72,7 @@ export class Alarm extends AggregateRoot {
   }
 
   setToDefault() {
+    if (this.isActive === this.defaultState) return;
     this._defaultState ? this.activate() : this.deactivate();
   }
 

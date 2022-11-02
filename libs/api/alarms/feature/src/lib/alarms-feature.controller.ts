@@ -5,6 +5,7 @@ import {
   GetAlarmLogsQuery,
   GetAlarmsByHomeQuery,
   UpdateActiveCommand,
+  UpdateActiveForAllCommand,
   UpdateDefaultStateCommand,
 } from '@smart-home/api/alarms/cqrs';
 import { AlarmDto, AlarmWithLogsDto } from '@smart-home/shared/dto';
@@ -67,6 +68,16 @@ export class AlarmsFeatureController {
   ): Promise<void> {
     await this.commandBus.execute<UpdateActiveCommand, void>(
       new UpdateActiveCommand(id, body.state)
+    );
+  }
+
+  @Patch('all/home/:homeId/state')
+  async updateActiveForAll(
+    @Param('homeId') homeId: string,
+    @Body() body: UpdateActiveBody
+  ): Promise<void> {
+    await this.commandBus.execute<UpdateActiveForAllCommand, void>(
+      new UpdateActiveForAllCommand(homeId, body.state ? 'active' : 'default')
     );
   }
 }

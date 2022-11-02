@@ -6,3 +6,5 @@ export * from './update-default-state/update-default-state.command';
 export * from './update-default-state/update-default-state.handler';
 export * from './update-active/update-active.command';
 export * from './update-active/update-active.handler';
+export * from './update-active-all/update-active-all.command';
+export * from './update-active-all/update-active-all.handler';

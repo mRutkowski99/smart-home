@@ -47,6 +47,15 @@ export class AlarmsRepository {
     });
   }
 
+  async findAllByHomeId(homeId: string): Promise<AlarmDomainSchema[] | null> {
+    return await this.prisma.alarmSchema.findMany({
+      where: { homeId },
+      include: {
+        alarmLogs: { where: { createDate: { gte: this.threeMonthsAgo } } },
+      },
+    });
+  }
+
   async findAndReplace(
     id: string,
     alarm: AlarmSchema,
