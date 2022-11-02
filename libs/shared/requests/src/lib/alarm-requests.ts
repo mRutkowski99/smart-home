@@ -5,6 +5,13 @@ export class GetAlarmWithLogsQuery {
     public readonly onlyDanger: boolean,
     public readonly from: 'lastWeek' | 'lastMonth' | 'lastThreeMonths'
   ) {}
+
+  toQueryParams() {
+    return {
+      onlyDanger: this.onlyDanger,
+      from: this.from,
+    };
+  }
 }
 
 export class ConfirmLogBody {
