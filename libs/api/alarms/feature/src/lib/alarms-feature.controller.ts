@@ -4,12 +4,14 @@ import {
   ConfirmLogCommand,
   GetAlarmLogsQuery,
   GetAlarmsByHomeQuery,
+  UpdateActiveCommand,
   UpdateDefaultStateCommand,
 } from '@smart-home/api/alarms/cqrs';
 import { AlarmDto, AlarmWithLogsDto } from '@smart-home/shared/dto';
 import {
   ConfirmLogBody,
   GetAlarmWithLogsQuery,
+  UpdateActiveBody,
   UpdateDefaultStateBody,
 } from '@smart-home/shared/requests';
 
@@ -55,6 +57,16 @@ export class AlarmsFeatureController {
   ): Promise<void> {
     await this.commandBus.execute<UpdateDefaultStateCommand, void>(
       new UpdateDefaultStateCommand(id, body.newDefaultState)
+    );
+  }
+
+  @Patch(':id/state')
+  async updateActive(
+    @Param('id') id: string,
+    @Body() body: UpdateActiveBody
+  ): Promise<void> {
+    await this.commandBus.execute<UpdateActiveCommand, void>(
+      new UpdateActiveCommand(id, body.state)
     );
   }
 }

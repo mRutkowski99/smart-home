@@ -5,6 +5,7 @@ import { GetAlarmWithLogsQuery } from '@smart-home/shared/requests';
 import {
   ConfirmLogHandler,
   CreateLogHandler,
+  UpdateActiveHandler,
   UpdateDefaultStateHandler,
 } from './commands';
 import { GetAlarmsByHomeHandler } from './queries';
@@ -17,6 +18,7 @@ import { GetAlarmsByHomeHandler } from './queries';
     CreateLogHandler,
     ConfirmLogHandler,
     UpdateDefaultStateHandler,
+    UpdateActiveHandler,
   ],
   exports: [CqrsModule],
 })

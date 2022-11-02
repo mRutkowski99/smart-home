@@ -70,7 +70,7 @@ export class Alarm extends AggregateRoot {
   }
 
   setToDefault() {
-    this._active = this._defaultState;
+    this._defaultState ? this.activate() : this.deactivate();
   }
 
   addLog(message: string, danger: boolean) {

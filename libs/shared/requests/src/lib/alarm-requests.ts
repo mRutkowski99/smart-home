@@ -28,3 +28,12 @@ export class UpdateDefaultStateBody {
     this.newDefaultState = newDefaultState;
   }
 }
+
+export class UpdateActiveBody {
+  @IsBoolean()
+  state: boolean;
+
+  constructor(state: boolean) {
+    this.state = state;
+  }
+}
