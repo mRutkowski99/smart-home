@@ -1,13 +1,17 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Query } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { AlarmDto, AlarmWithLogsDto } from '@smart-home/shared/dto';
-import { GetAlarmWithLogsQuery } from '@smart-home/shared/requests';
 import {
+  ConfirmLogCommand,
   GetAlarmLogsQuery,
   GetAlarmsByHomeQuery,
-} from 'libs/api/alarms/cqrs/src/lib/queries';
+} from '@smart-home/api/alarms/cqrs';
+import { AlarmDto, AlarmWithLogsDto } from '@smart-home/shared/dto';
+import {
+  ConfirmLogBody,
+  GetAlarmWithLogsQuery,
+} from '@smart-home/shared/requests';
 
-@Controller('alarms')
+@Controller('alarm')
 export class AlarmsFeatureController {
   constructor(
     private readonly queryBus: QueryBus,
@@ -29,6 +33,16 @@ export class AlarmsFeatureController {
     const { from, onlyDanger } = query;
     return this.queryBus.execute<GetAlarmLogsQuery, AlarmWithLogsDto>(
       new GetAlarmLogsQuery(id, onlyDanger, from)
+    );
+  }
+
+  @Patch(':id/confirm/:logId')
+  async confirmLog(
+    @Param('id') id: string,
+    @Body() body: ConfirmLogBody
+  ): Promise<void> {
+    await this.commandBus.execute<ConfirmLogCommand, void>(
+      new ConfirmLogCommand(id, body.logId, body.userId)
     );
   }
 }

@@ -9,7 +9,7 @@ type AlarmDomainSchema = AlarmSchema & {
 };
 
 @Injectable()
-export class AlarmsReadRepository {
+export class AlarmsRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async getAllByHomeId(homeId: string): Promise<AlarmDomainSchema[]> {
@@ -37,6 +37,35 @@ export class AlarmsReadRepository {
       },
     });
   }
+
+  async findAlarmById(id: string): Promise<AlarmDomainSchema | null> {
+    return await this.prisma.alarmSchema.findUnique({
+      where: { id },
+      include: {
+        alarmLogs: { where: { createDate: { gte: this.threeMonthsAgo } } },
+      },
+    });
+  }
+
+  async findAndReplace(
+    id: string,
+    alarm: AlarmSchema,
+    logs: AlarmLogSchema[]
+  ): Promise<void> {
+    await this.prisma.alarmSchema.update({
+      where: { id },
+      data: {
+        ...alarm,
+        alarmLogs: {
+          deleteMany: { alarmId: id },
+          createMany: { data: [...logs] },
+        },
+      },
+      include: { alarmLogs: true },
+    });
+  }
+
+  private readonly threeMonthsAgo = dayjs().subtract(3, 'month').toDate();
 
   private getFilterDate(param: FilterFromParam): Date {
     if (param === 'lastThreeMonths')

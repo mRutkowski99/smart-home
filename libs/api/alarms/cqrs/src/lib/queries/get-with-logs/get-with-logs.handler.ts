@@ -1,13 +1,16 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
+import {
+  AlarmDtoFactory,
+  AlarmsRepository,
+} from '@smart-home/api/alarms/infrastructure';
 import { AlarmWithLogsDto } from '@smart-home/shared/dto';
-import { AlarmDtoFactory } from 'libs/api/alarms/infrastructure/src/lib/alarm-dto.factory';
-import { AlarmsReadRepository } from 'libs/api/alarms/infrastructure/src/lib/alarms-read.repository';
+
 import { GetAlarmLogsQuery } from './get-with-logs.query';
 
 @QueryHandler(GetAlarmLogsQuery)
 export class GetAlarmLogsHandler implements IQueryHandler<GetAlarmLogsQuery> {
   constructor(
-    private readonly repository: AlarmsReadRepository,
+    private readonly repository: AlarmsRepository,
     private readonly factory: AlarmDtoFactory
   ) {}
 
