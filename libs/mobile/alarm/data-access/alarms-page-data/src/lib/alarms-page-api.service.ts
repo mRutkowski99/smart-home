@@ -10,7 +10,7 @@ import {
 import { ApiUrlUtil } from '@smart-home/shared/utils';
 import { Observable } from 'rxjs';
 
-type FromType = 'lastWeek' | 'lastMonth' | 'lastThreeMonths';
+export type FromType = 'lastWeek' | 'lastMonth' | 'lastThreeMonths';
 
 @Injectable()
 export class AlarmsPageApiService {
