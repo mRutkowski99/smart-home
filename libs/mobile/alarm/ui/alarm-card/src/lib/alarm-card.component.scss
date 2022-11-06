@@ -1,0 +1,30 @@
+.name {
+  grid-area: name;
+  font-size: 2rem;
+  font-weight: bolder;
+}
+
+.unconfirmed {
+  grid-area: unconfirmed;
+}
+
+.button {
+  grid-area: button;
+  align-self: center;
+  justify-self: center;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    'name  button'
+    'unconfirmed  button';
+
+  padding: 1rem;
+
+  &.active {
+    color: black;
+  }
+}

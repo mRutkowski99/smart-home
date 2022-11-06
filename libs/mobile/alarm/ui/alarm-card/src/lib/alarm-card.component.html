@@ -1,0 +1,17 @@
+<ion-card
+  (click)="onSelect()"
+  class="card"
+  [ngClass]="{ active: alarm.active }"
+>
+  <span class="name">{{ alarm.name }}</span>
+  <span class="unconfirmed"
+    >Default: {{ alarm.deafultState ? 'ON' : 'OFF' }}</span
+  >
+  <button class="button" (click)="onChangeState()" stopPropagation>
+    <smart-home-fa-icon
+      [icon]="icon"
+      size="2xl"
+      [color]="alarm.active ? 'var(--ion-color-primary)' : undefined"
+    ></smart-home-fa-icon>
+  </button>
+</ion-card>

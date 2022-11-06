@@ -1,1 +1,11 @@
-<smart-home-section-header title="Alarms"></smart-home-section-header>
+<ng-container *ngIf="vm$ | async as vm">
+  <smart-home-section-header title="Alarms"></smart-home-section-header>
+  <main>
+    <ng-container *ngIf="vm.status === 'success'">
+      <smart-home-alarm-card
+        *ngFor="let alarm of vm.alarms"
+        [alarm]="alarm"
+      ></smart-home-alarm-card>
+    </ng-container>
+  </main>
+</ng-container>

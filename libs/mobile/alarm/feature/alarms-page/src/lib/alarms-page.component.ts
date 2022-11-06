@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { AlarmsPageStore } from '@smart-home/mobile/alarm/data-access/alarms-page-data';
 
 @Component({
   selector: 'smart-home-alarms-page',
@@ -7,7 +8,11 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlarmsPageComponent implements OnInit {
-  constructor() {}
+  constructor(private readonly store: AlarmsPageStore) {}
 
-  ngOnInit(): void {}
+  readonly vm$ = this.store.vm$;
+
+  ngOnInit(): void {
+    this.store.getAlarms();
+  }
 }
