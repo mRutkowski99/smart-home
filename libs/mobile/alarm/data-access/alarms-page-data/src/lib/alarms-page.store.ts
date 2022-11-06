@@ -1,29 +1,18 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
-import { AlarmDto, AlarmWithLogsDto } from '@smart-home/shared/dto';
-import {
-  GenericState,
-  GenericStoreStatus,
-  StoreUtils,
-} from '@smart-home/shared/utils';
-import {
-  combineLatest,
-  map,
-  Observable,
-  of,
-  switchMap,
-  tap,
-  withLatestFrom,
-} from 'rxjs';
-import { AlarmsPageApiService, FromType } from './alarms-page-api.service';
+import { AlarmDto } from '@smart-home/shared/dto';
+import { GenericState, StoreUtils } from '@smart-home/shared/utils';
+import { combineLatest, map, of, switchMap, tap, withLatestFrom } from 'rxjs';
+import { AlarmsPageApiService } from './alarms-page-api.service';
 
-interface State extends GenericState<AlarmDto[]> {}
+interface State extends GenericState<AlarmDto[]> {
+  selectedId: string | null;
+}
 
-interface GetDetailsProps {
-  alarmId: string;
-  from: FromType;
-  onlyDanger: boolean;
+interface UpdateStateProps {
+  id: string;
+  state: boolean;
 }
 
 //todo: Get from auth store
@@ -48,21 +37,16 @@ export class AlarmsPageStore extends ComponentStore<State> {
     }))
   );
 
-  // readonly alarmsDetailsVm$ = combineLatest([
-  //   this.select((state) => state.selectedId !== null),
-  //   this.select((state) => state.details),
-  //   this.select((state) => state.detailsStatus),
-  // ]).pipe(map(([isSelected, data, status]) => ({ isSelected, data, status })));
+  readonly selectedId$ = this.select((select) => select.selectedId);
 
   // Actions
-  // private setSelectedId(selectedId: string) {
-  //   this.patchState({ selectedId });
-  // }
+  setSelectedId(id: string) {
+    this.patchState({ selectedId: id });
+  }
 
-  // getDetails(alarmId: string, from: FromType, onlyDanger: boolean) {
-  //   this.setSelectedId(alarmId);
-  //   this.getDetailsEffect({ alarmId, from, onlyDanger });
-  // }
+  resetSelectedId() {
+    this.patchState({ selectedId: null });
+  }
 
   // Effects
   readonly getAlarms = this.effect<void>((_) => {
@@ -81,28 +65,42 @@ export class AlarmsPageStore extends ComponentStore<State> {
     );
   });
 
-  // private readonly getDetailsEffect = this.effect<GetDetailsProps>(
-  //   (props$: Observable<GetDetailsProps>) => {
-  //     return props$.pipe(
-  //       tap(() => this.patchState({ detailsStatus: 'loading' })),
-  //       switchMap(({ alarmId, from, onlyDanger }) =>
-  //         this.api.getLogs(alarmId, onlyDanger, from).pipe(
-  //           tapResponse(
-  //             (details) =>
-  //               this.patchState({ details, detailsStatus: 'success' }),
-  //             () => this.patchState({ detailsStatus: 'error' })
-  //           )
-  //         )
-  //       )
-  //     );
-  //   }
-  // );
+  readonly updateState = this.effect<UpdateStateProps>((props$) => {
+    return props$.pipe(
+      tap(() => this.patchState(StoreUtils.loadingState())),
+      switchMap(({ id, state }) =>
+        this.api.updateState(id, state).pipe(
+          tapResponse(
+            () => this.getAlarms(),
+            (error: HttpErrorResponse) =>
+              this.patchState(StoreUtils.errorState(error.message))
+          )
+        )
+      )
+    );
+  });
+
+  readonly updateStateForAll = this.effect<boolean>((state$) => {
+    return state$.pipe(
+      tap(() => this.patchState(StoreUtils.loadingState())),
+      withLatestFrom(of(homeId)),
+      switchMap(([state, homeId]) =>
+        this.api.updateStateForAll(homeId, state).pipe(
+          tapResponse(
+            () => this.getAlarms(),
+            () => this.patchState(StoreUtils.errorState(''))
+          )
+        )
+      )
+    );
+  });
 
   constructor(private readonly api: AlarmsPageApiService) {
     super({
       data: null,
       error: null,
       status: 'loading',
+      selectedId: null,
     });
   }
 }

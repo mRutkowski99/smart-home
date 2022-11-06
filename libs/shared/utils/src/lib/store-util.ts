@@ -1,5 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
-
 export type GenericStoreStatus = 'loading' | 'success' | 'error';
 
 export interface GenericState<T> {

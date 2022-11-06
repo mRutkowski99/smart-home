@@ -26,11 +26,10 @@ export class UpdateActiveForAllHandler
       if (state === 'active') alarm.activate();
       if (state === 'default') alarm.setToDefault();
       alarm.commit();
-
-      await this.repository.findAndReplace(
-        alarm.id,
-        ...this.factory.create(alarm)
-      );
     });
+
+    await this.repository.findAndReplaceMany(
+      alarms.map((alarm) => this.factory.create(alarm))
+    );
   }
 }

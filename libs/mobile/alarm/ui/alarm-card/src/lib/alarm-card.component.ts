@@ -8,7 +8,7 @@ import {
 import { AlarmDto } from '@smart-home/shared/dto';
 import { IconUtil } from '@smart-home/shared/utils';
 
-export interface ChangeStateEvent {
+export interface UpdateStateEvent {
   id: string;
   state: boolean;
 }
@@ -21,13 +21,13 @@ export interface ChangeStateEvent {
 })
 export class AlarmCardComponent {
   @Input() alarm!: AlarmDto;
-  @Output() stateChange = new EventEmitter<ChangeStateEvent>();
+  @Output() stateUpdate = new EventEmitter<UpdateStateEvent>();
   @Output() select = new EventEmitter<string>();
 
   readonly icon = IconUtil.powerOff;
 
   onChangeState() {
-    this.stateChange.emit({ id: this.alarm.id, state: !this.alarm.active });
+    this.stateUpdate.emit({ id: this.alarm.id, state: !this.alarm.active });
   }
 
   onSelect() {

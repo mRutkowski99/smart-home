@@ -27,9 +27,6 @@ export class ConfirmLogHandler implements ICommandHandler<ConfirmLogCommand> {
     alarm.confirm(logId, userId);
     alarm.commit();
 
-    await this.repository.findAndReplace(
-      alarm.id,
-      ...this.factory.create(alarm)
-    );
+    await this.repository.findAndReplace(...this.factory.create(alarm));
   }
 }

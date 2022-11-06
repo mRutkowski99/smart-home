@@ -3,7 +3,10 @@ import { AlarmLogSchema, AlarmSchema } from '@prisma/client';
 import { Alarm, AlarmLog } from '@smart-home/api/alarms/domain';
 import { Prisma } from '@prisma/client';
 
-type AlarmSchemas = [AlarmSchema, Prisma.AlarmLogSchemaCreateManyAlarmInput[]];
+export type AlarmInputSchemas = [
+  AlarmSchema,
+  Prisma.AlarmLogSchemaCreateManyAlarmInput[]
+];
 
 export type AlarmDomainSchema = AlarmSchema & {
   alarmLogs: AlarmLogSchema[];
@@ -32,7 +35,7 @@ export class AlarmSchemaFactory {
     );
   }
 
-  create(domain: Alarm): AlarmSchemas {
+  create(domain: Alarm): AlarmInputSchemas {
     return [
       {
         id: domain.id,
