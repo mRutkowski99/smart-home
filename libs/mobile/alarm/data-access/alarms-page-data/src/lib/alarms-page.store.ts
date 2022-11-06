@@ -95,6 +95,20 @@ export class AlarmsPageStore extends ComponentStore<State> {
     );
   });
 
+  readonly updateDefaultState = this.effect<UpdateStateProps>((props$) => {
+    return props$.pipe(
+      tap(() => this.patchState(StoreUtils.loadingState())),
+      switchMap(({ id, state }) =>
+        this.api.updateDefaultState(id, state).pipe(
+          tapResponse(
+            () => this.getAlarms(),
+            () => this.patchState(StoreUtils.errorState(''))
+          )
+        )
+      )
+    );
+  });
+
   constructor(private readonly api: AlarmsPageApiService) {
     super({
       data: null,

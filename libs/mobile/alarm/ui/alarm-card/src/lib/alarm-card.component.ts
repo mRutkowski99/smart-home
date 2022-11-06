@@ -23,6 +23,7 @@ export class AlarmCardComponent {
   @Input() alarm!: AlarmDto;
   @Output() stateUpdate = new EventEmitter<UpdateStateEvent>();
   @Output() select = new EventEmitter<string>();
+  @Output() defaultStateUpdate = new EventEmitter<UpdateStateEvent>();
 
   readonly icon = IconUtil.powerOff;
 
@@ -32,5 +33,10 @@ export class AlarmCardComponent {
 
   onSelect() {
     this.select.emit(this.alarm.id);
+  }
+
+  onDefaultStateChange(event: any) {
+    const state = event.detail.value === 'true';
+    this.defaultStateUpdate.emit({ id: this.alarm.id, state });
   }
 }

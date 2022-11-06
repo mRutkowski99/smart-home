@@ -22,6 +22,10 @@ export class AlarmsPageComponent implements OnInit {
     this.store.updateState({ id, state });
   }
 
+  onDefaultStateUpdate({ id, state }: UpdateStateEvent) {
+    this.store.updateDefaultState({ id, state });
+  }
+
   onUpdateStateForAll(state: boolean) {
     this.store.updateStateForAll(state);
   }

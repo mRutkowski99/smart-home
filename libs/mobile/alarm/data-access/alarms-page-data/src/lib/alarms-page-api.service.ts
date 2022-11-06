@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AlarmDto } from '@smart-home/shared/dto';
-import { ConfirmLogBody, UpdateActiveBody } from '@smart-home/shared/requests';
+import {
+  ConfirmLogBody,
+  UpdateActiveBody,
+  UpdateDefaultStateBody,
+} from '@smart-home/shared/requests';
 import { ApiUrlUtil } from '@smart-home/shared/utils';
 import { Observable } from 'rxjs';
 
@@ -36,12 +40,12 @@ export class AlarmsPageApiService {
     );
   }
 
-  // updateDefaultState(id: string, state: boolean) {
-  //   return this.http.patch(
-  //     this.url + id + '/defaultState',
-  //     new UpdateDefaultStateBody(state)
-  //   );
-  // }
+  updateDefaultState(id: string, state: boolean) {
+    return this.http.patch(
+      this.url + id + '/defaultState',
+      new UpdateDefaultStateBody(state)
+    );
+  }
 
   updateState(id: string, state: boolean) {
     return this.http.patch(
