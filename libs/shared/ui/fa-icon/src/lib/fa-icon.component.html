@@ -1,1 +1,6 @@
-<fa-icon *ngIf="icon !== undefined" [icon]="icon" [size]="size"></fa-icon>
+<fa-icon
+  *ngIf="icon !== undefined"
+  [icon]="icon"
+  [size]="size"
+  [ngStyle]="{ stroke: stroke || 'unset', color: color || 'unset' }"
+></fa-icon>

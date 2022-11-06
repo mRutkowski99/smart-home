@@ -1,0 +1,14 @@
+<ion-header class="padding flex justify-between">
+  <a (click)="navigateBack()" [ngClass]="{ hide: !showNavigation }">
+    <smart-home-fa-icon
+      color="#fff"
+      [icon]="navigateBackIcon"
+    ></smart-home-fa-icon>
+  </a>
+  <h1 class="text-white font-bold tracking-wide">{{ title || '' }}</h1>
+  <smart-home-favourite-icon
+    (click)="changeFavourite()"
+    [ngClass]="{ hide: !showFavourite }"
+    [isFavourite]="false"
+  ></smart-home-favourite-icon>
+</ion-header>

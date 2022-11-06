@@ -80,6 +80,9 @@
       "@smart-home/mobile/shared/ui/nav": [
         "libs/mobile/shared/ui/nav/src/index.ts"
       ],
+      "@smart-home/mobile/shared/ui/section-header": [
+        "libs/mobile/shared/ui/section-header/src/index.ts"
+      ],
       "@smart-home/mobile/shared/ui/skeleton": [
         "libs/mobile/shared/ui/skeleton/src/index.ts"
       ],
