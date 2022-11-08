@@ -9,6 +9,7 @@
     <ion-segment
       (ionChange)="onDefaultStateChange($event)"
       [value]="alarm.deafultState"
+      stopPropagation
       mode="ios"
       [ngStyle]="{
         background: alarm.active ? 'var(--ion-color-tertiary)' : 'intial'
@@ -26,7 +27,9 @@
     <smart-home-fa-icon
       [icon]="icon"
       size="2xl"
-      [color]="alarm.active ? 'var(--ion-color-primary)' : undefined"
+      [color]="
+        alarm.active ? 'var(--ion-color-primary)' : 'var(--ion-color-medium)'
+      "
     ></smart-home-fa-icon>
   </button>
 </ion-card>
