@@ -12,11 +12,11 @@
   gap: 0.5rem;
 
   ion-segment {
-    width: 60%;
+    width: 70%;
   }
 }
 
-.button {
+.button-container {
   grid-area: button;
   align-self: center;
   justify-self: center;

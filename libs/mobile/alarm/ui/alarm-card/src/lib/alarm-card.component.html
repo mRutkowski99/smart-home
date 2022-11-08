@@ -23,13 +23,15 @@
       </ion-segment-button>
     </ion-segment>
   </div>
-  <button class="button" (click)="onChangeState()" stopPropagation>
-    <smart-home-fa-icon
-      [icon]="icon"
-      size="2xl"
-      [color]="
-        alarm.active ? 'var(--ion-color-primary)' : 'var(--ion-color-medium)'
-      "
-    ></smart-home-fa-icon>
-  </button>
+  <div class="button-container">
+    <button (click)="onChangeState($event)" stopPropagation>
+      <smart-home-fa-icon
+        [icon]="icon"
+        size="2xl"
+        [color]="
+          alarm.active ? 'var(--ion-color-primary)' : 'var(--ion-color-medium)'
+        "
+      ></smart-home-fa-icon>
+    </button>
+  </div>
 </ion-card>

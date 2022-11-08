@@ -20,5 +20,16 @@
         ></smart-home-alarm-card>
       </li>
     </ul>
+
+    <span
+      class="text-center text-2xl italic block mt-6"
+      *ngIf="vm.selectedId === null"
+      >Click on alarm from list to see details</span
+    >
+
+    <smart-home-alarm-details
+      *ngIf="vm.selectedId !== null"
+      [alarmId]="vm.selectedId"
+    ></smart-home-alarm-details>
   </main>
 </ng-container>

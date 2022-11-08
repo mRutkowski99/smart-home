@@ -28,16 +28,16 @@ export class AlarmsPageStore extends ComponentStore<State> {
     this.select(
       (state) => state.status === 'success' && state.data?.length === 0
     ),
+    this.select((select) => select.selectedId),
   ]).pipe(
-    map(([alarms, error, status, noContent]) => ({
+    map(([alarms, error, status, noContent, selectedId]) => ({
       alarms,
       error,
       status,
       noContent,
+      selectedId,
     }))
   );
-
-  readonly selectedId$ = this.select((select) => select.selectedId);
 
   // Actions
   setSelectedId(id: string) {

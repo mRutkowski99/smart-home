@@ -1,1 +1,54 @@
-<p>alarm-details works!</p>
+<ng-container *ngIf="vm$ | async as vm">
+  <ion-card class="m-0">
+    <ion-card-header class="p-0 flex justify-between">
+      <ion-card-title>{{ vm.data?.name }}</ion-card-title>
+      <smart-home-fa-icon
+        role="button"
+        [icon]="refreshIcon"
+      ></smart-home-fa-icon>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form>
+        <span>Filters:</span>
+        <ion-item>
+          <ion-checkbox slot="start" [checked]="vm.onlyDanger"></ion-checkbox>
+          <ion-label>Show only danger</ion-label>
+        </ion-item>
+        <ion-list>
+          <ion-item>
+            <ion-select placeholder="From" [value]="vm.from">
+              <ion-select-option value="lastWeek">Last week</ion-select-option>
+              <ion-select-option value="lastMonth"
+                >Last month</ion-select-option
+              >
+              <ion-select-option value="lastThreeMonths"
+                >Last 3 months</ion-select-option
+              >
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </form>
+
+      <ul class="logs-list">
+        <li *ngFor="let log of vm.data?.logs" class="log">
+          <span [ngClass]="{ 'font-bold': log.danger }">{{
+            log.createDate | date: 'short'
+          }}</span>
+
+          <span class="node" [ngClass]="{ warning: log.danger }"></span>
+
+          <div class="message">
+            <span class="message" [ngClass]="{ 'font-bold': log.danger }">{{
+              log.message
+            }}</span>
+            <p *ngIf="log.confirmedAt" class="confirmed">
+              <span>Confirmed at:</span>
+              <span>{{ log.confirmedAt | date: 'short' }}</span>
+            </p>
+          </div>
+        </li>
+      </ul>
+    </ion-card-content>
+  </ion-card>
+</ng-container>

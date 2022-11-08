@@ -27,15 +27,23 @@ export class AlarmCardComponent {
 
   readonly icon = IconUtil.powerOff;
 
-  onChangeState() {
+  onChangeState(event: any) {
+    console.log('state');
+    console.log(event);
+
     this.stateUpdate.emit({ id: this.alarm.id, state: !this.alarm.active });
   }
 
   onSelect() {
+    console.log('select');
+
     this.select.emit(this.alarm.id);
   }
 
   onDefaultStateChange(event: any) {
+    console.log('default');
+    console.log(event);
+
     const state = event.detail.value === 'true';
     this.defaultStateUpdate.emit({ id: this.alarm.id, state });
   }

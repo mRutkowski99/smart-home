@@ -12,7 +12,6 @@ export class AlarmsPageComponent implements OnInit {
   constructor(private readonly store: AlarmsPageStore) {}
 
   readonly vm$ = this.store.vm$;
-  readonly selectedId$ = this.store.selectedId$;
 
   ngOnInit(): void {
     this.store.getAlarms();

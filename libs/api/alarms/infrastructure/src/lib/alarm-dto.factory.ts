@@ -40,6 +40,7 @@ export class AlarmDtoFactory {
     return new AlarmLogDto(
       schema.id,
       schema.alarmId,
+      schema.message,
       schema.createDate,
       schema.danger,
       schema.confirmed,

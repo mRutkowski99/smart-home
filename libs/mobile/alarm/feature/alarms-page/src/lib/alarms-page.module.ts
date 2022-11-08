@@ -6,6 +6,7 @@ import { AlarmsPageComponent } from './alarms-page.component';
 import { SectionHeaderModule } from '@smart-home/mobile/shared/ui/section-header';
 import { AlarmCardModule } from '@smart-home/mobile/alarm/ui/alarm-card';
 import { AlarmsPageDataModule } from '@smart-home/mobile/alarm/data-access/alarms-page-data';
+import { AlarmDetailsModule } from '../../../alarm-details/src/lib/alarm-details.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { AlarmsPageDataModule } from '@smart-home/mobile/alarm/data-access/alarm
     AlarmsPageDataModule,
     SectionHeaderModule,
     AlarmCardModule,
+    AlarmDetailsModule,
   ],
   declarations: [AlarmsPageComponent],
   exports: [AlarmsPageComponent],

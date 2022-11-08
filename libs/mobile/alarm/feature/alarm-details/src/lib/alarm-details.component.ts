@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { AlarmDetailsStore } from '@smart-home/mobile/alarm/data-access/alarm-details-data';
+import { IconUtil } from '@smart-home/shared/utils';
 
 @Component({
   selector: 'smart-home-alarm-details',
@@ -6,8 +8,13 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./alarm-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AlarmDetailsComponent implements OnInit {
-  constructor() {}
+export class AlarmDetailsComponent {
+  constructor(private readonly store: AlarmDetailsStore) {}
 
-  ngOnInit(): void {}
+  readonly vm$ = this.store.vm$;
+  readonly refreshIcon = IconUtil.refresh;
+
+  @Input() set alarmId(id: string | null) {
+    if (id !== null) this.store.getDetails(id);
+  }
 }
