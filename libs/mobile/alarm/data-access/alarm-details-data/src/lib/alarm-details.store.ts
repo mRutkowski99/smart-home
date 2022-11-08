@@ -52,6 +52,7 @@ export class AlarmDetailsStore extends ComponentStore<State> {
 
   setFromFilter(value: FromType) {
     this.patchState({ from: value });
+    this.getDetails(this.get((state) => state.data!.id));
   }
 
   // Effects

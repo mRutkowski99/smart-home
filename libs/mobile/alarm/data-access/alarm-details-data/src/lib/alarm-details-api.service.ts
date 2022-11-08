@@ -19,6 +19,7 @@ export class AlarmDetailsApiService {
     from: FromType
   ): Observable<AlarmWithLogsDto> {
     const query = new GetAlarmWithLogsQuery(onlyDanger, from);
+    console.log(query);
 
     return this.http.get<AlarmWithLogsDto>(this.url + id + '/logs', {
       params: new HttpParams({ fromObject: query.toQueryParams() }),

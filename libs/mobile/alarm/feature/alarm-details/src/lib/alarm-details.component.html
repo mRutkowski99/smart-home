@@ -1,10 +1,11 @@
 <ng-container *ngIf="vm$ | async as vm">
   <ion-card class="m-0">
-    <ion-card-header class="p-0 flex justify-between">
+    <ion-card-header class="flex justify-between">
       <ion-card-title>{{ vm.data?.name }}</ion-card-title>
       <smart-home-fa-icon
         role="button"
         [icon]="refreshIcon"
+        (click)="getDetails()"
       ></smart-home-fa-icon>
     </ion-card-header>
 
@@ -12,12 +13,20 @@
       <form>
         <span>Filters:</span>
         <ion-item>
-          <ion-checkbox slot="start" [checked]="vm.onlyDanger"></ion-checkbox>
+          <ion-checkbox
+            slot="start"
+            [checked]="vm.onlyDanger"
+            (ionChange)="onOnlyDangerChange($event)"
+          ></ion-checkbox>
           <ion-label>Show only danger</ion-label>
         </ion-item>
         <ion-list>
           <ion-item>
-            <ion-select placeholder="From" [value]="vm.from">
+            <ion-select
+              placeholder="From"
+              [value]="vm.from"
+              (ionChange)="onFromChange($event)"
+            >
               <ion-select-option value="lastWeek">Last week</ion-select-option>
               <ion-select-option value="lastMonth"
                 >Last month</ion-select-option
