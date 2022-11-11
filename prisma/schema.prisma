@@ -8,10 +8,11 @@ datasource db {
 }
 
 model HomeSchema {
-  id     String        @id @default(uuid())
-  rooms  RoomSchema[]
-  scenes SceneSchema[]
-  alarms AlarmSchema[]
+  id           String         @id @default(uuid())
+  rooms        RoomSchema[]
+  scenes       SceneSchema[]
+  alarms       AlarmSchema[]
+  SafetySchema SafetySchema[]
 }
 
 model RoomSchema {
@@ -66,4 +67,36 @@ model AlarmLogSchema {
   alarmId String
 
   @@unique([id, alarmId])
+}
+
+model SafetySchema {
+  id   String           @id @default(uuid())
+  name String
+  type SafetyDeviceEnum
+
+  Home      HomeSchema  @relation(fields: [homeId], references: [id])
+  homeId    String
+  SafetyLog SafetyLog[]
+
+  @@unique([id, homeId])
+}
+
+enum SafetyDeviceEnum {
+  WaterLeakSensor
+  COSensor
+  SmokeSensor
+}
+
+model SafetyLog {
+  id          String    @id @default(uuid())
+  message     String
+  createDate  DateTime
+  confirmed   Boolean
+  confirmedAt DateTime?
+  confirmedBy String?
+
+  safety   SafetySchema @relation(fields: [safetyId], references: [id])
+  safetyId String
+
+  @@unique([id, safetyId])
 }
