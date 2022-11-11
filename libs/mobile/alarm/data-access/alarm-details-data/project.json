@@ -1,0 +1,27 @@
+{
+  "name": "mobile-alarm-data-access-alarm-details-data",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mobile/alarm/data-access/alarm-details-data/src",
+  "prefix": "smart-home",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mobile/alarm/data-access/alarm-details-data"],
+      "options": {
+        "jestConfig": "libs/mobile/alarm/data-access/alarm-details-data/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/mobile/alarm/data-access/alarm-details-data/**/*.ts",
+          "libs/mobile/alarm/data-access/alarm-details-data/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

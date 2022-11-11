@@ -27,9 +27,6 @@ export class UpdateDefaultStateHandler implements ICommandHandler {
     alarm.defaultState = newDefaultState;
     alarm.commit();
 
-    await this.repository.findAndReplace(
-      alarm.id,
-      ...this.factory.create(alarm)
-    );
+    await this.repository.findAndReplace(...this.factory.create(alarm));
   }
 }

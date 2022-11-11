@@ -1,0 +1,45 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <smart-home-section-header title="Alarms"></smart-home-section-header>
+  <main class="padding">
+    <div class="btn-container">
+      <ion-button expand="full" (click)="onUpdateStateForAll(true)"
+        >Activate</ion-button
+      >
+      <ion-button expand="full" (click)="onUpdateStateForAll(false)"
+        >Set to default</ion-button
+      >
+    </div>
+
+    <!-- Succes -->
+    <ul *ngIf="vm.status === 'success'">
+      <li *ngFor="let alarm of vm.alarms">
+        <smart-home-alarm-card
+          [alarm]="alarm"
+          (stateUpdate)="onStateUpdate($event)"
+          (select)="onSelect($event)"
+          (defaultStateUpdate)="onDefaultStateUpdate($event)"
+        ></smart-home-alarm-card>
+      </li>
+    </ul>
+
+    <!-- Loading -->
+    <ul *ngIf="vm.status === 'loading'">
+      <li *ngFor="let skeleton of skeletonCards">
+        <smart-home-skeleton [factory]="skeleton"></smart-home-skeleton>
+      </li>
+    </ul>
+
+    <ng-container #details>
+      <span
+        class="text-center text-2xl italic block mt-6"
+        *ngIf="vm.selectedId === null"
+        >Click on alarm from list to see details</span
+      >
+
+      <smart-home-alarm-details
+        *ngIf="vm.selectedId !== null"
+        [alarmId]="vm.selectedId"
+      ></smart-home-alarm-details>
+    </ng-container>
+  </main>
+</ng-container>

@@ -1,0 +1,13 @@
+@import 'mixins.scss';
+
+.padding {
+  @include layout-padding;
+}
+
+ion-header {
+  background-color: var(--ion-color-primary);
+}
+
+.hide {
+  visibility: hidden;
+}

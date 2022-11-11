@@ -11,4 +11,6 @@ type IconSize = '2xs' | 'xs' | 'sm' | 'lg' | 'xl' | '2xl';
 export class FaIconComponent {
   @Input() icon!: IconDefinition;
   @Input() size: IconSize = 'lg';
+  @Input() stroke: string | undefined;
+  @Input() color: string | undefined;
 }

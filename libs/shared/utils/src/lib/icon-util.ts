@@ -7,6 +7,9 @@ import {
   faStar as starSolid,
   faClock,
   faArrowRight,
+  faChevronLeft,
+  faPowerOff,
+  faArrowsRotate,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { faStar as starRegular } from '@fortawesome/free-regular-svg-icons';
@@ -21,4 +24,7 @@ export class IconUtil {
   static starSolid = starSolid;
   static starRegular = starRegular;
   static arrowRigth = faArrowRight;
+  static chevronLeft = faChevronLeft;
+  static powerOff = faPowerOff;
+  static refresh = faArrowsRotate;
 }

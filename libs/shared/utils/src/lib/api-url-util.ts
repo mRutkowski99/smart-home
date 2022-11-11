@@ -5,4 +5,5 @@ export class ApiUrlUtil {
 
   static roomController = this.url + 'room/';
   static sceneController = this.url + 'scene/';
+  static alarmsController = this.url + 'alarm/';
 }

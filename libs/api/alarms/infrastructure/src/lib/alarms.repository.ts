@@ -2,7 +2,11 @@ import { Injectable } from '@nestjs/common';
 import * as dayjs from 'dayjs';
 import { PrismaService } from '@smart-home/api/core/services/prisma-service';
 import { AlarmLogSchema, AlarmSchema } from '@prisma/client';
-import { AlarmDomainSchema, AlarmLogInput } from './alarm-schema.factory';
+import {
+  AlarmDomainSchema,
+  AlarmInputSchemas,
+  AlarmLogInput,
+} from './alarm-schema.factory';
 
 type FilterFromParam = 'lastWeek' | 'lastMonth' | 'lastThreeMonths';
 
@@ -14,6 +18,7 @@ export class AlarmsRepository {
     return await this.prisma.alarmSchema.findMany({
       where: { homeId },
       include: { alarmLogs: { where: { confirmed: false } } },
+      orderBy: { name: 'asc' },
     });
   }
 
@@ -55,16 +60,25 @@ export class AlarmsRepository {
   }
 
   async findAndReplace(
-    id: string,
     alarm: AlarmSchema,
     logs: AlarmLogInput[]
   ): Promise<void> {
-    await this.prisma.alarmSchema.update({
-      where: { id },
+    await this.findAndReplaceQuery(alarm, logs);
+  }
+
+  async findAndReplaceMany(alarms: AlarmInputSchemas[]) {
+    await this.prisma.$transaction(
+      alarms.map((alarm) => this.findAndReplaceQuery(...alarm))
+    );
+  }
+
+  private findAndReplaceQuery(alarm: AlarmSchema, logs: AlarmLogInput[]) {
+    return this.prisma.alarmSchema.update({
+      where: { id: alarm.id },
       data: {
         ...alarm,
         alarmLogs: {
-          deleteMany: { alarmId: id },
+          deleteMany: { alarmId: alarm.id },
           createMany: { data: [...logs] },
         },
       },

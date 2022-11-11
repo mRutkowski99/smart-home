@@ -15,6 +15,12 @@ const routes: Routes = [
       (await import('@smart-home/mobile/home/features/home-page'))
         .HomePageModule,
   },
+  {
+    path: 'alarms',
+    loadChildren: async () =>
+      (await import('@smart-home/mobile/alarm/feature/alarms-page'))
+        .AlarmsPageModule,
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,37 @@
+<ion-card
+  (click)="onSelect()"
+  class="card"
+  [ngClass]="{ active: alarm.active }"
+>
+  <span class="name">{{ alarm.name }}</span>
+  <div class="default">
+    <span class="tracking-wide">Default:</span>
+    <ion-segment
+      (ionChange)="onDefaultStateChange($event)"
+      [value]="alarm.deafultState"
+      stopPropagation
+      mode="ios"
+      [ngStyle]="{
+        background: alarm.active ? 'var(--ion-color-tertiary)' : 'intial'
+      }"
+    >
+      <ion-segment-button [value]="true">
+        <ion-label>ON</ion-label>
+      </ion-segment-button>
+      <ion-segment-button [value]="false">
+        <ion-label>OFF</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div class="button-container">
+    <button (click)="onChangeState()" stopPropagation>
+      <smart-home-fa-icon
+        [icon]="icon"
+        size="2xl"
+        [color]="
+          alarm.active ? 'var(--ion-color-primary)' : 'var(--ion-color-medium)'
+        "
+      ></smart-home-fa-icon>
+    </button>
+  </div>
+</ion-card>

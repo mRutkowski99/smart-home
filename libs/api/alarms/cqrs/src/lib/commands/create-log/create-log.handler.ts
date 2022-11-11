@@ -27,9 +27,6 @@ export class CreateLogHandler implements ICommandHandler<CreateLogCommand> {
     alarm.addLog(message, danger);
     alarm.commit();
 
-    await this.repository.findAndReplace(
-      alarm.id,
-      ...this.factory.create(alarm)
-    );
+    await this.repository.findAndReplace(...this.factory.create(alarm));
   }
 }

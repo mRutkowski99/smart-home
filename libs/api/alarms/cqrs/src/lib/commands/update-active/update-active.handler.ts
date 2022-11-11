@@ -29,9 +29,6 @@ export class UpdateActiveHandler
     state ? alarm.activate() : alarm.deactivate();
     alarm.commit();
 
-    await this.repository.findAndReplace(
-      alarm.id,
-      ...this.factory.create(alarm)
-    );
+    await this.repository.findAndReplace(...this.factory.create(alarm));
   }
 }

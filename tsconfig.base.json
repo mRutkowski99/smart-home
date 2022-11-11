@@ -41,6 +41,21 @@
       "@smart-home/api/scene/infrastructure": [
         "libs/api/scene/infrastructure/src/index.ts"
       ],
+      "@smart-home/mobile/alarm/data-access/alarm-details-data": [
+        "libs/mobile/alarm/data-access/alarm-details-data/src/index.ts"
+      ],
+      "@smart-home/mobile/alarm/data-access/alarms-page-data": [
+        "libs/mobile/alarm/data-access/alarms-page-data/src/index.ts"
+      ],
+      "@smart-home/mobile/alarm/feature/alarm-details": [
+        "libs/mobile/alarm/feature/alarm-details/src/index.ts"
+      ],
+      "@smart-home/mobile/alarm/feature/alarms-page": [
+        "libs/mobile/alarm/feature/alarms-page/src/index.ts"
+      ],
+      "@smart-home/mobile/alarm/ui/alarm-card": [
+        "libs/mobile/alarm/ui/alarm-card/src/index.ts"
+      ],
       "@smart-home/mobile/home/features/home-page": [
         "libs/mobile/home/features/home-page/src/index.ts"
       ],
@@ -71,8 +86,14 @@
       "@smart-home/mobile/scene/ui/scene-card": [
         "libs/mobile/scene/ui/scene-card/src/index.ts"
       ],
+      "@smart-home/mobile/shared/directives/stop-propagation": [
+        "libs/mobile/shared/directives/stop-propagation/src/index.ts"
+      ],
       "@smart-home/mobile/shared/ui/nav": [
         "libs/mobile/shared/ui/nav/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/ui/section-header": [
+        "libs/mobile/shared/ui/section-header/src/index.ts"
       ],
       "@smart-home/mobile/shared/ui/skeleton": [
         "libs/mobile/shared/ui/skeleton/src/index.ts"

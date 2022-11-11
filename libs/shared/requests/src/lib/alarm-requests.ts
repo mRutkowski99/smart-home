@@ -1,10 +1,37 @@
-import { IsBoolean, IsUUID } from 'class-validator';
+import { IsBoolean, IsDefined, IsUUID } from 'class-validator';
+import { Transform } from 'class-transformer';
+
+function toBoolean(value: string) {
+  return value === 'true';
+}
+
+function toString(value: string) {
+  console.log(value);
+  return '' + value;
+}
 
 export class GetAlarmWithLogsQuery {
+  @Transform(({ value }) => toBoolean(value))
+  @IsBoolean()
+  readonly onlyDanger: boolean;
+
+  @IsDefined()
+  readonly from: 'lastWeek' | 'lastMonth' | 'lastThreeMonths';
+
   constructor(
-    public readonly onlyDanger: boolean,
-    public readonly from: 'lastWeek' | 'lastMonth' | 'lastThreeMonths'
-  ) {}
+    onlyDanger: boolean,
+    from: 'lastWeek' | 'lastMonth' | 'lastThreeMonths'
+  ) {
+    this.onlyDanger = onlyDanger;
+    this.from = from;
+  }
+
+  toQueryParams() {
+    return {
+      onlyDanger: this.onlyDanger,
+      from: this.from,
+    };
+  }
 }
 
 export class ConfirmLogBody {

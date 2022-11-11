@@ -13,6 +13,7 @@ export class AlarmLogDto {
   constructor(
     public readonly id: string,
     public readonly alarmId: string,
+    public readonly message: string,
     public readonly createDate: Date,
     public readonly danger: boolean,
     public readonly confirmed: boolean | null,
