@@ -1,6 +1,7 @@
 import { AggregateRoot } from '@nestjs/cqrs';
 import { SafetyDevice, SafetyDeviceEnum } from './safety-device.model';
-import { SafetyLog } from './safety-log.model';
+import { SafetyLog, SafetyState } from './safety-log.model';
+import * as dayjs from 'dayjs';
 
 export class Safety extends AggregateRoot {
   constructor(
@@ -11,10 +12,13 @@ export class Safety extends AggregateRoot {
     private _logs: SafetyLog[]
   ) {
     super();
+    this._logs = this._logs.sort((a, b) =>
+      dayjs(a.createDate).isAfter(b.createDate) ? 1 : -1
+    );
   }
 
   get id(): string {
-    return this.id;
+    return this._id;
   }
 
   get homeId(): string {
@@ -37,32 +41,38 @@ export class Safety extends AggregateRoot {
     return [...this._logs];
   }
 
+  get state(): SafetyState {
+    return this._logs.at(0)?.state || SafetyState.Ok;
+  }
+
   get unconfirmedLogs(): SafetyLog[] | null {
-    const unconfirmed = this._logs.filter((log) => !log.confirmed);
+    const unconfirmed = this._logs.filter((log) => log.confirmed === false);
     return unconfirmed.length === 0 ? null : unconfirmed;
   }
 
-  addLog(state: boolean, disabled: boolean) {
-    if (disabled) {
-      const newLog = SafetyLog.create(this.id, this.disabledMessage);
-      this._logs = [newLog, ...this._logs];
-      this.broadcastEvent(newLog.message);
-    }
+  addLog(danger: boolean, disabled: boolean) {
+    if (this.isLogDuplicate(danger, disabled)) return;
 
-    if (!state) {
-      const newLog = SafetyLog.create(this.id, this.dangerMessage);
-      this._logs = [newLog, ...this._logs];
-      this.broadcastEvent(newLog.message);
+    const newLog = SafetyLog.create(
+      this.id,
+      this.newLogState(danger, disabled)
+    );
+    this._logs = [newLog, ...this._logs];
+
+    if (newLog.state !== SafetyState.Ok) {
     }
   }
 
-  private broadcastEvent(message: string) {}
-
-  private get disabledMessage(): string {
-    return `${this.device}: ${this.name} might be disabled. Check the connection`;
+  private isLogDuplicate(danger: boolean, disabled: boolean): boolean {
+    if (disabled && this.state == SafetyState.Disabled) return true;
+    if (danger && this.state === SafetyState.Danger) return true;
+    if (!danger && !disabled && this.state === SafetyState.Ok) return true;
+    return false;
   }
 
-  private get dangerMessage(): string {
-    return `${this.device}: ${this.name} has detected a danger`;
+  private newLogState(danger: boolean, disabled: boolean): SafetyState {
+    if (disabled) return SafetyState.Disabled;
+    if (danger) return SafetyState.Danger;
+    return SafetyState.Ok;
   }
 }
