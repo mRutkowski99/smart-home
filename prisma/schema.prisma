@@ -7,6 +7,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ----- HOMES -----
+
 model HomeSchema {
   id           String         @id @default(uuid())
   rooms        RoomSchema[]
@@ -14,6 +16,8 @@ model HomeSchema {
   alarms       AlarmSchema[]
   SafetySchema SafetySchema[]
 }
+
+// ----- ROOMS -----
 
 model RoomSchema {
   id        String  @id @default(uuid())
@@ -26,6 +30,8 @@ model RoomSchema {
 
   @@unique([id, homeId])
 }
+
+// ----- SCENES -----
 
 model SceneSchema {
   id         String    @id @default(uuid())
@@ -40,6 +46,8 @@ model SceneSchema {
 
   @@unique([id, homeId])
 }
+
+// ----- ALARMS -----
 
 model AlarmSchema {
   id          String  @id @default(uuid())
@@ -69,10 +77,24 @@ model AlarmLogSchema {
   @@unique([id, alarmId])
 }
 
+// ----- SAFETY -----
+
+enum SafetyDevice {
+  WaterLeakSensor
+  COSensor
+  SmokeSensor
+}
+
+enum SafetyState {
+  Ok
+  Danger
+  Disabled
+}
+
 model SafetySchema {
-  id   String           @id @default(uuid())
+  id   String       @id @default(uuid())
   name String
-  type SafetyDeviceEnum
+  type SafetyDevice
 
   Home      HomeSchema  @relation(fields: [homeId], references: [id])
   homeId    String
@@ -81,16 +103,11 @@ model SafetySchema {
   @@unique([id, homeId])
 }
 
-enum SafetyDeviceEnum {
-  WaterLeakSensor
-  COSensor
-  SmokeSensor
-}
-
 model SafetyLog {
-  id          String    @id @default(uuid())
+  id          String      @id @default(uuid())
   message     String
   createDate  DateTime
+  state       SafetyState
   confirmed   Boolean
   confirmedAt DateTime?
   confirmedBy String?
