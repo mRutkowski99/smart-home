@@ -3,6 +3,7 @@ import {
   AlarmDetailsStore,
   FromType,
 } from '@smart-home/mobile/alarm/data-access/alarm-details-data';
+import { SkeletonFactory } from '@smart-home/mobile/shared/utils';
 import { IconUtil } from '@smart-home/shared/utils';
 
 @Component({
@@ -36,7 +37,27 @@ export class AlarmDetailsComponent {
 
   onFromChange(event: any) {
     const value = <FromType>event.detail.value;
-
     this.store.setFromFilter(value);
   }
+
+  readonly skeleton = new SkeletonFactory({ width: '100%', height: '15rem' }, [
+    {
+      width: '100%',
+      height: '4rem',
+      horizontalOffset: '0',
+      verticalOffset: '0',
+    },
+    {
+      height: '3rem',
+      width: 'calc(100% - 4rem)',
+      horizontalOffset: '2rem',
+      verticalOffset: '5rem',
+    },
+    {
+      height: '3rem',
+      width: 'calc(100% - 4rem)',
+      horizontalOffset: '2rem',
+      verticalOffset: '9rem',
+    },
+  ]);
 }

@@ -11,6 +11,10 @@ ion-card-header {
   }
 }
 
+ion-card-content {
+  padding: 1rem;
+}
+
 .logs-list {
   display: flex;
   flex-direction: column;
