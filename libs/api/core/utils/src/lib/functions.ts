@@ -1,4 +1,4 @@
-import dayjs = require('dayjs');
+import * as dayjs from 'dayjs';
 import { FilterFromParam } from './types';
 
 export function checkEnumKey(
