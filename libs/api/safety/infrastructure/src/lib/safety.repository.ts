@@ -6,7 +6,7 @@ import {
   getFilterDate,
   threeMonthsAgo,
 } from '@smart-home/api/core/utils';
-import { SafetyDomainSchema } from './safety-schema.factory';
+import { SafetyDomainSchema, SafetyLogInput } from './safety-schema.factory';
 
 @Injectable()
 export class SafetyRepository {
@@ -45,6 +45,20 @@ export class SafetyRepository {
       include: {
         logs: { where: { createDate: { gte: threeMonthsAgo } } },
       },
+    });
+  }
+
+  async findAndReplace(safety: SafetySchema, logs: SafetyLogInput[]) {
+    return await this.prisma.safetySchema.update({
+      where: { id: safety.id },
+      data: {
+        ...safety,
+        logs: {
+          deleteMany: { safetyId: safety.id },
+          createMany: { data: [...logs] },
+        },
+      },
+      include: { logs: true },
     });
   }
 }

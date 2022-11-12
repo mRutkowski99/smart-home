@@ -16,6 +16,14 @@ export function mapToDeviceType(type: SafetyDeviceSchemaEnum): SafetyDevice {
   return new SafetyDevice(SafetyDeviceEnum[type]);
 }
 
+export function mapToDeviceSchemaInput(
+  type: SafetyDeviceEnum
+): SafetyDeviceSchemaEnum {
+  if (type === SafetyDeviceEnum.WaterLeakSensor) return 'WaterLeakSensor';
+  if (type === SafetyDeviceEnum.COSensor) return 'COSensor';
+  return 'SmokeSensor';
+}
+
 export function mapToSafetyState(state: SafetyStateSchemaEnum): SafetyState {
   if (!checkEnumKey(SafetyState, state))
     throw new InternalServerErrorException(
@@ -23,4 +31,12 @@ export function mapToSafetyState(state: SafetyStateSchemaEnum): SafetyState {
     );
 
   return SafetyState[state];
+}
+
+export function mapToSafetyStateSchemaEnum(
+  state: SafetyState
+): SafetyStateSchemaEnum {
+  if (state === SafetyState.Danger) return 'Danger';
+  if (state === SafetyState.Disabled) return 'Disabled';
+  return 'Ok';
 }

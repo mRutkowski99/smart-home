@@ -4,6 +4,7 @@ import { SafetyLog, SafetyState } from './safety-log.model';
 import * as dayjs from 'dayjs';
 
 export class Safety extends AggregateRoot {
+  [x: string]: any;
   constructor(
     private readonly _id: string,
     private readonly _homeId: string,

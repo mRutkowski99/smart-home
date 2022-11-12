@@ -108,7 +108,7 @@ model SafetyLogSchema {
   message     String
   createDate  DateTime
   state       SafetyStateSchemaEnum
-  confirmed   Boolean
+  confirmed   Boolean?
   confirmedAt DateTime?
   confirmedBy String?
 
