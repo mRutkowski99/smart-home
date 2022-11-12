@@ -8,7 +8,6 @@ import {
 } from '@smart-home/api/safety/cqrs';
 
 export class Safety extends AggregateRoot {
-  [x: string]: any;
   constructor(
     private readonly _id: string,
     private readonly _homeId: string,
