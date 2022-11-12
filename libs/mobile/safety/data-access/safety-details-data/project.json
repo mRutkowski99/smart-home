@@ -1,0 +1,29 @@
+{
+  "name": "mobile-safety-data-access-safety-details-data",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mobile/safety/data-access/safety-details-data/src",
+  "prefix": "smart-home",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/mobile/safety/data-access/safety-details-data"
+      ],
+      "options": {
+        "jestConfig": "libs/mobile/safety/data-access/safety-details-data/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/mobile/safety/data-access/safety-details-data/**/*.ts",
+          "libs/mobile/safety/data-access/safety-details-data/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

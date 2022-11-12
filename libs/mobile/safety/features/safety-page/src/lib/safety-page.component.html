@@ -17,5 +17,13 @@
         <smart-home-skeleton [factory]="skeleton"></smart-home-skeleton>
       </li>
     </ul>
+
+    <ng-container #details>
+      <span
+        class="text-center text-2xl italic block mt-6"
+        *ngIf="vm.selectedId === null"
+        >Click on device from list to see details</span
+      >
+    </ng-container>
   </main>
 </ng-container>

@@ -85,6 +85,9 @@
       "@smart-home/mobile/room/ui/room-card": [
         "libs/mobile/room/ui/room-card/src/index.ts"
       ],
+      "@smart-home/mobile/safety/data-access/safety-details-data": [
+        "libs/mobile/safety/data-access/safety-details-data/src/index.ts"
+      ],
       "@smart-home/mobile/safety/data-access/safety-page-data": [
         "libs/mobile/safety/data-access/safety-page-data/src/index.ts"
       ],
