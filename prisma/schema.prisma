@@ -96,9 +96,9 @@ model SafetySchema {
   name String
   type SafetyDeviceSchemaEnum
 
-  Home      HomeSchema        @relation(fields: [homeId], references: [id])
-  homeId    String
-  SafetyLog SafetyLogSchema[]
+  Home   HomeSchema        @relation(fields: [homeId], references: [id])
+  homeId String
+  logs   SafetyLogSchema[]
 
   @@unique([id, homeId])
 }

@@ -1,14 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import * as dayjs from 'dayjs';
 import { PrismaService } from '@smart-home/api/core/services/prisma-service';
-import { AlarmLogSchema, AlarmSchema } from '@prisma/client';
+import { AlarmSchema } from '@prisma/client';
 import {
   AlarmDomainSchema,
   AlarmInputSchemas,
   AlarmLogInput,
 } from './alarm-schema.factory';
-
-type FilterFromParam = 'lastWeek' | 'lastMonth' | 'lastThreeMonths';
+import {
+  FilterFromParam,
+  getFilterDate,
+  threeMonthsAgo,
+} from '@smart-home/api/core/utils';
 
 @Injectable()
 export class AlarmsRepository {
@@ -32,7 +34,7 @@ export class AlarmsRepository {
       include: {
         alarmLogs: {
           where: {
-            createDate: { gte: this.getFilterDate(from) },
+            createDate: { gte: getFilterDate(from) },
             ...(onlyDanger ? { danger: true } : {}),
           },
           orderBy: { createDate: 'desc' },
@@ -45,7 +47,7 @@ export class AlarmsRepository {
     return await this.prisma.alarmSchema.findUnique({
       where: { id },
       include: {
-        alarmLogs: { where: { createDate: { gte: this.threeMonthsAgo } } },
+        alarmLogs: { where: { createDate: { gte: threeMonthsAgo } } },
       },
     });
   }
@@ -54,7 +56,7 @@ export class AlarmsRepository {
     return await this.prisma.alarmSchema.findMany({
       where: { homeId },
       include: {
-        alarmLogs: { where: { createDate: { gte: this.threeMonthsAgo } } },
+        alarmLogs: { where: { createDate: { gte: threeMonthsAgo } } },
       },
     });
   }
@@ -84,15 +86,5 @@ export class AlarmsRepository {
       },
       include: { alarmLogs: true },
     });
-  }
-
-  private readonly threeMonthsAgo = dayjs().subtract(3, 'month').toDate();
-
-  private getFilterDate(param: FilterFromParam): Date {
-    if (param === 'lastThreeMonths')
-      return dayjs().subtract(3, 'month').toDate();
-    else if (param === 'lastMonth')
-      return dayjs().subtract(1, 'month').toDate();
-    else return dayjs().subtract(1, 'week').toDate();
   }
 }
