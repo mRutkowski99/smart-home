@@ -91,6 +91,9 @@
       "@smart-home/mobile/safety/data-access/safety-page-data": [
         "libs/mobile/safety/data-access/safety-page-data/src/index.ts"
       ],
+      "@smart-home/mobile/safety/features/safety-details": [
+        "libs/mobile/safety/features/safety-details/src/index.ts"
+      ],
       "@smart-home/mobile/safety/features/safety-page": [
         "libs/mobile/safety/features/safety-page/src/index.ts"
       ],
