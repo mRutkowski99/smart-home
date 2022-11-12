@@ -79,35 +79,35 @@ model AlarmLogSchema {
 
 // ----- SAFETY -----
 
-enum SafetyDevice {
+enum SafetyDeviceSchemaEnum {
   WaterLeakSensor
   COSensor
   SmokeSensor
 }
 
-enum SafetyState {
+enum SafetyStateSchemaEnum {
   Ok
   Danger
   Disabled
 }
 
 model SafetySchema {
-  id   String       @id @default(uuid())
+  id   String                 @id @default(uuid())
   name String
-  type SafetyDevice
+  type SafetyDeviceSchemaEnum
 
-  Home      HomeSchema  @relation(fields: [homeId], references: [id])
+  Home      HomeSchema        @relation(fields: [homeId], references: [id])
   homeId    String
-  SafetyLog SafetyLog[]
+  SafetyLog SafetyLogSchema[]
 
   @@unique([id, homeId])
 }
 
-model SafetyLog {
-  id          String      @id @default(uuid())
+model SafetyLogSchema {
+  id          String                @id @default(uuid())
   message     String
   createDate  DateTime
-  state       SafetyState
+  state       SafetyStateSchemaEnum
   confirmed   Boolean
   confirmedAt DateTime?
   confirmedBy String?

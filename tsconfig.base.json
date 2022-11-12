@@ -36,6 +36,9 @@
         "libs/api/room/infrastructure/src/index.ts"
       ],
       "@smart-home/api/safety/domain": ["libs/api/safety/domain/src/index.ts"],
+      "@smart-home/api/safety/infrastructure": [
+        "libs/api/safety/infrastructure/src/index.ts"
+      ],
       "@smart-home/api/scene/cqrs": ["libs/api/scene/cqrs/src/index.ts"],
       "@smart-home/api/scene/domain": ["libs/api/scene/domain/src/index.ts"],
       "@smart-home/api/scene/feature": ["libs/api/scene/feature/src/index.ts"],
