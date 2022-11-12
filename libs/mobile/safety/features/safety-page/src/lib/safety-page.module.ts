@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { SafetyPageComponent } from './safety-page.component';
 import { SafetyPageDataModule } from '@smart-home/mobile/safety/data-access/safety-page-data';
 import { SectionHeaderModule } from '@smart-home/mobile/shared/ui/section-header';
+import { SafetyDeviceCardModule } from '@smart-home/mobile/safety/ui/safety-device-card';
 
 @NgModule({
   imports: [
@@ -11,6 +12,7 @@ import { SectionHeaderModule } from '@smart-home/mobile/shared/ui/section-header
     RouterModule.forChild([{ path: '', component: SafetyPageComponent }]),
     SafetyPageDataModule,
     SectionHeaderModule,
+    SafetyDeviceCardModule,
   ],
   declarations: [SafetyPageComponent],
 })

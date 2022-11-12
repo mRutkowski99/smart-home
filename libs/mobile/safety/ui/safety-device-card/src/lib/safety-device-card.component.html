@@ -1,0 +1,13 @@
+<ion-card
+  (click)="onSelect()"
+  *ngIf="!!device"
+  class="m-0 flex flex-col items-start p-4 card"
+  [ngClass]="{ warning: device.state === 2, danger: device.state === 1 }"
+>
+  <span class="uppercase">{{ device.device }}</span>
+  <span class="text-3xl">{{ device.name }}</span>
+  <div class="flex justify-between w-full mt-4">
+    <span>Status:</span>
+    <span>{{ device.stateName }}</span>
+  </div>
+</ion-card>

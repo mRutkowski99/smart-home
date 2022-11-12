@@ -1,4 +1,12 @@
 <ng-container *ngIf="vm$ | async as vm">
   <smart-home-section-header title="Safety devices"></smart-home-section-header>
-  <main class="padding"></main>
+  <main class="padding">
+    <ul *ngIf="vm.status === 'success'">
+      <li *ngFor="let device of vm.devices">
+        <smart-home-safety-device-card
+          [device]="device"
+        ></smart-home-safety-device-card>
+      </li>
+    </ul>
+  </main>
 </ng-container>

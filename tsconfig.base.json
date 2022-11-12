@@ -91,6 +91,9 @@
       "@smart-home/mobile/safety/features/safety-page": [
         "libs/mobile/safety/features/safety-page/src/index.ts"
       ],
+      "@smart-home/mobile/safety/ui/safety-device-card": [
+        "libs/mobile/safety/ui/safety-device-card/src/index.ts"
+      ],
       "@smart-home/mobile/scene/data-access/scenes-list-data": [
         "libs/mobile/scene/data-access/scenes-list-data/src/index.ts"
       ],

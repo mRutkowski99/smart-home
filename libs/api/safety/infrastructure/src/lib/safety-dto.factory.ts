@@ -9,7 +9,7 @@ import {
   SafetyDomainSchema,
   SafetySchemaFactory,
 } from './safety-schema.factory';
-import { mapToSafetyState } from './utils';
+import { getSafetyStateName, mapToSafetyState } from './utils';
 
 @Injectable()
 export class SafetyDtoFactory {
@@ -22,7 +22,8 @@ export class SafetyDtoFactory {
       safety.homeId,
       safety.name,
       safety.device,
-      safety.state
+      safety.state,
+      getSafetyStateName(safety.state)
     );
   }
 

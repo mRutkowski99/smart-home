@@ -6,7 +6,8 @@ export class SafetyDto {
     public readonly homeId: string,
     public readonly name: string,
     public readonly device: string,
-    public readonly state: SafetyState
+    public readonly state: SafetyState,
+    public readonly stateName: string
   ) {}
 }
 

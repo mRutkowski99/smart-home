@@ -1,0 +1,23 @@
+@import 'mixins.scss';
+
+:host {
+  @include page;
+}
+
+.padding {
+  @include layout-padding;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2rem;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+}
