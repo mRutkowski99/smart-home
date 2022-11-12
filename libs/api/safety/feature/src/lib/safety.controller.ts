@@ -1,9 +1,10 @@
 import { Controller } from '@nestjs/common';
-import { Get, Param, Query } from '@nestjs/common/decorators';
+import { Get, Param, Patch, Query } from '@nestjs/common/decorators';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import {
   GetSafetyByHomeQuery,
   GetSafetyWithLogsQuery,
+  ConfirmSafetyLogCommand,
 } from '@smart-home/api/safety/cqrs';
 import { SafetyDto, SafetyWithLogsDto } from '@smart-home/shared/dto';
 import { GetWithLogsQuery } from '@smart-home/shared/requests';
@@ -31,5 +32,15 @@ export class SafetyController {
       GetSafetyWithLogsQuery,
       SafetyWithLogsDto
     >(new GetSafetyWithLogsQuery(id, query.from, query.onlyDanger));
+  }
+
+  @Patch(':id/confirm/:logId')
+  async confirmLog(
+    @Param('id') id: string,
+    @Param('logId') logId: string
+  ): Promise<void> {
+    return await this.commandBus.execute<ConfirmSafetyLogCommand, void>(
+      new ConfirmSafetyLogCommand(id, logId)
+    );
   }
 }
