@@ -88,6 +88,9 @@
       "@smart-home/mobile/safety/data-access/safety-page-data": [
         "libs/mobile/safety/data-access/safety-page-data/src/index.ts"
       ],
+      "@smart-home/mobile/safety/features/safety-page": [
+        "libs/mobile/safety/features/safety-page/src/index.ts"
+      ],
       "@smart-home/mobile/scene/data-access/scenes-list-data": [
         "libs/mobile/scene/data-access/scenes-list-data/src/index.ts"
       ],

@@ -1,0 +1,27 @@
+{
+  "name": "mobile-safety-features-safety-page",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mobile/safety/features/safety-page/src",
+  "prefix": "smart-home",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mobile/safety/features/safety-page"],
+      "options": {
+        "jestConfig": "libs/mobile/safety/features/safety-page/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/mobile/safety/features/safety-page/**/*.ts",
+          "libs/mobile/safety/features/safety-page/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
