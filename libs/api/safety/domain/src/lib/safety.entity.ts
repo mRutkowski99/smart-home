@@ -2,6 +2,10 @@ import { AggregateRoot } from '@nestjs/cqrs';
 import { SafetyDevice, SafetyDeviceEnum } from './safety-device.model';
 import { SafetyLog, SafetyState } from './safety-log.model';
 import * as dayjs from 'dayjs';
+import {
+  SafetyDeviceDisabledEvent,
+  SafetyDeviceTriggeredEvent,
+} from '@smart-home/api/safety/cqrs';
 
 export class Safety extends AggregateRoot {
   [x: string]: any;
@@ -60,8 +64,11 @@ export class Safety extends AggregateRoot {
     );
     this._logs = [newLog, ...this._logs];
 
-    if (newLog.state !== SafetyState.Ok) {
-    }
+    if (newLog.state === SafetyState.Disabled)
+      this.apply(new SafetyDeviceDisabledEvent(this._homeId, this._id));
+
+    if (newLog.state === SafetyState.Danger)
+      this.apply(new SafetyDeviceTriggeredEvent(this._homeId, this._id));
   }
 
   private isLogDuplicate(danger: boolean, disabled: boolean): boolean {
