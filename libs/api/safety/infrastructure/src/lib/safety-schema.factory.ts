@@ -12,7 +12,7 @@ export type SafetyDomainSchema = SafetySchema & {
   logs: SafetyLogSchema[];
 };
 
-export type SafetyLogInput = Prisma.SafetyLogSchemaCreateManyInput;
+export type SafetyLogInput = Prisma.SafetyLogSchemaCreateManySafetyInput;
 
 export type SafetyInputSchemas = [SafetySchema, SafetyLogInput[]];
 
@@ -57,7 +57,6 @@ export class SafetySchemaFactory {
   private createLog(domain: SafetyLog): SafetyLogInput {
     return {
       id: domain.id,
-      safetyId: domain.satefyId,
       createDate: domain.createDate,
       message: domain.message,
       state: mapToSafetyStateSchemaEnum(domain.state),
