@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { SafetyLogSchema } from '@prisma/client';
 import {
   SafetyDto,
@@ -15,7 +15,7 @@ import { mapToSafetyState } from './utils';
 export class SafetyDtoFactory {
   constructor(private readonly factory: SafetySchemaFactory) {}
 
-  toSafetyDto(schema: SafetyDomainSchema): SafetyDto {
+  toSafetyDto(schema: SafetyDomainSchema | null): SafetyDto {
     const safety = this.factory.createFromSchema(schema);
     return new SafetyDto(
       safety.id,
@@ -26,7 +26,9 @@ export class SafetyDtoFactory {
     );
   }
 
-  toSafetyWithLogsDto(schema: SafetyDomainSchema): SafetyWithLogsDto {
+  toSafetyWithLogsDto(schema: SafetyDomainSchema | null): SafetyWithLogsDto {
+    if (schema === null) throw new NotFoundException('Safety device not found');
+
     return new SafetyWithLogsDto(
       schema.id,
       schema.homeId,
