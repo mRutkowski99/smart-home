@@ -1,14 +1,10 @@
 <ng-container *ngIf="vm$ | async as vm">
   <!-- Success -->
   <ion-card class="m-0" *ngIf="vm.status === 'success'">
-    <ion-card-header class="flex justify-between">
-      <ion-card-title>{{ vm.data?.name }}</ion-card-title>
-      <smart-home-fa-icon
-        role="button"
-        [icon]="refreshIcon"
-        (click)="getDetails()"
-      ></smart-home-fa-icon>
-    </ion-card-header>
+    <smart-home-card-header
+      [title]="vm.data?.name"
+      (refresh)="getDetails()"
+    ></smart-home-card-header>
 
     <ion-card-content>
       <form>

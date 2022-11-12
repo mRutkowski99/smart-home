@@ -27,6 +27,7 @@ export class SafetyWithLogsDto {
   constructor(
     public readonly id: string,
     public readonly homeId: string,
+    public readonly name: string,
     public readonly logs: SafetyLogDto[]
   ) {}
 }

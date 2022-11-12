@@ -5,14 +5,15 @@ import { AlarmDetailsComponent } from './alarm-details.component';
 import { AlarmDetailsDataModule } from '@smart-home/mobile/alarm/data-access/alarm-details-data';
 import { FaIconModule } from '@smart-home/shared/ui/fa-icon';
 import { SkeletonModule } from '@smart-home/mobile/shared/ui/skeleton';
+import { CardHeaderModule } from '@smart-home/mobile/shared/ui/card-header';
 
 @NgModule({
   imports: [
     CommonModule,
     AlarmDetailsDataModule,
     IonicModule,
-    FaIconModule,
     SkeletonModule,
+    CardHeaderModule,
   ],
   declarations: [AlarmDetailsComponent],
   exports: [AlarmDetailsComponent],

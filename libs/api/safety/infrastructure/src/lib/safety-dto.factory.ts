@@ -33,6 +33,7 @@ export class SafetyDtoFactory {
     return new SafetyWithLogsDto(
       schema.id,
       schema.homeId,
+      schema.name,
       schema.logs.map((log) => this.toSafetyLogDto(log))
     );
   }

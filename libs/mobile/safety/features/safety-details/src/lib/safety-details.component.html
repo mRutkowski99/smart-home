@@ -1,1 +1,8 @@
-<p>safety-details works!</p>
+<ng-container *ngIf="vm$ | async as vm">
+  <ion-card class="m-0" *ngIf="vm.status === 'success'">
+    <smart-home-card-header
+      [title]="vm.data?.name"
+      (refresh)="getDetails()"
+    ></smart-home-card-header>
+  </ion-card>
+</ng-container>

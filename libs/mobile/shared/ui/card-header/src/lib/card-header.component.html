@@ -1,0 +1,8 @@
+<ion-card-header class="flex justify-between gap-4">
+  <ion-card-title class="text-left">{{ title || '' }}</ion-card-title>
+  <smart-home-fa-icon
+    role="button"
+    [icon]="refreshIcon"
+    (click)="onRefresh()"
+  ></smart-home-fa-icon>
+</ion-card-header>

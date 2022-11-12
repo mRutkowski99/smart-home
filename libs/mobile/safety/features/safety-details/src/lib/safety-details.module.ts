@@ -4,9 +4,16 @@ import { SafetyDetailsComponent } from './safety-details.component';
 import { IonicModule } from '@ionic/angular';
 import { SkeletonModule } from '@smart-home/mobile/shared/ui/skeleton';
 import { SafetyDetailsDataModule } from '@smart-home/mobile/safety/data-access/safety-details-data';
+import { CardHeaderModule } from '@smart-home/mobile/shared/ui/card-header';
 
 @NgModule({
-  imports: [CommonModule, IonicModule, SafetyDetailsDataModule, SkeletonModule],
+  imports: [
+    CommonModule,
+    IonicModule,
+    SafetyDetailsDataModule,
+    CardHeaderModule,
+    SkeletonModule,
+  ],
   declarations: [SafetyDetailsComponent],
   exports: [SafetyDetailsComponent],
 })

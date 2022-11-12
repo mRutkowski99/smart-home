@@ -112,6 +112,9 @@
       "@smart-home/mobile/shared/directives/stop-propagation": [
         "libs/mobile/shared/directives/stop-propagation/src/index.ts"
       ],
+      "@smart-home/mobile/shared/ui/card-header": [
+        "libs/mobile/shared/ui/card-header/src/index.ts"
+      ],
       "@smart-home/mobile/shared/ui/nav": [
         "libs/mobile/shared/ui/nav/src/index.ts"
       ],
