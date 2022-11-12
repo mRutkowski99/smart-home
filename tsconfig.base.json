@@ -37,6 +37,9 @@
       ],
       "@smart-home/api/safety/cqrs": ["libs/api/safety/cqrs/src/index.ts"],
       "@smart-home/api/safety/domain": ["libs/api/safety/domain/src/index.ts"],
+      "@smart-home/api/safety/feature": [
+        "libs/api/safety/feature/src/index.ts"
+      ],
       "@smart-home/api/safety/infrastructure": [
         "libs/api/safety/infrastructure/src/index.ts"
       ],
