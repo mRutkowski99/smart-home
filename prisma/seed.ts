@@ -6,6 +6,8 @@ tommorow.setDate(tommorow.getDate() + 1);
 const prisma = new PrismaClient();
 
 async function main() {
+  await prisma.safetyLogSchema.deleteMany();
+  await prisma.safetySchema.deleteMany();
   await prisma.alarmLogSchema.deleteMany();
   await prisma.alarmSchema.deleteMany();
   await prisma.sceneSchema.deleteMany();
@@ -113,6 +115,32 @@ async function main() {
         createDate: new Date(),
         danger: true,
         message: 'Message 3',
+        confirmed: false,
+      },
+    ],
+  });
+
+  await prisma.safetySchema.createMany({
+    data: [
+      { homeId: home.id, name: 'Bathroom CO sensor', type: 'COSensor' },
+      { homeId: home.id, name: 'Kitchen smoke sensor', type: 'SmokeSensor' },
+      {
+        homeId: home.id,
+        name: 'Kitchen water leak sensor',
+        type: 'WaterLeakSensor',
+      },
+    ],
+  });
+
+  const safety = await prisma.safetySchema.findMany();
+
+  await prisma.safetyLogSchema.createMany({
+    data: [
+      {
+        safetyId: safety[0].id,
+        createDate: new Date(),
+        message: 'System has lost connection with device',
+        state: 'Disabled',
         confirmed: false,
       },
     ],

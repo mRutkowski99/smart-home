@@ -1,14 +1,6 @@
 import { IsBoolean, IsDefined, IsUUID } from 'class-validator';
 import { Transform } from 'class-transformer';
-
-function toBoolean(value: string) {
-  return value === 'true';
-}
-
-function toString(value: string) {
-  console.log(value);
-  return '' + value;
-}
+import { toBoolean } from './utils';
 
 export class GetAlarmWithLogsQuery {
   @Transform(({ value }) => toBoolean(value))

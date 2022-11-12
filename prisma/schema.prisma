@@ -7,12 +7,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ----- HOMES -----
+
 model HomeSchema {
-  id     String        @id @default(uuid())
-  rooms  RoomSchema[]
-  scenes SceneSchema[]
-  alarms AlarmSchema[]
+  id           String         @id @default(uuid())
+  rooms        RoomSchema[]
+  scenes       SceneSchema[]
+  alarms       AlarmSchema[]
+  SafetySchema SafetySchema[]
 }
+
+// ----- ROOMS -----
 
 model RoomSchema {
   id        String  @id @default(uuid())
@@ -25,6 +30,8 @@ model RoomSchema {
 
   @@unique([id, homeId])
 }
+
+// ----- SCENES -----
 
 model SceneSchema {
   id         String    @id @default(uuid())
@@ -39,6 +46,8 @@ model SceneSchema {
 
   @@unique([id, homeId])
 }
+
+// ----- ALARMS -----
 
 model AlarmSchema {
   id          String  @id @default(uuid())
@@ -66,4 +75,45 @@ model AlarmLogSchema {
   alarmId String
 
   @@unique([id, alarmId])
+}
+
+// ----- SAFETY -----
+
+enum SafetyDeviceSchemaEnum {
+  WaterLeakSensor
+  COSensor
+  SmokeSensor
+}
+
+enum SafetyStateSchemaEnum {
+  Ok
+  Danger
+  Disabled
+}
+
+model SafetySchema {
+  id   String                 @id @default(uuid())
+  name String
+  type SafetyDeviceSchemaEnum
+
+  Home   HomeSchema        @relation(fields: [homeId], references: [id])
+  homeId String
+  logs   SafetyLogSchema[]
+
+  @@unique([id, homeId])
+}
+
+model SafetyLogSchema {
+  id          String                @id @default(uuid())
+  message     String
+  createDate  DateTime
+  state       SafetyStateSchemaEnum
+  confirmed   Boolean?
+  confirmedAt DateTime?
+  confirmedBy String?
+
+  safety   SafetySchema @relation(fields: [safetyId], references: [id])
+  safetyId String
+
+  @@unique([id, safetyId])
 }
