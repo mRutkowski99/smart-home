@@ -6,6 +6,7 @@ import {
   SafetyDeviceDisabledEvent,
   SafetyDeviceTriggeredEvent,
 } from '@smart-home/api/safety/cqrs';
+import { NotFoundException } from '@nestjs/common';
 
 export class Safety extends AggregateRoot {
   constructor(
@@ -68,6 +69,15 @@ export class Safety extends AggregateRoot {
 
     if (newLog.state === SafetyState.Danger)
       this.apply(new SafetyDeviceTriggeredEvent(this._homeId, this._id));
+  }
+
+  confirmLog(logId: string) {
+    const log = this._logs.find((log) => log.id === logId);
+
+    if (log === undefined)
+      throw new NotFoundException(`Log with id ${logId} not found`);
+
+    log.confirm('');
   }
 
   private isLogDuplicate(danger: boolean, disabled: boolean): boolean {
