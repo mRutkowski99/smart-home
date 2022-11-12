@@ -1,11 +1,20 @@
 <ng-container *ngIf="vm$ | async as vm">
   <smart-home-section-header title="Safety devices"></smart-home-section-header>
   <main class="padding">
+    <!-- Success -->
     <ul *ngIf="vm.status === 'success'">
       <li *ngFor="let device of vm.devices">
         <smart-home-safety-device-card
           [device]="device"
+          (select)="onSelect($event)"
         ></smart-home-safety-device-card>
+      </li>
+    </ul>
+
+    <!-- Loading -->
+    <ul *ngIf="vm.status === 'loading'">
+      <li *ngFor="let skeleton of skeletonCards">
+        <smart-home-skeleton [factory]="skeleton"></smart-home-skeleton>
       </li>
     </ul>
   </main>

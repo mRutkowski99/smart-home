@@ -5,6 +5,7 @@ import { SafetyPageComponent } from './safety-page.component';
 import { SafetyPageDataModule } from '@smart-home/mobile/safety/data-access/safety-page-data';
 import { SectionHeaderModule } from '@smart-home/mobile/shared/ui/section-header';
 import { SafetyDeviceCardModule } from '@smart-home/mobile/safety/ui/safety-device-card';
+import { SkeletonModule } from '@smart-home/mobile/shared/ui/skeleton';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { SafetyDeviceCardModule } from '@smart-home/mobile/safety/ui/safety-devi
     SafetyPageDataModule,
     SectionHeaderModule,
     SafetyDeviceCardModule,
+    SkeletonModule,
   ],
   declarations: [SafetyPageComponent],
 })
