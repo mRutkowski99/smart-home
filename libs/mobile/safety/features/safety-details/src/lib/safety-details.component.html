@@ -13,7 +13,7 @@
         (fromChange)="onFromChange($event)"
       ></smart-home-logs-filter-form>
 
-      <ul class="logs-list">
+      <ul class="logs-list" *ngIf="vm.data?.logs?.length !== 0; else noContent">
         <li *ngFor="let log of vm.data?.logs" class="log">
           <span [ngClass]="{ 'font-bold': log.state !== 0 }">{{
             log.createDate | date: 'short'
@@ -37,6 +37,10 @@
           </div>
         </li>
       </ul>
+
+      <ng-template #noContent>
+        <span class="text-center text-2xl italic block mt-6">No content</span>
+      </ng-template>
     </ion-card-content>
   </ion-card>
 
