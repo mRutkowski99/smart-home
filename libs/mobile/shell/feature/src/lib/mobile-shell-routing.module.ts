@@ -27,6 +27,12 @@ const routes: Routes = [
       (await import('@smart-home/mobile/safety/features/safety-page'))
         .SafetyPageModule,
   },
+  {
+    path: 'rooms',
+    loadChildren: async () =>
+      (await import('@smart-home/mobile/room/features/rooms-list-page'))
+        .RoomsListPageModule,
+  },
 ];
 
 @NgModule({

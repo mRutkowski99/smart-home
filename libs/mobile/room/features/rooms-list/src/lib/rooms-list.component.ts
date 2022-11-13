@@ -27,7 +27,7 @@ export class RoomsListComponent implements OnInit {
   }
 
   readonly skeletonCards = Array.from(
-    { length: 5 },
+    { length: 4 },
     (_) =>
       new SkeletonFactory({ height: '20rem', width: '15rem' }, [
         {

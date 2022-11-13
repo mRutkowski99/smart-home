@@ -82,6 +82,9 @@
       "@smart-home/mobile/room/features/rooms-list": [
         "libs/mobile/room/features/rooms-list/src/index.ts"
       ],
+      "@smart-home/mobile/room/features/rooms-list-page": [
+        "libs/mobile/room/features/rooms-list-page/src/index.ts"
+      ],
       "@smart-home/mobile/room/ui/room-card": [
         "libs/mobile/room/ui/room-card/src/index.ts"
       ],
