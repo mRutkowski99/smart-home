@@ -1,0 +1,12 @@
+.card {
+  background-color: var(--ion-color-secondary);
+  color: #fff;
+
+  &.warning {
+    background-color: var(--ion-color-warning);
+  }
+
+  &.danger {
+    background-color: var(--ion-color-danger);
+  }
+}

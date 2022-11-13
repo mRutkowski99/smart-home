@@ -19,18 +19,6 @@ export class AlarmsPageApiService {
     return this.http.get<AlarmDto[]>(this.url + 'all/' + homeId);
   }
 
-  // getLogs(
-  //   id: string,
-  //   onlyDanger: boolean,
-  //   from: FromType
-  // ): Observable<AlarmWithLogsDto> {
-  //   const query = new GetAlarmWithLogsQuery(onlyDanger, from);
-
-  //   return this.http.get<AlarmWithLogsDto>(this.url + id + '/logs', {
-  //     params: new HttpParams({ fromObject: query.toQueryParams() }),
-  //   });
-  // }
-
   confirmLog(id: string, logId: string, userId: string) {
     return this.http.patch(
       this.url + id + '/confirm',

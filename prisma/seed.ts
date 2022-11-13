@@ -143,6 +143,13 @@ async function main() {
         state: 'Disabled',
         confirmed: false,
       },
+      {
+        safetyId: safety[1].id,
+        createDate: new Date(),
+        message: 'Device has detected a danger',
+        state: 'Danger',
+        confirmed: false,
+      },
     ],
   });
 }

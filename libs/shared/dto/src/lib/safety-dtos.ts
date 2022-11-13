@@ -6,7 +6,8 @@ export class SafetyDto {
     public readonly homeId: string,
     public readonly name: string,
     public readonly device: string,
-    public readonly state: SafetyState
+    public readonly state: SafetyState,
+    public readonly stateName: string
   ) {}
 }
 
@@ -16,6 +17,7 @@ export class SafetyLogDto {
     public readonly safetyId: string,
     public readonly createDate: Date,
     public readonly state: SafetyState,
+    public readonly message: string,
     public readonly confirmed: boolean | null,
     public readonly confirmedAt: Date | null,
     public readonly confirmedBy: string | null
@@ -26,6 +28,7 @@ export class SafetyWithLogsDto {
   constructor(
     public readonly id: string,
     public readonly homeId: string,
+    public readonly name: string,
     public readonly logs: SafetyLogDto[]
   ) {}
 }

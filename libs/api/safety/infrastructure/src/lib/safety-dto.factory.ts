@@ -9,7 +9,7 @@ import {
   SafetyDomainSchema,
   SafetySchemaFactory,
 } from './safety-schema.factory';
-import { mapToSafetyState } from './utils';
+import { getSafetyStateName, mapToSafetyState } from './utils';
 
 @Injectable()
 export class SafetyDtoFactory {
@@ -22,7 +22,8 @@ export class SafetyDtoFactory {
       safety.homeId,
       safety.name,
       safety.device,
-      safety.state
+      safety.state,
+      getSafetyStateName(safety.state)
     );
   }
 
@@ -32,19 +33,23 @@ export class SafetyDtoFactory {
     return new SafetyWithLogsDto(
       schema.id,
       schema.homeId,
+      schema.name,
       schema.logs.map((log) => this.toSafetyLogDto(log))
     );
   }
 
   private toSafetyLogDto(schema: SafetyLogSchema): SafetyLogDto {
+    const log = this.factory.createLogFromSchema(schema);
+
     return new SafetyLogDto(
-      schema.id,
-      schema.safetyId,
-      schema.createDate,
-      mapToSafetyState(schema.state),
-      schema.confirmed,
-      schema.confirmedAt,
-      schema.confirmedBy
+      log.id,
+      log.satefyId,
+      log.createDate,
+      log.state,
+      log.message,
+      log.confirmed,
+      log.confirmedAt,
+      log.confirmedBy
     );
   }
 }

@@ -1,0 +1,52 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <ion-card class="m-0" *ngIf="vm.status === 'success'">
+    <smart-home-card-header
+      [title]="vm.data?.name"
+      (refresh)="getDetails()"
+    ></smart-home-card-header>
+
+    <ion-card-content class="p-4">
+      <smart-home-logs-filter-form
+        [onlyDanger]="vm.onlyDanger"
+        (onlyDangerChange)="onOnlyDangerChange($event)"
+        [from]="vm.from"
+        (fromChange)="onFromChange($event)"
+      ></smart-home-logs-filter-form>
+
+      <ul class="logs-list" *ngIf="vm.data?.logs?.length !== 0; else noContent">
+        <li *ngFor="let log of vm.data?.logs" class="log">
+          <span [ngClass]="{ 'font-bold': log.state !== 0 }">{{
+            log.createDate | date: 'short'
+          }}</span>
+
+          <span
+            class="node"
+            [ngClass]="{ warning: log.state === 2, danger: log.state === 1 }"
+          ></span>
+
+          <div class="message">
+            <span
+              class="message"
+              [ngClass]="{ 'font-bold': log.state !== 0 }"
+              >{{ log.message }}</span
+            >
+            <p *ngIf="log.confirmedAt" class="confirmed">
+              <span>Confirmed at:</span>
+              <span>{{ log.confirmedAt | date: 'short' }}</span>
+            </p>
+          </div>
+        </li>
+      </ul>
+
+      <ng-template #noContent>
+        <span class="text-center text-2xl italic block mt-6">No content</span>
+      </ng-template>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Loading -->
+  <smart-home-skeleton
+    *ngIf="vm.status === 'loading'"
+    [factory]="skeleton"
+  ></smart-home-skeleton>
+</ng-container>

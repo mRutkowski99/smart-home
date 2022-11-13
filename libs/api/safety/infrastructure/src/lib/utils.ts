@@ -40,3 +40,14 @@ export function mapToSafetyStateSchemaEnum(
   if (state === SafetyState.Disabled) return 'Disabled';
   return 'Ok';
 }
+
+export function getSafetyStateName(state: SafetyState): string {
+  switch (state) {
+    case SafetyState.Danger:
+      return 'Danger';
+    case SafetyState.Disabled:
+      return 'Disabled';
+    default:
+      return 'Ok';
+  }
+}

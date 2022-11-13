@@ -31,7 +31,9 @@ export class SafetyRepository {
         logs: {
           where: {
             createDate: { gte: getFilterDate(from) },
-            ...(onlyDanger ? { danger: true } : {}),
+            ...(onlyDanger
+              ? { OR: [{ state: 'Danger' }, { state: 'Disabled' }] }
+              : {}),
           },
           orderBy: { createDate: 'desc' },
         },

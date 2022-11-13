@@ -1,0 +1,27 @@
+{
+  "name": "mobile-shared-ui-card-header",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mobile/shared/ui/card-header/src",
+  "prefix": "smart-home",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mobile/shared/ui/card-header"],
+      "options": {
+        "jestConfig": "libs/mobile/shared/ui/card-header/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/mobile/shared/ui/card-header/**/*.ts",
+          "libs/mobile/shared/ui/card-header/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

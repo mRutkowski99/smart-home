@@ -1,0 +1,27 @@
+{
+  "name": "mobile-safety-ui-safety-device-card",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mobile/safety/ui/safety-device-card/src",
+  "prefix": "smart-home",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mobile/safety/ui/safety-device-card"],
+      "options": {
+        "jestConfig": "libs/mobile/safety/ui/safety-device-card/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/mobile/safety/ui/safety-device-card/**/*.ts",
+          "libs/mobile/safety/ui/safety-device-card/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

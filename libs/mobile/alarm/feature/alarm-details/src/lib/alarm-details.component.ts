@@ -30,13 +30,11 @@ export class AlarmDetailsComponent {
     if (this._alarmId) this.store.getDetails(this._alarmId);
   }
 
-  onOnlyDangerChange(event: any) {
-    const value = <boolean>event.detail.checked;
+  onOnlyDangerChange(value: boolean) {
     this.store.setOnlyDangerFilter(value);
   }
 
-  onFromChange(event: any) {
-    const value = <FromType>event.detail.value;
+  onFromChange(value: FromType) {
     this.store.setFromFilter(value);
   }
 

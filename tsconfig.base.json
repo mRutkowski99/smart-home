@@ -85,6 +85,21 @@
       "@smart-home/mobile/room/ui/room-card": [
         "libs/mobile/room/ui/room-card/src/index.ts"
       ],
+      "@smart-home/mobile/safety/data-access/safety-details-data": [
+        "libs/mobile/safety/data-access/safety-details-data/src/index.ts"
+      ],
+      "@smart-home/mobile/safety/data-access/safety-page-data": [
+        "libs/mobile/safety/data-access/safety-page-data/src/index.ts"
+      ],
+      "@smart-home/mobile/safety/features/safety-details": [
+        "libs/mobile/safety/features/safety-details/src/index.ts"
+      ],
+      "@smart-home/mobile/safety/features/safety-page": [
+        "libs/mobile/safety/features/safety-page/src/index.ts"
+      ],
+      "@smart-home/mobile/safety/ui/safety-device-card": [
+        "libs/mobile/safety/ui/safety-device-card/src/index.ts"
+      ],
       "@smart-home/mobile/scene/data-access/scenes-list-data": [
         "libs/mobile/scene/data-access/scenes-list-data/src/index.ts"
       ],
@@ -96,6 +111,12 @@
       ],
       "@smart-home/mobile/shared/directives/stop-propagation": [
         "libs/mobile/shared/directives/stop-propagation/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/ui/card-header": [
+        "libs/mobile/shared/ui/card-header/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/ui/logs-filter-form": [
+        "libs/mobile/shared/ui/logs-filter-form/src/index.ts"
       ],
       "@smart-home/mobile/shared/ui/nav": [
         "libs/mobile/shared/ui/nav/src/index.ts"
