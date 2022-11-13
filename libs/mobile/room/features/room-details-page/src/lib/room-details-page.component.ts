@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { RoomDetailsStore } from '@smart-home/mobile/room/data-access/room-details-data';
+import { IconUtil } from '@smart-home/shared/utils';
 
 @Component({
   selector: 'smart-home-room-details-page',
@@ -7,7 +9,13 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoomDetailsPageComponent implements OnInit {
-  constructor() {}
+  constructor(private readonly store: RoomDetailsStore) {}
 
-  ngOnInit(): void {}
+  readonly vm$ = this.store.vm$;
+  readonly temperatureIcon = IconUtil.temperature;
+  readonly humidityIcon = IconUtil.humidity;
+
+  ngOnInit(): void {
+    this.store.getRoom();
+  }
 }

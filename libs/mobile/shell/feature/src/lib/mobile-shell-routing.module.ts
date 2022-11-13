@@ -35,7 +35,7 @@ const routes: Routes = [
         .RoomsListPageModule,
   },
   {
-    path: 'rooms/:' + RouteUtil.params.roomId,
+    path: 'rooms/:alarmId',
     loadChildren: async () =>
       (await import('@smart-home/mobile/room/features/room-details-page'))
         .RoomDetailsPageModule,

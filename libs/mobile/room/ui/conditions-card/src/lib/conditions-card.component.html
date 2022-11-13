@@ -1,0 +1,18 @@
+<ion-card class="m-0">
+  <ion-card-header class="uppercase text-center tracking-wide text-lg p-3">{{
+    title
+  }}</ion-card-header>
+  <ion-card-content class="flex gap-4 items-center justify-between">
+    <div
+      class="flex justify-center items-center w-20 aspect-square rounded-full shadow-lg"
+    >
+      <smart-home-fa-icon
+        *ngIf="!!icon"
+        [icon]="icon"
+        size="2xl"
+        color="var(--ion-color-primary)"
+      ></smart-home-fa-icon>
+    </div>
+    <span class="text-4xl">{{ value }}</span>
+  </ion-card-content>
+</ion-card>
