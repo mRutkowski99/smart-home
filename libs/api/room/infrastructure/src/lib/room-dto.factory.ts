@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { RoomSchema } from '@prisma/client';
-import { RoomOverviewDto } from '@smart-home/shared/dto';
+import { RoomDto, RoomOverviewDto } from '@smart-home/shared/dto';
 
 @Injectable()
 export class RoomDtoFactory {
@@ -14,5 +14,15 @@ export class RoomDtoFactory {
       schema.imgUrl,
       schema.favourite
     );
+  }
+
+  toRoomDto(
+    schema: RoomSchema | null,
+    temperature: number,
+    humidity: number
+  ): RoomDto {
+    if (schema === null) throw new NotFoundException('Room not found');
+
+    return new RoomDto(schema.id, schema.name, temperature, humidity);
   }
 }

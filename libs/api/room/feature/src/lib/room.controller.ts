@@ -3,10 +3,11 @@ import { Body, Param, Patch } from '@nestjs/common/decorators';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ToggleRoomFavouriteRequest } from '@smart-home/shared/requests';
 import {
+  GetRoomDetails,
   GetRoomsOverviewQuery,
   UpdateFavouriteCommand,
 } from '@smart-home/api/room/cqrs';
-import { RoomOverviewDto } from '@smart-home/shared/dto';
+import { RoomDto, RoomOverviewDto } from '@smart-home/shared/dto';
 
 @Controller('room')
 export class RoomController {
@@ -14,6 +15,13 @@ export class RoomController {
     private readonly queryBus: QueryBus,
     private readonly commandBus: CommandBus
   ) {}
+
+  @Get(':id')
+  async getRoomDetails(@Param('id') id: string): Promise<RoomDto> {
+    return this.queryBus.execute<GetRoomDetails, RoomDto>(
+      new GetRoomDetails(id)
+    );
+  }
 
   @Get('overviews/:houseId')
   async getRoomsOverviews(

@@ -3,7 +3,11 @@
   <ng-container *ngIf="layout === 'slides'">
     <!-- Success -->
     <smart-home-slider *ngIf="vm.status === 'success'; else slidesLoading">
-      <ion-slide style="width: auto" *ngFor="let room of vm.rooms">
+      <ion-slide
+        style="width: auto"
+        *ngFor="let room of vm.rooms"
+        [routerLink]="'/alarms/' + room.id"
+      >
         <smart-home-room-card [room]="room"></smart-home-room-card>
       </ion-slide>
     </smart-home-slider>
@@ -24,6 +28,7 @@
       <!-- Success -->
       <ng-container *ngIf="vm.status === 'success'; else loading">
         <smart-home-room-card
+          [routerLink]="'/alarms/' + room.id"
           *ngFor="let room of vm.rooms"
           [room]="room"
         ></smart-home-room-card>

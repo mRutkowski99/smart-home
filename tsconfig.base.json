@@ -76,6 +76,9 @@
       "@smart-home/mobile/home/ui/welcome": [
         "libs/mobile/home/ui/welcome/src/index.ts"
       ],
+      "@smart-home/mobile/room/data-access/room-details-data": [
+        "libs/mobile/room/data-access/room-details-data/src/index.ts"
+      ],
       "@smart-home/mobile/room/data-access/rooms-list-data": [
         "libs/mobile/room/data-access/rooms-list-data/src/index.ts"
       ],
