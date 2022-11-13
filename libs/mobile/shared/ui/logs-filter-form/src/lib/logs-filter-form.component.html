@@ -1,0 +1,27 @@
+<form>
+  <span>Filters:</span>
+  <ion-item>
+    <ion-checkbox
+      slot="start"
+      [checked]="onlyDanger"
+      (ionChange)="onOnlyDangerChange($event)"
+    ></ion-checkbox>
+    <ion-label>Show only danger</ion-label>
+  </ion-item>
+
+  <ion-list>
+    <ion-item>
+      <ion-select
+        placeholder="From"
+        [value]="from"
+        (ionChange)="onFromChange($event)"
+      >
+        <ion-select-option value="lastWeek">Last week</ion-select-option>
+        <ion-select-option value="lastMonth">Last month</ion-select-option>
+        <ion-select-option value="lastThreeMonths"
+          >Last 3 months</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+  </ion-list>
+</form>

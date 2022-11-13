@@ -2,19 +2,6 @@ $dateWidth: 12rem;
 $nodeWidth: 1rem;
 $gridGap: 1rem;
 
-ion-card-header {
-  background-color: var(--ion-color-primary);
-  color: #fff;
-
-  ion-card-title {
-    color: inherit;
-  }
-}
-
-ion-card-content {
-  padding: 1rem;
-}
-
 .logs-list {
   display: flex;
   flex-direction: column;

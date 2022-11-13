@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { FromType } from '@smart-home/mobile/alarm/data-access/alarm-details-data';
 import { SafetyDetailsStore } from '@smart-home/mobile/safety/data-access/safety-details-data';
 import { IconUtil } from '@smart-home/shared/utils';
 
@@ -24,5 +25,13 @@ export class SafetyDetailsComponent {
 
   getDetails() {
     if (this.id !== undefined) this.store.getDetails(this.id);
+  }
+
+  onOnlyDangerChange(value: boolean) {
+    this.store.setOnlyDangerFilter(value);
+  }
+
+  onFromChange(value: FromType) {
+    this.store.setFromFilter(value);
   }
 }

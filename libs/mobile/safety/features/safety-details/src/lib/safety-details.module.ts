@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { SkeletonModule } from '@smart-home/mobile/shared/ui/skeleton';
 import { SafetyDetailsDataModule } from '@smart-home/mobile/safety/data-access/safety-details-data';
 import { CardHeaderModule } from '@smart-home/mobile/shared/ui/card-header';
+import { LogsFilterFormModule } from '@smart-home/mobile/shared/ui/logs-filter-form';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { CardHeaderModule } from '@smart-home/mobile/shared/ui/card-header';
     IonicModule,
     SafetyDetailsDataModule,
     CardHeaderModule,
+    LogsFilterFormModule,
     SkeletonModule,
   ],
   declarations: [SafetyDetailsComponent],

@@ -115,6 +115,9 @@
       "@smart-home/mobile/shared/ui/card-header": [
         "libs/mobile/shared/ui/card-header/src/index.ts"
       ],
+      "@smart-home/mobile/shared/ui/logs-filter-form": [
+        "libs/mobile/shared/ui/logs-filter-form/src/index.ts"
+      ],
       "@smart-home/mobile/shared/ui/nav": [
         "libs/mobile/shared/ui/nav/src/index.ts"
       ],

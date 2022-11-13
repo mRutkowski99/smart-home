@@ -4,5 +4,14 @@
       [title]="vm.data?.name"
       (refresh)="getDetails()"
     ></smart-home-card-header>
+
+    <ion-card-content class="p-4">
+      <smart-home-logs-filter-form
+        [onlyDanger]="vm.onlyDanger"
+        (onlyDangerChange)="onOnlyDangerChange($event)"
+        [from]="vm.from"
+        (fromChange)="onFromChange($event)"
+      ></smart-home-logs-filter-form>
+    </ion-card-content>
   </ion-card>
 </ng-container>

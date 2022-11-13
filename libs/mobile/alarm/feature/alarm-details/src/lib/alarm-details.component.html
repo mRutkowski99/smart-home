@@ -6,35 +6,13 @@
       (refresh)="getDetails()"
     ></smart-home-card-header>
 
-    <ion-card-content>
-      <form>
-        <span>Filters:</span>
-        <ion-item>
-          <ion-checkbox
-            slot="start"
-            [checked]="vm.onlyDanger"
-            (ionChange)="onOnlyDangerChange($event)"
-          ></ion-checkbox>
-          <ion-label>Show only danger</ion-label>
-        </ion-item>
-        <ion-list>
-          <ion-item>
-            <ion-select
-              placeholder="From"
-              [value]="vm.from"
-              (ionChange)="onFromChange($event)"
-            >
-              <ion-select-option value="lastWeek">Last week</ion-select-option>
-              <ion-select-option value="lastMonth"
-                >Last month</ion-select-option
-              >
-              <ion-select-option value="lastThreeMonths"
-                >Last 3 months</ion-select-option
-              >
-            </ion-select>
-          </ion-item>
-        </ion-list>
-      </form>
+    <ion-card-content class="p-4">
+      <smart-home-logs-filter-form
+        [onlyDanger]="vm.onlyDanger"
+        (onlyDangerChange)="onOnlyDangerChange($event)"
+        [from]="vm.from"
+        (fromChange)="onFromChange($event)"
+      ></smart-home-logs-filter-form>
 
       <ul class="logs-list">
         <li *ngFor="let log of vm.data?.logs" class="log">
