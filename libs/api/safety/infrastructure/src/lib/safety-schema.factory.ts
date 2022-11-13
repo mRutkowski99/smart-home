@@ -42,7 +42,7 @@ export class SafetySchemaFactory {
     ];
   }
 
-  private createLogFromSchema(schema: SafetyLogSchema): SafetyLog {
+  createLogFromSchema(schema: SafetyLogSchema): SafetyLog {
     return new SafetyLog(
       schema.id,
       schema.safetyId,

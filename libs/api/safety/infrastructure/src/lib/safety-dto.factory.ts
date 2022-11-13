@@ -39,14 +39,17 @@ export class SafetyDtoFactory {
   }
 
   private toSafetyLogDto(schema: SafetyLogSchema): SafetyLogDto {
+    const log = this.factory.createLogFromSchema(schema);
+
     return new SafetyLogDto(
-      schema.id,
-      schema.safetyId,
-      schema.createDate,
-      mapToSafetyState(schema.state),
-      schema.confirmed,
-      schema.confirmedAt,
-      schema.confirmedBy
+      log.id,
+      log.satefyId,
+      log.createDate,
+      log.state,
+      log.message,
+      log.confirmed,
+      log.confirmedAt,
+      log.confirmedBy
     );
   }
 }

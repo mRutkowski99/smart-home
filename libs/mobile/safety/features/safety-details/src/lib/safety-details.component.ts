@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FromType } from '@smart-home/mobile/alarm/data-access/alarm-details-data';
 import { SafetyDetailsStore } from '@smart-home/mobile/safety/data-access/safety-details-data';
+import { SkeletonFactory } from '@smart-home/mobile/shared/utils';
 import { IconUtil } from '@smart-home/shared/utils';
 
 @Component({
@@ -34,4 +35,25 @@ export class SafetyDetailsComponent {
   onFromChange(value: FromType) {
     this.store.setFromFilter(value);
   }
+
+  readonly skeleton = new SkeletonFactory({ width: '100%', height: '15rem' }, [
+    {
+      width: '100%',
+      height: '4rem',
+      horizontalOffset: '0',
+      verticalOffset: '0',
+    },
+    {
+      height: '3rem',
+      width: 'calc(100% - 4rem)',
+      horizontalOffset: '2rem',
+      verticalOffset: '5rem',
+    },
+    {
+      height: '3rem',
+      width: 'calc(100% - 4rem)',
+      horizontalOffset: '2rem',
+      verticalOffset: '9rem',
+    },
+  ]);
 }

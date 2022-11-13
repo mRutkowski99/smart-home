@@ -12,6 +12,37 @@
         [from]="vm.from"
         (fromChange)="onFromChange($event)"
       ></smart-home-logs-filter-form>
+
+      <ul class="logs-list">
+        <li *ngFor="let log of vm.data?.logs" class="log">
+          <span [ngClass]="{ 'font-bold': log.state !== 0 }">{{
+            log.createDate | date: 'short'
+          }}</span>
+
+          <span
+            class="node"
+            [ngClass]="{ warning: log.state === 2, danger: log.state === 1 }"
+          ></span>
+
+          <div class="message">
+            <span
+              class="message"
+              [ngClass]="{ 'font-bold': log.state !== 0 }"
+              >{{ log.message }}</span
+            >
+            <p *ngIf="log.confirmedAt" class="confirmed">
+              <span>Confirmed at:</span>
+              <span>{{ log.confirmedAt | date: 'short' }}</span>
+            </p>
+          </div>
+        </li>
+      </ul>
     </ion-card-content>
   </ion-card>
+
+  <!-- Loading -->
+  <smart-home-skeleton
+    *ngIf="vm.status === 'loading'"
+    [factory]="skeleton"
+  ></smart-home-skeleton>
 </ng-container>

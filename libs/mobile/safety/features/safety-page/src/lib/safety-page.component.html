@@ -24,6 +24,11 @@
         *ngIf="vm.selectedId === null"
         >Click on device from list to see details</span
       >
+
+      <smart-home-safety-details
+        *ngIf="vm.selectedId"
+        [safetyId]="vm.selectedId"
+      ></smart-home-safety-details>
     </ng-container>
   </main>
 </ng-container>

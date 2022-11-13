@@ -16,7 +16,7 @@ $gridGap: 1rem;
     left: $dateWidth + $gridGap + 0.5 * $nodeWidth;
     bottom: 0;
     width: 2px;
-    transform: translateX(-50%);
+    transform: translateX(-1px);
     background-color: var(--ion-color-tertiary);
   }
 }

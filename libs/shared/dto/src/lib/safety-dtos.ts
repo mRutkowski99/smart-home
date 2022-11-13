@@ -17,6 +17,7 @@ export class SafetyLogDto {
     public readonly safetyId: string,
     public readonly createDate: Date,
     public readonly state: SafetyState,
+    public readonly message: string,
     public readonly confirmed: boolean | null,
     public readonly confirmedAt: Date | null,
     public readonly confirmedBy: string | null
