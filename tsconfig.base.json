@@ -31,6 +31,9 @@
       "@smart-home/api/devices/domain": [
         "libs/api/devices/domain/src/index.ts"
       ],
+      "@smart-home/api/devices/infrastructure": [
+        "libs/api/devices/infrastructure/src/index.ts"
+      ],
       "@smart-home/api/home/domain": ["libs/api/home/domain/src/index.ts"],
       "@smart-home/api/room/cqrs": ["libs/api/room/cqrs/src/index.ts"],
       "@smart-home/api/room/domain": ["libs/api/room/domain/src/index.ts"],

@@ -1,1 +1,1 @@
-export class DeviceValue {}
+export abstract class DeviceValue {}
