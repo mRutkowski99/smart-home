@@ -14,6 +14,9 @@ export class PercentValue extends DeviceValue {
       );
   }
 
+  readonly min = 0;
+  readonly max = 100;
+
   get value(): number {
     return this._value;
   }

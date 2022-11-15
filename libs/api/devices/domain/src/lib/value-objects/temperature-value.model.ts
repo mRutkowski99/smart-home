@@ -14,6 +14,9 @@ export class TemperatureValue extends DeviceValue {
       );
   }
 
+  readonly min = 15;
+  readonly max = 30;
+
   get value(): number {
     return this._value;
   }
