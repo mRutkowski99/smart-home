@@ -1,17 +1,46 @@
 <ng-container *ngIf="vm$ | async as vm">
+  <!-- Slides -->
   <ng-container *ngIf="layout === 'slides'">
     <!-- Success -->
-    <smart-home-slider *ngIf="vm.status === 'success'">
-      <ion-slide style="width: auto" *ngFor="let room of vm.rooms">
+    <smart-home-slider *ngIf="vm.status === 'success'; else slidesLoading">
+      <ion-slide
+        style="width: auto"
+        *ngFor="let room of vm.rooms"
+        [routerLink]="'/rooms/' + room.id"
+      >
         <smart-home-room-card [room]="room"></smart-home-room-card>
       </ion-slide>
     </smart-home-slider>
 
     <!-- Loading -->
-    <smart-home-slider *ngIf="vm.status === 'loading'">
-      <ion-slide style="width: auto" *ngFor="let skeleton of skeletonCards">
-        <smart-home-skeleton [factory]="skeleton"></smart-home-skeleton>
-      </ion-slide>
-    </smart-home-slider>
+    <ng-template #slidesLoading>
+      <smart-home-slider>
+        <ion-slide style="width: auto" *ngFor="let skeleton of skeletonCards">
+          <smart-home-skeleton [factory]="skeleton"></smart-home-skeleton>
+        </ion-slide>
+      </smart-home-slider>
+    </ng-template>
+  </ng-container>
+
+  <!-- Grid -->
+  <ng-container *ngIf="layout === 'grid'">
+    <div class="grid-container">
+      <!-- Success -->
+      <ng-container *ngIf="vm.status === 'success'; else loading">
+        <smart-home-room-card
+          [routerLink]="'/rooms/' + room.id"
+          *ngFor="let room of vm.rooms"
+          [room]="room"
+        ></smart-home-room-card>
+      </ng-container>
+
+      <!-- Loading -->
+      <ng-template #loading>
+        <smart-home-skeleton
+          *ngFor="let skeleton of skeletonCards"
+          [factory]="skeleton"
+        ></smart-home-skeleton>
+      </ng-template>
+    </div>
   </ng-container>
 </ng-container>

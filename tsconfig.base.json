@@ -76,11 +76,23 @@
       "@smart-home/mobile/home/ui/welcome": [
         "libs/mobile/home/ui/welcome/src/index.ts"
       ],
+      "@smart-home/mobile/room/data-access/room-details-data": [
+        "libs/mobile/room/data-access/room-details-data/src/index.ts"
+      ],
       "@smart-home/mobile/room/data-access/rooms-list-data": [
         "libs/mobile/room/data-access/rooms-list-data/src/index.ts"
       ],
+      "@smart-home/mobile/room/features/room-details-page": [
+        "libs/mobile/room/features/room-details-page/src/index.ts"
+      ],
       "@smart-home/mobile/room/features/rooms-list": [
         "libs/mobile/room/features/rooms-list/src/index.ts"
+      ],
+      "@smart-home/mobile/room/features/rooms-list-page": [
+        "libs/mobile/room/features/rooms-list-page/src/index.ts"
+      ],
+      "@smart-home/mobile/room/ui/conditions-card": [
+        "libs/mobile/room/ui/conditions-card/src/index.ts"
       ],
       "@smart-home/mobile/room/ui/room-card": [
         "libs/mobile/room/ui/room-card/src/index.ts"

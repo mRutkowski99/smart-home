@@ -1,0 +1,27 @@
+{
+  "name": "mobile-room-data-access-room-details-data",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mobile/room/data-access/room-details-data/src",
+  "prefix": "smart-home",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mobile/room/data-access/room-details-data"],
+      "options": {
+        "jestConfig": "libs/mobile/room/data-access/room-details-data/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/mobile/room/data-access/room-details-data/**/*.ts",
+          "libs/mobile/room/data-access/room-details-data/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

@@ -6,6 +6,7 @@ import {
   Routes,
 } from '@angular/router';
 import { IonicRouteStrategy } from '@ionic/angular';
+import { RouteUtil } from '@smart-home/mobile/shared/utils';
 
 const routes: Routes = [
   {
@@ -26,6 +27,18 @@ const routes: Routes = [
     loadChildren: async () =>
       (await import('@smart-home/mobile/safety/features/safety-page'))
         .SafetyPageModule,
+  },
+  {
+    path: 'rooms',
+    loadChildren: async () =>
+      (await import('@smart-home/mobile/room/features/rooms-list-page'))
+        .RoomsListPageModule,
+  },
+  {
+    path: 'rooms/:alarmId',
+    loadChildren: async () =>
+      (await import('@smart-home/mobile/room/features/room-details-page'))
+        .RoomDetailsPageModule,
   },
 ];
 

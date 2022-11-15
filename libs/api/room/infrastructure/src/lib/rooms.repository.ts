@@ -9,7 +9,6 @@ export class RoomsRepository {
   async getAllForHome(homeId: string): Promise<RoomSchema[]> {
     return await this.prisma.roomSchema.findMany({
       where: { homeId },
-      orderBy: [{ favourite: 'desc' }],
     });
   }
 

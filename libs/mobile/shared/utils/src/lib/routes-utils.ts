@@ -5,4 +5,8 @@ export class RouteUtil {
   static waterUsage = 'waterUsage';
   static powerUsage = 'powerUsage';
   static gasUsage = 'gasUsage';
+
+  static params = {
+    roomId: 'roomId',
+  };
 }

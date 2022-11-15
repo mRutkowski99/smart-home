@@ -1,0 +1,27 @@
+{
+  "name": "mobile-room-features-room-details-page",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mobile/room/features/room-details-page/src",
+  "prefix": "smart-home",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mobile/room/features/room-details-page"],
+      "options": {
+        "jestConfig": "libs/mobile/room/features/room-details-page/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/mobile/room/features/room-details-page/**/*.ts",
+          "libs/mobile/room/features/room-details-page/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

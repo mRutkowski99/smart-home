@@ -1,3 +1,6 @@
+import { NavigationEnd, RouterEvent, Event, Router } from '@angular/router';
+import { filter, map, Observable } from 'rxjs';
+
 export type GenericStoreStatus = 'loading' | 'success' | 'error';
 
 export interface GenericState<T> {
@@ -7,6 +10,12 @@ export interface GenericState<T> {
 }
 
 export class StoreUtils {
+  // Workaround for retrieving id from url.
+  // For lazy loadded modules ActivatedRoute.params returns empty object
+  static getIdFromPath(router: Router): string {
+    return router.url.split('/').at(-1)!;
+  }
+
   static loadingState(): Partial<unknown> {
     return { status: 'loading', error: null };
   }

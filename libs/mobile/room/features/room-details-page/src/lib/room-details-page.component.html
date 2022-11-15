@@ -1,0 +1,21 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <smart-home-section-header
+    [title]="vm.room?.name"
+  ></smart-home-section-header>
+  <main class="padding">
+    <div class="flex gap-10">
+      <smart-home-conditions-card
+        class="flex-1"
+        title="Temperature"
+        [value]="vm.room?.temperature + '&deg;'"
+        [icon]="temperatureIcon"
+      ></smart-home-conditions-card>
+      <smart-home-conditions-card
+        class="flex-1"
+        title="Humidity"
+        [value]="vm.room?.humidity + '%'"
+        [icon]="humidityIcon"
+      ></smart-home-conditions-card>
+    </div>
+  </main>
+</ng-container>
