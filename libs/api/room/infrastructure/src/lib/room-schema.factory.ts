@@ -4,11 +4,7 @@ import { Room } from '@smart-home/api/room/domain';
 
 @Injectable()
 export class RoomSchemaFactory {
-  createFromSchema(
-    schema: RoomSchema | null,
-    temperature?: number,
-    humidity?: number
-  ): Room {
+  createFromSchema(schema: RoomSchema | null): Room {
     if (schema === null) throw new NotFoundException('Room not found');
 
     return new Room(
@@ -16,9 +12,7 @@ export class RoomSchemaFactory {
       schema.homeId,
       schema.name,
       schema.imgUrl,
-      schema.favourite,
-      temperature,
-      humidity
+      schema.favourite
     );
   }
 

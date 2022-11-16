@@ -11,8 +11,8 @@ export class TemperatureValue extends DeviceValue {
     super(value);
   }
 
-  readonly min = 15;
-  readonly max = 30;
+  static readonly min = 15;
+  static readonly max = 30;
 
   get value(): number {
     return this._value;

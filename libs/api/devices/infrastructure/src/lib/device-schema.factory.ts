@@ -15,7 +15,7 @@ import {
 
 @Injectable()
 export class DeviceSchemFactory {
-  create<T extends DeviceValue>(device: Device<T>): DeviceSchema {
+  create(device: Device<DeviceValue>): DeviceSchema {
     return {
       id: device.id,
       roomId: device.roomId,

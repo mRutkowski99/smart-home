@@ -1,4 +1,4 @@
-import { DeviceSchema } from '@prisma/client';
+import { DeviceSchema, TemperatureDeviceSchema } from '@prisma/client';
 import { PrismaService } from '@smart-home/api/core/services/prisma-service';
 
 export class DeviceRepository {
@@ -12,8 +12,25 @@ export class DeviceRepository {
     return await this.prisma.deviceSchema.findUnique({ where: { id } });
   }
 
+  async findTemperatureDeviceById(
+    id: string
+  ): Promise<TemperatureDeviceSchema | null> {
+    return await this.prisma.temperatureDeviceSchema.findUnique({
+      where: { id },
+    });
+  }
+
   async findAndReplace(device: DeviceSchema): Promise<void> {
     await this.prisma.deviceSchema.update({
+      where: { id: device.id },
+      data: { ...device },
+    });
+  }
+
+  async findAndReplaceTemperatureDevice(
+    device: TemperatureDeviceSchema
+  ): Promise<void> {
+    await this.prisma.temperatureDeviceSchema.update({
       where: { id: device.id },
       data: { ...device },
     });
