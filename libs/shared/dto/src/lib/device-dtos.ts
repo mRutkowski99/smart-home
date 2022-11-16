@@ -30,7 +30,10 @@ export class TemperatureDeviceDto extends AnalogValueDeviceBaseDto {
     name: string,
     value: number,
     minValue: number,
-    maxValue: number
+    maxValue: number,
+    public readonly heatingValue: number,
+    public readonly coolingValue: number,
+    public readonly ecoValue: number
   ) {
     super(id, roomId, name, 'Temperature', value, minValue, maxValue);
   }

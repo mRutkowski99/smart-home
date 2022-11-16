@@ -25,9 +25,10 @@ model RoomSchema {
   imgUrl    String
   favourite Boolean @default(false)
 
-  home    HomeSchema?    @relation(fields: [homeId], references: [id])
-  homeId  String
-  devices DeviceSchema[]
+  home               HomeSchema?               @relation(fields: [homeId], references: [id])
+  homeId             String
+  devices            DeviceSchema[]
+  temperatureDevices TemperatureDeviceSchema[]
 
   @@unique([id, homeId])
 }
@@ -68,6 +69,22 @@ model DeviceSchema {
   name              String
   value             Int
   type              DeviceType
+  address           String
+  communicationType CommunicationType
+
+  room   RoomSchema @relation(fields: [roomId], references: [id])
+  roomId String
+
+  @@unique([id, roomId])
+}
+
+model TemperatureDeviceSchema {
+  id                String            @id @default(uuid())
+  name              String
+  value             Int
+  state             Boolean
+  heatingValue      Int
+  coolingValue      Int
   address           String
   communicationType CommunicationType
 
