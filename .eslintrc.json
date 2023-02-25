@@ -77,6 +77,12 @@
                   "scope:shell",
                   "scope:shared"
                 ]
+              },
+              {
+                "sourceTag": "scope:shared",
+                "onlyDependOnLibsWithTags": [
+                  "scope:shared"
+                ]
               }
             ]
           }

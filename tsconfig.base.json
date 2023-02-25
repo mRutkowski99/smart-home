@@ -20,7 +20,14 @@
       ],
       "@smart-home/mobile/shell/ui-header": [
         "libs/mobile/shell/ui-header/src/index.ts"
-      ]
+      ],
+      "@smart-home/mobile/shell/ui-menu": [
+        "libs/mobile/shell/ui-menu/src/index.ts"
+      ],
+      "@smart-home/mobile/shell/util-menu-items": [
+        "libs/mobile/shell/util-menu-items/src/index.ts"
+      ],
+      "@smart-home/shared/ui-fa-icon": ["libs/shared/ui-fa-icon/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

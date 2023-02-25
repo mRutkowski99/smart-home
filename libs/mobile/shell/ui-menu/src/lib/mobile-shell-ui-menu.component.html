@@ -1,0 +1,23 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title *ngIf="name">Hello, {{ name }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <nav>
+      <ion-item *ngFor="let item of items">
+        <ion-label (click)="itemSelect.emit(item.type)" class="menu-item">
+          <smart-home-ui-fa-icon [icon]="item.icon" size="lg" />
+          <span>{{ item.label }}</span>
+        </ion-label>
+      </ion-item>
+    </nav>
+    <ion-item>
+      <ion-label (click)="logout.emit()" class="menu-item">
+        <smart-home-ui-fa-icon [icon]="logoutIcon" size="lg" />
+        <span>Logout</span>
+      </ion-label>
+    </ion-item>
+  </ion-content>
+</ion-menu>
