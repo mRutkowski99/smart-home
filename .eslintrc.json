@@ -45,7 +45,8 @@
                 "sourceTag": "type:app",
                 "onlyDependOnLibsWithTags": [
                   "type:app",
-                  "type:feature"
+                  "type:feature",
+                  "scope:shell"
                 ]
               },
               {
@@ -68,6 +69,19 @@
                 "sourceTag": "type:util",
                 "onlyDependOnLibsWithTags": [
                   "type:util"
+                ]
+              },
+              {
+                "sourceTag": "scope:shell",
+                "onlyDependOnLibsWithTags": [
+                  "scope:shell",
+                  "scope:shared"
+                ]
+              },
+              {
+                "sourceTag": "scope:shared",
+                "onlyDependOnLibsWithTags": [
+                  "scope:shared"
                 ]
               }
             ]

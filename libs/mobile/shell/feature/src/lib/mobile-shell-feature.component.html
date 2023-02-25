@@ -1,0 +1,12 @@
+<smart-home-ui-menu
+  (itemSelect)="onNavigate($event)"
+  (logout)="onLogout()"
+  [items]="menuItems"
+  name="Miłosz"
+/>
+<div class="ion-page" id="main-content">
+  <smart-home-ui-header title="Home" />
+  <ion-content class="ion-padding">
+    Tap the button in the toolbar to open the menu.
+  </ion-content>
+</div>
