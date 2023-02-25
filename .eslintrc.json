@@ -45,7 +45,8 @@
                 "sourceTag": "type:app",
                 "onlyDependOnLibsWithTags": [
                   "type:app",
-                  "type:feature"
+                  "type:feature",
+                  "scope:shell"
                 ]
               },
               {
