@@ -70,6 +70,13 @@
                 "onlyDependOnLibsWithTags": [
                   "type:util"
                 ]
+              },
+              {
+                "sourceTag": "scope:shell",
+                "onlyDependOnLibsWithTags": [
+                  "scope:shell",
+                  "scope:shared"
+                ]
               }
             ]
           }

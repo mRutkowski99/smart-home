@@ -17,6 +17,9 @@
     "paths": {
       "@smart-home/mobile/shell/feature": [
         "libs/mobile/shell/feature/src/index.ts"
+      ],
+      "@smart-home/mobile/shell/ui-header": [
+        "libs/mobile/shell/ui-header/src/index.ts"
       ]
     }
   },
