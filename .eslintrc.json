@@ -72,6 +72,39 @@
                 ]
               },
               {
+                "sourceTag": "type:domain",
+                "onlyDependOnLibsWithTags": [
+                  "scope:domain",
+                  "type:util"
+                ]
+              },
+              {
+                "sourceTag": "type:use-cases",
+                "onlyDependOnLibsWithTags": [
+                  "type:domain",
+                  "type:util",
+                  "type:util-dto"
+                ]
+              },
+              {
+                "sourceTag": "type:infrastructure",
+                "onlyDependOnLibsWithTags": [
+                  "scope:use-cases",
+                  "type:domain",
+                  "type:util",
+                  "type:util-dto"
+                ]
+              },
+              {
+                "sourceTag": "type:presentation",
+                "onlyDependOnLibsWithTags": [
+                  "type:use-cases",
+                  "type:util",
+                  "type:util-dto",
+                  "type:util-payload"
+                ]
+              },
+              {
                 "sourceTag": "scope:shell",
                 "onlyDependOnLibsWithTags": [
                   "scope:shell",
@@ -82,6 +115,13 @@
                 "sourceTag": "scope:shared",
                 "onlyDependOnLibsWithTags": [
                   "scope:shared"
+                ]
+              },
+              {
+                "sourceTag": "scope:room",
+                "onlyDependOnLibsWithTags": [
+                  "scope:shared",
+                  "scope:room"
                 ]
               }
             ]

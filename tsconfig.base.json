@@ -15,6 +15,17 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@smart-home/api/room/domain": ["libs/api/room/domain/src/index.ts"],
+      "@smart-home/api/room/use-cases": [
+        "libs/api/room/use-cases/src/index.ts"
+      ],
+      "@smart-home/api/shared/util-prisma-service": [
+        "libs/api/shared/util-prisma-service/src/index.ts"
+      ],
+      "@smart-home/api/shared/util-value-objects": [
+        "libs/api/shared/util-value-objects/src/index.ts"
+      ],
+      "@smart-home/api/shell/feature": ["libs/api/shell/feature/src/index.ts"],
       "@smart-home/mobile/shell/feature": [
         "libs/mobile/shell/feature/src/index.ts"
       ],
