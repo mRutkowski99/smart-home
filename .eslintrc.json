@@ -89,7 +89,7 @@
               {
                 "sourceTag": "type:infrastructure",
                 "onlyDependOnLibsWithTags": [
-                  "scope:use-cases",
+                  "type:use-cases",
                   "type:domain",
                   "type:util",
                   "type:util-dto"

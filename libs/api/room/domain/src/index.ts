@@ -1,1 +1,1 @@
-export * from './lib/api-room-domain.module';
+export * from './lib/room.entity';
