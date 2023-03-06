@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
+import { ApiRoomPresentationModule } from '@smart-home/api/room/presentation';
 
 @Module({
-  imports: [],
+  imports: [ApiRoomPresentationModule],
 })
 export class ApiShellFeatureModule {}

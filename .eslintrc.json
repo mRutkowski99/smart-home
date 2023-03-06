@@ -55,7 +55,8 @@
                   "type:feature",
                   "type:ui",
                   "type:data-access",
-                  "type:util"
+                  "type:util",
+                  "type:presentation"
                 ]
               },
               {
@@ -83,7 +84,8 @@
                 "onlyDependOnLibsWithTags": [
                   "type:domain",
                   "type:util",
-                  "type:util-dto"
+                  "type:util-vm",
+                  "type:infrastructure"
                 ]
               },
               {
@@ -91,8 +93,7 @@
                 "onlyDependOnLibsWithTags": [
                   "type:use-cases",
                   "type:domain",
-                  "type:util",
-                  "type:util-dto"
+                  "type:util"
                 ]
               },
               {
@@ -100,8 +101,7 @@
                 "onlyDependOnLibsWithTags": [
                   "type:use-cases",
                   "type:util",
-                  "type:util-dto",
-                  "type:util-payload"
+                  "type:util-vm"
                 ]
               },
               {

@@ -1,19 +1,19 @@
-import { IRoomRepository } from '@smart-home/api/room/use-cases';
-import { RoomDto, RoomOverviewDto } from '@smart-home/shared/room/util-dto';
 import { PrismaService } from '@smart-home/api/shared/util-prisma-service';
-import { roomOverviewDtoMapper } from './mappers/room-overview-dto.mapper';
-import { roomDtoMapper } from './mappers/room-dto.mapper';
+import { Room } from '@smart-home/api/room/domain';
+import { roomFactory } from './room.factory';
+import { Injectable } from '@nestjs/common';
 
-export class RoomRepository implements IRoomRepository {
+@Injectable()
+export class RoomRepository {
   constructor(private prisma: PrismaService) {}
 
-  async getAllOverview(homeId: string): Promise<RoomOverviewDto[]> {
+  async getAllByHomeId(homeId: string): Promise<Room[]> {
     const rooms = await this.prisma.roomSchema.findMany({ where: { homeId } });
-    return rooms.map((room) => roomOverviewDtoMapper(room));
+    return rooms.map((room) => roomFactory(room));
   }
 
-  async getById(id: string): Promise<RoomDto | null> {
+  async getById(id: string): Promise<Room | null> {
     const room = await this.prisma.roomSchema.findUnique({ where: { id } });
-    return room ? roomDtoMapper(room) : null;
+    return room ? roomFactory(room) : null;
   }
 }
