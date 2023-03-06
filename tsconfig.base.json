@@ -15,6 +15,26 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@smart-home/api/room/domain": ["libs/api/room/domain/src/index.ts"],
+      "@smart-home/api/room/infrastructure": [
+        "libs/api/room/infrastructure/src/index.ts"
+      ],
+      "@smart-home/api/room/presentation": [
+        "libs/api/room/presentation/src/index.ts"
+      ],
+      "@smart-home/api/room/use-cases": [
+        "libs/api/room/use-cases/src/index.ts"
+      ],
+      "@smart-home/api/shared/util-prisma-service": [
+        "libs/api/shared/util-prisma-service/src/index.ts"
+      ],
+      "@smart-home/api/shared/util-value-objects": [
+        "libs/api/shared/util-value-objects/src/index.ts"
+      ],
+      "@smart-home/api/shell/feature": ["libs/api/shell/feature/src/index.ts"],
+      "@smart-home/mobile/shared/auth/data-access": [
+        "libs/mobile/shared/auth/data-access/src/index.ts"
+      ],
       "@smart-home/mobile/shell/feature": [
         "libs/mobile/shell/feature/src/index.ts"
       ],
@@ -27,7 +47,13 @@
       "@smart-home/mobile/shell/util-menu-items": [
         "libs/mobile/shell/util-menu-items/src/index.ts"
       ],
-      "@smart-home/shared/ui-fa-icon": ["libs/shared/ui-fa-icon/src/index.ts"]
+      "@smart-home/shared/room/util-room-vm": [
+        "libs/shared/room/util-room-vm/src/index.ts"
+      ],
+      "@smart-home/shared/ui-fa-icon": ["libs/shared/ui-fa-icon/src/index.ts"],
+      "@smart-home/shared/util-constants": [
+        "libs/shared/util-constants/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
