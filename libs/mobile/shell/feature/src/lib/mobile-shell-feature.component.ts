@@ -3,7 +3,6 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { MobileShellUiHeaderComponent } from '@smart-home/mobile/shell/ui-header';
 import { MobileShellUiMenuComponent } from '@smart-home/mobile/shell/ui-menu';
@@ -13,7 +12,6 @@ import { MenuItems, menuItems } from '@smart-home/mobile/shell/util-menu-items';
   selector: 'smart-home-mobile-shell-feature',
   standalone: true,
   imports: [
-    CommonModule,
     IonicModule,
     MobileShellUiHeaderComponent,
     MobileShellUiMenuComponent,

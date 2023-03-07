@@ -6,15 +6,26 @@ import {
   faHouse,
   faPlay,
 } from '@fortawesome/free-solid-svg-icons';
+import { MainRoutes } from '@smart-home/mobile/shared/util-constants';
 
 export const menuItems: MenuItem[] = [
-  { type: MenuItems.Home, label: 'Home', url: '', icon: faHouse },
-  { type: MenuItems.Rooms, label: 'Rooms', url: 'rooms', icon: faCouch },
-  { type: MenuItems.Scenes, label: 'Scenes', url: 'scenes', icon: faPlay },
+  { type: MenuItems.Home, label: 'Home', url: MainRoutes.Home, icon: faHouse },
+  {
+    type: MenuItems.Rooms,
+    label: 'Rooms',
+    url: MainRoutes.Rooms,
+    icon: faCouch,
+  },
+  {
+    type: MenuItems.Scenes,
+    label: 'Scenes',
+    url: MainRoutes.Scenes,
+    icon: faPlay,
+  },
   {
     type: MenuItems.Settings,
     label: 'Settings',
-    url: 'settings',
+    url: MainRoutes.Settings,
     icon: faGear,
   },
 ];

@@ -1,15 +1,17 @@
 {
-  "name": "shared-room-util-room-vm",
+  "name": "mobile-home-feature",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "libs/shared/room/util-room-vm/src",
+  "sourceRoot": "libs/mobile/home/feature/src",
   "prefix": "smart-home",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
-        "jestConfig": "libs/shared/room/util-room-vm/jest.config.ts",
+        "jestConfig": "libs/mobile/home/feature/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -21,14 +23,20 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
         "lintFilePatterns": [
-          "libs/shared/room/util-room-vm/**/*.ts",
-          "libs/shared/room/util-room-vm/**/*.html"
+          "libs/mobile/home/feature/**/*.ts",
+          "libs/mobile/home/feature/**/*.html"
         ]
       }
     }
   },
-  "tags": ["platform:shared", "scope:shared", "type:util", "type:util-vm"]
+  "tags": [
+    "platform:mobile",
+    "scope:home",
+    "type:feature"
+  ]
 }
