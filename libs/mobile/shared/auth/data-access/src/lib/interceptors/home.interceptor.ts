@@ -15,7 +15,8 @@ export class HomeInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    req.headers.append(HOME_ID_HEADER_KEY, homeId);
-    return next.handle(req);
+    return next.handle(
+      req.clone({ setHeaders: { [HOME_ID_HEADER_KEY]: homeId } })
+    );
   }
 }

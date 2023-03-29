@@ -1,0 +1,29 @@
+<!--Rooms-->
+<ng-container *ngIf="roomsVm$ | async as roomsVm">
+  <!--  Loading-->
+  <ng-container>
+    <smart-home-ui-slider *ngIf="roomsVm.status === 'loading'">
+      <ion-slide *ngFor="let skeleton of roomCardsSkeleton" style="width: auto">
+        <smart-home-ui-skeleton-card
+          [factory]="skeleton"
+        ></smart-home-ui-skeleton-card>
+      </ion-slide>
+    </smart-home-ui-slider>
+  </ng-container>
+
+  <!--    Success-->
+  <ng-container *ngIf="roomsVm.status === 'success'">
+    <smart-home-ui-slider>
+      <ion-slide *ngFor="let room of roomsVm.rooms" style="width: auto">
+        <smart-home-ui-room-card [room]="room" />
+      </ion-slide>
+    </smart-home-ui-slider>
+  </ng-container>
+
+  <!--  Error-->
+  <ng-container *ngIf="roomsVm.status === 'error'">
+    <smart-home-ui-error (reload)="getRooms()">{{
+      roomsVm.error
+    }}</smart-home-ui-error>
+  </ng-container>
+</ng-container>

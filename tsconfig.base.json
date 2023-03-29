@@ -32,11 +32,32 @@
         "libs/api/shared/util-value-objects/src/index.ts"
       ],
       "@smart-home/api/shell/feature": ["libs/api/shell/feature/src/index.ts"],
-      "@smart-home/mobile/home/feature": [
-        "libs/mobile/home/feature/src/index.ts"
+      "@smart-home/mobile/home/feature-shell": [
+        "libs/mobile/home/feature-shell/src/index.ts"
       ],
       "@smart-home/mobile/shared/auth/data-access": [
         "libs/mobile/shared/auth/data-access/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/room/data-access": [
+        "libs/mobile/shared/room/data-access/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/room/ui-room-card": [
+        "libs/mobile/shared/room/ui-room-card/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/room/util": [
+        "libs/mobile/shared/room/util/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/skeleton/ui-skeleton-card": [
+        "libs/mobile/shared/skeleton/ui-skeleton-card/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/skeleton/util-skeleton-factory": [
+        "libs/mobile/shared/skeleton/util-skeleton-factory/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/ui-error": [
+        "libs/mobile/shared/ui-error/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/ui-slider": [
+        "libs/mobile/shared/ui-slider/src/index.ts"
       ],
       "@smart-home/mobile/shared/util-constants": [
         "libs/mobile/shared/util-constants/src/index.ts"
@@ -53,16 +74,14 @@
       "@smart-home/mobile/shell/util-menu-items": [
         "libs/mobile/shell/util-menu-items/src/index.ts"
       ],
-      "@smart-home/shared/room/ui-room-card": [
-        "libs/shared/room/ui-room-card/src/index.ts"
-      ],
       "@smart-home/shared/room/util-room-vm": [
         "libs/shared/room/util-room-vm/src/index.ts"
       ],
       "@smart-home/shared/ui-fa-icon": ["libs/shared/ui-fa-icon/src/index.ts"],
       "@smart-home/shared/util-constants": [
         "libs/shared/util-constants/src/index.ts"
-      ]
+      ],
+      "@smart-home/shared/util-models": ["libs/shared/util-models/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

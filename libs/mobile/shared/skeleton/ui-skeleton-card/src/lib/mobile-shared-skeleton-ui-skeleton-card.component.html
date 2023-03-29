@@ -1,0 +1,10 @@
+<ng-container *ngIf="container && items">
+  <ion-card [ngStyle]="container" class="relative mx-1 my-1">
+    <ion-skeleton-text
+      *ngFor="let item of items"
+      [animated]="true"
+      [ngStyle]="item"
+      class="absolute m-0"
+    ></ion-skeleton-text>
+  </ion-card>
+</ng-container>

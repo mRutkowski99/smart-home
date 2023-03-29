@@ -9,7 +9,12 @@ import {
 import { MainRoutes } from '@smart-home/mobile/shared/util-constants';
 
 export const menuItems: MenuItem[] = [
-  { type: MenuItems.Home, label: 'Home', url: MainRoutes.Home, icon: faHouse },
+  {
+    type: MenuItems.Home,
+    label: 'Home',
+    url: MainRoutes.Home,
+    icon: faHouse,
+  },
   {
     type: MenuItems.Rooms,
     label: 'Rooms',

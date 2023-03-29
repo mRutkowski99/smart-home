@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { MobileShellUiHeaderComponent } from '@smart-home/mobile/shell/ui-header';
 import { MobileShellUiMenuComponent } from '@smart-home/mobile/shell/ui-menu';
 import { MenuItems, menuItems } from '@smart-home/mobile/shell/util-menu-items';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'smart-home-mobile-shell-feature',
@@ -15,6 +16,7 @@ import { MenuItems, menuItems } from '@smart-home/mobile/shell/util-menu-items';
     IonicModule,
     MobileShellUiHeaderComponent,
     MobileShellUiMenuComponent,
+    RouterOutlet,
   ],
   templateUrl: './mobile-shell-feature.component.html',
   styleUrls: ['./mobile-shell-feature.component.scss'],
