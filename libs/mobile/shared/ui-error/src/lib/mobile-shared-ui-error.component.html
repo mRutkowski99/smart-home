@@ -1,0 +1,6 @@
+<ion-card>
+  <ion-card-content class="flex flex-col items-center gap-4">
+    <span class="text-center text-2xl"><ng-content></ng-content></span>
+    <ion-button (click)="reload.emit()">Reload</ion-button>
+  </ion-card-content>
+</ion-card>

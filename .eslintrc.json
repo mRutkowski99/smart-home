@@ -108,7 +108,9 @@
                 "sourceTag": "scope:shell",
                 "onlyDependOnLibsWithTags": [
                   "scope:shell",
-                  "scope:shared"
+                  "scope:shared",
+                  "scope:room",
+                  "scope:home"
                 ]
               },
               {

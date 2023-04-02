@@ -5,7 +5,11 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class RoomOverviewVmMapper {
   map(entity: Room): RoomOverviewVm {
-    return { id: entity.id.value, name: entity.name.value };
+    return {
+      id: entity.id.value,
+      name: entity.name.value,
+      imgUrl: entity.imgUrl,
+    };
   }
 
   mapAll(entities: Room[]): RoomOverviewVm[] {

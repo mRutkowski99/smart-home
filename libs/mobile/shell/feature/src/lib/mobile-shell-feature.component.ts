@@ -3,20 +3,27 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { MobileShellUiHeaderComponent } from '@smart-home/mobile/shell/ui-header';
 import { MobileShellUiMenuComponent } from '@smart-home/mobile/shell/ui-menu';
-import { MenuItems, menuItems } from '@smart-home/mobile/shell/util-menu-items';
+import {
+  createRouteLabelObservable,
+  getUrl,
+  MenuItems,
+  menuItems,
+} from '@smart-home/mobile/shell/util-menu-items';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'smart-home-mobile-shell-feature',
   standalone: true,
   imports: [
-    CommonModule,
+    AsyncPipe,
     IonicModule,
     MobileShellUiHeaderComponent,
     MobileShellUiMenuComponent,
+    RouterOutlet,
   ],
   templateUrl: './mobile-shell-feature.component.html',
   styleUrls: ['./mobile-shell-feature.component.scss'],
@@ -24,10 +31,13 @@ import { MenuItems, menuItems } from '@smart-home/mobile/shell/util-menu-items';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MobileShellFeatureComponent {
-  menuItems = [...menuItems];
+  readonly menuItems = [...menuItems];
+  routeLabel$ = createRouteLabelObservable(this.router);
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   onNavigate(selectedItemType: MenuItems) {
-    //todo: handle navigation
+    this.router.navigate(['/', getUrl(selectedItemType)]);
   }
 
   onLogout() {
