@@ -1,7 +1,7 @@
 import { RoomOverviewVm } from '@smart-home/shared/room/util-room-vm';
-import { StoreStatus } from '@smart-home/shared/util-models';
 import { createReducer, on } from '@ngrx/store';
 import * as Actions from './room.actions';
+import { StoreStatus } from '@smart-home/shared/util';
 
 export const FEATURE_NAME = 'sharedRooms';
 

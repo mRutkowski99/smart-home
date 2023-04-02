@@ -4,10 +4,10 @@ export const roomCardSkeleton = new SkeletonFactory(
   { height: '20rem', width: '15rem' },
   [
     {
-      height: '5rem',
-      width: '13rem',
-      horizontalOffset: '1rem',
-      verticalOffset: '1rem',
+      height: '25%',
+      width: '90%',
+      horizontalOffset: '5%',
+      verticalOffset: '5%',
       verticalOrigin: 'bottom',
     },
   ]

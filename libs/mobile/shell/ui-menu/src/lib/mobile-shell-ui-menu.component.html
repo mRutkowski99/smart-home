@@ -1,4 +1,4 @@
-<ion-menu contentId="main-content">
+<ion-menu #menu contentId="main-content">
   <ion-header>
     <ion-toolbar>
       <ion-title *ngIf="name">Hello, {{ name }}</ion-title>
@@ -6,8 +6,8 @@
   </ion-header>
   <ion-content class="ion-padding">
     <nav>
-      <ion-item *ngFor="let item of items">
-        <ion-label (click)="itemSelect.emit(item.type)" class="menu-item">
+      <ion-item (click)="onSelect(item.type)" *ngFor="let item of items">
+        <ion-label class="menu-item">
           <smart-home-ui-fa-icon [icon]="item.icon" size="lg" />
           <span>{{ item.label }}</span>
         </ion-label>

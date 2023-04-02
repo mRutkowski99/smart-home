@@ -4,9 +4,10 @@ import {
   EventEmitter,
   Input,
   Output,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, IonMenu } from '@ionic/angular';
 import { UiMenuItem } from './ui-menu-item.intreface';
 import { SharedUiFaIconComponent } from '@smart-home/shared/ui-fa-icon';
 import { MenuItems } from '@smart-home/mobile/shell/util-menu-items';
@@ -23,9 +24,21 @@ import { NgFor, NgIf } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MobileShellUiMenuComponent {
+  readonly logoutIcon = faArrowRightFromBracket;
   @Input() name: string | undefined;
   @Input() items: UiMenuItem[] = [];
   @Output() itemSelect = new EventEmitter<MenuItems>();
   @Output() logout = new EventEmitter<void>();
-  readonly logoutIcon = faArrowRightFromBracket;
+
+  private _menu: IonMenu | undefined;
+
+  @ViewChild('menu') set menu(menu: IonMenu) {
+    this._menu = menu;
+  }
+
+  onSelect(item: MenuItems) {
+    this.itemSelect.emit(item);
+
+    if (this._menu) this._menu.close();
+  }
 }

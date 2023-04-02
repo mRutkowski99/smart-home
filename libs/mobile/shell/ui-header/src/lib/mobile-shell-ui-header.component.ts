@@ -16,5 +16,5 @@ import { IonicModule } from '@ionic/angular';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MobileShellUiHeaderComponent {
-  @Input() title = '';
+  @Input() title: string | null = '';
 }

@@ -35,6 +35,12 @@
       "@smart-home/mobile/home/feature-shell": [
         "libs/mobile/home/feature-shell/src/index.ts"
       ],
+      "@smart-home/mobile/room/feature-rooms-list": [
+        "libs/mobile/room/feature-rooms-list/src/index.ts"
+      ],
+      "@smart-home/mobile/room/feature-shell": [
+        "libs/mobile/room/feature-shell/src/index.ts"
+      ],
       "@smart-home/mobile/shared/auth/data-access": [
         "libs/mobile/shared/auth/data-access/src/index.ts"
       ],
@@ -59,8 +65,8 @@
       "@smart-home/mobile/shared/ui-slider": [
         "libs/mobile/shared/ui-slider/src/index.ts"
       ],
-      "@smart-home/mobile/shared/util-constants": [
-        "libs/mobile/shared/util-constants/src/index.ts"
+      "@smart-home/mobile/shared/util": [
+        "libs/mobile/shared/util/src/index.ts"
       ],
       "@smart-home/mobile/shell/feature": [
         "libs/mobile/shell/feature/src/index.ts"
@@ -78,10 +84,7 @@
         "libs/shared/room/util-room-vm/src/index.ts"
       ],
       "@smart-home/shared/ui-fa-icon": ["libs/shared/ui-fa-icon/src/index.ts"],
-      "@smart-home/shared/util-constants": [
-        "libs/shared/util-constants/src/index.ts"
-      ],
-      "@smart-home/shared/util-models": ["libs/shared/util-models/src/index.ts"]
+      "@smart-home/shared/util": ["libs/shared/util/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

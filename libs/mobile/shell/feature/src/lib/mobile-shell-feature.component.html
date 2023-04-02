@@ -5,7 +5,7 @@
   name="Miłosz"
 />
 <div class="ion-page" id="main-content">
-  <smart-home-ui-header title="Home" />
+  <smart-home-ui-header [title]="routeLabel$ | async" />
   <ion-content class="ion-padding">
     <router-outlet></router-outlet>
   </ion-content>

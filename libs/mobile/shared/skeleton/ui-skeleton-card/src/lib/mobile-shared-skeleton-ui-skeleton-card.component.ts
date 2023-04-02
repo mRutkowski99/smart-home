@@ -9,7 +9,7 @@ import { SkeletonFactory } from '@smart-home/mobile/shared/skeleton/util-skeleto
 import { IonicModule } from '@ionic/angular';
 
 interface ContainerStyles {
-  width: string;
+  maxWidth: string;
   height: string;
 }
 
@@ -40,7 +40,7 @@ export class MobileSharedSkeletonUiSkeletonCardComponent {
   @Input() set factory(props: SkeletonFactory) {
     this.container = {
       height: props.container.height,
-      width: props.container.width,
+      maxWidth: props.container.width,
     };
 
     this.items = props.items.map((item) => ({

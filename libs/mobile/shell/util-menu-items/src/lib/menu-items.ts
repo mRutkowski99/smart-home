@@ -6,7 +6,7 @@ import {
   faHouse,
   faPlay,
 } from '@fortawesome/free-solid-svg-icons';
-import { MainRoutes } from '@smart-home/mobile/shared/util-constants';
+import { MainRoutes } from '@smart-home/mobile/shared/util';
 
 export const menuItems: MenuItem[] = [
   {

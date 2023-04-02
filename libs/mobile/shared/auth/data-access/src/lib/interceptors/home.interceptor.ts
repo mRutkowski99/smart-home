@@ -5,7 +5,7 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { HOME_ID_HEADER_KEY } from '@smart-home/shared/util-constants';
+import { HOME_ID_HEADER_KEY } from '@smart-home/shared/util';
 
 // todo: get homeId from auth service
 const homeId = '51e93387-8e2c-4b59-88ca-e6f4f43c56f6';
