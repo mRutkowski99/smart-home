@@ -1,5 +1,5 @@
 import { AggregateRoot } from '@nestjs/cqrs';
-import { Name, Uuid } from '@smart-home/api/shared/util-value-objects';
+import { Name, Uuid } from '@smart-home/api/shared';
 
 export class Room extends AggregateRoot {
   constructor(

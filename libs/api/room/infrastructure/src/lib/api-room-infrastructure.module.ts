@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ApiSharedUtilPrismaServiceModule } from '@smart-home/api/shared/util-prisma-service';
 import { RoomRepository } from './room.repository';
+import { ApiSharedUtilPrismaServiceModule } from '@smart-home/api/shared';
 
 @Module({
   imports: [ApiSharedUtilPrismaServiceModule],

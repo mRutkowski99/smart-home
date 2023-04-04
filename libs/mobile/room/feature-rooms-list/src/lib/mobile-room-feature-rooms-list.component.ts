@@ -13,6 +13,7 @@ import { MobileSharedRoomUiRoomCardComponent } from '@smart-home/mobile/shared/r
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { MobileSharedSkeletonUiSkeletonCardComponent } from '@smart-home/mobile/shared/skeleton/ui-skeleton-card';
 import { MobileSharedUiErrorComponent } from '@smart-home/mobile/shared/ui-error';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'smart-home-mobile-room-rooms-list',
@@ -25,6 +26,7 @@ import { MobileSharedUiErrorComponent } from '@smart-home/mobile/shared/ui-error
     MobileSharedRoomUiRoomCardComponent,
     MobileSharedSkeletonUiSkeletonCardComponent,
     MobileSharedUiErrorComponent,
+    RouterLink,
   ],
   templateUrl: './mobile-room-feature-rooms-list.component.html',
   styleUrls: ['./mobile-room-feature-rooms-list.component.scss'],

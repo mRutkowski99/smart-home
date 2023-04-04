@@ -1,7 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { FEATURE_NAME, SharedRoomState } from './room.reducer';
+import { SHARED_ROOM_FEATURE_NAME, SharedRoomState } from './room.reducer';
 
-const featureSelector = createFeatureSelector<SharedRoomState>(FEATURE_NAME);
+const featureSelector = createFeatureSelector<SharedRoomState>(
+  SHARED_ROOM_FEATURE_NAME
+);
 
 export const roomOverviewSelector = createSelector(
   featureSelector,

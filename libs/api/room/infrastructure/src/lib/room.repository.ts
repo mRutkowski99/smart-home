@@ -1,7 +1,7 @@
-import { PrismaService } from '@smart-home/api/shared/util-prisma-service';
 import { Room } from '@smart-home/api/room/domain';
 import { roomFactory } from './room.factory';
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from '@smart-home/api/shared';
 
 @Injectable()
 export class RoomRepository {

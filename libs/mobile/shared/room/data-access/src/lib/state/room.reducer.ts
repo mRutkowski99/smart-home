@@ -3,7 +3,7 @@ import { createReducer, on } from '@ngrx/store';
 import * as Actions from './room.actions';
 import { StoreStatus } from '@smart-home/shared/util';
 
-export const FEATURE_NAME = 'sharedRooms';
+export const SHARED_ROOM_FEATURE_NAME = 'sharedRoom';
 
 export interface SharedRoomState {
   rooms: RoomOverviewVm[] | null;

@@ -1,0 +1,10 @@
+<ng-container *ngIf="roomDetailsVm$ | async as roomDetailsVm">
+  <!--  Success-->
+  <ng-container
+    *ngIf="roomDetailsVm.status === 'success' && roomDetailsVm.room !== null"
+  >
+    <h2 class="font-semibold text-4xl text-slate-600 mb-4">
+      {{ roomDetailsVm.room.name }}
+    </h2>
+  </ng-container>
+</ng-container>

@@ -4,12 +4,17 @@
     <smart-home-ui-skeleton-card
       *ngFor="let skeleton of roomCardsSkeleton"
       [factory]="skeleton"
-    ></smart-home-ui-skeleton-card>
+    />
   </ng-container>
 
   <!--  Success-->
   <ng-container *ngIf="roomsVm.status === 'success'">
-    <smart-home-ui-room-card *ngFor="let room of roomsVm.rooms" [room]="room" />
+    <smart-home-ui-room-card
+      *ngFor="let room of roomsVm.rooms"
+      [room]="room"
+      [routerLink]="[room.id]"
+      role="link"
+    />
   </ng-container>
 
   <!--    Error-->

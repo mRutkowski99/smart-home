@@ -25,21 +25,25 @@
       "@smart-home/api/room/use-cases": [
         "libs/api/room/use-cases/src/index.ts"
       ],
-      "@smart-home/api/shared/util-prisma-service": [
-        "libs/api/shared/util-prisma-service/src/index.ts"
-      ],
-      "@smart-home/api/shared/util-value-objects": [
-        "libs/api/shared/util-value-objects/src/index.ts"
-      ],
+      "@smart-home/api/shared": ["libs/api/shared/src/index.ts"],
       "@smart-home/api/shell/feature": ["libs/api/shell/feature/src/index.ts"],
       "@smart-home/mobile/home/feature-shell": [
         "libs/mobile/home/feature-shell/src/index.ts"
+      ],
+      "@smart-home/mobile/room/data-access": [
+        "libs/mobile/room/data-access/src/index.ts"
+      ],
+      "@smart-home/mobile/room/feature-room-details": [
+        "libs/mobile/room/feature-room-details/src/index.ts"
       ],
       "@smart-home/mobile/room/feature-rooms-list": [
         "libs/mobile/room/feature-rooms-list/src/index.ts"
       ],
       "@smart-home/mobile/room/feature-shell": [
         "libs/mobile/room/feature-shell/src/index.ts"
+      ],
+      "@smart-home/mobile/room/ui-icon-card": [
+        "libs/mobile/room/ui-icon-card/src/index.ts"
       ],
       "@smart-home/mobile/shared/auth/data-access": [
         "libs/mobile/shared/auth/data-access/src/index.ts"

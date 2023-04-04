@@ -1,6 +1,6 @@
 import { Room } from '@smart-home/api/room/domain';
-import { Name, Uuid } from '@smart-home/api/shared/util-value-objects';
 import { RoomSchema } from '@prisma/client';
+import { Name, Uuid } from '@smart-home/api/shared';
 
 export function roomFactory(props: RoomSchema): Room {
   return new Room(
