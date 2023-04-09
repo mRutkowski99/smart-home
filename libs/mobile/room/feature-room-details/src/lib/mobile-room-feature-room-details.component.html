@@ -3,8 +3,19 @@
   <ng-container
     *ngIf="roomDetailsVm.status === 'success' && roomDetailsVm.room !== null"
   >
-    <h2 class="font-semibold text-4xl text-slate-600 mb-4">
+    <h2 class="font-semibold text-4xl text-slate-600 mb-4 text-left">
       {{ roomDetailsVm.room.name }}
     </h2>
+
+    <div class="conditions-cards-container">
+      <smart-home-mobile-room-ui-icon-card
+        [icon]="TEMPERATURE_ICON"
+        [value]="roomDetailsVm.room.temperature | temperature"
+      />
+      <smart-home-mobile-room-ui-icon-card
+        [icon]="HUMIDITY_ICON"
+        [value]="roomDetailsVm.room.humidity | humidity"
+      />
+    </div>
   </ng-container>
 </ng-container>

@@ -20,5 +20,5 @@ import { NgIf } from '@angular/common';
 })
 export class MobileRoomUiIconCardComponent {
   @Input() icon: IconDefinition | undefined;
-  @Input() value: number | string = '--';
+  @Input() value: string | null = '--';
 }

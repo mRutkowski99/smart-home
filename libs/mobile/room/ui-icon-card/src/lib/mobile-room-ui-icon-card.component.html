@@ -1,8 +1,8 @@
 <ion-card *ngIf="icon">
-  <ion-card-content class="flex justify-between">
+  <ion-card-content class="flex justify-between items-center">
     <div class="icon-container">
-      <smart-home-ui-fa-icon [icon]="icon" size="lg" />
+      <smart-home-ui-fa-icon [icon]="icon" size="2xl" />
     </div>
-    <span>{{ value }}</span>
+    <span class="text-4xl">{{ value || '--' }}</span>
   </ion-card-content>
 </ion-card>

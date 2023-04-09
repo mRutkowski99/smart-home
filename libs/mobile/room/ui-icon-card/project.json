@@ -7,7 +7,9 @@
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "libs/mobile/room/ui-icon-card/jest.config.ts",
         "passWithNoTests": true
@@ -21,7 +23,9 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
         "lintFilePatterns": [
           "libs/mobile/room/ui-icon-card/**/*.ts",
@@ -30,5 +34,9 @@
       }
     }
   },
-  "tags": []
+  "tags": [
+    "platform:mobile",
+    "scope:room",
+    "type:ui"
+  ]
 }
