@@ -1,5 +1,5 @@
 export interface RoomOverviewVm {
-  id: string;
-  name: string;
-  imgUrl: string;
+  readonly id: string;
+  readonly name: string;
+  readonly imgUrl: string;
 }

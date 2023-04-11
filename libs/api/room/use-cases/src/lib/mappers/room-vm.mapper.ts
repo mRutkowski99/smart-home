@@ -10,6 +10,7 @@ export class RoomVmMapper {
       name: entity.name.value,
       humidity: 60,
       temperature: 22,
+      devices: [...entity.devices],
     };
   }
 

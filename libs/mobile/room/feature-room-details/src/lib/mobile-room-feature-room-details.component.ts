@@ -9,10 +9,14 @@ import {
   MobileRoomDataAccessModule,
   RoomFacade,
 } from '@smart-home/mobile/room/data-access';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { MobileRoomUiIconCardComponent } from '@smart-home/mobile/room/ui-icon-card';
-import { HumidityPipe, TemperaturePipe } from '@smart-home/mobile/shared/util';
+import {
+  DeviceSetpointPipe,
+  PercentPipe,
+  TemperaturePipe,
+} from '@smart-home/mobile/shared/util';
 import { faDroplet, faTemperature2 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -21,11 +25,13 @@ import { faDroplet, faTemperature2 } from '@fortawesome/free-solid-svg-icons';
   imports: [
     AsyncPipe,
     NgIf,
+    NgFor,
     MobileRoomDataAccessModule,
     IonicModule,
     MobileRoomUiIconCardComponent,
     TemperaturePipe,
-    HumidityPipe,
+    PercentPipe,
+    DeviceSetpointPipe,
   ],
   templateUrl: './mobile-room-feature-room-details.component.html',
   styleUrls: ['./mobile-room-feature-room-details.component.scss'],

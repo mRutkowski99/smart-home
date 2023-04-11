@@ -14,8 +14,19 @@
       />
       <smart-home-mobile-room-ui-icon-card
         [icon]="HUMIDITY_ICON"
-        [value]="roomDetailsVm.room.humidity | humidity"
+        [value]="roomDetailsVm.room.humidity | percent"
       />
     </div>
+
+    <ul>
+      <li *ngFor="let device of roomDetailsVm.room.devices">
+        <ion-card>
+          <ion-card-header class="flex justify-between gap-8">
+            <span class="text-left">{{ device.name }}</span>
+            <span>{{ device | deviceSetpoint }}</span>
+          </ion-card-header>
+        </ion-card>
+      </li>
+    </ul>
   </ng-container>
 </ng-container>

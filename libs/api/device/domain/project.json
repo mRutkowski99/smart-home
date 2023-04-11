@@ -1,7 +1,7 @@
 {
-  "name": "api-shared",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/api/shared/src",
+  "name": "api-device-domain",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/api/device/domain/src",
   "projectType": "library",
   "targets": {
     "lint": {
@@ -11,7 +11,7 @@
       ],
       "options": {
         "lintFilePatterns": [
-          "libs/api/shared/**/*.ts"
+          "libs/api/device/domain/**/*.ts"
         ]
       }
     },
@@ -21,7 +21,7 @@
         "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "options": {
-        "jestConfig": "libs/api/shared/jest.config.ts",
+        "jestConfig": "libs/api/device/domain/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -34,7 +34,7 @@
   },
   "tags": [
     "platform:api",
-    "scope:shared",
-    "type:util"
+    "scope:device",
+    "type:domain"
   ]
 }

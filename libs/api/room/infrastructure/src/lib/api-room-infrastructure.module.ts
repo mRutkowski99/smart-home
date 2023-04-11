@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { RoomRepository } from './room.repository';
-import { ApiSharedUtilPrismaServiceModule } from '@smart-home/api/shared';
+import { PrismaServiceModule } from '@smart-home/api/shared/infrastructure';
 
 @Module({
-  imports: [ApiSharedUtilPrismaServiceModule],
+  imports: [PrismaServiceModule],
   providers: [RoomRepository],
   exports: [RoomRepository],
 })

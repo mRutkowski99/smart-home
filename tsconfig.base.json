@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@smart-home/api/device/domain": ["libs/api/device/domain/src/index.ts"],
       "@smart-home/api/room/domain": ["libs/api/room/domain/src/index.ts"],
       "@smart-home/api/room/infrastructure": [
         "libs/api/room/infrastructure/src/index.ts"
@@ -25,7 +26,11 @@
       "@smart-home/api/room/use-cases": [
         "libs/api/room/use-cases/src/index.ts"
       ],
-      "@smart-home/api/shared": ["libs/api/shared/src/index.ts"],
+      "@smart-home/api/shared/domain": ["libs/api/shared/domain/src/index.ts"],
+      "@smart-home/api/shared/infrastructure": [
+        "libs/api/shared/infrastructure/src/index.ts"
+      ],
+      "@smart-home/api/shared/util": ["libs/api/shared/util/src/index.ts"],
       "@smart-home/api/shell/feature": ["libs/api/shell/feature/src/index.ts"],
       "@smart-home/mobile/home/feature-shell": [
         "libs/mobile/home/feature-shell/src/index.ts"

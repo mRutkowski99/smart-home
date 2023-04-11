@@ -1,7 +1,7 @@
 /* eslint-disable */
 export default {
-  displayName: 'api-shared',
-  preset: '../../../jest.preset.js',
+  displayName: 'api-shared-util',
+  preset: '../../../../jest.preset.js',
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
@@ -11,5 +11,5 @@ export default {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../coverage/libs/api/shared',
+  coverageDirectory: '../../../../coverage/libs/api/shared/util',
 };

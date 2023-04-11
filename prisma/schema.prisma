@@ -24,8 +24,30 @@ model RoomSchema {
   name   String
   imgUrl String
 
-  home   HomeSchema? @relation(fields: [homeId], references: [id])
-  homeId String
+  home    HomeSchema?    @relation(fields: [homeId], references: [id])
+  homeId  String
+  devices DeviceSchema[]
 
   @@unique([id, homeId])
+}
+
+// ----- DEVICE -----
+
+enum ValueType {
+  DIGITAL
+  PERCENT
+  TEMPERATURE
+}
+
+model DeviceSchema {
+  id        String    @id @default(uuid())
+  name      String
+  state     Boolean
+  setpoint  Int
+  valueType ValueType
+
+  roomId String
+  room   RoomSchema? @relation(fields: [roomId], references: [id])
+
+  @@unique([id, roomId])
 }

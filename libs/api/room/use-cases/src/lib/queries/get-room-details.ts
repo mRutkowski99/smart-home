@@ -3,7 +3,7 @@ import { RoomVm } from '@smart-home/shared/room/util-room-vm';
 import { RoomRepository } from '@smart-home/api/room/infrastructure';
 import { RoomVmMapper } from '../mappers/room-vm.mapper';
 import { NotFoundException } from '@nestjs/common';
-import { throwIfNull } from '@smart-home/api/shared';
+import { throwIfNull } from '@smart-home/api/shared/util';
 
 export class GetRoomDetailsQuery {
   constructor(public readonly roomId: string) {}

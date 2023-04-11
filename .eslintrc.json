@@ -75,7 +75,7 @@
               {
                 "sourceTag": "type:domain",
                 "onlyDependOnLibsWithTags": [
-                  "scope:domain",
+                  "type:domain",
                   "type:util"
                 ]
               },
@@ -91,6 +91,7 @@
               {
                 "sourceTag": "type:infrastructure",
                 "onlyDependOnLibsWithTags": [
+                  "type:infrastructure",
                   "type:use-cases",
                   "type:domain",
                   "type:util"
@@ -124,6 +125,13 @@
                 "onlyDependOnLibsWithTags": [
                   "scope:shared",
                   "scope:room"
+                ]
+              },
+              {
+                "sourceTag": "scope:device",
+                "onlyDependOnLibsWithTags": [
+                  "scope:shared",
+                  "scope:device"
                 ]
               }
             ]
