@@ -1,0 +1,11 @@
+<div
+  (update)="onUpdate($event)"
+  [max]="max"
+  [min]="min"
+  [step]="step"
+  circleSlider
+  class="bg"
+>
+  <div [ngStyle]="{ rotate: handleRotation$ | async }" class="handle"></div>
+  <span class="center value">{{ (value$ | async) + (valueLabel ?? '') }}</span>
+</div>

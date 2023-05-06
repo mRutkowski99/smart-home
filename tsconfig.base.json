@@ -16,6 +16,15 @@
     "baseUrl": ".",
     "paths": {
       "@smart-home/api/device/domain": ["libs/api/device/domain/src/index.ts"],
+      "@smart-home/api/device/infrastructure": [
+        "libs/api/device/infrastructure/src/index.ts"
+      ],
+      "@smart-home/api/device/presentation": [
+        "libs/api/device/presentation/src/index.ts"
+      ],
+      "@smart-home/api/device/use-cases": [
+        "libs/api/device/use-cases/src/index.ts"
+      ],
       "@smart-home/api/room/domain": ["libs/api/room/domain/src/index.ts"],
       "@smart-home/api/room/infrastructure": [
         "libs/api/room/infrastructure/src/index.ts"
@@ -53,6 +62,18 @@
       "@smart-home/mobile/shared/auth/data-access": [
         "libs/mobile/shared/auth/data-access/src/index.ts"
       ],
+      "@smart-home/mobile/shared/device/data-access": [
+        "libs/mobile/shared/device/data-access/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/device/ui-device-card": [
+        "libs/mobile/shared/device/ui-device-card/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/device/ui-device-control-modal": [
+        "libs/mobile/shared/device/ui-device-control-modal/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/device/util": [
+        "libs/mobile/shared/device/util/src/index.ts"
+      ],
       "@smart-home/mobile/shared/room/data-access": [
         "libs/mobile/shared/room/data-access/src/index.ts"
       ],
@@ -67,6 +88,9 @@
       ],
       "@smart-home/mobile/shared/skeleton/util-skeleton-factory": [
         "libs/mobile/shared/skeleton/util-skeleton-factory/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/ui-circle-slider": [
+        "libs/mobile/shared/ui-circle-slider/src/index.ts"
       ],
       "@smart-home/mobile/shared/ui-error": [
         "libs/mobile/shared/ui-error/src/index.ts"
@@ -88,6 +112,9 @@
       ],
       "@smart-home/mobile/shell/util-menu-items": [
         "libs/mobile/shell/util-menu-items/src/index.ts"
+      ],
+      "@smart-home/shared/device/util-device-payload": [
+        "libs/shared/device/util-device-payload/src/index.ts"
       ],
       "@smart-home/shared/room/util-room-vm": [
         "libs/shared/room/util-room-vm/src/index.ts"

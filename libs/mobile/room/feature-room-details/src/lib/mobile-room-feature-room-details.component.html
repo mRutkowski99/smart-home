@@ -20,12 +20,11 @@
 
     <ul>
       <li *ngFor="let device of roomDetailsVm.room.devices">
-        <ion-card>
-          <ion-card-header class="flex justify-between gap-8">
-            <span class="text-left">{{ device.name }}</span>
-            <span>{{ device | deviceSetpoint }}</span>
-          </ion-card-header>
-        </ion-card>
+        <smart-home-mobile-ui-device-card
+          (select)="onSelectDevice($event)"
+          (toggleState)="onToggleDeviceState($event, device.id)"
+          [device]="device"
+        />
       </li>
     </ul>
   </ng-container>

@@ -1,4 +1,6 @@
-export class Temperature {
+import { DeviceValue } from './device-value.interface';
+
+export class Temperature implements DeviceValue {
   static MIN_VALUE = 10;
   static MAX_VALUE = 50;
 

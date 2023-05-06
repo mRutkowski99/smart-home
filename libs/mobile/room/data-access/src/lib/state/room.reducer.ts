@@ -33,5 +33,67 @@ export const roomReducer = createReducer(
     ...state,
     roomDetailsStatus: 'error',
     roomDetailsError: error,
+  })),
+  on(Actions.updateDeviceSetpoint, (state, { deviceId, newValue }) => ({
+    ...updateDeviceSetpoint(state, deviceId, newValue),
+  })),
+  on(Actions.undoUpdateDeviceSetpoint, (state, { deviceId, value }) => ({
+    ...updateDeviceSetpoint(state, deviceId, value),
+  })),
+  on(Actions.updateDeviceState, (state, { deviceId, value }) => ({
+    ...updateDeviceState(state, deviceId, value),
+  })),
+  on(Actions.undoUpdateDeviceState, (state, { deviceId, value }) => ({
+    ...updateDeviceState(state, deviceId, value),
   }))
 );
+
+const updateDeviceSetpoint = (
+  state: RoomState,
+  deviceId: string,
+  newValue: number
+): RoomState => {
+  if (state.roomDetails === null) return state;
+  const devices = state.roomDetails.devices.map((device) => {
+    if (device.id === deviceId) {
+      return {
+        ...device,
+        setpoint: newValue,
+      };
+    }
+    return device;
+  });
+
+  return {
+    ...state,
+    roomDetails: {
+      ...state.roomDetails,
+      devices,
+    },
+  };
+};
+
+const updateDeviceState = (
+  state: RoomState,
+  deviceId: string,
+  newState: boolean
+): RoomState => {
+  if (state.roomDetails === null) return state;
+  const devices = state.roomDetails.devices.map((device) => {
+    if (device.id === deviceId) {
+      return {
+        ...device,
+        state: newState,
+      };
+    }
+    return device;
+  });
+
+  return {
+    ...state,
+    roomDetails: {
+      ...state.roomDetails,
+      devices,
+    },
+  };
+};

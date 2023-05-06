@@ -1,7 +1,11 @@
 <ion-card *ngIf="icon">
   <ion-card-content class="flex justify-between items-center">
     <div class="icon-container">
-      <smart-home-ui-fa-icon [icon]="icon" size="2xl" />
+      <smart-home-ui-fa-icon
+        [icon]="icon"
+        color="var(--ion-color-primary)"
+        size="2xl"
+      />
     </div>
     <span class="text-4xl">{{ value || '--' }}</span>
   </ion-card-content>

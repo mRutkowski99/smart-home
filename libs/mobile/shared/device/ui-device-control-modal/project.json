@@ -1,0 +1,42 @@
+{
+  "name": "mobile-shared-device-ui-device-control-modal",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mobile/shared/device/ui-device-control-modal/src",
+  "prefix": "smart-home",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "libs/mobile/shared/device/ui-device-control-modal/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libs/mobile/shared/device/ui-device-control-modal/**/*.ts",
+          "libs/mobile/shared/device/ui-device-control-modal/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "platform:mobile",
+    "scope:shared",
+    "type:ui"
+  ]
+}

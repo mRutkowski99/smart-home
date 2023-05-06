@@ -3,3 +3,7 @@
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   grid-template-rows: auto;
 }
+
+h2 {
+  color: var(--ion-color-tertiary);
+}

@@ -17,3 +17,10 @@ export const roomDetailsErrorSelector = createSelector(
   featureSelector,
   (state) => state.roomDetailsError
 );
+
+export const roomDeviceSelector = (id: string) =>
+  createSelector(
+    featureSelector,
+    (state) =>
+      state.roomDetails?.devices.find((device) => device.id === id) ?? null
+  );

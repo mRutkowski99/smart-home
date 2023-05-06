@@ -1,0 +1,18 @@
+<ng-container *ngIf="device">
+  <ion-card (click)="select.emit(device.id)">
+    <ion-card-header
+      [ngClass]="{ 'header--disabled': !device.state }"
+      class="header"
+      >{{ device.name }}</ion-card-header
+    >
+    <ion-card-content class="content">
+      <span class="content__value">{{ device | deviceSetpoint }}</span>
+      <ion-toggle
+        (ionChange)="toggleState.emit(!device.state)"
+        [checked]="device.state"
+        [enableOnOffLabels]="true"
+        stopClickPropagation
+      />
+    </ion-card-content>
+  </ion-card>
+</ng-container>

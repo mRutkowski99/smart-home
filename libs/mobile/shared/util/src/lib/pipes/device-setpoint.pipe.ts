@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DeviceValueType } from '@smart-home/shared/util';
-import { PercentPipe, TemperaturePipe } from '@smart-home/mobile/shared/util';
+import { TemperaturePipe } from './temperature.pipe';
+import { PercentPipe } from './percent.pipe';
 
 export interface DeviceSetpointPipeOptions {
   fahrenheit: boolean;

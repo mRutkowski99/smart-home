@@ -1,0 +1,22 @@
+<ng-container *ngIf="payload">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title class="text-center">{{ payload.name }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" class="form">
+      <smart-home-ui-circle-slider
+        [formControl]="valueFormControl"
+        [max]="payload.max"
+        [min]="payload.min"
+        [step]="payload.step"
+        class="circle-slider"
+        name="value"
+        ngDefaultControl
+      />
+      <ion-button type="submit">Confirm</ion-button>
+      <ion-button (click)="cancel()" type="button">Cancel</ion-button>
+    </form>
+  </ion-content>
+</ng-container>

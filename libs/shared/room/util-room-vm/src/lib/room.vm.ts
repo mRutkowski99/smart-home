@@ -1,6 +1,6 @@
 import { DeviceValueType } from '@smart-home/shared/util';
 
-interface RoomDevice {
+export interface RoomDevice {
   readonly id: string;
   readonly name: string;
   readonly state: boolean;

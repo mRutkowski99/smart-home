@@ -5,8 +5,8 @@ export class TemperaturePipe implements PipeTransform {
   transform(value: number | null, fahrenheit?: boolean): string | null {
     if (value === null) return null;
 
-    if (fahrenheit) return this.celsiusToFahrenheit(value) + ' °F';
-    else return value + ' °C';
+    if (fahrenheit) return this.celsiusToFahrenheit(value) + '°F';
+    else return value + '°C';
   }
 
   private celsiusToFahrenheit(value: number): number {

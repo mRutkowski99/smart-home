@@ -18,6 +18,10 @@ import {
   TemperaturePipe,
 } from '@smart-home/mobile/shared/util';
 import { faDroplet, faTemperature2 } from '@fortawesome/free-solid-svg-icons';
+import { RoomDevice } from '@smart-home/shared/room/util-room-vm';
+import { DeviceControlFacade } from '@smart-home/mobile/shared/device/ui-device-control-modal';
+import { getDeviceValueControlModalPayload } from '@smart-home/mobile/shared/device/util';
+import { MobileSharedDeviceUiDeviceCardComponent } from '@smart-home/mobile/shared/device/ui-device-card';
 
 @Component({
   selector: 'smart-home-feature-room-details',
@@ -29,10 +33,12 @@ import { faDroplet, faTemperature2 } from '@fortawesome/free-solid-svg-icons';
     MobileRoomDataAccessModule,
     IonicModule,
     MobileRoomUiIconCardComponent,
+    MobileSharedDeviceUiDeviceCardComponent,
     TemperaturePipe,
     PercentPipe,
     DeviceSetpointPipe,
   ],
+  providers: [DeviceControlFacade],
   templateUrl: './mobile-room-feature-room-details.component.html',
   styleUrls: ['./mobile-room-feature-room-details.component.scss'],
   encapsulation: ViewEncapsulation.Emulated,
@@ -45,7 +51,8 @@ export class MobileRoomFeatureRoomDetailsComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private roomFacade: RoomFacade
+    private roomFacade: RoomFacade,
+    private deviceControlFacade: DeviceControlFacade
   ) {}
 
   private get roomId(): string {
@@ -58,5 +65,32 @@ export class MobileRoomFeatureRoomDetailsComponent implements OnInit {
 
   getRoomDetails() {
     this.roomFacade.getRoomDetails(this.roomId);
+  }
+
+  onSelectDevice(id: string) {
+    this.roomFacade.getRoomDeviceById(id).subscribe((device) => {
+      if (!device) return;
+      this.openDeviceControlModal(device);
+    });
+  }
+
+  onToggleDeviceState(state: boolean, id: string) {
+    this.roomFacade.updateDeviceState(id, state);
+  }
+
+  private openDeviceControlModal(device: RoomDevice) {
+    if (device.valueType !== 'PERCENT' && device.valueType !== 'TEMPERATURE')
+      return;
+
+    this.deviceControlFacade
+      .openModal(getDeviceValueControlModalPayload(device))
+      .subscribe((response) => {
+        if (response === null) return;
+        this.roomFacade.updateDeviceSetpoint(
+          device.id,
+          device.setpoint,
+          response
+        );
+      });
   }
 }

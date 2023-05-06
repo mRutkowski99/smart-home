@@ -1,0 +1,16 @@
+.circle-slider {
+  max-width: 25rem;
+  margin: 0 auto;
+  display: block;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.ion-modal {
+  --height: auto;
+}

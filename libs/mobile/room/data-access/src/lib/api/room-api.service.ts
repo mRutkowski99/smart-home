@@ -10,13 +10,37 @@ import { RoomVm } from '@smart-home/shared/room/util-room-vm';
 
 @Injectable()
 export class RoomApiService {
-  private urlFactory = new UrlFactory(
+  private roomControllerUrlFactory = new UrlFactory(
     getControllerUrl(ApiControllerPrefix.Room)
+  );
+
+  private deviceControllerUrlFactory = new UrlFactory(
+    getControllerUrl(ApiControllerPrefix.Device)
   );
 
   constructor(private http: HttpClient) {}
 
   getRoomDetails(id: string): Observable<RoomVm> {
-    return this.http.get<RoomVm>(this.urlFactory.getUrl(':id', id));
+    return this.http.get<RoomVm>(
+      this.roomControllerUrlFactory.getUrl(':id', id)
+    );
+  }
+
+  updateDeviceSetpoint(deviceId: string, value: number) {
+    return this.http.put(
+      this.deviceControllerUrlFactory.getUrl(':id/setpoint', deviceId),
+      {
+        value,
+      }
+    );
+  }
+
+  updateDeviceState(deviceId: string, value: boolean) {
+    return this.http.put(
+      this.deviceControllerUrlFactory.getUrl(':id/state', deviceId),
+      {
+        value,
+      }
+    );
   }
 }

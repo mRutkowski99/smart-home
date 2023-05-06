@@ -1,6 +1,8 @@
-export class Percent {
+import { DeviceValue } from './device-value.interface';
+
+export class Percent implements DeviceValue {
   static MIN_VALUE = 0;
-  static MAX_VALUE = 0;
+  static MAX_VALUE = 100;
 
   constructor(private readonly _value: number) {
     if (_value < Percent.MIN_VALUE)

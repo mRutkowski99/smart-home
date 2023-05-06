@@ -111,7 +111,8 @@
                   "scope:shell",
                   "scope:shared",
                   "scope:room",
-                  "scope:home"
+                  "scope:home",
+                  "scope:device"
                 ]
               },
               {
