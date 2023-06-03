@@ -13,8 +13,9 @@ datasource db {
 // ----- HOME -----
 
 model HomeSchema {
-  id    String       @id @default(uuid())
-  rooms RoomSchema[]
+  id     String        @id @default(uuid())
+  rooms  RoomSchema[]
+  scenes SceneSchema[]
 }
 
 // ----- ROOM -----
@@ -43,11 +44,52 @@ model DeviceSchema {
   id        String    @id @default(uuid())
   name      String
   state     Boolean
-  setpoint  Int
+  setpoint  Float
   valueType ValueType
 
   roomId String
   room   RoomSchema? @relation(fields: [roomId], references: [id])
 
+  controlledDevices SceneControlledDeviceSchema[]
+
   @@unique([id, roomId])
+}
+
+// ----- SCENE -----
+
+model SceneSchema {
+  id                String                        @id @default(uuid())
+  name              String
+  state             Boolean
+  schedule          SceneScheduleSchema?
+  controlledDevices SceneControlledDeviceSchema[]
+
+  home   HomeSchema? @relation(fields: [homeId], references: [id])
+  homeId String
+
+  @@unique([id, homeId])
+}
+
+model SceneScheduleSchema {
+  id               String  @id @default(uuid())
+  active           Boolean
+  startTimeHours   Int
+  startTimeMinutes Int
+  daysOfWeek       String
+  cron             String
+
+  scene   SceneSchema @relation(fields: [sceneId], references: [id])
+  sceneId String      @unique
+}
+
+model SceneControlledDeviceSchema {
+  id       String  @id @default(uuid())
+  setpoint Float
+  state    Boolean
+
+  sceneId String
+  scene   SceneSchema @relation(fields: [sceneId], references: [id])
+
+  deviceId String
+  device   DeviceSchema @relation(fields: [deviceId], references: [id])
 }

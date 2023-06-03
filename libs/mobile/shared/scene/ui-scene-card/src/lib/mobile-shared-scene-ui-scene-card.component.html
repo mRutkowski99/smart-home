@@ -1,0 +1,21 @@
+<ng-container *ngIf="scene">
+  <ion-card>
+    <ion-card-content
+      [ngClass]="{ 'content--disabled': !scene.state }"
+      class="content"
+    >
+      <span class="font-semibold text-left block w-full">{{ scene.name }}</span>
+      <div *ngIf="scene.scheduledForToday" class="flex justify-start gap-4">
+        <smart-home-ui-fa-icon [icon]="CLOCK_ICON" size="sm" />
+        <span>{{ scene.startTime | time }}</span>
+      </div>
+
+      <ion-button
+        (click)="toggleState()"
+        [color]="scene.state ? 'secondary' : 'primary'"
+        stopClickPropagation
+        >{{ scene.state ? 'Deactivate' : 'Activate' }}</ion-button
+      >
+    </ion-card-content>
+  </ion-card>
+</ng-container>

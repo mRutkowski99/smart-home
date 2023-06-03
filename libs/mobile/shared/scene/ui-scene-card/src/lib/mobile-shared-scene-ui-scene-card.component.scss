@@ -1,0 +1,15 @@
+.content {
+  background-color: var(--ion-color-primary);
+  font-size: 2rem;
+  color: #fff;
+  padding-block: 0.5rem;
+
+  &--disabled {
+    background-color: #fff;
+    color: var(--ion-color-primary);
+  }
+}
+
+ion-card {
+  width: 20rem;
+}

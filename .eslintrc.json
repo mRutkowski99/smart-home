@@ -106,16 +106,6 @@
                 ]
               },
               {
-                "sourceTag": "scope:shell",
-                "onlyDependOnLibsWithTags": [
-                  "scope:shell",
-                  "scope:shared",
-                  "scope:room",
-                  "scope:home",
-                  "scope:device"
-                ]
-              },
-              {
                 "sourceTag": "scope:shared",
                 "onlyDependOnLibsWithTags": [
                   "scope:shared"
@@ -133,6 +123,13 @@
                 "onlyDependOnLibsWithTags": [
                   "scope:shared",
                   "scope:device"
+                ]
+              },
+              {
+                "sourceTag": "scope:scene",
+                "onlyDependOnLibsWithTags": [
+                  "scope:shared",
+                  "scope:scene"
                 ]
               }
             ]

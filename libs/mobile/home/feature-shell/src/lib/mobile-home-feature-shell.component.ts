@@ -15,6 +15,12 @@ import { MobileSharedRoomUiRoomCardComponent } from '@smart-home/mobile/shared/r
 import { roomCardsSkeleton } from '@smart-home/mobile/shared/room/util';
 import { MobileSharedSkeletonUiSkeletonCardComponent } from '@smart-home/mobile/shared/skeleton/ui-skeleton-card';
 import { MobileSharedUiErrorComponent } from '@smart-home/mobile/shared/ui-error';
+import {
+  MobileSharedSceneDataAccessModule,
+  SharedSceneFacade,
+} from '@smart-home/mobile/shared/scene/data-access';
+import { MobileSharedSceneUiSceneCardComponent } from '@smart-home/mobile/shared/scene/ui-scene-card';
+import { sceneCardsSkeleton } from '@smart-home/mobile/shared/scene/util';
 
 @Component({
   selector: 'smart-home-mobile-home-feature-shell',
@@ -27,6 +33,8 @@ import { MobileSharedUiErrorComponent } from '@smart-home/mobile/shared/ui-error
     MobileSharedRoomUiRoomCardComponent,
     MobileSharedSkeletonUiSkeletonCardComponent,
     MobileSharedUiErrorComponent,
+    MobileSharedSceneDataAccessModule,
+    MobileSharedSceneUiSceneCardComponent,
   ],
   templateUrl: './mobile-home-feature-shell.component.html',
   styleUrls: ['./mobile-home-feature-shell.component.scss'],
@@ -36,14 +44,24 @@ import { MobileSharedUiErrorComponent } from '@smart-home/mobile/shared/ui-error
 export class MobileHomeFeatureShellComponent implements OnInit {
   readonly roomsVm$ = this.roomFacade.roomOverviewVm$;
   readonly roomCardsSkeleton = roomCardsSkeleton(4);
+  readonly scenesVm$ = this.scenesFacade.scenesOverviewVm$;
+  readonly sceneCardsSkeleton = sceneCardsSkeleton(4);
 
-  constructor(private roomFacade: SharedRoomFacade) {}
+  constructor(
+    private roomFacade: SharedRoomFacade,
+    private scenesFacade: SharedSceneFacade
+  ) {}
 
   ngOnInit() {
     this.getRooms();
+    this.getScenes();
   }
 
   getRooms() {
     this.roomFacade.getRoomOverviews();
+  }
+
+  getScenes() {
+    this.scenesFacade.getScenesOverview();
   }
 }

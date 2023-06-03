@@ -1,6 +1,7 @@
 export enum ApiControllerPrefix {
   Room = 'room',
   Device = 'device',
+  Scene = 'scene',
 }
 
 const API_URL = 'http://localhost:3333/api/';

@@ -35,6 +35,16 @@
       "@smart-home/api/room/use-cases": [
         "libs/api/room/use-cases/src/index.ts"
       ],
+      "@smart-home/api/scene/domain": ["libs/api/scene/domain/src/index.ts"],
+      "@smart-home/api/scene/infrastructure": [
+        "libs/api/scene/infrastructure/src/index.ts"
+      ],
+      "@smart-home/api/scene/presentation": [
+        "libs/api/scene/presentation/src/index.ts"
+      ],
+      "@smart-home/api/scene/use-cases": [
+        "libs/api/scene/use-cases/src/index.ts"
+      ],
       "@smart-home/api/shared/domain": ["libs/api/shared/domain/src/index.ts"],
       "@smart-home/api/shared/infrastructure": [
         "libs/api/shared/infrastructure/src/index.ts"
@@ -62,9 +72,6 @@
       "@smart-home/mobile/shared/auth/data-access": [
         "libs/mobile/shared/auth/data-access/src/index.ts"
       ],
-      "@smart-home/mobile/shared/device/data-access": [
-        "libs/mobile/shared/device/data-access/src/index.ts"
-      ],
       "@smart-home/mobile/shared/device/ui-device-card": [
         "libs/mobile/shared/device/ui-device-card/src/index.ts"
       ],
@@ -82,6 +89,15 @@
       ],
       "@smart-home/mobile/shared/room/util": [
         "libs/mobile/shared/room/util/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/scene/data-access": [
+        "libs/mobile/shared/scene/data-access/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/scene/ui-scene-card": [
+        "libs/mobile/shared/scene/ui-scene-card/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/scene/util": [
+        "libs/mobile/shared/scene/util/src/index.ts"
       ],
       "@smart-home/mobile/shared/skeleton/ui-skeleton-card": [
         "libs/mobile/shared/skeleton/ui-skeleton-card/src/index.ts"
@@ -118,6 +134,12 @@
       ],
       "@smart-home/shared/room/util-room-vm": [
         "libs/shared/room/util-room-vm/src/index.ts"
+      ],
+      "@smart-home/shared/scene/util-scene-payload": [
+        "libs/shared/scene/util-scene-payload/src/index.ts"
+      ],
+      "@smart-home/shared/scene/util-scene-vm": [
+        "libs/shared/scene/util-scene-vm/src/index.ts"
       ],
       "@smart-home/shared/ui-fa-icon": ["libs/shared/ui-fa-icon/src/index.ts"],
       "@smart-home/shared/util": ["libs/shared/util/src/index.ts"]

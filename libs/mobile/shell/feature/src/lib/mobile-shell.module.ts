@@ -22,6 +22,11 @@ const routes: Routes = [
           (await import('@smart-home/mobile/room/feature-shell'))
             .MobileRoomFeatureShellModule,
       },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: MainRoutes.Home,
+      },
     ],
   },
 ];

@@ -33,28 +33,28 @@ export class Device extends AggregateRoot {
     return this._setpoint;
   }
 
-  hasDigitalValue(): boolean {
+  get hasDigitalValue(): boolean {
     return this.valueType === DeviceValueType.DIGITAL;
   }
 
-  hasPercentValue(): boolean {
+  get hasPercentValue(): boolean {
     return this.valueType === DeviceValueType.PERCENT;
   }
 
-  hasTemperatureValue(): boolean {
+  get hasTemperatureValue(): boolean {
     return this.valueType === DeviceValueType.TEMPERATURE;
   }
 
   createNewSetpoint(value: number) {
-    if (this.hasTemperatureValue()) {
+    if (this.hasTemperatureValue) {
       this._setpoint = new Temperature(value).value;
     }
 
-    if (this.hasPercentValue()) {
+    if (this.hasPercentValue) {
       this._setpoint = new Percent(value).value;
     }
 
-    if (this.hasDigitalValue()) {
+    if (this.hasDigitalValue) {
       this._setpoint = new DigitalValue(value).value;
       this.state = this._setpoint === DigitalValue.HIGH_STATE;
     }
@@ -65,8 +65,7 @@ export class Device extends AggregateRoot {
   changeState(state: boolean) {
     this._state = state;
 
-    if (this.hasDigitalValue())
-      this._setpoint = DigitalValue.fromBoolean(state);
+    if (this.hasDigitalValue) this._setpoint = DigitalValue.fromBoolean(state);
 
     //todo: dispatch event
   }

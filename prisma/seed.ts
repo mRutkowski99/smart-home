@@ -3,6 +3,9 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
+  await prisma.sceneControlledDeviceSchema.deleteMany();
+  await prisma.sceneScheduleSchema.deleteMany();
+  await prisma.sceneSchema.deleteMany();
   await prisma.deviceSchema.deleteMany();
   await prisma.roomSchema.deleteMany();
   await prisma.homeSchema.deleteMany();
@@ -50,6 +53,40 @@ async function main() {
         setpoint: 23,
         valueType: 'TEMPERATURE',
         roomId: room.id,
+      },
+    ],
+  });
+
+  // Scene
+  await prisma.sceneSchema.createMany({
+    data: [{ name: 'Scene 1', homeId: home.id, state: false }],
+  });
+
+  const scene = await prisma.sceneSchema.findFirstOrThrow();
+
+  await prisma.sceneScheduleSchema.createMany({
+    data: [
+      {
+        active: true,
+        sceneId: scene.id,
+        startTimeHours: 10,
+        startTimeMinutes: 0,
+        daysOfWeek: '0/1/2/3/4/5/6',
+        cron: '10 0 * * *',
+      },
+    ],
+  });
+
+  const device = await prisma.deviceSchema.findFirstOrThrow({
+    where: { valueType: 'TEMPERATURE' },
+  });
+  await prisma.sceneControlledDeviceSchema.createMany({
+    data: [
+      {
+        sceneId: scene.id,
+        deviceId: device.id,
+        setpoint: 24,
+        state: true,
       },
     ],
   });

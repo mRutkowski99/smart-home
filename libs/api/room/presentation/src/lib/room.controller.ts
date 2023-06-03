@@ -14,12 +14,12 @@ export class RoomController {
   constructor(private queryBus: QueryBus) {}
 
   @Get('overview')
-  async getRoomsOverview(@Headers(HOME_ID_HEADER_KEY) homeId: string) {
+  getRoomsOverview(@Headers(HOME_ID_HEADER_KEY) homeId: string) {
     return this.queryBus.execute(new GetRoomsOverviewQuery(homeId));
   }
 
   @Get(':id')
-  async getRoomDetails(@Param('id') id: string) {
+  getRoomDetails(@Param('id') id: string) {
     return this.queryBus.execute(new GetRoomDetailsQuery(id));
   }
 }
