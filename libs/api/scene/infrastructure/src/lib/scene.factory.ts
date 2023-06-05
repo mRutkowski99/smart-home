@@ -1,20 +1,29 @@
-import { SceneScheduleSchema, SceneSchema, ValueType } from '@prisma/client';
+import { SceneSchema, ValueType } from '@prisma/client';
 import {
   ControlledDevice,
   Scene,
   SceneSchedule,
+  SceneScheduleDay,
 } from '@smart-home/api/scene/domain';
 import { Name, Uuid } from '@smart-home/api/shared/domain';
 import { deviceValueTypeMapper } from '@smart-home/api/shared/infrastructure';
 
 type SceneFactoryInput = SceneSchema & {
-  schedule: SceneScheduleSchema | null;
+  schedule: {
+    active: boolean;
+    scheduleDays: {
+      dayOfWeek: number;
+      startTimeHours: number;
+      startTimeMinutes: number;
+    }[];
+  } | null;
   controlledDevices: {
     id: string;
     setpoint: number;
     state: boolean;
     device: {
       id: string;
+      name: string;
       valueType: ValueType;
     };
   }[];
@@ -26,20 +35,12 @@ export function sceneFactory(schema: SceneFactoryInput): Scene {
     new Uuid(schema.homeId),
     new Name(schema.name),
     schema.state,
-    schema.schedule
-      ? new SceneSchedule(
-          schema.schedule.active,
-          {
-            hours: schema.schedule.startTimeHours,
-            minutes: schema.schedule.startTimeMinutes,
-          },
-          schema.schedule.daysOfWeek
-        )
-      : null,
+    schema.schedule ? sceneScheduleFactory(schema.schedule) : null,
     schema.controlledDevices.map((cd) =>
       controlledDeviceFactory(
         cd.id,
         cd.device.id,
+        cd.device.name,
         cd.device.valueType,
         cd.setpoint,
         cd.state
@@ -51,6 +52,7 @@ export function sceneFactory(schema: SceneFactoryInput): Scene {
 function controlledDeviceFactory(
   id: string,
   deviceId: string,
+  name: string,
   valueType: ValueType,
   setpoint: number,
   state: boolean
@@ -58,8 +60,26 @@ function controlledDeviceFactory(
   return new ControlledDevice(
     new Uuid(id),
     new Uuid(deviceId),
+    new Name(name),
     deviceValueTypeMapper(valueType),
     setpoint,
     state
+  );
+}
+
+function sceneScheduleFactory(schedule: {
+  active: boolean;
+  scheduleDays: {
+    dayOfWeek: number;
+    startTimeHours: number;
+    startTimeMinutes: number;
+  }[];
+}): SceneSchedule {
+  return new SceneSchedule(
+    schedule.active,
+    schedule.scheduleDays.map(
+      (x) =>
+        new SceneScheduleDay(x.dayOfWeek, x.startTimeHours, x.startTimeMinutes)
+    )
   );
 }

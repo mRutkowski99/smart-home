@@ -5,8 +5,19 @@ import { sceneFactory } from './scene.factory';
 
 @Injectable()
 export class SceneRepository {
-  private includes = {
-    schedule: true,
+  private readonly includes = {
+    schedule: {
+      select: {
+        active: true,
+        scheduleDays: {
+          select: {
+            dayOfWeek: true,
+            startTimeHours: true,
+            startTimeMinutes: true,
+          },
+        },
+      },
+    },
     controlledDevices: {
       select: {
         id: true,
@@ -15,6 +26,7 @@ export class SceneRepository {
         device: {
           select: {
             id: true,
+            name: true,
             valueType: true,
           },
         },

@@ -10,7 +10,7 @@ export class SceneOverviewVmMapper {
       name: domain.name.value,
       state: domain.state,
       scheduledForToday: domain.scheduledForToday,
-      startTime: domain.schedule?.startTime,
+      startTime: domain.schedule?.todayTime,
     };
   }
 

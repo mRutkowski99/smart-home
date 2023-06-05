@@ -23,6 +23,12 @@ const routes: Routes = [
             .MobileRoomFeatureShellModule,
       },
       {
+        path: MainRoutes.Scenes,
+        loadChildren: async () =>
+          (await import('@smart-home/mobile/scene/feature-shell'))
+            .MobileSceneFeatureShellModule,
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: MainRoutes.Home,

@@ -70,16 +70,23 @@ model SceneSchema {
   @@unique([id, homeId])
 }
 
-model SceneScheduleSchema {
-  id               String  @id @default(uuid())
-  active           Boolean
+model SceneScheduleDaySchema {
+  id               String @id @default(uuid())
+  dayOfWeek        Int
   startTimeHours   Int
   startTimeMinutes Int
-  daysOfWeek       String
-  cron             String
 
-  scene   SceneSchema @relation(fields: [sceneId], references: [id])
-  sceneId String      @unique
+  sceneScheduleId String
+  sceneSchedule   SceneScheduleSchema @relation(fields: [sceneScheduleId], references: [id])
+}
+
+model SceneScheduleSchema {
+  id     String  @id @default(uuid())
+  active Boolean
+
+  scene        SceneSchema              @relation(fields: [sceneId], references: [id])
+  sceneId      String                   @unique
+  scheduleDays SceneScheduleDaySchema[]
 }
 
 model SceneControlledDeviceSchema {

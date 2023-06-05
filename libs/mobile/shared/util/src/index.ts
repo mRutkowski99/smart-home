@@ -7,5 +7,6 @@ export * from './lib/pipes/percent.pipe';
 export * from './lib/pipes/temperature.pipe';
 export * from './lib/pipes/device-setpoint.pipe';
 export * from './lib/pipes/time.pipe';
+export * from './lib/pipes/day-of-week.pipe';
 
 export * from './lib/directives/stop-click-propagation.directive';

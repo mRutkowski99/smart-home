@@ -1,33 +1,20 @@
 import { DayOfWeek, Time } from '@smart-home/shared/util';
-import { SceneCron } from './scene-cron.model';
+import { SceneScheduleDay } from './scene-schedule-day.model';
 
 export class SceneSchedule {
-  constructor(
-    public readonly active: boolean,
-    public readonly startTime: Time,
-    private _daysOfWeek: string //numbers separated by '/'
-  ) {}
+  constructor(public active: boolean, public days: SceneScheduleDay[]) {}
 
-  get daysOfWeek(): DayOfWeek[] {
-    return this._daysOfWeek.split('/').map((x) => +x);
-  }
-
-  set daysOfWeek(days: DayOfWeek[]) {
-    if (new Set(days).size !== days.length)
-      throw new Error('Provided duplicates');
-
-    this._daysOfWeek = days.sort((a, b) => (a > b ? 1 : -1)).join('/');
-  }
-
-  get cron(): string {
-    return SceneCron.create(
-      this.startTime.minutes,
-      this.startTime.hours,
-      this.daysOfWeek
+  get todayTime(): Time | null {
+    return (
+      this.days.find((day) => day.dayOfWeek === new Date().getDay())?.time ??
+      null
     );
   }
 
   isScheduledForDay(day: DayOfWeek): boolean {
-    return this.daysOfWeek.includes(day) && this.active;
+    return (
+      this.active &&
+      this.days.some((scheduleDay) => scheduleDay.dayOfWeek === day)
+    );
   }
 }

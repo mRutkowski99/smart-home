@@ -1,6 +1,7 @@
 import {
   DeviceValueType,
   DigitalValue,
+  Name,
   Percent,
   Temperature,
   Uuid,
@@ -10,6 +11,7 @@ export class ControlledDevice {
   constructor(
     public readonly id: Uuid,
     public readonly deviceId: Uuid,
+    public readonly deviceName: Name,
     public readonly valueType: DeviceValueType,
     private _setpoint: number,
     private _state: boolean

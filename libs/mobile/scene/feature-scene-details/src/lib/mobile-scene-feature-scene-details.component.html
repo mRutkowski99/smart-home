@@ -1,0 +1,14 @@
+<ng-container *ngIf="sceneDetailsVm$ | async as sceneDetailsVm">
+  <ng-container
+    *ngIf="sceneDetailsVm.status === 'success' && sceneDetailsVm.scene"
+  >
+    <h2 class="font-semibold text-4xl text-slate-600 mb-4 text-left">
+      {{ sceneDetailsVm.scene.name }}
+    </h2>
+
+    <smart-home-ui-scene-schedule
+      (update)="onScheduleUpdate($event)"
+      [schedule]="sceneDetailsVm.scene.schedule"
+    />
+  </ng-container>
+</ng-container>

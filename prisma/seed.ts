@@ -4,6 +4,7 @@ const prisma = new PrismaClient();
 
 async function main() {
   await prisma.sceneControlledDeviceSchema.deleteMany();
+  await prisma.sceneScheduleDaySchema.deleteMany();
   await prisma.sceneScheduleSchema.deleteMany();
   await prisma.sceneSchema.deleteMany();
   await prisma.deviceSchema.deleteMany();
@@ -69,10 +70,31 @@ async function main() {
       {
         active: true,
         sceneId: scene.id,
-        startTimeHours: 10,
+      },
+    ],
+  });
+
+  const sceneSchedule = await prisma.sceneScheduleSchema.findFirstOrThrow();
+
+  await prisma.sceneScheduleDaySchema.createMany({
+    data: [
+      {
         startTimeMinutes: 0,
-        daysOfWeek: '0/1/2/3/4/5/6',
-        cron: '10 0 * * *',
+        startTimeHours: 10,
+        dayOfWeek: 0,
+        sceneScheduleId: sceneSchedule.id,
+      },
+      {
+        startTimeMinutes: 0,
+        startTimeHours: 12,
+        dayOfWeek: 1,
+        sceneScheduleId: sceneSchedule.id,
+      },
+      {
+        startTimeMinutes: 30,
+        startTimeHours: 15,
+        dayOfWeek: 2,
+        sceneScheduleId: sceneSchedule.id,
       },
     ],
   });

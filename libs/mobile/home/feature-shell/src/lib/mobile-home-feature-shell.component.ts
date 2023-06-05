@@ -21,6 +21,8 @@ import {
 } from '@smart-home/mobile/shared/scene/data-access';
 import { MobileSharedSceneUiSceneCardComponent } from '@smart-home/mobile/shared/scene/ui-scene-card';
 import { sceneCardsSkeleton } from '@smart-home/mobile/shared/scene/util';
+import { RouterLink } from '@angular/router';
+import { MainRoutes } from '@smart-home/mobile/shared/util';
 
 @Component({
   selector: 'smart-home-mobile-home-feature-shell',
@@ -35,6 +37,7 @@ import { sceneCardsSkeleton } from '@smart-home/mobile/shared/scene/util';
     MobileSharedUiErrorComponent,
     MobileSharedSceneDataAccessModule,
     MobileSharedSceneUiSceneCardComponent,
+    RouterLink,
   ],
   templateUrl: './mobile-home-feature-shell.component.html',
   styleUrls: ['./mobile-home-feature-shell.component.scss'],
@@ -44,8 +47,10 @@ import { sceneCardsSkeleton } from '@smart-home/mobile/shared/scene/util';
 export class MobileHomeFeatureShellComponent implements OnInit {
   readonly roomsVm$ = this.roomFacade.roomOverviewVm$;
   readonly roomCardsSkeleton = roomCardsSkeleton(4);
+  readonly roomRoute = MainRoutes.Rooms;
   readonly scenesVm$ = this.scenesFacade.scenesOverviewVm$;
   readonly sceneCardsSkeleton = sceneCardsSkeleton(4);
+  readonly sceneRoute = MainRoutes.Scenes;
 
   constructor(
     private roomFacade: SharedRoomFacade,

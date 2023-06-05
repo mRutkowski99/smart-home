@@ -1,0 +1,55 @@
+<ion-card *ngIf="schedule$ | async as schedule">
+  <ion-card-content
+    [ngClass]="{ 'card--disabled': !schedule.active }"
+    class="flex flex-col items-stretch gap-4 card"
+  >
+    <div class="flex justify-between">
+      <h2>Schedule</h2>
+      <ion-checkbox
+        (ionChange)="onScheduleChange($event)"
+        [value]="schedule.active"
+      />
+    </div>
+    <smart-home-ui-slider>
+      <ion-slide *ngFor="let day of daysOfWeek" style="width: 7rem">
+        <span
+          (click)="onSelectDay(day)"
+          [ngClass]="{
+            'day-of-week--selected': day === schedule.selectedDay,
+            'day-of-week--assigned': (day | hasAssignedTime : schedule.days)
+          }"
+          class="day-of-week"
+          >{{ day | dayOfWeek }}</span
+        >
+      </ion-slide>
+    </smart-home-ui-slider>
+    <div class="flex justify-between items-center gap-4">
+      <ion-item>
+        <smart-home-ui-fa-icon
+          [color]="
+            schedule.active
+              ? 'var(--ion-color-primary)'
+              : 'var(--ion-color-tertiary)'
+          "
+          [icon]="CLOCK_ICON"
+          size="lg"
+          style="margin-right: 1rem"
+        />
+        <ion-input
+          (click)="onChangeTime()"
+          [disabled]="!schedule.active"
+          [value]="(schedule.selectedDayTime | time) || 'Not selected'"
+          readonly
+        />
+      </ion-item>
+      <ion-button
+        (click)="onRemoveTime()"
+        [disabled]="!schedule.active"
+        color="red"
+      >
+        <smart-home-ui-fa-icon [icon]="REMOVE_ICON" color="red" />
+      </ion-button>
+    </div>
+    <ion-button (click)="onSave()" *ngIf="hasChanged$ | async">Save</ion-button>
+  </ion-card-content>
+</ion-card>

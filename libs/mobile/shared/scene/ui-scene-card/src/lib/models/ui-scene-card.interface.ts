@@ -5,5 +5,5 @@ export interface UiSceneCardInterface {
   readonly name: string;
   readonly state: boolean;
   readonly scheduledForToday: boolean;
-  readonly startTime?: Time;
+  readonly startTime?: Time | null;
 }

@@ -15,7 +15,11 @@
   <ng-container *ngIf="roomsVm.status === 'success'">
     <smart-home-ui-slider>
       <ion-slide *ngFor="let room of roomsVm.rooms" style="width: auto">
-        <smart-home-ui-room-card [room]="room" style="width: 15rem" />
+        <smart-home-ui-room-card
+          [room]="room"
+          [routerLink]="['../', roomRoute, room.id]"
+          style="width: 15rem"
+        />
       </ion-slide>
     </smart-home-ui-slider>
   </ng-container>
@@ -46,7 +50,11 @@
   <ng-container *ngIf="scenesVm.status === 'success'">
     <smart-home-ui-slider>
       <ion-slide *ngFor="let scene of scenesVm.scenes" style="width: auto">
-        <smart-home-ui-scene-card [scene]="scene" />
+        <smart-home-ui-scene-card
+          [routerLink]="['../', sceneRoute, scene.id]"
+          [scene]="scene"
+          style="width: 20rem"
+        />
       </ion-slide>
     </smart-home-ui-slider>
   </ng-container>
