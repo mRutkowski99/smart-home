@@ -7,11 +7,13 @@ import {
 import { CommonModule } from '@angular/common';
 import {
   MobileSceneDataAccessModule,
+  SceneEventBus,
   SceneFacade,
 } from '@smart-home/mobile/scene/data-access';
 import { ActivatedRoute } from '@angular/router';
 import { MobileSceneUiSceneScheduleComponent } from '@smart-home/mobile/scene/ui-scene-schedule';
 import { UpdateSceneSchedulePayload } from '@smart-home/shared/scene/util-scene-payload';
+import { first, map } from 'rxjs';
 
 @Component({
   selector: 'smart-home-mobile-scene-feature-scene-details',
@@ -31,6 +33,7 @@ export class MobileSceneFeatureSceneDetailsComponent implements OnInit {
 
   constructor(
     private sceneFacade: SceneFacade,
+    private eventBus: SceneEventBus,
     private activatedRoute: ActivatedRoute
   ) {}
 
@@ -42,5 +45,18 @@ export class MobileSceneFeatureSceneDetailsComponent implements OnInit {
     this.sceneFacade.getSceneDetails(this.sceneId);
   }
 
-  onScheduleUpdate(event: UpdateSceneSchedulePayload) {}
+  onScheduleUpdate(event: UpdateSceneSchedulePayload) {
+    this.sceneDetailsVm$
+      .pipe(
+        first(),
+        map((vm) => vm.scene)
+      )
+      .subscribe((scene) => {
+        if (!scene || !scene.schedule) return;
+        this.sceneFacade.updateSchedule(this.sceneId, event, {
+          active: scene.schedule.active,
+          days: scene.schedule.days,
+        });
+      });
+  }
 }

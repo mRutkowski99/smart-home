@@ -10,3 +10,6 @@ export * from './lib/pipes/time.pipe';
 export * from './lib/pipes/day-of-week.pipe';
 
 export * from './lib/directives/stop-click-propagation.directive';
+
+export * from './lib/event/event-bus';
+export * from './lib/event/event.interface';

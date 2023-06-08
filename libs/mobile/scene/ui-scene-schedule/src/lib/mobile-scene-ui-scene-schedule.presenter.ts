@@ -113,6 +113,10 @@ export class UiSceneSchedulePresenter {
     this._hasChanged.next(true);
   }
 
+  hideSubmitButton() {
+    this._hasChanged.next(false);
+  }
+
   private findTimeInDaysCollection(
     collection: ScheduleDay[],
     day: DayOfWeek

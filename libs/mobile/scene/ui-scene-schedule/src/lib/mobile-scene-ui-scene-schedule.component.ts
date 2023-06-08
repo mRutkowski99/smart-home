@@ -87,5 +87,6 @@ export class MobileSceneUiSceneScheduleComponent {
 
   onSave() {
     this.update.emit(this.presenter.updateSchedulePayload);
+    this.presenter.hideSubmitButton();
   }
 }

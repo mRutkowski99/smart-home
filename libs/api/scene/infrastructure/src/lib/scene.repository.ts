@@ -53,4 +53,31 @@ export class SceneRepository {
 
     return scenes.map(sceneFactory);
   }
+
+  async update(scene: Scene) {
+    await this.prisma.sceneSchema.update({
+      where: { id: scene.id.value },
+      data: {
+        id: scene.id.value,
+        state: scene.state,
+        name: scene.name.value,
+        schedule: {
+          update: {
+            active: scene.schedule?.active,
+            scheduleDays: {
+              deleteMany: {},
+              createMany: {
+                data:
+                  scene.schedule?.days.map((schedule) => ({
+                    dayOfWeek: schedule.dayOfWeek,
+                    startTimeHours: schedule.hours,
+                    startTimeMinutes: schedule.minutes,
+                  })) ?? [],
+              },
+            },
+          },
+        },
+      },
+    });
+  }
 }

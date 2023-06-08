@@ -5,6 +5,7 @@ import { SceneOverviewVmMapper } from './mappers/scene-overview-vm.mapper';
 import { CqrsModule } from '@nestjs/cqrs';
 import { SceneDetailsVmMapper } from './mappers/scene-details-vm.mapper';
 import { GetSceneDetailsHandler } from './queries/get-scene-details';
+import { UpdateSceneScheduleHandler } from './commands/update-scene-schedule';
 
 @Module({
   imports: [CqrsModule, ApiSceneInfrastructureModule],
@@ -13,6 +14,7 @@ import { GetSceneDetailsHandler } from './queries/get-scene-details';
     SceneDetailsVmMapper,
     GetScenesOverviewHandler,
     GetSceneDetailsHandler,
+    UpdateSceneScheduleHandler,
   ],
   exports: [CqrsModule],
 })

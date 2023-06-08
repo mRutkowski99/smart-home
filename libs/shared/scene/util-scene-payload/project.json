@@ -33,7 +33,7 @@
     }
   },
   "tags": [
-    "platform:mobile",
+    "platform:shared",
     "scope:shared",
     "type:util"
   ]

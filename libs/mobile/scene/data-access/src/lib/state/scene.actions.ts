@@ -1,4 +1,4 @@
-import { createActionGroup, props } from '@ngrx/store';
+import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { SceneDetailsVm } from '@smart-home/shared/scene/util-scene-vm';
 import { UpdateSceneSchedulePayload } from '@smart-home/shared/scene/util-scene-payload';
 
@@ -11,6 +11,12 @@ export const SceneActions = createActionGroup({
     'Update Scene Schedule': props<{
       id: string;
       newSchedule: UpdateSceneSchedulePayload;
-    }>,
+      schedule: UpdateSceneSchedulePayload;
+    }>(),
+    'Update Scene Schedule Success': emptyProps(),
+    'Undo Update Scene Schedule': props<{
+      id: string;
+      schedule: UpdateSceneSchedulePayload;
+    }>(),
   },
 });
