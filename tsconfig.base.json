@@ -78,6 +78,9 @@
       "@smart-home/mobile/scene/feature-shell": [
         "libs/mobile/scene/feature-shell/src/index.ts"
       ],
+      "@smart-home/mobile/scene/ui-controlled-devices-list": [
+        "libs/mobile/scene/ui-controlled-devices-list/src/index.ts"
+      ],
       "@smart-home/mobile/scene/ui-scene-schedule": [
         "libs/mobile/scene/ui-scene-schedule/src/index.ts"
       ],
@@ -147,6 +150,9 @@
       ],
       "@smart-home/shared/device/util-device-payload": [
         "libs/shared/device/util-device-payload/src/index.ts"
+      ],
+      "@smart-home/shared/device/util-device-vm": [
+        "libs/shared/device/util-device-vm/src/index.ts"
       ],
       "@smart-home/shared/room/util-room-vm": [
         "libs/shared/room/util-room-vm/src/index.ts"

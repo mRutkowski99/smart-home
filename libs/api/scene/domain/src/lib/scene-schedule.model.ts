@@ -1,8 +1,13 @@
 import { DayOfWeek, Time } from '@smart-home/shared/util';
 import { SceneScheduleDay } from './scene-schedule-day.model';
+import { Uuid } from '@smart-home/api/shared/domain';
 
 export class SceneSchedule {
-  constructor(public active: boolean, public days: SceneScheduleDay[]) {}
+  constructor(
+    public readonly id: Uuid,
+    public active: boolean,
+    public days: SceneScheduleDay[]
+  ) {}
 
   get todayTime(): Time | null {
     return (

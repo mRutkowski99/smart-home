@@ -2,9 +2,12 @@
   <ion-card (click)="select.emit(device.id)">
     <ion-card-header
       [ngClass]="{ 'header--disabled': !device.state }"
-      class="header"
-      >{{ device.name }}</ion-card-header
-    >
+      class="header flex justify-between items-center"
+      ><span>{{ device.name }}</span>
+      <ion-button (click)="remove.emit(device.id)" *ngIf="enableRemove">
+        <smart-home-ui-fa-icon [icon]="REMOVE_ICON" color="red" />
+      </ion-button>
+    </ion-card-header>
     <ion-card-content class="content">
       <span class="content__value">{{ device | deviceSetpoint }}</span>
       <ion-toggle

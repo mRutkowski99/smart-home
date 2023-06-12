@@ -1,0 +1,42 @@
+{
+  "name": "mobile-scene-ui-controlled-devices-list",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mobile/scene/ui-controlled-devices-list/src",
+  "prefix": "smart-home",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "libs/mobile/scene/ui-controlled-devices-list/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libs/mobile/scene/ui-controlled-devices-list/**/*.ts",
+          "libs/mobile/scene/ui-controlled-devices-list/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "platform:mobile",
+    "scope:scene",
+    "type:ui"
+  ]
+}

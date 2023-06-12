@@ -11,3 +11,8 @@ export const sceneDetailsVmSelector = createSelector(
     error: state.sceneError,
   })
 );
+
+export const deviceGroupsSelector = createSelector(
+  featureSelector,
+  (state) => state.devices
+);

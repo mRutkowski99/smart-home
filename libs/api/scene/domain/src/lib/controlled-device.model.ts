@@ -11,7 +11,9 @@ export class ControlledDevice {
   constructor(
     public readonly id: Uuid,
     public readonly deviceId: Uuid,
-    public readonly deviceName: Name,
+    public readonly deviceName: Name | undefined,
+    public readonly roomId: Uuid | undefined,
+    public readonly roomName: Name | undefined,
     public readonly valueType: DeviceValueType,
     private _setpoint: number,
     private _state: boolean

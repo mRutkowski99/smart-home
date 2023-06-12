@@ -72,7 +72,6 @@ export class MobileSharedUiCircleSliderComponent
   }
 
   onUpdate(payload: UpdateCircleSliderPayload) {
-    console.log(payload);
     if (this.disabled) return;
 
     const { value, handleRotation } = payload;

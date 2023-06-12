@@ -14,7 +14,11 @@ export interface ControlledDeviceVm {
   readonly id: string;
   readonly deviceId: string;
   readonly deviceName: string;
+  readonly roomId: string;
+  readonly roomName: string;
   readonly valueType: DeviceValueType;
+  readonly setpoint: number;
+  readonly state: boolean;
 }
 
 export interface SceneDetailsVm {

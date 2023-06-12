@@ -10,5 +10,30 @@
       (update)="onScheduleUpdate($event)"
       [schedule]="sceneDetailsVm.scene.schedule"
     />
+
+    <smart-home-controlled-devices-list
+      (removeDevice)="onRemoveDevice($event)"
+      (updateSetpoint)="onUpdateSetpoint($event)"
+      (updateState)="onUpdateState($event)"
+      [controlledDevices]="sceneDetailsVm.scene.devices"
+    />
+
+    <ion-item>
+      <ion-select (ionChange)="onAddDevice($event)" placeholder="Add device">
+        <ng-container *ngFor="let deviceGroup of deviceGroups$ | async">
+          <ion-select-option disabled>{{
+            deviceGroup.roomName | uppercase
+          }}</ion-select-option>
+          <ion-select-option
+            *ngFor="
+              let device of deviceGroup.devices
+                | filterAlreadyAssignedDevices : sceneDetailsVm.scene.devices
+            "
+            [value]="device.id"
+            >{{ device.name }}</ion-select-option
+          >
+        </ng-container>
+      </ion-select>
+    </ion-item>
   </ng-container>
 </ng-container>

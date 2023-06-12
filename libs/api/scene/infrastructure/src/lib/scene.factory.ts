@@ -10,6 +10,7 @@ import { deviceValueTypeMapper } from '@smart-home/api/shared/infrastructure';
 
 type SceneFactoryInput = SceneSchema & {
   schedule: {
+    id: string;
     active: boolean;
     scheduleDays: {
       dayOfWeek: number;
@@ -25,6 +26,10 @@ type SceneFactoryInput = SceneSchema & {
       id: string;
       name: string;
       valueType: ValueType;
+      room: {
+        id: string;
+        name: string;
+      } | null;
     };
   }[];
 };
@@ -35,7 +40,7 @@ export function sceneFactory(schema: SceneFactoryInput): Scene {
     new Uuid(schema.homeId),
     new Name(schema.name),
     schema.state,
-    schema.schedule ? sceneScheduleFactory(schema.schedule) : null,
+    sceneScheduleFactory(schema.schedule),
     schema.controlledDevices.map((cd) =>
       controlledDeviceFactory(
         cd.id,
@@ -43,7 +48,9 @@ export function sceneFactory(schema: SceneFactoryInput): Scene {
         cd.device.name,
         cd.device.valueType,
         cd.setpoint,
-        cd.state
+        cd.state,
+        cd.device.room!.id,
+        cd.device.room!.name
       )
     )
   );
@@ -55,29 +62,37 @@ function controlledDeviceFactory(
   name: string,
   valueType: ValueType,
   setpoint: number,
-  state: boolean
+  state: boolean,
+  roomId: string,
+  roomName: string
 ): ControlledDevice {
   return new ControlledDevice(
     new Uuid(id),
     new Uuid(deviceId),
     new Name(name),
+    new Uuid(roomId),
+    new Name(roomName),
     deviceValueTypeMapper(valueType),
     setpoint,
     state
   );
 }
 
-function sceneScheduleFactory(schedule: {
-  active: boolean;
-  scheduleDays: {
-    dayOfWeek: number;
-    startTimeHours: number;
-    startTimeMinutes: number;
-  }[];
-}): SceneSchedule {
+function sceneScheduleFactory(
+  schedule: {
+    id: string;
+    active: boolean;
+    scheduleDays: {
+      dayOfWeek: number;
+      startTimeHours: number;
+      startTimeMinutes: number;
+    }[];
+  } | null
+): SceneSchedule {
   return new SceneSchedule(
-    schedule.active,
-    schedule.scheduleDays.map(
+    new Uuid(schedule!.id),
+    schedule!.active,
+    schedule!.scheduleDays.map(
       (x) =>
         new SceneScheduleDay(x.dayOfWeek, x.startTimeHours, x.startTimeMinutes)
     )

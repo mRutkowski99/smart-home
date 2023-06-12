@@ -8,6 +8,7 @@ export class SceneRepository {
   private readonly includes = {
     schedule: {
       select: {
+        id: true,
         active: true,
         scheduleDays: {
           select: {
@@ -28,6 +29,12 @@ export class SceneRepository {
             id: true,
             name: true,
             valueType: true,
+            room: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
           },
         },
       },
@@ -61,11 +68,22 @@ export class SceneRepository {
         id: scene.id.value,
         state: scene.state,
         name: scene.name.value,
+        controlledDevices: {
+          deleteMany: { sceneId: scene.id.value },
+          createMany: {
+            data: scene.controlledDevices.map((device) => ({
+              id: device.id.value,
+              state: device.state,
+              deviceId: device.deviceId.value,
+              setpoint: device.setpoint,
+            })),
+          },
+        },
         schedule: {
           update: {
             active: scene.schedule?.active,
             scheduleDays: {
-              deleteMany: {},
+              deleteMany: { sceneScheduleId: scene.schedule?.id.value },
               createMany: {
                 data:
                   scene.schedule?.days.map((schedule) => ({

@@ -34,7 +34,7 @@
   },
   "tags": [
     "platform:shared",
-    "scope:scene",
+    "scope:shared",
     "type:util",
     "type:util-vm"
   ]

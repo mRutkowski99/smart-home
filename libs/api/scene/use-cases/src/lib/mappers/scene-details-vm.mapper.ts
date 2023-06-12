@@ -45,6 +45,10 @@ export class SceneDetailsVmMapper {
       deviceId: domain.deviceId.value,
       deviceName: domain.deviceName.value,
       valueType: domain.valueType,
+      state: domain.state,
+      setpoint: domain.setpoint,
+      roomId: domain.roomId.value,
+      roomName: domain.roomName.value,
     };
   }
 }

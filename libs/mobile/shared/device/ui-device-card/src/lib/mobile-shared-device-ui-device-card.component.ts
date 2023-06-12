@@ -13,6 +13,8 @@ import {
   StopClickPropagationDirective,
 } from '@smart-home/mobile/shared/util';
 import { NgClass, NgIf } from '@angular/common';
+import { SharedUiFaIconComponent } from '@smart-home/shared/ui-fa-icon';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'smart-home-mobile-ui-device-card',
@@ -23,6 +25,7 @@ import { NgClass, NgIf } from '@angular/common';
     NgClass,
     DeviceSetpointPipe,
     StopClickPropagationDirective,
+    SharedUiFaIconComponent,
   ],
   templateUrl: './mobile-shared-device-ui-device-card.component.html',
   styleUrls: ['./mobile-shared-device-ui-device-card.component.scss'],
@@ -31,6 +34,9 @@ import { NgClass, NgIf } from '@angular/common';
 })
 export class MobileSharedDeviceUiDeviceCardComponent {
   @Input() device: UiDeviceCard | undefined;
+  @Input() enableRemove = false;
   @Output() select = new EventEmitter<string>();
   @Output() toggleState = new EventEmitter<boolean>();
+  @Output() remove = new EventEmitter<string>();
+  readonly REMOVE_ICON = faXmark;
 }

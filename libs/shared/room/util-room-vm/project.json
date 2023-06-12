@@ -36,7 +36,7 @@
   },
   "tags": [
     "platform:shared",
-    "scope:room",
+    "scope:shared",
     "type:util",
     "type:util-vm"
   ]

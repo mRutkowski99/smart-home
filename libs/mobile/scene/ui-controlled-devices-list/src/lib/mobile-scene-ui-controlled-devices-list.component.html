@@ -1,0 +1,11 @@
+<ng-container *ngFor="let group of groupedDeviceCards$ | async">
+  <span>{{ group.room.name }}:</span>
+  <smart-home-mobile-ui-device-card
+    (remove)="onRemove($event)"
+    (select)="onShowSetpointModal($event)"
+    (toggleState)="onUpdateState($event, device.id)"
+    *ngFor="let device of group.devices"
+    [device]="device"
+    [enableRemove]="true"
+  />
+</ng-container>
