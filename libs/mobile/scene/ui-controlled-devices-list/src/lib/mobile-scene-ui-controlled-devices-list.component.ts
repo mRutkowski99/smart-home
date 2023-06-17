@@ -70,10 +70,11 @@ export class MobileSceneUiControlledDevicesListComponent {
   onShowSetpointModal(deviceId: string) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const device = this.presenter.getDevice(deviceId)!;
+    if (device.valueType === 'DIGITAL') return;
     this.deviceControlFacade
       .openModal(
         getDeviceValueControlModalPayload({
-          id: device.id,
+          id: device.deviceId,
           setpoint: device.setpoint,
           valueType: device.valueType,
           state: device.state,

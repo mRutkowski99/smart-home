@@ -5,6 +5,7 @@ import {
 } from '@smart-home/shared/scene/util-scene-vm';
 import {
   AddControlledDevicePayload,
+  CreateScenePayload,
   UpdateControlledDeviceSetpointPayload,
   UpdateControlledDeviceStatePayload,
   UpdateSceneSchedulePayload,
@@ -22,6 +23,12 @@ export const SceneActions = createActionGroup({
       devices: DeviceGroupVm[];
     }>(),
     'Get Devices Grouped By Room Fail': props<{ error: string }>(),
+    'Update Scene State': props<{ id: string; state: boolean }>(),
+    'Update Scene State Success': emptyProps(),
+    'Undo Update Scene State': props<{ state: boolean }>(),
+    'Delete Scene': props<{ id: string }>(),
+    'Delete Scene Success': emptyProps(),
+    'Delete Scene Fail': emptyProps(),
     'Update Scene Schedule': props<{
       id: string;
       newSchedule: UpdateSceneSchedulePayload;
@@ -58,5 +65,8 @@ export const SceneActions = createActionGroup({
     'Add Controlled Device': props<{ payload: AddControlledDevicePayload }>(),
     'Add Controlled Device Success': props<{ sceneId: string }>(),
     'Add Controlled Device Fail': emptyProps(),
+    'Create Scene': props<{ payload: CreateScenePayload }>(),
+    'Create Scene Success': emptyProps(),
+    'Create Scene Fail': emptyProps(),
   },
 });

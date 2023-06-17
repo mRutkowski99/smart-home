@@ -26,8 +26,9 @@ import {
 } from '@smart-home/shared/scene/util-scene-vm';
 import { IonicModule, IonSelect, SelectCustomEvent } from '@ionic/angular';
 import { SharedUiFaIconComponent } from '@smart-home/shared/ui-fa-icon';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FilterAlreadyAssignedDevicesPipe } from '../../../util/src/lib/filter-already-assigned-devices.pipe';
+import { MobileSharedSceneDataAccessModule } from '@smart-home/mobile/shared/scene/data-access';
 
 @Component({
   selector: 'smart-home-mobile-scene-feature-scene-details',
@@ -41,6 +42,7 @@ import { FilterAlreadyAssignedDevicesPipe } from '../../../util/src/lib/filter-a
     SharedUiFaIconComponent,
     RouterLink,
     FilterAlreadyAssignedDevicesPipe,
+    MobileSharedSceneDataAccessModule,
   ],
   templateUrl: './mobile-scene-feature-scene-details.component.html',
   styleUrls: ['./mobile-scene-feature-scene-details.component.scss'],
@@ -51,6 +53,7 @@ export class MobileSceneFeatureSceneDetailsComponent implements OnInit {
   readonly sceneDetailsVm$ = this.sceneFacade.sceneDetailsVm$;
   readonly deviceGroups$ = this.sceneFacade.deviceGroups$;
   readonly ADD_ICON = faPlus;
+  readonly TRASH_ICON = faTrash;
   @ViewChild(IonSelect) select?: IonSelect;
 
   constructor(
@@ -120,5 +123,13 @@ export class MobileSceneFeatureSceneDetailsComponent implements OnInit {
     );
 
     if (this.select) this.select.value = null;
+  }
+
+  onChangeSceneState(newState: boolean) {
+    this.sceneFacade.updateSceneState(this.sceneId, newState);
+  }
+
+  onRemoveScene() {
+    this.sceneFacade.deleteScene(this.sceneId);
   }
 }

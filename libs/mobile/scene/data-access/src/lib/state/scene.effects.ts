@@ -3,8 +3,10 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { SceneActions } from './scene.actions';
 import { fetch, optimisticUpdate, pessimisticUpdate } from '@nrwl/angular';
 import { SceneApiService } from '../api/scene-api.service';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { SceneEventBus, ScheduleSuccessfullyUpdated } from '../scene.event-bus';
+import { Router } from '@angular/router';
+import { MainRoutes } from '@smart-home/mobile/shared/util';
 
 @Injectable()
 export class SceneEffects {
@@ -123,15 +125,13 @@ export class SceneEffects {
       ofType(SceneActions.addControlledDevice),
       pessimisticUpdate({
         run: ({ payload }) =>
-          this.api
-            .addControlledDevice(payload)
-            .pipe(
-              map(() =>
-                SceneActions.addControlledDeviceSuccess({
-                  sceneId: payload.sceneId,
-                })
-              )
-            ),
+          this.api.addControlledDevice(payload).pipe(
+            map(() =>
+              SceneActions.addControlledDeviceSuccess({
+                sceneId: payload.sceneId,
+              })
+            )
+          ),
         onError: () => SceneActions.addControlledDeviceFail(),
       })
     )
@@ -144,9 +144,68 @@ export class SceneEffects {
     )
   );
 
+  updateSceneState = createEffect(() =>
+    this.actions$.pipe(
+      ofType(SceneActions.updateSceneState),
+      optimisticUpdate({
+        run: (action) =>
+          this.api
+            .updateSceneState(action.id, action.state)
+            .pipe(map(() => SceneActions.updateSceneStateSuccess())),
+        undoAction: (a, e) =>
+          SceneActions.undoUpdateSceneState({ state: !a.state }),
+      })
+    )
+  );
+
+  deleteScene = createEffect(() =>
+    this.actions$.pipe(
+      ofType(SceneActions.deleteScene),
+      pessimisticUpdate({
+        run: ({ id }) =>
+          this.api
+            .deleteScene(id)
+            .pipe(map(() => SceneActions.deleteSceneSuccess())),
+        onError: () => SceneActions.deleteSceneFail(),
+      })
+    )
+  );
+
+  handleDeleteSceneSuccess = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(SceneActions.deleteSceneSuccess),
+        tap(() => this.router.navigate(['/', MainRoutes.Home]))
+      ),
+    { dispatch: false }
+  );
+
+  createScene = createEffect(() =>
+    this.actions$.pipe(
+      ofType(SceneActions.createScene),
+      pessimisticUpdate({
+        run: (action) =>
+          this.api
+            .createScene(action.payload)
+            .pipe(map(() => SceneActions.createSceneSuccess())),
+        onError: () => SceneActions.createSceneFail(),
+      })
+    )
+  );
+
+  handleCreateSceneSuccess = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(SceneActions.createSceneSuccess),
+        tap(() => this.router.navigate(['/', MainRoutes.Home]))
+      ),
+    { dispatch: false }
+  );
+
   constructor(
     private actions$: Actions,
     private api: SceneApiService,
-    private eventBus: SceneEventBus
+    private eventBus: SceneEventBus,
+    private router: Router
   ) {}
 }

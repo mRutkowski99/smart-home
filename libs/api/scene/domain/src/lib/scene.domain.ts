@@ -38,6 +38,11 @@ export class Scene extends AggregateRoot {
     return this._controlledDevices;
   }
 
+  updateState(state: boolean) {
+    this._state = state;
+    //TODO: dispatch event
+  }
+
   updateSchedule(
     active: boolean,
     scheduleDays: {

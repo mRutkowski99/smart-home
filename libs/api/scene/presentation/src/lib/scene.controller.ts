@@ -5,6 +5,7 @@ import {
   Get,
   Headers,
   Param,
+  Post,
   Put,
 } from '@nestjs/common';
 import {
@@ -14,12 +15,15 @@ import {
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import {
   AddControlledDeviceCommand,
+  CreateSceneCommand,
+  DeleteSceneCommand,
   GetSceneDetailsQuery,
   GetScenesOverviewQuery,
   RemoveControlledDeviceCommand,
   UpdateControlledDeviceSetpointCommand,
   UpdateControlledDeviceStateCommand,
   UpdateSceneScheduleCommand,
+  UpdateSceneStateCommand,
 } from '@smart-home/api/scene/use-cases';
 import {
   SceneDetailsVm,
@@ -27,6 +31,7 @@ import {
 } from '@smart-home/shared/scene/util-scene-vm';
 import {
   AddControlledDevicePayload,
+  CreateScenePayload,
   UpdateControlledDeviceSetpointPayload,
   UpdateControlledDeviceStatePayload,
   UpdateSceneSchedulePayload,
@@ -47,6 +52,16 @@ export class SceneController {
   getSceneDetails(@Param('id') id: string) {
     return this.queryBus.execute<GetSceneDetailsQuery, SceneDetailsVm>(
       new GetSceneDetailsQuery(id)
+    );
+  }
+
+  @Put(':id/state')
+  updateSceneState(
+    @Param('id') id: string,
+    @Body() payload: { state: boolean }
+  ) {
+    return this.commandBus.execute<UpdateSceneStateCommand>(
+      new UpdateSceneStateCommand(id, payload.state)
     );
   }
 
@@ -106,6 +121,28 @@ export class SceneController {
         payload.setpoint,
         payload.state,
         payload.valueType
+      )
+    );
+  }
+
+  @Delete(':id')
+  deleteScene(@Param('id') id: string) {
+    return this.commandBus.execute<DeleteSceneCommand>(
+      new DeleteSceneCommand(id)
+    );
+  }
+
+  @Post()
+  createScene(
+    @Body() payload: CreateScenePayload,
+    @Headers(HOME_ID_HEADER_KEY) homeId: string
+  ) {
+    this.commandBus.execute<CreateSceneCommand>(
+      new CreateSceneCommand(
+        homeId,
+        payload.name,
+        { active: payload.schedule.active, schedule: payload.schedule.days },
+        payload.devices
       )
     );
   }

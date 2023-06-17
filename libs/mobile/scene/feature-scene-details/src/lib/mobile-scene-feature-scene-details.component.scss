@@ -1,0 +1,13 @@
+:host {
+  & > * {
+    margin-bottom: 2rem;
+  }
+}
+
+.delete-btn {
+  --background: red;
+
+  span {
+    margin-left: 1rem;
+  }
+}

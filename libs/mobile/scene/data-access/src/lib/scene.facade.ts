@@ -4,6 +4,7 @@ import { SceneState } from './state/scene.reducer';
 import * as SceneSelectors from './state/scene.selectors';
 import { SceneActions } from './state/scene.actions';
 import {
+  CreateScenePayload,
   UpdateControlledDeviceSetpointPayload,
   UpdateControlledDeviceStatePayload,
   UpdateSceneSchedulePayload,
@@ -28,6 +29,18 @@ export class SceneFacade {
 
   getDeviceGroups() {
     this.store.dispatch(SceneActions.getDevicesGroupedByRoom());
+  }
+
+  createScene(payload: CreateScenePayload) {
+    this.store.dispatch(SceneActions.createScene({ payload }));
+  }
+
+  updateSceneState(id: string, state: boolean) {
+    this.store.dispatch(SceneActions.updateSceneState({ id, state }));
+  }
+
+  deleteScene(id: string) {
+    this.store.dispatch(SceneActions.deleteScene({ id }));
   }
 
   updateSchedule(

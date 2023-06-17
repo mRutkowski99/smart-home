@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { SceneDetailsVm } from '@smart-home/shared/scene/util-scene-vm';
 import {
   AddControlledDevicePayload,
+  CreateScenePayload,
   UpdateControlledDeviceSetpointPayload,
   UpdateControlledDeviceStatePayload,
   UpdateSceneSchedulePayload,
@@ -27,6 +28,19 @@ export class SceneApiService {
   getDeviceGroups(): Observable<DeviceGroupVm[]> {
     return this.http.get<DeviceGroupVm[]>(
       getControllerUrl(ApiControllerPrefix.Device) + '/grouped'
+    );
+  }
+
+  updateSceneState(id: string, state: boolean) {
+    return this.http.put(
+      `${getControllerUrl(ApiControllerPrefix.Scene)}/${id}/state`,
+      { state }
+    );
+  }
+
+  deleteScene(id: string) {
+    return this.http.delete(
+      `${getControllerUrl(ApiControllerPrefix.Scene)}/${id}`
     );
   }
 
@@ -72,5 +86,9 @@ export class SceneApiService {
       }/device`,
       payload
     );
+  }
+
+  createScene(payload: CreateScenePayload) {
+    return this.http.post(getControllerUrl(ApiControllerPrefix.Scene), payload);
   }
 }

@@ -3,8 +3,22 @@
     *ngIf="sceneDetailsVm.status === 'success' && sceneDetailsVm.scene"
   >
     <h2 class="font-semibold text-4xl text-slate-600 mb-4 text-left">
-      {{ sceneDetailsVm.scene.name }}
+      {{ sceneDetailsVm.scene.name | uppercase }}
     </h2>
+
+    <div class="flex gap-8 items-center">
+      <ion-button
+        (click)="onChangeSceneState(!sceneDetailsVm.scene.state)"
+        class="flex-1"
+        color="primary"
+        >{{
+          sceneDetailsVm.scene.state ? 'Deactivate' : 'Activate'
+        }}</ion-button
+      >
+      <ion-fab-button [routerLink]="['../', 'add']">
+        <smart-home-ui-fa-icon [icon]="ADD_ICON" />
+      </ion-fab-button>
+    </div>
 
     <smart-home-ui-scene-schedule
       (update)="onScheduleUpdate($event)"
@@ -35,5 +49,12 @@
         </ng-container>
       </ion-select>
     </ion-item>
+
+    <ion-button (click)="onRemoveScene()" class="w-full delete-btn">
+      <smart-home-ui-fa-icon [icon]="TRASH_ICON" size="lg" />
+      <span>Delete Scene</span>
+    </ion-button>
+
+    <ion-fab horizontal="end" slot="fixed" vertical="top"></ion-fab>
   </ng-container>
 </ng-container>

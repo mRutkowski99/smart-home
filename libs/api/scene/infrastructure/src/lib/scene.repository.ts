@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@smart-home/api/shared/infrastructure';
 import { Scene } from '@smart-home/api/scene/domain';
 import { sceneFactory } from './scene.factory';
+import { CreateSceneCommand } from '../../../use-cases/src/lib/commands/create-scene';
 
 @Injectable()
 export class SceneRepository {
@@ -59,6 +60,46 @@ export class SceneRepository {
     });
 
     return scenes.map(sceneFactory);
+  }
+
+  async delete(id: string) {
+    await this.prisma.sceneSchema.delete({
+      where: { id },
+      include: { schedule: true, controlledDevices: true },
+    });
+  }
+
+  async create(command: CreateSceneCommand) {
+    await this.prisma.sceneSchema.create({
+      data: {
+        homeId: command.homeId,
+        name: command.name,
+        state: false,
+        schedule: {
+          create: {
+            active: command.schedule.active,
+            scheduleDays: {
+              createMany: {
+                data: command.schedule.schedule.map((day) => ({
+                  dayOfWeek: day.day,
+                  startTimeHours: day.time.hours,
+                  startTimeMinutes: day.time.minutes,
+                })),
+              },
+            },
+          },
+        },
+        controlledDevices: {
+          createMany: {
+            data: command.devices.map((device) => ({
+              deviceId: device.deviceId,
+              state: device.state,
+              setpoint: device.setpoint,
+            })),
+          },
+        },
+      },
+    });
   }
 
   async update(scene: Scene) {

@@ -110,8 +110,24 @@ export const sceneReducer = createReducer(
   on(SceneActions.addControlledDeviceFail, (state) => ({
     ...state,
     status: 'success',
+  })),
+  on(SceneActions.updateSceneState, (state, { state: sceneState }) => ({
+    ...state,
+    scene: updateSceneState(state.scene, sceneState),
+  })),
+  on(SceneActions.undoUpdateSceneState, (state, { state: sceneState }) => ({
+    ...state,
+    scene: updateSceneState(state.scene, sceneState),
   }))
 );
+
+const updateSceneState = (
+  scene: SceneDetailsVm | null,
+  state: boolean
+): SceneDetailsVm | null => {
+  if (scene === null) return null;
+  else return { ...scene, state };
+};
 
 const updateSceneSchedule = (
   scene: SceneDetailsVm | null,

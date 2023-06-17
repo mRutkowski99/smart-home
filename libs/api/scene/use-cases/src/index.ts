@@ -6,3 +6,6 @@ export { UpdateControlledDeviceStateCommand } from './lib/commands/update-contro
 export { UpdateControlledDeviceSetpointCommand } from './lib/commands/update-controlled-device-setpoint';
 export { RemoveControlledDeviceCommand } from './lib/commands/remove-controlled-device';
 export { AddControlledDeviceCommand } from './lib/commands/add-controlled-device';
+export { DeleteSceneCommand } from './lib/commands/delete-scene';
+export { CreateSceneCommand } from './lib/commands/create-scene';
+export { UpdateSceneStateCommand } from './lib/commands/update-scene-state';

@@ -52,6 +52,8 @@
         <smart-home-ui-fa-icon [icon]="REMOVE_ICON" color="red" />
       </ion-button>
     </div>
-    <ion-button (click)="onSave()" *ngIf="hasChanged$ | async">Save</ion-button>
+    <ion-button (click)="onSave()" *ngIf="hasChanged$ | async"
+      >Save schedule</ion-button
+    >
   </ion-card-content>
 </ion-card>

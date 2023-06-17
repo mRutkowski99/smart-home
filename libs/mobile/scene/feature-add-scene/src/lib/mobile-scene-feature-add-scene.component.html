@@ -1,0 +1,41 @@
+<ion-item [formGroup]="form">
+  <ion-input [formControl]="nameControl" placeholder="Scene name" />
+</ion-item>
+<smart-home-ui-scene-schedule />
+<ion-list>
+  <ion-item>
+    <ion-select
+      (ionChange)="onAddDevice($event)"
+      [multiple]="true"
+      placeholder="Add devices"
+    >
+      <ng-container *ngFor="let deviceGroup of deviceGroups$ | async">
+        <ion-select-option disabled>{{
+          deviceGroup.roomName | uppercase
+        }}</ion-select-option>
+        <ion-select-option
+          *ngFor="
+            let device of deviceGroup.devices
+              | filterAlreadyAssignedDevices : (assignedDevices$ | async) ?? []
+          "
+          [value]="device.id"
+          >{{ device.name }}</ion-select-option
+        >
+      </ng-container>
+    </ion-select>
+  </ion-item>
+</ion-list>
+
+<smart-home-controlled-devices-list
+  (removeDevice)="onRemoveDevice($event.deviceId)"
+  (updateSetpoint)="onUpdateSetpoint($event.newSetpoint)"
+  (updateState)="onUpdateState($event.newState)"
+  [controlledDevices]="(assignedDevices$ | async) ?? []"
+/>
+
+<ion-button
+  (click)="onCreateScene()"
+  [disabled]="!(valid$ | async)"
+  class="w-full mt-8"
+  >Create scene
+</ion-button>

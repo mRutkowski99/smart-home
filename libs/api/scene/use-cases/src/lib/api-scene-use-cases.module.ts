@@ -10,6 +10,9 @@ import { UpdateControlledDeviceStateHandler } from './commands/update-controlled
 import { UpdateControlledDeviceSetpointHandler } from './commands/update-controlled-device-setpoint';
 import { RemoveControlledDeviceHandler } from './commands/remove-controlled-device';
 import { AddControlledDeviceHandler } from './commands/add-controlled-device';
+import { DeleteSceneHandler } from './commands/delete-scene';
+import { CreateSceneHandler } from './commands/create-scene';
+import { UpdateSceneStateHandler } from './commands/update-scene-state';
 
 @Module({
   imports: [CqrsModule, ApiSceneInfrastructureModule],
@@ -23,6 +26,9 @@ import { AddControlledDeviceHandler } from './commands/add-controlled-device';
     UpdateControlledDeviceSetpointHandler,
     RemoveControlledDeviceHandler,
     AddControlledDeviceHandler,
+    DeleteSceneHandler,
+    CreateSceneHandler,
+    UpdateSceneStateHandler,
   ],
   exports: [CqrsModule],
 })

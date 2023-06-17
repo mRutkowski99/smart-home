@@ -72,6 +72,9 @@
       "@smart-home/mobile/scene/data-access": [
         "libs/mobile/scene/data-access/src/index.ts"
       ],
+      "@smart-home/mobile/scene/feature-add-scene": [
+        "libs/mobile/scene/feature-add-scene/src/index.ts"
+      ],
       "@smart-home/mobile/scene/feature-scene-details": [
         "libs/mobile/scene/feature-scene-details/src/index.ts"
       ],
