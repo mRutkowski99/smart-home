@@ -7,6 +7,8 @@ import {
   Temperature,
   Uuid,
 } from '@smart-home/api/shared/domain';
+import {DeviceAddress} from "./device-address.model";
+import {ControlledValue} from "@prisma/client";
 
 export class Device extends AggregateRoot {
   constructor(
@@ -15,7 +17,8 @@ export class Device extends AggregateRoot {
     public name: Name,
     private _state: boolean,
     public readonly valueType: DeviceValueType,
-    private _setpoint: number
+    private _setpoint: number,
+    public readonly addresses: DeviceAddress[]
   ) {
     super();
   }
@@ -27,6 +30,10 @@ export class Device extends AggregateRoot {
   set state(state: boolean) {
     this._state = state;
     //todo: dispatch event
+  }
+
+  getAddress(controlledValue: ControlledValue): DeviceAddress {
+    return this.addresses.find(address => address.controlledValue === controlledValue)
   }
 
   get setpoint(): number {

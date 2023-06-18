@@ -1,10 +1,17 @@
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import { DeviceRepository } from '@smart-home/api/device/infrastructure';
 import { throwIfNull } from '@smart-home/api/shared/util';
-import { BadRequestException } from '@nestjs/common';
+import { BadRequestException, Inject } from '@nestjs/common';
+import { ClientKafka } from '@nestjs/microservices';
+import { DeviceStateUpdatedEvent } from '@smart-home/shared/device/util-device-event';
+import {AddressType, ControlledValue} from '@prisma/client';
 
 export class UpdateStateCommand {
-  constructor(public readonly id: string, public readonly state: boolean) {}
+  constructor(
+    public readonly id: string,
+    public readonly state: boolean,
+    public readonly homeId: string
+  ) {}
 }
 
 @CommandHandler(UpdateStateCommand)
@@ -13,10 +20,11 @@ export class UpdateStateHandler
 {
   constructor(
     private repository: DeviceRepository,
-    private publisher: EventPublisher
+    private publisher: EventPublisher,
+    @Inject('SMART-HUB') private smartHubClient: ClientKafka
   ) {}
 
-  async execute({ id, state }: UpdateStateCommand): Promise<void> {
+  async execute({ id, state, homeId }: UpdateStateCommand): Promise<void> {
     const device = this.publisher.mergeObjectContext(
       throwIfNull(
         await this.repository.getById(id),
@@ -25,7 +33,18 @@ export class UpdateStateHandler
     );
 
     device.changeState(state);
-    device.commit();
+    const address = device.getAddress(ControlledValue.WRITE_STATE)
+
+    this.smartHubClient.emit(
+      DeviceStateUpdatedEvent.pattern,
+      new DeviceStateUpdatedEvent(
+        homeId,
+        id,
+        state,
+        address.address,
+        AddressType.DO
+      )
+    );
 
     await this.repository.update(device);
   }

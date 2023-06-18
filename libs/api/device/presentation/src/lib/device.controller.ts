@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Headers, Param, Put } from '@nestjs/common';
+import {Body, Controller, Get, Header, Headers, Param, Put} from '@nestjs/common';
 import {
   ApiControllerPrefix,
   HOME_ID_HEADER_KEY,
@@ -29,20 +29,22 @@ export class DeviceController {
   @Put(':id/setpoint')
   async updateSetpoint(
     @Param('id') id: string,
-    @Body() { value }: UpdateDeviceSetpointPayload
+    @Body() { value }: UpdateDeviceSetpointPayload,
+    @Headers(HOME_ID_HEADER_KEY) homeId: string
   ) {
     await this.commandBus.execute<UpdateSetpointCommand, void>(
-      new UpdateSetpointCommand(id, value)
+      new UpdateSetpointCommand(id, value, homeId)
     );
   }
 
   @Put(':id/state')
   async updateState(
     @Param('id') id: string,
-    @Body() { value }: UpdateDeviceStatePayload
+    @Body() { value }: UpdateDeviceStatePayload,
+    @Headers(HOME_ID_HEADER_KEY) homeId: string
   ) {
     await this.commandBus.execute<UpdateStateCommand, void>(
-      new UpdateStateCommand(id, value)
+      new UpdateStateCommand(id, value, homeId)
     );
   }
 }

@@ -8,7 +8,10 @@ export class DeviceRepository {
   constructor(private prisma: PrismaService) {}
 
   async getById(id: string): Promise<Device | null> {
-    const device = await this.prisma.deviceSchema.findUnique({ where: { id } });
+    const device = await this.prisma.deviceSchema.findUnique({
+      where: { id },
+      include: { addresses: true },
+    });
     return device ? deviceFactory(device) : null;
   }
 
@@ -60,6 +63,17 @@ export class DeviceRepository {
         setpoint: device.setpoint,
         valueType: device.valueType,
         state: device.state,
+        addresses: {
+          deleteMany: { deviceId: device.id.value },
+          createMany: {
+            data: device.addresses.map((address) => ({
+              id: address.id,
+              address: address.address,
+              addressType: address.addressType,
+              controlledValue: address.controlledValue,
+            })),
+          },
+        },
       },
     });
   }

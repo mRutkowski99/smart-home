@@ -33,6 +33,28 @@ model RoomSchema {
 }
 
 // ----- DEVICE -----
+enum AddressType {
+  DI
+  DO
+  AI
+  AO
+}
+
+enum ControlledValue {
+  READ_VALUE
+  WRITE_STATE
+  WRITE_SETPOINT
+}
+
+model DeviceAddressSchema {
+  id              String          @id @default(uuid())
+  address         String
+  addressType     AddressType
+  controlledValue ControlledValue
+
+  deviceId String
+  device   DeviceSchema? @relation(fields: [deviceId], references: [id])
+}
 
 enum ValueType {
   DIGITAL
@@ -49,6 +71,8 @@ model DeviceSchema {
 
   roomId String
   room   RoomSchema? @relation(fields: [roomId], references: [id])
+
+  addresses DeviceAddressSchema[]
 
   controlledDevices SceneControlledDeviceSchema[]
 

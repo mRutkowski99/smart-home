@@ -3,45 +3,47 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { SceneActions } from './scene.actions';
 import { fetch, optimisticUpdate, pessimisticUpdate } from '@nrwl/angular';
 import { SceneApiService } from '../api/scene-api.service';
-import { map, tap } from 'rxjs';
+import { catchError, map, of, switchMap, tap } from 'rxjs';
 import { SceneEventBus, ScheduleSuccessfullyUpdated } from '../scene.event-bus';
 import { Router } from '@angular/router';
 import { MainRoutes } from '@smart-home/mobile/shared/util';
 
 @Injectable()
 export class SceneEffects {
-  getSceneDetails$ = createEffect(() =>
+  getSceneDetails = createEffect(() =>
     this.actions$.pipe(
       ofType(SceneActions.getSceneDetails),
-      fetch({
-        run: ({ id }) =>
-          this.api
-            .getSceneDetails(id)
-            .pipe(
-              map((scene) => SceneActions.getSceneDetailsSuccess({ scene }))
-            ),
-        onError: () =>
-          SceneActions.getSceneDetailsError({
-            error: 'Connection error. Please try again',
-          }),
-      })
+      switchMap((a) =>
+        this.api.getSceneDetails(a.id).pipe(
+          map((scene) => SceneActions.getSceneDetailsSuccess({ scene })),
+          catchError(() =>
+            of(
+              SceneActions.getSceneDetailsError({
+                error: 'Connection error. Please try again',
+              })
+            )
+          )
+        )
+      )
     )
   );
 
-  updateSceneSchedule$ = createEffect(() =>
+  updateSceneSchedule = createEffect(() =>
     this.actions$.pipe(
       ofType(SceneActions.updateSceneSchedule),
-      optimisticUpdate({
-        run: (action) =>
-          this.api
-            .updateSchedule(action.id, action.newSchedule)
-            .pipe(map(() => SceneActions.updateSceneScheduleSuccess())),
-        undoAction: (action) =>
-          SceneActions.undoUpdateSceneSchedule({
-            id: action.id,
-            schedule: action.schedule,
-          }),
-      })
+      switchMap((a) =>
+        this.api.updateSchedule(a.id, a.newSchedule).pipe(
+          map(() => SceneActions.updateSceneScheduleSuccess()),
+          catchError(() =>
+            of(
+              SceneActions.undoUpdateSceneSchedule({
+                id: a.id,
+                schedule: a.schedule,
+              })
+            )
+          )
+        )
+      )
     )
   );
 
@@ -57,83 +59,82 @@ export class SceneEffects {
   updateControlledDeviceState = createEffect(() =>
     this.actions$.pipe(
       ofType(SceneActions.updateControlledDeviceState),
-      optimisticUpdate({
-        run: (action) =>
-          this.api
-            .updateControlledDeviceState(action.newState)
-            .pipe(map(() => SceneActions.updateControlledDeviceStateSuccess())),
-        undoAction: (action) =>
-          SceneActions.undoUpdateControlledDeviceState({ state: action.state }),
-      })
+      switchMap((a) =>
+        this.api.updateControlledDeviceState(a.newState).pipe(
+          map(() => SceneActions.updateControlledDeviceStateSuccess()),
+          catchError(() =>
+            of(SceneActions.undoUpdateControlledDeviceState({ state: a.state }))
+          )
+        )
+      )
     )
   );
 
   updateControlledDeviceSetpoint = createEffect(() =>
     this.actions$.pipe(
       ofType(SceneActions.updateControlledDeviceSetpoint),
-      optimisticUpdate({
-        run: (action) =>
-          this.api
-            .updateControlledDeviceSetpoint(action.newSetpoint)
-            .pipe(
-              map(() => SceneActions.updateControlledDeviceSetpointSuccess())
-            ),
-        undoAction: (action) =>
-          SceneActions.undoUpdateControlledDeviceSetpoint({
-            setpoint: action.setpoint,
-          }),
-      })
+      switchMap((a) =>
+        this.api.updateControlledDeviceSetpoint(a.newSetpoint).pipe(
+          map(() => SceneActions.updateControlledDeviceSetpointSuccess()),
+          catchError(() =>
+            of(
+              SceneActions.undoUpdateControlledDeviceSetpoint({
+                setpoint: a.setpoint,
+              })
+            )
+          )
+        )
+      )
     )
   );
 
   removeControlledDevice = createEffect(() =>
     this.actions$.pipe(
       ofType(SceneActions.deleteControlledDevice),
-      optimisticUpdate({
-        run: (action) =>
-          this.api
-            .removeControlledDevice(action.sceneId, action.deviceId)
-            .pipe(map(() => SceneActions.deleteControlledDeviceSuccess())),
-        undoAction: (action) =>
-          SceneActions.undoDeleteControlledDevice({ device: action.device }),
-      })
+      switchMap((a) =>
+        this.api.removeControlledDevice(a.sceneId, a.deviceId).pipe(
+          map(() => SceneActions.deleteControlledDeviceSuccess()),
+          catchError(() =>
+            of(SceneActions.undoDeleteControlledDevice({ device: a.device }))
+          )
+        )
+      )
     )
   );
 
   getDeviceGroups = createEffect(() =>
     this.actions$.pipe(
       ofType(SceneActions.getDevicesGroupedByRoom),
-      fetch({
-        run: () =>
-          this.api
-            .getDeviceGroups()
-            .pipe(
-              map((devices) =>
-                SceneActions.getDevicesGroupedByRoomSuccess({ devices })
-              )
-            ),
-        onError: () =>
-          SceneActions.getDevicesGroupedByRoomFail({
-            error: 'Failed to fetch',
-          }),
-      })
+      switchMap((a) =>
+        this.api.getDeviceGroups().pipe(
+          map((devices) =>
+            SceneActions.getDevicesGroupedByRoomSuccess({ devices })
+          ),
+          catchError(() =>
+            of(
+              SceneActions.getDevicesGroupedByRoomFail({
+                error: 'Failed to fetch',
+              })
+            )
+          )
+        )
+      )
     )
   );
 
   addControlledDevice = createEffect(() =>
     this.actions$.pipe(
       ofType(SceneActions.addControlledDevice),
-      pessimisticUpdate({
-        run: ({ payload }) =>
-          this.api.addControlledDevice(payload).pipe(
-            map(() =>
-              SceneActions.addControlledDeviceSuccess({
-                sceneId: payload.sceneId,
-              })
-            )
+      switchMap((a) =>
+        this.api.addControlledDevice(a.payload).pipe(
+          map(() =>
+            SceneActions.addControlledDeviceSuccess({
+              sceneId: a.payload.sceneId,
+            })
           ),
-        onError: () => SceneActions.addControlledDeviceFail(),
-      })
+          catchError(() => of(SceneActions.addControlledDeviceFail()))
+        )
+      )
     )
   );
 
@@ -147,27 +148,26 @@ export class SceneEffects {
   updateSceneState = createEffect(() =>
     this.actions$.pipe(
       ofType(SceneActions.updateSceneState),
-      optimisticUpdate({
-        run: (action) =>
-          this.api
-            .updateSceneState(action.id, action.state)
-            .pipe(map(() => SceneActions.updateSceneStateSuccess())),
-        undoAction: (a, e) =>
-          SceneActions.undoUpdateSceneState({ state: !a.state }),
-      })
+      switchMap((a) =>
+        this.api.updateSceneState(a.id, a.state).pipe(
+          map(() => SceneActions.updateSceneStateSuccess()),
+          catchError(() =>
+            of(SceneActions.undoUpdateSceneState({ state: !a.state }))
+          )
+        )
+      )
     )
   );
 
   deleteScene = createEffect(() =>
     this.actions$.pipe(
       ofType(SceneActions.deleteScene),
-      pessimisticUpdate({
-        run: ({ id }) =>
-          this.api
-            .deleteScene(id)
-            .pipe(map(() => SceneActions.deleteSceneSuccess())),
-        onError: () => SceneActions.deleteSceneFail(),
-      })
+      switchMap((a) =>
+        this.api.deleteScene(a.id).pipe(
+          map(() => SceneActions.deleteSceneSuccess()),
+          catchError(() => of(SceneActions.deleteSceneFail()))
+        )
+      )
     )
   );
 
@@ -183,13 +183,12 @@ export class SceneEffects {
   createScene = createEffect(() =>
     this.actions$.pipe(
       ofType(SceneActions.createScene),
-      pessimisticUpdate({
-        run: (action) =>
-          this.api
-            .createScene(action.payload)
-            .pipe(map(() => SceneActions.createSceneSuccess())),
-        onError: () => SceneActions.createSceneFail(),
-      })
+      switchMap((a) =>
+        this.api.createScene(a.payload).pipe(
+          map(() => SceneActions.createSceneSuccess()),
+          catchError(() => of(SceneActions.createSceneFail()))
+        )
+      )
     )
   );
 

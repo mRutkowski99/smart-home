@@ -151,6 +151,9 @@
       "@smart-home/mobile/shell/util-menu-items": [
         "libs/mobile/shell/util-menu-items/src/index.ts"
       ],
+      "@smart-home/shared/device/util-device-event": [
+        "libs/shared/device/util-device-event/src/index.ts"
+      ],
       "@smart-home/shared/device/util-device-payload": [
         "libs/shared/device/util-device-payload/src/index.ts"
       ],
@@ -167,7 +170,8 @@
         "libs/shared/scene/util-scene-vm/src/index.ts"
       ],
       "@smart-home/shared/ui-fa-icon": ["libs/shared/ui-fa-icon/src/index.ts"],
-      "@smart-home/shared/util": ["libs/shared/util/src/index.ts"]
+      "@smart-home/shared/util": ["libs/shared/util/src/index.ts"],
+      "@smart-home/smart-hub/device": ["libs/smart-hub/device/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

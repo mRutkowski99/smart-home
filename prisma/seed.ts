@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import {AddressType, ControlledValue, PrismaClient} from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -7,6 +7,7 @@ async function main() {
   await prisma.sceneScheduleDaySchema.deleteMany();
   await prisma.sceneScheduleSchema.deleteMany();
   await prisma.sceneSchema.deleteMany();
+  await prisma.deviceAddressSchema.deleteMany()
   await prisma.deviceSchema.deleteMany();
   await prisma.roomSchema.deleteMany();
   await prisma.homeSchema.deleteMany();
@@ -30,7 +31,7 @@ async function main() {
   });
 
   // Device
-  const room = await prisma.roomSchema.findFirstOrThrow();
+  const room = await prisma.roomSchema.findFirstOrThrow()
 
   await prisma.deviceSchema.createMany({
     data: [
@@ -57,6 +58,15 @@ async function main() {
       },
     ],
   });
+
+  const device = await prisma.deviceSchema.findFirstOrThrow({where: {name: 'Device 2'}})
+
+  await prisma.deviceAddressSchema.createMany({
+    data: [
+      {address: '1.0', addressType: AddressType.DO, controlledValue: ControlledValue.WRITE_STATE, deviceId: device.id},
+      {address: '5.3', addressType: AddressType.AO, controlledValue: ControlledValue.WRITE_SETPOINT, deviceId: device.id}
+    ]
+  })
 
   // Scene
   await prisma.sceneSchema.createMany({
@@ -99,9 +109,7 @@ async function main() {
     ],
   });
 
-  const device = await prisma.deviceSchema.findFirstOrThrow({
-    where: { valueType: 'TEMPERATURE' },
-  });
+
   await prisma.sceneControlledDeviceSchema.createMany({
     data: [
       {

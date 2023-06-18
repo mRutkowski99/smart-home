@@ -81,7 +81,7 @@ export class SceneRepository {
             scheduleDays: {
               createMany: {
                 data: command.schedule.schedule.map((day) => ({
-                  dayOfWeek: day.day,
+                  dayOfWeek: day.dayOfWeek,
                   startTimeHours: day.time.hours,
                   startTimeMinutes: day.time.minutes,
                 })),
