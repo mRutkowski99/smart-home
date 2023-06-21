@@ -49,6 +49,6 @@ export class RemoveControlledDeviceHandler
     this.smartHubClient.emit(SceneUpdatedEvent.pattern, sceneUpdatedEventMapper(homeId, scene, devices))
 
     scene.commit();
-    await this.repository.update(scene);
+    await this.repository.removeControlledDevice(sceneId, deviceId)
   }
 }

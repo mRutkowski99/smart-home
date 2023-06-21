@@ -46,6 +46,6 @@ export class UpdateStateHandler
       )
     );
 
-    await this.repository.update(device);
+    await this.repository.updateState(device.id.value, device.state)
   }
 }

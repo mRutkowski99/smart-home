@@ -52,6 +52,6 @@ export class UpdateSceneScheduleHandler
     this.smartHubClient.emit(SceneUpdatedEvent.pattern, sceneUpdatedEventMapper(command.homeId, scene, devices))
 
     scene.commit();
-    await this.repository.update(scene);
+    await this.repository.updateSceneSchedule(scene.id.value, scene.schedule)
   }
 }

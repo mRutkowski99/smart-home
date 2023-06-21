@@ -52,6 +52,6 @@ export class UpdateSetpointHandler
 
     device.commit();
 
-    await this.repository.update(device);
+    await this.repository.updateSetpoint(device.id.value, device.setpoint)
   }
 }

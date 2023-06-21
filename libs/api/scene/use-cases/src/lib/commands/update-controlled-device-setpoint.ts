@@ -51,6 +51,6 @@ export class UpdateControlledDeviceSetpointHandler
     this.smartHubClient.emit(SceneUpdatedEvent.pattern, sceneUpdatedEventMapper(homeId, scene, devices))
 
     scene.commit();
-    await this.repository.update(scene);
+    await this.repository.updateControlledDeviceSetpoint(sceneId, deviceId, setpoint)
   }
 }

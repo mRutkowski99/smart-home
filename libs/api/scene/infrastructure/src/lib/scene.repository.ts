@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@smart-home/api/shared/infrastructure';
-import { Scene } from '@smart-home/api/scene/domain';
+import {ControlledDevice, Scene, SceneSchedule} from '@smart-home/api/scene/domain';
 import { sceneFactory } from './scene.factory';
 import { CreateSceneCommand } from '../../../use-cases/src/lib/commands/create-scene';
-import {SceneSchema} from "@prisma/client";
+import { SceneSchema } from '@prisma/client';
+import { DeviceValueType } from '@smart-home/shared/util';
 
 @Injectable()
 export class SceneRepository {
@@ -64,14 +65,18 @@ export class SceneRepository {
   }
 
   async delete(id: string) {
-    await this.prisma.sceneSchema.delete({
-      where: { id },
-      include: { schedule: true, controlledDevices: true },
+    await this.prisma.sceneScheduleDaySchema.deleteMany({
+      where: { sceneSchedule: { sceneId: id } },
     });
+    await this.prisma.sceneScheduleSchema.delete({ where: { sceneId: id } });
+    await this.prisma.sceneControlledDeviceSchema.deleteMany({
+      where: { sceneId: id },
+    });
+    await this.prisma.deviceSchema.delete({ where: { id } });
   }
 
   async create(command: CreateSceneCommand): Promise<SceneSchema> {
-    return  this.prisma.sceneSchema.create({
+    return this.prisma.sceneSchema.create({
       data: {
         homeId: command.homeId,
         name: command.name,
@@ -101,6 +106,66 @@ export class SceneRepository {
         },
       },
     });
+  }
+
+  async updateState(id: string, state: boolean) {
+    await this.prisma.sceneSchema.update({ where: { id }, data: { state } });
+  }
+
+  async addControlledDevice(
+    sceneId: string,
+    deviceId: string,
+    setpoint: number,
+    state: boolean
+  ) {
+    await this.prisma.sceneControlledDeviceSchema.create({
+      data: {
+        sceneId,
+        deviceId,
+        state,
+        setpoint,
+      },
+    });
+  }
+
+  async removeControlledDevice(sceneId: string, deviceId: string) {
+    const controlledDevice = await this.getControlledDevice(sceneId, deviceId)
+    if (!controlledDevice) return
+    await this.prisma.sceneControlledDeviceSchema.delete({where: {id: controlledDevice.id}})
+  }
+
+  async updateControlledDeviceSetpoint(sceneId: string, deviceId: string, setpoint: number) {
+    const controlledDevice = await this.getControlledDevice(sceneId, deviceId)
+    if (!controlledDevice) return
+    await this.prisma.sceneControlledDeviceSchema.update({where: {id: controlledDevice.id}, data: {setpoint}})
+  }
+
+  async updateControlledDeviceState(sceneId: string, deviceId: string, state: boolean) {
+    const controlledDevice = await this.getControlledDevice(sceneId, deviceId)
+    if (!controlledDevice) return
+    await this.prisma.sceneControlledDeviceSchema.update({where: {id: controlledDevice.id}, data: {state}})
+  }
+
+  async updateSceneSchedule(sceneId: string, schedule: SceneSchedule | null) {
+    if (!schedule) return
+
+    const sceneSchedule = await this.prisma.sceneScheduleSchema.findUnique({where: {sceneId}})
+    if (!sceneSchedule) return
+
+    await this.prisma.sceneScheduleDaySchema.deleteMany({where: {sceneSchedule: {sceneId}}})
+
+    await this.prisma.sceneScheduleDaySchema.createMany({data: schedule.days.map(day => ({
+        sceneScheduleId: sceneSchedule.id,
+        dayOfWeek: day.dayOfWeek,
+        startTimeHours: day.hours,
+        startTimeMinutes: day.minutes
+      }))})
+
+    await this.prisma.sceneScheduleSchema.update({where: {sceneId}, data: {active: schedule.active}})
+  }
+
+  private async getControlledDevice(sceneId: string, deviceId: string) {
+    return this.prisma.sceneControlledDeviceSchema.findFirst({where: {sceneId, deviceId}})
   }
 
   async update(scene: Scene) {

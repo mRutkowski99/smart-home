@@ -12,6 +12,7 @@ export class DeviceControlFacade {
   openModal(payload: OpenDeviceControlModalPayload): Observable<number | null> {
     return defer(async () => await this.handleModal(payload)).pipe(
       map((response) => {
+
         if (
           response.role === ModalResponse.Cancel ||
           response.data === undefined
@@ -27,8 +28,8 @@ export class DeviceControlFacade {
     const modal = await this.modalController.create({
       component: MobileSharedDeviceUiDeviceControlModalComponent,
       componentProps: { payload },
-      initialBreakpoint: 0.6,
-      breakpoints: [0.6],
+      initialBreakpoint: 0.75,
+      breakpoints: [0.75],
     });
     await modal.present();
     return await modal.onWillDismiss<number>();

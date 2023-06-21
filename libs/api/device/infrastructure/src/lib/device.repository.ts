@@ -60,6 +60,20 @@ export class DeviceRepository {
     );
   }
 
+  async updateSetpoint(id: string, value: number) {
+    this.prisma.deviceSchema.update({
+      where: {id},
+      data: {setpoint: value}
+    })
+  }
+
+  async updateState(id: string, value: boolean) {
+    this.prisma.deviceSchema.update({
+      where: {id},
+      data: {state: value}
+    })
+  }
+
   async update(device: Device) {
     await this.prisma.deviceSchema.update({
       where: { id: device.id.value },

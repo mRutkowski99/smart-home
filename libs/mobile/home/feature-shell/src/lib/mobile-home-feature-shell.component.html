@@ -1,3 +1,5 @@
+<p class="hello">Hello Miłosz</p>
+
 <!--Rooms-->
 <ng-container *ngIf="roomsVm$ | async as roomsVm">
   <!--  Loading-->
@@ -51,6 +53,7 @@
     <smart-home-ui-slider>
       <ion-slide *ngFor="let scene of scenesVm.scenes" style="width: auto">
         <smart-home-ui-scene-card
+                (changeState)="onChangeSceneState($event)"
           [routerLink]="['../', sceneRoute, scene.id]"
           [scene]="scene"
           style="width: 20rem"

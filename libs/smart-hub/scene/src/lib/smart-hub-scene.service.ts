@@ -49,7 +49,7 @@ export class SmartHubSceneService {
 
   handleSceneActivated(sceneId: string) {
     const jobs = this.jobService.get(sceneId);
-    jobs.forEach((job) => this.handleJob(job));
+    jobs?.forEach((job) => this.handleJob(job));
   }
 
   handleSceneDeleted(sceneId: string) {

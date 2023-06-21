@@ -7,6 +7,7 @@ import {
 } from '@smart-home/api/scene/domain';
 import { Name, Uuid } from '@smart-home/api/shared/domain';
 import { deviceValueTypeMapper } from '@smart-home/api/shared/infrastructure';
+import * as crypto from "crypto";
 
 type SceneFactoryInput = SceneSchema & {
   schedule: {
@@ -40,7 +41,7 @@ export function sceneFactory(schema: SceneFactoryInput): Scene {
     new Uuid(schema.homeId),
     new Name(schema.name),
     schema.state,
-    sceneScheduleFactory(schema.schedule),
+    sceneScheduleFactory(schema.schedule) ?? new SceneSchedule(new Uuid(crypto.randomUUID()), false, []),
     schema.controlledDevices.map((cd) =>
       controlledDeviceFactory(
         cd.id,
@@ -88,11 +89,12 @@ function sceneScheduleFactory(
       startTimeMinutes: number;
     }[];
   } | null
-): SceneSchedule {
+): SceneSchedule | null {
+  if (!schedule) return null
   return new SceneSchedule(
-    new Uuid(schedule!.id),
-    schedule!.active,
-    schedule!.scheduleDays.map(
+    new Uuid(schedule.id),
+    schedule.active,
+    schedule.scheduleDays.map(
       (x) =>
         new SceneScheduleDay(x.dayOfWeek, x.startTimeHours, x.startTimeMinutes)
     )

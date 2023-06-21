@@ -38,6 +38,6 @@ export class UpdateSceneStateHandler
     }
 
     scene.commit();
-    await this.repository.update(scene);
+    await this.repository.updateState(scene.id.value, scene.state)
   }
 }

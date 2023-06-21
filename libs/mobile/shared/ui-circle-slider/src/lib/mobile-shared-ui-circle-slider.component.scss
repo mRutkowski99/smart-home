@@ -1,5 +1,5 @@
 $width: 25rem;
-$handle-width: 3rem;
+$handle-width: 4rem;
 
 .bg {
   width: $width;
@@ -25,7 +25,9 @@ $handle-width: 3rem;
   width: $handle-width;
   aspect-ratio: 1;
   border-radius: 100%;
-  background: #000;
+  border-width: 5px;
+  border-color: var(--ion-color-secondary);
+  background-color: var(--ion-color-primary);
   position: absolute;
   left: calc(50% - ($handle-width / 2));
   top: 0;

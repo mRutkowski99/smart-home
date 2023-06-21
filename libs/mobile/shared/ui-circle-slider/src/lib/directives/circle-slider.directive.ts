@@ -3,7 +3,7 @@ import {
   ElementRef,
   HostListener,
   Input,
-  OnChanges,
+  OnChanges, OnInit,
   Output,
 } from '@angular/core';
 import { distinctUntilChanged, map, Observable, pairwise, Subject } from 'rxjs';

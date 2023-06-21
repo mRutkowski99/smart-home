@@ -19,7 +19,7 @@ import {
   MobileSharedSceneDataAccessModule,
   SharedSceneFacade,
 } from '@smart-home/mobile/shared/scene/data-access';
-import { MobileSharedSceneUiSceneCardComponent } from '@smart-home/mobile/shared/scene/ui-scene-card';
+import { MobileSharedSceneUiSceneCardComponent, ChangeSceneStatePayload } from '@smart-home/mobile/shared/scene/ui-scene-card';
 import { sceneCardsSkeleton } from '@smart-home/mobile/shared/scene/util';
 import { RouterLink } from '@angular/router';
 import { MainRoutes } from '@smart-home/mobile/shared/util';
@@ -68,5 +68,9 @@ export class MobileHomeFeatureShellComponent implements OnInit {
 
   getScenes() {
     this.scenesFacade.getScenesOverview();
+  }
+
+  onChangeSceneState(event: ChangeSceneStatePayload) {
+    this.scenesFacade.updateSceneState(event.id, event.state)
   }
 }
