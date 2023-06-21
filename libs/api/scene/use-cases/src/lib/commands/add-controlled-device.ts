@@ -2,7 +2,11 @@ import { DeviceValueType } from '@smart-home/shared/util';
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import { SceneRepository } from '@smart-home/api/scene/infrastructure';
 import { throwIfNull } from '@smart-home/api/shared/util';
-import { BadRequestException } from '@nestjs/common';
+import {BadRequestException, Inject} from '@nestjs/common';
+import {KafkaClient} from "kafka-node";
+import {SceneUpdatedEvent} from "@smart-home/shared/scene/util-scene-event";
+import {sceneUpdatedEventMapper} from "../mappers/scene-updated-event.mapper";
+import {DeviceRepository} from "@smart-home/api/device/infrastructure";
 
 export class AddControlledDeviceCommand {
   constructor(
@@ -10,7 +14,8 @@ export class AddControlledDeviceCommand {
     readonly deviceId: string,
     readonly setpoint: number,
     readonly state: boolean,
-    readonly valueType: DeviceValueType
+    readonly valueType: DeviceValueType,
+    readonly homeId: string
   ) {}
 }
 
@@ -20,7 +25,9 @@ export class AddControlledDeviceHandler
 {
   constructor(
     private repository: SceneRepository,
-    private publisher: EventPublisher
+    private deviceRepository: DeviceRepository,
+    private publisher: EventPublisher,
+    @Inject('SMART-HUB') private smartHubClient: KafkaClient
   ) {}
 
   async execute(command: AddControlledDeviceCommand): Promise<void> {
@@ -39,9 +46,12 @@ export class AddControlledDeviceHandler
         command.valueType
       );
     } catch (e) {
-      console.log(e);
       throw new BadRequestException(e);
     }
+
+    const devices = await this.deviceRepository.getAll(command.homeId)
+
+    this.smartHubClient.emit(SceneUpdatedEvent.pattern, sceneUpdatedEventMapper(command.homeId, scene, devices))
 
     scene.commit();
     await this.repository.update(scene);

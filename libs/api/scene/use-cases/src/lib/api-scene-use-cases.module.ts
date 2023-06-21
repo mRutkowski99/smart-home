@@ -13,9 +13,11 @@ import { AddControlledDeviceHandler } from './commands/add-controlled-device';
 import { DeleteSceneHandler } from './commands/delete-scene';
 import { CreateSceneHandler } from './commands/create-scene';
 import { UpdateSceneStateHandler } from './commands/update-scene-state';
+import {SmartHubClient} from "@smart-home/api/shared/infrastructure";
+import {ApiDeviceInfrastructureModule} from "@smart-home/api/device/infrastructure";
 
 @Module({
-  imports: [CqrsModule, ApiSceneInfrastructureModule],
+  imports: [CqrsModule, ApiSceneInfrastructureModule, SmartHubClient, ApiDeviceInfrastructureModule],
   providers: [
     SceneOverviewVmMapper,
     SceneDetailsVmMapper,

@@ -3,7 +3,7 @@ import {
   Controller,
   Delete,
   Get,
-  Headers,
+  Headers, Logger,
   Param,
   Post,
   Put,
@@ -31,15 +31,21 @@ import {
 } from '@smart-home/shared/scene/util-scene-vm';
 import {
   AddControlledDevicePayload,
-  CreateScenePayload,
+  CreateScenePayload, SceneStartedPayload,
   UpdateControlledDeviceSetpointPayload,
   UpdateControlledDeviceStatePayload,
   UpdateSceneSchedulePayload,
 } from '@smart-home/shared/scene/util-scene-payload';
+import {MessagePattern} from "@nestjs/microservices";
+import {SceneStartedEvent} from "@smart-home/shared/scene/util-scene-event";
+import {Consumer, Kafka} from "kafkajs";
 
 @Controller(ApiControllerPrefix.Scene)
 export class SceneController {
-  constructor(private queryBus: QueryBus, private commandBus: CommandBus) {}
+  private kafkaClient = new Kafka({brokers: ['localhost:9092'], clientId: 'smart-home'})
+
+  constructor(private queryBus: QueryBus, private commandBus: CommandBus) {
+  }
 
   @Get('overview')
   getScenesOverview(@Headers(HOME_ID_HEADER_KEY) homeId: string) {
@@ -58,23 +64,26 @@ export class SceneController {
   @Put(':id/state')
   updateSceneState(
     @Param('id') id: string,
-    @Body() payload: { state: boolean }
+    @Body() payload: { state: boolean },
+    @Headers(HOME_ID_HEADER_KEY) homeId: string
   ) {
     return this.commandBus.execute<UpdateSceneStateCommand>(
-      new UpdateSceneStateCommand(id, payload.state)
+      new UpdateSceneStateCommand(id, payload.state, homeId)
     );
   }
 
   @Put('schedule/:id')
   updateSceneSchedule(
     @Param('id') id: string,
-    @Body() { active, days }: UpdateSceneSchedulePayload
+    @Body() { active, days }: UpdateSceneSchedulePayload,
+    @Headers(HOME_ID_HEADER_KEY) homeId: string
   ) {
     return this.commandBus.execute<UpdateSceneScheduleCommand>(
       new UpdateSceneScheduleCommand(
         id,
         active,
-        days.map((day) => ({ day: day.dayOfWeek, time: day.time }))
+        days.map((day) => ({ day: day.dayOfWeek, time: day.time })),
+          homeId
       )
     );
   }
@@ -82,37 +91,41 @@ export class SceneController {
   @Put(':id/device-state')
   updateControlledDeviceState(
     @Param('id') id: string,
-    @Body() { state, deviceId }: UpdateControlledDeviceStatePayload
+    @Body() { state, deviceId }: UpdateControlledDeviceStatePayload,
+    @Headers(HOME_ID_HEADER_KEY) homeId: string
   ) {
     return this.commandBus.execute<UpdateControlledDeviceStateCommand>(
-      new UpdateControlledDeviceStateCommand(id, deviceId, state)
+      new UpdateControlledDeviceStateCommand(id, deviceId, state, homeId)
     );
   }
 
   @Put(':id/device-setpoint')
   updateControlledDeviceSetpoint(
     @Param('id') id: string,
-    @Body() { setpoint, deviceId }: UpdateControlledDeviceSetpointPayload
+    @Body() { setpoint, deviceId }: UpdateControlledDeviceSetpointPayload,
+    @Headers(HOME_ID_HEADER_KEY) homeId: string
   ) {
     return this.commandBus.execute<UpdateControlledDeviceSetpointCommand>(
-      new UpdateControlledDeviceSetpointCommand(id, deviceId, setpoint)
+      new UpdateControlledDeviceSetpointCommand(id, deviceId, setpoint, homeId)
     );
   }
 
   @Delete(':id/controlled-device/:deviceId')
   deleteControlledDevice(
     @Param('id') id: string,
-    @Param('deviceId') deviceId: string
+    @Param('deviceId') deviceId: string,
+    @Headers(HOME_ID_HEADER_KEY) homeId: string
   ) {
     return this.commandBus.execute<RemoveControlledDeviceCommand>(
-      new RemoveControlledDeviceCommand(id, deviceId)
+      new RemoveControlledDeviceCommand(id, deviceId, homeId)
     );
   }
 
   @Put(':id/device')
   addControlledDevice(
     @Param('id') id: string,
-    @Body() payload: AddControlledDevicePayload
+    @Body() payload: AddControlledDevicePayload,
+    @Headers(HOME_ID_HEADER_KEY) homeId: string
   ) {
     return this.commandBus.execute<AddControlledDeviceCommand>(
       new AddControlledDeviceCommand(
@@ -120,15 +133,16 @@ export class SceneController {
         payload.deviceId,
         payload.setpoint,
         payload.state,
-        payload.valueType
+        payload.valueType,
+          homeId
       )
     );
   }
 
   @Delete(':id')
-  deleteScene(@Param('id') id: string) {
+  deleteScene(@Param('id') id: string, @Headers(HOME_ID_HEADER_KEY) homeId: string) {
     return this.commandBus.execute<DeleteSceneCommand>(
-      new DeleteSceneCommand(id)
+      new DeleteSceneCommand(id, homeId)
     );
   }
 

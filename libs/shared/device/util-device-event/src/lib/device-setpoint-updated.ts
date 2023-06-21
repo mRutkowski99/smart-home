@@ -11,12 +11,6 @@ export class DeviceSetpointUpdated {
   ) {}
 
     toString() {
-        return JSON.stringify({
-            homeId: this.homeId,
-            id: this.id,
-            setpoint: this.setpoint,
-            address: this.address,
-            addressType: this.addressType
-        })
+        return JSON.stringify(this)
     }
 }

@@ -11,12 +11,6 @@ export class DeviceStateUpdatedEvent {
   ) {}
 
   toString() {
-    return JSON.stringify({
-      homeId: this.homeId,
-      id: this.id,
-      state: this.state,
-      address: this.address,
-      addressType: this.addressType
-    });
+    return JSON.stringify(this)
   }
 }

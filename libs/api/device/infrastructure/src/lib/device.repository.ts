@@ -7,6 +7,11 @@ import { deviceFactory } from './device.factory';
 export class DeviceRepository {
   constructor(private prisma: PrismaService) {}
 
+  async getAll(homeId: string): Promise<Device[]> {
+    const devices = await this.prisma.deviceSchema.findMany({where: {room: {homeId}}, include: {addresses: true}})
+    return devices.map(deviceFactory)
+  }
+
   async getById(id: string): Promise<Device | null> {
     const device = await this.prisma.deviceSchema.findUnique({
       where: { id },

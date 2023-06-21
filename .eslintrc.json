@@ -129,7 +129,8 @@
                 "sourceTag": "scope:scene",
                 "onlyDependOnLibsWithTags": [
                   "scope:shared",
-                  "scope:scene"
+                  "scope:scene",
+                  "scope:device"
                 ]
               }
             ]

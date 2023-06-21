@@ -163,6 +163,9 @@
       "@smart-home/shared/room/util-room-vm": [
         "libs/shared/room/util-room-vm/src/index.ts"
       ],
+      "@smart-home/shared/scene/util-scene-event": [
+        "libs/shared/scene/util-scene-event/src/index.ts"
+      ],
       "@smart-home/shared/scene/util-scene-payload": [
         "libs/shared/scene/util-scene-payload/src/index.ts"
       ],
@@ -171,7 +174,9 @@
       ],
       "@smart-home/shared/ui-fa-icon": ["libs/shared/ui-fa-icon/src/index.ts"],
       "@smart-home/shared/util": ["libs/shared/util/src/index.ts"],
-      "@smart-home/smart-hub/device": ["libs/smart-hub/device/src/index.ts"]
+      "@smart-home/smart-hub/common": ["libs/smart-hub/common/src/index.ts"],
+      "@smart-home/smart-hub/device": ["libs/smart-hub/device/src/index.ts"],
+      "@smart-home/smart-hub/scene": ["libs/smart-hub/scene/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
