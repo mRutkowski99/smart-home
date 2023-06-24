@@ -5,7 +5,7 @@ import { UpdateSetpointHandler } from './commands/update-setpoint';
 import { UpdateStateHandler } from './commands/update-state';
 import { DeviceVmMapper } from './mappers/device-vm.mapper';
 import { GetDevicesGroupByRoomHandler } from './queries/get-devices-group-by-room';
-import { SmartHubClient } from '@smart-home/api/shared/infrastructure';
+import {SmartHubClient, WebsocketGateway} from '@smart-home/api/shared/infrastructure';
 import {SceneStartedHandler} from "./events/handle-scene-started";
 
 @Module({
@@ -15,6 +15,7 @@ import {SceneStartedHandler} from "./events/handle-scene-started";
     SmartHubClient
   ],
   providers: [
+      WebsocketGateway,
     UpdateSetpointHandler,
     UpdateStateHandler,
     DeviceVmMapper,

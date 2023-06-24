@@ -1,5 +1,7 @@
 export * from './lib/main-routes.enum';
 
+export * from "./lib/services/websocket.service";
+
 export * from './lib/modal/modal-component';
 export * from './lib/modal/modal-response.enum';
 

@@ -5,6 +5,8 @@ import { BadRequestException, Inject } from '@nestjs/common';
 import { ClientKafka } from '@nestjs/microservices';
 import { DeviceStateUpdatedEvent } from '@smart-home/shared/device/util-device-event';
 import {AddressType, ControlledValue} from '@prisma/client';
+import {WebsocketGateway} from "@smart-home/api/shared/infrastructure";
+import {SceneStartedSocketEvent} from "@smart-home/shared/scene/util-scene-event";
 
 export class UpdateStateCommand {
   constructor(
@@ -21,7 +23,8 @@ export class UpdateStateHandler
   constructor(
     private repository: DeviceRepository,
     private publisher: EventPublisher,
-    @Inject('SMART-HUB') private smartHubClient: ClientKafka
+    @Inject('SMART-HUB') private smartHubClient: ClientKafka,
+    private websocket: WebsocketGateway
   ) {}
 
   async execute({ id, state, homeId }: UpdateStateCommand): Promise<void> {
@@ -47,5 +50,6 @@ export class UpdateStateHandler
     );
 
     await this.repository.updateState(device.id.value, device.state)
+    this.websocket.sendEventToClients(new SceneStartedSocketEvent(device.id.value))
   }
 }

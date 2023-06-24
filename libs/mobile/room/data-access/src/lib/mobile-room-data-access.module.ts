@@ -5,12 +5,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { RoomEffects } from './state/room.effects';
 import { RoomFacade } from './room.facade';
 import { RoomApiService } from './api/room-api.service';
+import {RoomSocketService} from "./api/room-socket.service";
 
 @NgModule({
   imports: [
     StoreModule.forFeature(ROOM_FEATURE_NAME, roomReducer),
     EffectsModule.forFeature([RoomEffects]),
   ],
-  providers: [RoomFacade, RoomApiService],
+  providers: [RoomFacade, RoomApiService, RoomSocketService],
 })
 export class MobileRoomDataAccessModule {}

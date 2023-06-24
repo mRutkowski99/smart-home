@@ -5,6 +5,7 @@ import { combineLatest, first, map, Observable } from 'rxjs';
 import * as Selectors from './state/room.selectors';
 import * as Actions from './state/room.actions';
 import { RoomDevice } from '@smart-home/shared/room/util-room-vm';
+import {RoomSocketService} from "./api/room-socket.service";
 
 @Injectable()
 export class RoomFacade {
@@ -14,7 +15,9 @@ export class RoomFacade {
     this.store.select(Selectors.roomDetailsErrorSelector),
   ]).pipe(map(([room, status, error]) => ({ room, status, error })));
 
-  constructor(private store: Store<RoomState>) {}
+  constructor(private store: Store<RoomState>, private socket: RoomSocketService) {}
+
+  private socketSubscription = this.socket.events$.subscribe(console.log)
 
   getRoomDetails(roomId: string) {
     this.store.dispatch(Actions.getRoomDetails({ roomId }));

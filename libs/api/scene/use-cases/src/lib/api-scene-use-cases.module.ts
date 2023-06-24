@@ -13,13 +13,14 @@ import { AddControlledDeviceHandler } from './commands/add-controlled-device';
 import { DeleteSceneHandler } from './commands/delete-scene';
 import { CreateSceneHandler } from './commands/create-scene';
 import { UpdateSceneStateHandler } from './commands/update-scene-state';
-import {SmartHubClient} from "@smart-home/api/shared/infrastructure";
+import {SmartHubClient, WebsocketGateway} from "@smart-home/api/shared/infrastructure";
 import {ApiDeviceInfrastructureModule} from "@smart-home/api/device/infrastructure";
 import {SceneStartedHandler} from "./commands/scene-started";
 
 @Module({
   imports: [CqrsModule, ApiSceneInfrastructureModule, SmartHubClient, ApiDeviceInfrastructureModule],
   providers: [
+    WebsocketGateway,
     SceneOverviewVmMapper,
     SceneDetailsVmMapper,
     GetScenesOverviewHandler,
