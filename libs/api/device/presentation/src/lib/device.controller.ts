@@ -9,15 +9,22 @@ import {
   UpdateDeviceStatePayload,
 } from '@smart-home/shared/device/util-device-payload';
 import {
-  GetDevicesGroupByRoomQuery,
+  GetDevicesGroupByRoomQuery, GetDevicesQuery,
   UpdateSetpointCommand,
   UpdateStateCommand,
 } from '@smart-home/api/device/use-cases';
-import { DeviceGroupVm } from '@smart-home/shared/device/util-device-vm';
+import {DeviceGroupVm, DeviceVm} from '@smart-home/shared/device/util-device-vm';
 
 @Controller(ApiControllerPrefix.Device)
 export class DeviceController {
   constructor(private commandBus: CommandBus, private queryBus: QueryBus) {}
+
+  @Get()
+  async getDevices(@Headers(HOME_ID_HEADER_KEY) homeId: string) {
+    return this.queryBus.execute<GetDevicesQuery, DeviceVm[]>(
+        new GetDevicesQuery(homeId)
+    )
+  }
 
   @Get('grouped')
   async getGroupedByRoom(@Headers(HOME_ID_HEADER_KEY) homeId: string) {

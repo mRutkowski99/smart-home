@@ -69,3 +69,16 @@
     }}</smart-home-ui-error>
   </ng-container>
 </ng-container>
+
+
+<!--Devices-->
+<ng-container *ngIf="deviceVm$ | async as deviceVm">
+  <ng-container *ngIf="deviceVm.status === 'success'">
+    <smart-home-ui-slider>
+      <ion-slide *ngFor="let device of deviceVm.devices" style="width: auto">
+        <smart-home-mobile-ui-device-card [device]="device" style="width: 25rem" (select)="onSelectDevice($event)"
+                                          (toggleState)="onChangeDeviceState($event, device.id)"/>
+      </ion-slide>
+    </smart-home-ui-slider>
+  </ng-container>
+</ng-container>

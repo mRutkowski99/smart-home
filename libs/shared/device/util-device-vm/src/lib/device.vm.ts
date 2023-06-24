@@ -7,4 +7,5 @@ export interface DeviceVm {
   readonly state: boolean;
   readonly setpoint: number;
   readonly valueType: DeviceValueType;
+  readonly roomName?: string
 }

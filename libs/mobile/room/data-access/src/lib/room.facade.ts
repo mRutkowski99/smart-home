@@ -17,8 +17,6 @@ export class RoomFacade {
 
   constructor(private store: Store<RoomState>, private socket: RoomSocketService) {}
 
-  private socketSubscription = this.socket.events$.subscribe(console.log)
-
   getRoomDetails(roomId: string) {
     this.store.dispatch(Actions.getRoomDetails({ roomId }));
   }

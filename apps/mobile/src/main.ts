@@ -5,6 +5,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app/app.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import {SocketIoModule} from "ngx-socket-io";
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -20,7 +21,8 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(
       IonicModule.forRoot(),
       StoreModule.forRoot({}),
-      EffectsModule.forRoot([])
+      EffectsModule.forRoot([]),
+        SocketIoModule.forRoot({url: 'http://localhost:3333/api'})
     ),
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],

@@ -6,20 +6,14 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/mobile/scene/util/**/*.ts"
-        ]
+        "lintFilePatterns": ["libs/mobile/scene/util/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "libs/mobile/scene/util/jest.config.ts",
         "passWithNoTests": true
@@ -32,9 +26,5 @@
       }
     }
   },
-  "tags": [
-    "platform:mobile",
-    "scope:scene",
-    "type:util"
-  ]
+  "tags": ["platform:mobile", "scope:scene", "type:util"]
 }

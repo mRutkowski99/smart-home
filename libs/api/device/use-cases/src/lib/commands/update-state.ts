@@ -50,6 +50,5 @@ export class UpdateStateHandler
     );
 
     await this.repository.updateState(device.id.value, device.state)
-    this.websocket.sendEventToClients(new SceneStartedSocketEvent(device.id.value))
   }
 }

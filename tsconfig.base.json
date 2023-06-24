@@ -91,6 +91,9 @@
       "@smart-home/mobile/shared/auth/data-access": [
         "libs/mobile/shared/auth/data-access/src/index.ts"
       ],
+      "@smart-home/mobile/shared/device/data-access": [
+        "libs/mobile/shared/device/data-access/src/index.ts"
+      ],
       "@smart-home/mobile/shared/device/ui-device-card": [
         "libs/mobile/shared/device/ui-device-card/src/index.ts"
       ],

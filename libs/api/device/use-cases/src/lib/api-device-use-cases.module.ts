@@ -7,6 +7,7 @@ import { DeviceVmMapper } from './mappers/device-vm.mapper';
 import { GetDevicesGroupByRoomHandler } from './queries/get-devices-group-by-room';
 import {SmartHubClient, WebsocketGateway} from '@smart-home/api/shared/infrastructure';
 import {SceneStartedHandler} from "./events/handle-scene-started";
+import {GetDevicesHandler} from "./queries/get-devices";
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import {SceneStartedHandler} from "./events/handle-scene-started";
     UpdateStateHandler,
     DeviceVmMapper,
     GetDevicesGroupByRoomHandler,
-    SceneStartedHandler
+    SceneStartedHandler,
+      GetDevicesHandler
   ],
   exports: [CqrsModule],
 })
