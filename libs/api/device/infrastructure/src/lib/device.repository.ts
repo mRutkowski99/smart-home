@@ -74,6 +74,13 @@ export class DeviceRepository {
     })
   }
 
+  async handleSceneDevices(jobs: {deviceId: string, setpoint: number, state: boolean}[]) {
+    for (const job of jobs) {
+      await this.updateSetpoint(job.deviceId, job.setpoint)
+      await this.updateState(job.deviceId, job.state)
+    }
+  }
+
   async update(device: Device) {
     await this.prisma.deviceSchema.update({
       where: { id: device.id.value },

@@ -9,3 +9,4 @@ export { AddControlledDeviceCommand } from './lib/commands/add-controlled-device
 export { DeleteSceneCommand } from './lib/commands/delete-scene';
 export { CreateSceneCommand } from './lib/commands/create-scene';
 export { UpdateSceneStateCommand } from './lib/commands/update-scene-state';
+export {SceneStartedCommand} from './lib/commands/scene-started'

@@ -15,6 +15,7 @@ import { CreateSceneHandler } from './commands/create-scene';
 import { UpdateSceneStateHandler } from './commands/update-scene-state';
 import {SmartHubClient} from "@smart-home/api/shared/infrastructure";
 import {ApiDeviceInfrastructureModule} from "@smart-home/api/device/infrastructure";
+import {SceneStartedHandler} from "./commands/scene-started";
 
 @Module({
   imports: [CqrsModule, ApiSceneInfrastructureModule, SmartHubClient, ApiDeviceInfrastructureModule],
@@ -31,6 +32,7 @@ import {ApiDeviceInfrastructureModule} from "@smart-home/api/device/infrastructu
     DeleteSceneHandler,
     CreateSceneHandler,
     UpdateSceneStateHandler,
+      SceneStartedHandler
   ],
   exports: [CqrsModule],
 })

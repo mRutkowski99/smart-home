@@ -4,7 +4,7 @@ import { SceneUpdatedEvent } from '@smart-home/shared/scene/util-scene-event';
 import { ControlledValue } from '@prisma/client';
 
 const createCron = (scheduleDay: SceneScheduleDay): string =>
-  `0 ${scheduleDay.minutes} ${scheduleDay.hours} 0 0 ${scheduleDay.dayOfWeek}`;
+  `0 ${scheduleDay.minutes} ${scheduleDay.hours} * * ${scheduleDay.dayOfWeek}`;
 
 export const sceneUpdatedEventMapper = (
   homeId: string,

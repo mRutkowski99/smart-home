@@ -19,7 +19,7 @@ import {
   DeleteSceneCommand,
   GetSceneDetailsQuery,
   GetScenesOverviewQuery,
-  RemoveControlledDeviceCommand,
+  RemoveControlledDeviceCommand, SceneStartedCommand,
   UpdateControlledDeviceSetpointCommand,
   UpdateControlledDeviceStateCommand,
   UpdateSceneScheduleCommand,
@@ -36,13 +36,10 @@ import {
   UpdateControlledDeviceStatePayload,
   UpdateSceneSchedulePayload,
 } from '@smart-home/shared/scene/util-scene-payload';
-import {MessagePattern} from "@nestjs/microservices";
-import {SceneStartedEvent} from "@smart-home/shared/scene/util-scene-event";
-import {Consumer, Kafka} from "kafkajs";
+import {addWarning} from "@angular-devkit/build-angular/src/utils/webpack-diagnostics";
 
 @Controller(ApiControllerPrefix.Scene)
 export class SceneController {
-  private kafkaClient = new Kafka({brokers: ['localhost:9092'], clientId: 'smart-home'})
 
   constructor(private queryBus: QueryBus, private commandBus: CommandBus) {
   }
@@ -159,5 +156,10 @@ export class SceneController {
         payload.devices
       )
     );
+  }
+
+  @Put(':id/started')
+  sceneStarted(@Param('id') id: string, @Headers(HOME_ID_HEADER_KEY) homeId: string) {
+    this.commandBus.execute<SceneStartedCommand>(new SceneStartedCommand(id, homeId))
   }
 }

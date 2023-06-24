@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import {Injectable, OnModuleInit} from '@nestjs/common';
 import {
   SceneCreatedEvent,
   SceneUpdatedEvent,
@@ -12,9 +12,10 @@ import { SchedulerRegistry } from '@nestjs/schedule';
 import { CronJob } from 'cron';
 import { HttpService } from '@nestjs/axios';
 import {ApiControllerPrefix, getControllerUrl, HOME_ID_HEADER_KEY} from '@smart-home/shared/util';
+import {firstValueFrom} from "rxjs";
 
 @Injectable()
-export class SmartHubSceneService {
+export class SmartHubSceneService implements OnModuleInit {
   constructor(
     private jobService: SceneJobsService,
     private scheduler: SchedulerRegistry,
@@ -29,13 +30,14 @@ export class SmartHubSceneService {
     event.cron.forEach((cron) => {
       const cronJob = new CronJob(cron, () => {
         event.jobs.forEach((job) => this.handleJob(job));
-        this.httpService.put(
-          `${getControllerUrl(ApiControllerPrefix.Scene)}/${
-            event.sceneId
-          }/state`,
-          { state: true },
-          { headers: {[HOME_ID_HEADER_KEY]: event.homeId} }
-        );
+
+        const resp = firstValueFrom(this.httpService.put(
+            `${getControllerUrl(ApiControllerPrefix.Scene)}/${
+                event.sceneId
+            }/started`,
+            {},
+            { headers: {[HOME_ID_HEADER_KEY]: event.homeId} }
+        )).then(console.log).catch(console.log)
       });
 
       this.scheduler.addCronJob(
@@ -69,6 +71,14 @@ export class SmartHubSceneService {
     event.cron.forEach((cron) => {
       const cronJob = new CronJob(cron, () => {
         event.jobs.forEach((job) => this.handleJob(job));
+        const resp = firstValueFrom(this.httpService.put(
+            `${getControllerUrl(ApiControllerPrefix.Scene)}/${
+                event.sceneId
+            }/started`,
+            {},
+            { headers: {[HOME_ID_HEADER_KEY]: event.homeId} }
+        )).then(console.log).catch(console.log)
+
       });
 
       this.scheduler.addCronJob(
@@ -90,5 +100,16 @@ export class SmartHubSceneService {
 
   private getCronDay(cron: string) {
     return cron.slice(-1);
+  }
+
+  onModuleInit() {
+    // const resp = firstValueFrom(this.httpService.put(
+    //     `${getControllerUrl(ApiControllerPrefix.Scene)}/${
+    //         123
+    //     }/started`,
+    //     {},
+    //     { headers: {[HOME_ID_HEADER_KEY]: 123} }
+    // )).then(console.log).catch(console.log)
+
   }
 }

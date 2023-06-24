@@ -9,6 +9,7 @@ import { ControlledDevice } from './controlled-device.model';
 import { DayOfWeek, DeviceValueType, Time } from '@smart-home/shared/util';
 import { SceneScheduleDay } from './scene-schedule-day.model';
 import * as crypto from 'crypto';
+import {SceneStartedEvent} from "@smart-home/shared/scene/util-scene-event";
 
 export class Scene extends AggregateRoot {
   constructor(
@@ -40,7 +41,8 @@ export class Scene extends AggregateRoot {
 
   updateState(state: boolean) {
     this._state = state;
-    //TODO: dispatch event
+
+    if (state) this.apply(new SceneStartedEvent(this.homeId.value, this.id.value, this.jobs))
   }
 
   updateSchedule(
@@ -115,5 +117,9 @@ export class Scene extends AggregateRoot {
     ];
 
     //TODO: dispatch event
+  }
+
+  private get jobs() {
+    return this.controlledDevices.map(device => ({deviceId: device.deviceId.value, setpoint: device.setpoint, state: device.state}))
   }
 }
