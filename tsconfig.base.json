@@ -15,6 +15,16 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@smart-home/api/alarm/domain": ["libs/api/alarm/domain/src/index.ts"],
+      "@smart-home/api/alarm/infrastructure": [
+        "libs/api/alarm/infrastructure/src/index.ts"
+      ],
+      "@smart-home/api/alarm/presentation": [
+        "libs/api/alarm/presentation/src/index.ts"
+      ],
+      "@smart-home/api/alarm/use-cases": [
+        "libs/api/alarm/use-cases/src/index.ts"
+      ],
       "@smart-home/api/device/domain": ["libs/api/device/domain/src/index.ts"],
       "@smart-home/api/device/infrastructure": [
         "libs/api/device/infrastructure/src/index.ts"
@@ -51,6 +61,13 @@
       ],
       "@smart-home/api/shared/util": ["libs/api/shared/util/src/index.ts"],
       "@smart-home/api/shell/feature": ["libs/api/shell/feature/src/index.ts"],
+      "@smart-home/mobile/alarm/data-access": [
+        "libs/mobile/alarm/data-access/src/index.ts"
+      ],
+      "@smart-home/mobile/alarm/ui-alarm-card": [
+        "libs/mobile/alarm/ui-alarm-card/src/index.ts"
+      ],
+      "@smart-home/mobile/alarm/util": ["libs/mobile/alarm/util/src/index.ts"],
       "@smart-home/mobile/home/feature-shell": [
         "libs/mobile/home/feature-shell/src/index.ts"
       ],
@@ -154,6 +171,12 @@
       "@smart-home/mobile/shell/util-menu-items": [
         "libs/mobile/shell/util-menu-items/src/index.ts"
       ],
+      "@smart-home/shared/alarm/util-alarm-event": [
+        "libs/shared/alarm/util-alarm-event/src/index.ts"
+      ],
+      "@smart-home/shared/alarm/util-alarm-vm": [
+        "libs/shared/alarm/util-alarm-vm/src/index.ts"
+      ],
       "@smart-home/shared/device/util-device-event": [
         "libs/shared/device/util-device-event/src/index.ts"
       ],
@@ -177,6 +200,7 @@
       ],
       "@smart-home/shared/ui-fa-icon": ["libs/shared/ui-fa-icon/src/index.ts"],
       "@smart-home/shared/util": ["libs/shared/util/src/index.ts"],
+      "@smart-home/smart-hub/alarm": ["libs/smart-hub/alarm/src/index.ts"],
       "@smart-home/smart-hub/common": ["libs/smart-hub/common/src/index.ts"],
       "@smart-home/smart-hub/device": ["libs/smart-hub/device/src/index.ts"],
       "@smart-home/smart-hub/scene": ["libs/smart-hub/scene/src/index.ts"]

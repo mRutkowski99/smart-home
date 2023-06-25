@@ -16,6 +16,7 @@ model HomeSchema {
   id     String        @id @default(uuid())
   rooms  RoomSchema[]
   scenes SceneSchema[]
+  alarm  AlarmSchema?
 }
 
 // ----- ROOM -----
@@ -123,4 +124,19 @@ model SceneControlledDeviceSchema {
 
   deviceId String
   device   DeviceSchema @relation(fields: [deviceId], references: [id])
+}
+
+// ----- ALARM -----
+
+model AlarmSchema {
+  id                String      @id @default(uuid())
+  state             Boolean
+  stateAddress      String
+  stateAddressType  AddressType
+  status            Boolean
+  statusAddress     String
+  statusAddressType AddressType
+
+  homeId String     @unique
+  home   HomeSchema @relation(fields: [homeId], references: [id])
 }

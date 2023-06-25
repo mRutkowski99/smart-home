@@ -1,5 +1,12 @@
 <p class="hello">Hello Miłosz</p>
 
+<!--Alarm-->
+<ng-container *ngIf="alarmVm$ | async as alarmVm">
+  <ng-container *ngIf="alarmVm.status === 'success' && alarmVm.alarm">
+    <smart-home-ui-alarm-card [alarm]="alarmVm.alarm" (changeState)="onChangeAlarmState($event)"/>
+  </ng-container>
+</ng-container>
+
 <!--Rooms-->
 <ng-container *ngIf="roomsVm$ | async as roomsVm">
   <!--  Loading-->

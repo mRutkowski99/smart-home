@@ -7,7 +7,7 @@ import {Server} from 'socket.io'
     }
 })
 export class WebsocketGateway {
-    @WebSocketServer() server!: Server
+    @WebSocketServer() private server!: Server
 
     sendEventToClients(event: any) {
         this.server.emit(event.pattern, event)

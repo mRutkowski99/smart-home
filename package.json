@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "prisma-seed": "ts-node prisma/seed.ts"
+    "prisma-seed": "ts-node prisma/seed.ts",
+    "prisma-seed-safety": "ts-node prisma/seed-safety.ts"
   },
   "private": true,
   "dependencies": {

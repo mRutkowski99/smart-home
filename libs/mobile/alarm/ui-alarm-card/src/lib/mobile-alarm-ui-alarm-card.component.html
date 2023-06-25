@@ -1,0 +1,17 @@
+<ion-card
+  *ngIf="alarm"
+  class="alarm-card"
+  [ngClass]="{ 'alarm-card--disabled': (alarm | alarmStatus) === 'disabled', 'alarm-card--triggered': (alarm | alarmStatus) === 'triggered' }"
+>
+  <ion-card-header class="flex justify-between items-center">
+    <ion-card-title
+      >Alarm: {{ alarm | alarmStatus | titlecase }}</ion-card-title
+    >
+    <ion-button *ngIf="alarm.status" (click)="changeState.emit({id: alarm.id, value: !alarm.state})">
+      <smart-home-ui-fa-icon
+        [icon]="alarm.state ? UNLOCK_ICON : LOCK_ICON"
+        color="#000"
+      />
+    </ion-button>
+  </ion-card-header>
+</ion-card>

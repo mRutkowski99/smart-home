@@ -26,9 +26,10 @@ import { MainRoutes } from '@smart-home/mobile/shared/util';
 import {MobileSharedDeviceDataAccessModule, SharedDeviceFacade} from "@smart-home/mobile/shared/device/data-access";
 import {MobileSharedDeviceUiDeviceCardComponent} from "@smart-home/mobile/shared/device/ui-device-card";
 import {DeviceControlFacade} from "@smart-home/mobile/shared/device/ui-device-control-modal";
-import {RoomDevice} from "@smart-home/shared/room/util-room-vm";
 import {getDeviceValueControlModalPayload} from "@smart-home/mobile/shared/device/util";
 import {DeviceVm} from "@smart-home/shared/device/util-device-vm";
+import {AlarmFacade, MobileAlarmDataAccessModule} from "@smart-home/mobile/alarm/data-access";
+import {MobileAlarmUiAlarmCardComponent} from "@smart-home/mobile/alarm/ui-alarm-card";
 
 @Component({
   selector: 'smart-home-mobile-home-feature-shell',
@@ -45,7 +46,9 @@ import {DeviceVm} from "@smart-home/shared/device/util-device-vm";
     MobileSharedSceneUiSceneCardComponent,
     RouterLink,
     MobileSharedDeviceDataAccessModule,
-    MobileSharedDeviceUiDeviceCardComponent
+    MobileSharedDeviceUiDeviceCardComponent,
+    MobileAlarmDataAccessModule,
+    MobileAlarmUiAlarmCardComponent
   ],
   providers: [DeviceControlFacade],
   templateUrl: './mobile-home-feature-shell.component.html',
@@ -61,18 +64,21 @@ export class MobileHomeFeatureShellComponent implements OnInit {
   readonly sceneCardsSkeleton = sceneCardsSkeleton(4);
   readonly sceneRoute = MainRoutes.Scenes;
   readonly deviceVm$ = this.deviceFacade.deviceVm$
+  readonly alarmVm$ = this.alarmFacade.alarmVm$
 
   constructor(
     private roomFacade: SharedRoomFacade,
     private scenesFacade: SharedSceneFacade,
     private deviceFacade: SharedDeviceFacade,
-    private deviceControlFacade: DeviceControlFacade
+    private deviceControlFacade: DeviceControlFacade,
+    private alarmFacade: AlarmFacade
   ) {}
 
   ngOnInit() {
     this.getRooms();
     this.getScenes();
     this.getDevices()
+    this.getAlarm()
   }
 
   getRooms() {
@@ -85,6 +91,10 @@ export class MobileHomeFeatureShellComponent implements OnInit {
 
   getDevices() {
     this.deviceFacade.getDevices()
+  }
+
+  getAlarm() {
+    this.alarmFacade.getAlarms()
   }
 
   onChangeSceneState(event: ChangeSceneStatePayload) {
@@ -117,4 +127,9 @@ export class MobileHomeFeatureShellComponent implements OnInit {
           );
         });
   }
+
+  onChangeAlarmState(event: {id: string, value: boolean}) {
+    this.alarmFacade.updateAlarmState(event.id, event.value)
+  }
+
 }
