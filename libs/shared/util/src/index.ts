@@ -6,3 +6,4 @@ export * from './lib/device-value.type';
 export * from './lib/day-of-week.enum';
 export * from './lib/time.interface';
 export * from './lib/time.interface';
+export * from "./lib/period";

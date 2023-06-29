@@ -13,10 +13,11 @@ datasource db {
 // ----- HOME -----
 
 model HomeSchema {
-  id     String        @id @default(uuid())
+  id     String           @id @default(uuid())
   rooms  RoomSchema[]
   scenes SceneSchema[]
   alarm  AlarmSchema?
+  usage  UsageLogSchema[]
 }
 
 // ----- ROOM -----
@@ -136,6 +137,17 @@ model AlarmSchema {
   status            Boolean
   statusAddress     String
   statusAddressType AddressType
+
+  homeId String     @unique
+  home   HomeSchema @relation(fields: [homeId], references: [id])
+}
+
+// ----- USAGE -----
+
+model UsageLogSchema {
+  id    String   @id @default(uuid())
+  date  DateTime
+  value Float
 
   homeId String     @unique
   home   HomeSchema @relation(fields: [homeId], references: [id])

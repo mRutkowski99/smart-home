@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "prisma-seed": "ts-node prisma/seed.ts",
-    "prisma-seed-safety": "ts-node prisma/seed-safety.ts"
+    "prisma-seed-safety": "ts-node prisma/seed-safety.ts",
+    "prisma-seed-usage": "ts-node prisma/seed-usage.ts"
   },
   "private": true,
   "dependencies": {

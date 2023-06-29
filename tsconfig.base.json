@@ -61,6 +61,16 @@
       ],
       "@smart-home/api/shared/util": ["libs/api/shared/util/src/index.ts"],
       "@smart-home/api/shell/feature": ["libs/api/shell/feature/src/index.ts"],
+      "@smart-home/api/usage/domain": ["libs/api/usage/domain/src/index.ts"],
+      "@smart-home/api/usage/infrastructure": [
+        "libs/api/usage/infrastructure/src/index.ts"
+      ],
+      "@smart-home/api/usage/presentation": [
+        "libs/api/usage/presentation/src/index.ts"
+      ],
+      "@smart-home/api/usage/use-cases": [
+        "libs/api/usage/use-cases/src/index.ts"
+      ],
       "@smart-home/mobile/alarm/data-access": [
         "libs/mobile/alarm/data-access/src/index.ts"
       ],
@@ -171,6 +181,9 @@
       "@smart-home/mobile/shell/util-menu-items": [
         "libs/mobile/shell/util-menu-items/src/index.ts"
       ],
+      "@smart-home/mobile/usage/data-access": [
+        "libs/mobile/usage/data-access/src/index.ts"
+      ],
       "@smart-home/shared/alarm/util-alarm-event": [
         "libs/shared/alarm/util-alarm-event/src/index.ts"
       ],
@@ -199,6 +212,9 @@
         "libs/shared/scene/util-scene-vm/src/index.ts"
       ],
       "@smart-home/shared/ui-fa-icon": ["libs/shared/ui-fa-icon/src/index.ts"],
+      "@smart-home/shared/usage/util-usage-vm": [
+        "libs/shared/usage/util-usage-vm/src/index.ts"
+      ],
       "@smart-home/shared/util": ["libs/shared/util/src/index.ts"],
       "@smart-home/smart-hub/alarm": ["libs/smart-hub/alarm/src/index.ts"],
       "@smart-home/smart-hub/common": ["libs/smart-hub/common/src/index.ts"],
