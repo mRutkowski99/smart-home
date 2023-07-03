@@ -1,4 +1,5 @@
 export enum ApiControllerPrefix {
+  Home = 'home',
   Room = 'room',
   Device = 'device',
   Scene = 'scene',

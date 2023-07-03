@@ -115,7 +115,8 @@
                 "sourceTag": "scope:room",
                 "onlyDependOnLibsWithTags": [
                   "scope:shared",
-                  "scope:room"
+                  "scope:room",
+                  "scope:device"
                 ]
               },
               {

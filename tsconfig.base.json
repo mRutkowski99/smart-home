@@ -35,6 +35,16 @@
       "@smart-home/api/device/use-cases": [
         "libs/api/device/use-cases/src/index.ts"
       ],
+      "@smart-home/api/home/domain": ["libs/api/home/domain/src/index.ts"],
+      "@smart-home/api/home/infrastructure": [
+        "libs/api/home/infrastructure/src/index.ts"
+      ],
+      "@smart-home/api/home/presentation": [
+        "libs/api/home/presentation/src/index.ts"
+      ],
+      "@smart-home/api/home/use-cases": [
+        "libs/api/home/use-cases/src/index.ts"
+      ],
       "@smart-home/api/room/domain": ["libs/api/room/domain/src/index.ts"],
       "@smart-home/api/room/infrastructure": [
         "libs/api/room/infrastructure/src/index.ts"
@@ -187,6 +197,9 @@
       "@smart-home/shared/alarm/util-alarm-event": [
         "libs/shared/alarm/util-alarm-event/src/index.ts"
       ],
+      "@smart-home/shared/alarm/util-alarm-payload": [
+        "libs/shared/alarm/util-alarm-payload/src/index.ts"
+      ],
       "@smart-home/shared/alarm/util-alarm-vm": [
         "libs/shared/alarm/util-alarm-vm/src/index.ts"
       ],
@@ -198,6 +211,15 @@
       ],
       "@smart-home/shared/device/util-device-vm": [
         "libs/shared/device/util-device-vm/src/index.ts"
+      ],
+      "@smart-home/shared/home/util-home-payload": [
+        "libs/shared/home/util-home-payload/src/index.ts"
+      ],
+      "@smart-home/shared/home/util-home-vm": [
+        "libs/shared/home/util-home-vm/src/index.ts"
+      ],
+      "@smart-home/shared/room/util-room-payload": [
+        "libs/shared/room/util-room-payload/src/index.ts"
       ],
       "@smart-home/shared/room/util-room-vm": [
         "libs/shared/room/util-room-vm/src/index.ts"
@@ -219,7 +241,12 @@
       "@smart-home/smart-hub/alarm": ["libs/smart-hub/alarm/src/index.ts"],
       "@smart-home/smart-hub/common": ["libs/smart-hub/common/src/index.ts"],
       "@smart-home/smart-hub/device": ["libs/smart-hub/device/src/index.ts"],
-      "@smart-home/smart-hub/scene": ["libs/smart-hub/scene/src/index.ts"]
+      "@smart-home/smart-hub/scene": ["libs/smart-hub/scene/src/index.ts"],
+      "@smart-home/web/data-access": ["libs/web/data-access/src/index.ts"],
+      "@smart-home/web/feature-homes-list": [
+        "libs/web/feature-homes-list/src/index.ts"
+      ],
+      "@smart-home/web/shell": ["libs/web/shell/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

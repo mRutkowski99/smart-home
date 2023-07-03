@@ -4,6 +4,7 @@ import { ApiDevicePresentationModule } from '@smart-home/api/device/presentation
 import { ApiScenePresentationModule } from '@smart-home/api/scene/presentation';
 import {ApiAlarmPresentationModule} from "@smart-home/api/alarm/presentation";
 import {ApiUsagePresentationModule} from "@smart-home/api/usage/presentation";
+import {ApiHomePresentationModule} from "@smart-home/api/home/presentation";
 
 @Module({
   imports: [
@@ -11,7 +12,8 @@ import {ApiUsagePresentationModule} from "@smart-home/api/usage/presentation";
     ApiDevicePresentationModule,
     ApiScenePresentationModule,
     ApiAlarmPresentationModule,
-    ApiUsagePresentationModule
+    ApiUsagePresentationModule,
+    ApiHomePresentationModule,
   ],
 })
 export class ApiShellFeatureModule {}

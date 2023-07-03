@@ -10,22 +10,22 @@ export class GetUsageQuery {
 }
 
 @QueryHandler(GetUsageQuery)
-export class GetUsageHandler implements IQueryHandler<GetUsageQuery,UsageVm> {
+export class GetUsageHandler implements IQueryHandler<GetUsageQuery,void> {
 
     constructor(private repository: UsageRepository, private mapper: UsageLogVmMapper) {
     }
 
-    async execute({homeId}: GetUsageQuery): Promise<UsageVm> {
-        const logs = this.mapper.mapAll(await this.repository.getLogs(homeId))
-        return {
-            logs,
-            usage: this.calcUsage(logs)
-        }
+    async execute({homeId}: GetUsageQuery): Promise<void> {
+        // const logs = this.mapper.mapAll(await this.repository.getLogs(homeId))
+        // return {
+        //     logs,
+        //     usage: this.calcUsage(logs)
+        // }
     }
 
-    private calcUsage(logs: UsageLogVm[]): number {
-        const usage = logs[logs.length - 1] - logs[0]
-        return usage < 0 || isNaN(usage) ? 0 : usage
-    }
+    // private calcUsage(logs: UsageLogVm[]): number {
+    //     const usage = logs[logs.length - 1] - logs[0]
+    //     return usage < 0 || isNaN(usage) ? 0 : usage
+    // }
 
 }

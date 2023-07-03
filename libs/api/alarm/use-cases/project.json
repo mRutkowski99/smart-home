@@ -26,5 +26,5 @@
       }
     }
   },
-  "tags": []
+  "tags": ["platform:api", "scope:alarm", "type:use-cases"]
 }

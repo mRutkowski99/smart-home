@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@smart-home/api/shared/infrastructure';
 import { Alarm } from '@smart-home/api/alarm/domain';
 import { alarmFactory } from './alarm.factory';
+import { AddressType } from '@prisma/client';
 
 @Injectable()
 export class AlarmRepository {
@@ -28,8 +29,32 @@ export class AlarmRepository {
         stateAddressType: entity.stateAddressType,
         status: entity.status,
         statusAddress: entity.statusAddress,
-        statusAddressType: entity.statusAddressType
+        statusAddressType: entity.statusAddressType,
       },
     });
+  }
+
+  async create(
+    homeId: string,
+    stateAddress: string,
+    stateAddressType: AddressType,
+    statusAddress: string,
+    statusAddressType: AddressType
+  ) {
+    await this.prisma.alarmSchema.create({
+      data: {
+        homeId,
+        stateAddress,
+        stateAddressType,
+        state: false,
+        statusAddress,
+        statusAddressType,
+        status: false,
+      },
+    });
+  }
+
+  async delete(id: string) {
+    await this.prisma.alarmSchema.delete({ where: { id } });
   }
 }

@@ -1,15 +1,17 @@
-import {Body, Controller, Get, Header, Headers, Param, Put} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Header, Headers, Param, Post, Put} from '@nestjs/common';
 import {
   ApiControllerPrefix,
   HOME_ID_HEADER_KEY,
 } from '@smart-home/shared/util';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import {
+  CreateDevicePayload, UpdateDevicePayload,
   UpdateDeviceSetpointPayload,
   UpdateDeviceStatePayload,
 } from '@smart-home/shared/device/util-device-payload';
 import {
-  GetDevicesGroupByRoomQuery, GetDevicesQuery,
+  CreateDeviceCommand, DeleteDeviceCommand,
+  GetDevicesGroupByRoomQuery, GetDevicesQuery, UpdateDeviceCommand,
   UpdateSetpointCommand,
   UpdateStateCommand,
 } from '@smart-home/api/device/use-cases';
@@ -53,5 +55,22 @@ export class DeviceController {
     await this.commandBus.execute<UpdateStateCommand, void>(
       new UpdateStateCommand(id, value, homeId)
     );
+  }
+
+  @Post()
+  async createDevice(@Body() payload: CreateDevicePayload) {
+    await this.commandBus.execute<CreateDeviceCommand>(
+        new CreateDeviceCommand(payload.roomId, payload.name, payload.valueType, payload.addresses)
+    )
+  }
+
+  @Put(':id')
+  async updateDevice(@Param('id') id: string, @Body() payload: UpdateDevicePayload) {
+    await this.commandBus.execute<UpdateDeviceCommand>(new UpdateDeviceCommand(id, payload.name,payload.addresses ))
+  }
+
+  @Delete(':id')
+  async deleteDevice(@Param('id') id: string) {
+    await this.commandBus.execute<DeleteDeviceCommand>(new DeleteDeviceCommand(id))
   }
 }

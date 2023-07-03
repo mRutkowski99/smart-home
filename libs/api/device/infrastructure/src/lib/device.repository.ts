@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@smart-home/api/shared/infrastructure';
 import { Device } from '@smart-home/api/device/domain';
 import { deviceFactory } from './device.factory';
+import {AddressType, ControlledValue, ValueType} from "@prisma/client";
 
 @Injectable()
 export class DeviceRepository {
@@ -102,5 +103,30 @@ export class DeviceRepository {
         },
       },
     });
+  }
+
+  async create(device: Device) {
+    const newDevice = await this.prisma.deviceSchema.create({
+      data: {
+        roomId: device.roomId.value,
+        name: device.name.value,
+        valueType: device.valueType,
+        state: device.state,
+        setpoint: device.setpoint,
+      }
+    })
+
+    await this.prisma.deviceAddressSchema.createMany({
+      data: device.addresses.map(device => ({
+        deviceId: newDevice.id,
+        address: device.address,
+        addressType: device.addressType,
+        controlledValue: device.controlledValue,
+      }))
+    })
+  }
+
+  async delete(id: string) {
+    await this.prisma.deviceSchema.delete({where: {id}})
   }
 }

@@ -7,8 +7,9 @@ import {
   Temperature,
   Uuid,
 } from '@smart-home/api/shared/domain';
-import {DeviceAddress} from "./device-address.model";
-import {ControlledValue} from "@prisma/client";
+import { DeviceAddress } from './device-address.model';
+import { AddressType, ControlledValue } from '@prisma/client';
+import * as crypto from 'crypto';
 
 export class Device extends AggregateRoot {
   constructor(
@@ -18,9 +19,58 @@ export class Device extends AggregateRoot {
     private _state: boolean,
     public readonly valueType: DeviceValueType,
     private _setpoint: number,
-    public readonly addresses: DeviceAddress[]
+    private _addresses: DeviceAddress[]
   ) {
     super();
+  }
+
+  static create(
+    roomId: string,
+    name: string,
+    valueType: DeviceValueType,
+    addresses: {
+      address: string;
+      addressType: AddressType;
+      controlledValue: ControlledValue;
+    }[]
+  ): Device {
+    return new Device(
+      new Uuid(crypto.randomUUID()),
+      new Uuid(roomId),
+      new Name(name),
+      false,
+      valueType,
+      this.getDefaultSetpoint(valueType),
+      addresses.map(
+        (address) =>
+          new DeviceAddress(
+            crypto.randomUUID(),
+            address.address,
+            address.addressType,
+            address.controlledValue
+          )
+      )
+    );
+  }
+
+  static getDefaultSetpoint(valueType: DeviceValueType): number {
+    if (valueType === DeviceValueType.DIGITAL) return DigitalValue.LOW_STATE;
+    if (valueType === DeviceValueType.PERCENT) return 0;
+    if (valueType === DeviceValueType.TEMPERATURE)
+      return new Temperature(20).value;
+    return 0;
+  }
+
+  updateAddress(
+    address: string,
+    addressType: AddressType,
+    controlledValue: ControlledValue
+  ) {
+    if (this.addresses.some(a => a.controlledValue === controlledValue)) {
+      this._addresses.map(a => a.controlledValue === controlledValue ? {...a, address, addressType} : a)
+    } else {
+     this._addresses = [...this.addresses, new DeviceAddress(crypto.randomUUID(), address, addressType, controlledValue)]
+    }
   }
 
   get state(): boolean {
@@ -33,7 +83,9 @@ export class Device extends AggregateRoot {
   }
 
   getAddress(controlledValue: ControlledValue): DeviceAddress {
-    return this.addresses.find(address => address.controlledValue === controlledValue)
+    return this.addresses.find(
+      (address) => address.controlledValue === controlledValue
+    );
   }
 
   get setpoint(): number {
@@ -50,6 +102,10 @@ export class Device extends AggregateRoot {
 
   get hasTemperatureValue(): boolean {
     return this.valueType === DeviceValueType.TEMPERATURE;
+  }
+
+  get addresses(): DeviceAddress[] {
+    return this._addresses;
   }
 
   createNewSetpoint(value: number) {

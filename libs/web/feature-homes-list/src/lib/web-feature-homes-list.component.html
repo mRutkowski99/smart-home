@@ -1,0 +1,36 @@
+<ng-container *ngIf="homesVm$ | async as homesVm">
+    <ng-container *ngIf="homesVm.status === 'success'">
+        <div class="grid grid-cols-4 gap-8 justify-items-stretch">
+            <p-card styleClass="flex flex-col items-center justify-center" role="button" (click)="addDialogVisible = true">
+                <div class="flex flex-col items-center ">
+                    <smart-home-ui-fa-icon [icon]="ADD_ICON" />
+                    <span>Add Home</span>
+                </div>
+            </p-card>
+
+            <p-card styleClass="flex flex-col items-center gap-7 relative" *ngFor="let home of homesVm.homes" role="button">
+                <smart-home-ui-fa-icon [icon]="DELETE_ICON" stopClickPropagation class="absolute top-2 right-2" role="button"
+                                       (click)="onDelete(home.id)" />
+                <div class="flex gap-2 items-center">
+                    <smart-home-ui-fa-icon [icon]="CITY_ICON" />
+                    <span>{{home.city}}</span>
+                </div>
+                <div class="flex gap-2 items-center">
+                    <smart-home-ui-fa-icon [icon]="FAMILY_ICON" />
+                    <span>{{home.name}}</span>
+                </div>
+            </p-card>
+        </div>
+
+
+        <p-dialog header="Add home" [(visible)]="addDialogVisible">
+            <form class="flex gap-4" [formGroup]="addHomeForm" (ngSubmit)="onSubmit()">
+                <input type="text" pInputText placeholder="Name" [formControl]="addHomeForm.controls.name">
+                <input type="text" pInputText placeholder="City" [formControl]="addHomeForm.controls.city">
+                <p-button type="submit" [disabled]="addHomeForm.invalid">Submit</p-button>
+            </form>
+        </p-dialog>
+
+        <p-confirmDialog></p-confirmDialog>
+    </ng-container>
+</ng-container>
