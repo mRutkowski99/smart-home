@@ -8,7 +8,7 @@
                 </div>
             </p-card>
 
-            <p-card styleClass="flex flex-col items-center gap-7 relative" *ngFor="let home of homesVm.homes" role="button">
+            <p-card styleClass="flex flex-col items-center gap-7 relative" *ngFor="let home of homesVm.homes" [routerLink]="[home.id]" role="button">
                 <smart-home-ui-fa-icon [icon]="DELETE_ICON" stopClickPropagation class="absolute top-2 right-2" role="button"
                                        (click)="onDelete(home.id)" />
                 <div class="flex gap-2 items-center">

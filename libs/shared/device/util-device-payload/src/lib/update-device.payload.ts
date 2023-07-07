@@ -1,11 +1,5 @@
-import { AddressType, ControlledValue } from '@prisma/client';
+import {DeviceBasePayload} from "./device-base.payload";
 
-export interface UpdateDevicePayload {
+export interface UpdateDevicePayload extends DeviceBasePayload {
   id: string;
-  name: string;
-  addresses: {
-    address: string;
-    addressType: AddressType;
-    controlledValue: ControlledValue;
-  }[];
 }

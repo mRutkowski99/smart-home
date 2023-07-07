@@ -1,0 +1,12 @@
+<form [formGroup]="alarmForm" (ngSubmit)="onSubmit()">
+    <div class="flex gap-4 items-center mb-4">
+        <input pInputText type="text" placeholder="State address" [formControl]="alarmForm.controls.stateAddress">
+        <p-dropdown [options]="addressTypes" [formControl]="alarmForm.controls.stateAddressType" placeholder="State address type"/>
+        <input pInputText type="text" placeholder="Status address" [formControl]="alarmForm.controls.statusAddress">
+        <p-dropdown [options]="addressTypes" [formControl]="alarmForm.controls.statusAddressType" placeholder="Status address type" />
+    </div>
+    <div class="flex justify-between items-center">
+        <smart-home-ui-fa-icon [icon]="DELETE_ICON" role="button" type="button" />
+        <p-button type="submit" [disabled]="alarmForm.invalid || !alarmForm.dirty">Save</p-button>
+    </div>
+</form>

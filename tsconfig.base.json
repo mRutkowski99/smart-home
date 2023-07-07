@@ -243,10 +243,24 @@
       "@smart-home/smart-hub/device": ["libs/smart-hub/device/src/index.ts"],
       "@smart-home/smart-hub/scene": ["libs/smart-hub/scene/src/index.ts"],
       "@smart-home/web/data-access": ["libs/web/data-access/src/index.ts"],
+      "@smart-home/web/feature-home-details": [
+        "libs/web/feature-home-details/src/index.ts"
+      ],
       "@smart-home/web/feature-homes-list": [
         "libs/web/feature-homes-list/src/index.ts"
       ],
-      "@smart-home/web/shell": ["libs/web/shell/src/index.ts"]
+      "@smart-home/web/shell": ["libs/web/shell/src/index.ts"],
+      "@smart-home/web/ui-alarm-form": ["libs/web/ui-alarm-form/src/index.ts"],
+      "@smart-home/web/ui-device-dialog": [
+        "libs/web/ui-device-dialog/src/index.ts"
+      ],
+      "@smart-home/web/ui-device-form": [
+        "libs/web/ui-device-form/src/index.ts"
+      ],
+      "@smart-home/web/ui-room-dialog": [
+        "libs/web/ui-room-dialog/src/index.ts"
+      ],
+      "@smart-home/web/util": ["libs/web/util/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

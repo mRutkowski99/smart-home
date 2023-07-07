@@ -15,6 +15,6 @@ export class GetAlarmDetailHandler implements IQueryHandler<GetAlarmDetailQuery,
     }
 
     async execute({homeId}: GetAlarmDetailQuery): Promise<AlarmDetailsVm | null> {
-        return this.mapper.map(await this.repository.getById(homeId));
+        return this.mapper.map(await this.repository.getByHomeId(homeId));
     }
 }

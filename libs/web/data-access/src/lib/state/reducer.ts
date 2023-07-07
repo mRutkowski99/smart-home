@@ -11,6 +11,7 @@ export interface WebState {
   homes: HomeVm[];
   homesStatus: StoreStatus;
   homesError: string | null;
+  selectedHomeId: string | null;
   rooms: RoomDetailsVm[];
   roomsStatus: StoreStatus;
   roomsError: string | null;
@@ -23,6 +24,7 @@ const initialState: WebState = {
   homes: [],
   homesStatus: 'loading',
   homesError: null,
+  selectedHomeId: null,
   rooms: [],
   roomsStatus: 'loading',
   roomsError: null,
@@ -33,6 +35,7 @@ const initialState: WebState = {
 
 export const reducer = createReducer(
   initialState,
+  on(webActions.setSelectedHomeId, (state, { id }) => ({...state,selectedHomeId: id})),
   on(webActions.getHomes, (state) => ({
     ...state,
     homesStatus: 'loading',

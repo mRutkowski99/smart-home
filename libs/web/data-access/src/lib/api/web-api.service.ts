@@ -37,7 +37,7 @@ export class WebApiService {
     }
 
     updateRoom(payload: UpdateRoomPayload) {
-        return this.http.put(getControllerUrl(ApiControllerPrefix.Room), payload)
+        return this.http.put(`${getControllerUrl(ApiControllerPrefix.Room)}/${payload.id}`, payload)
     }
 
     deleteRoom(id: string) {
@@ -59,7 +59,7 @@ export class WebApiService {
 
 
     getAlarm(homeId: string): Observable<AlarmDetailsVm | null> {
-        return this.http.get<AlarmDetailsVm | null>(getControllerUrl(ApiControllerPrefix.Alarm));
+        return this.http.get<AlarmDetailsVm | null>(`${getControllerUrl(ApiControllerPrefix.Alarm)}/${homeId}`);
     }
 
     createAlarm(payload: CreateAlarmPayload) {

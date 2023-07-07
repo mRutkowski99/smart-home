@@ -15,11 +15,12 @@ import {InputTextModule} from "primeng/inputtext";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ConfirmationService} from "primeng/api";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'smart-home-web-feature-homes-list',
   standalone: true,
-  imports: [CommonModule, CardModule, SharedUiFaIconComponent, ButtonModule, StopClickPropagationDirective, DialogModule, InputTextModule, ReactiveFormsModule, ConfirmDialogModule],
+  imports: [CommonModule, CardModule, SharedUiFaIconComponent, ButtonModule, StopClickPropagationDirective, DialogModule, InputTextModule, ReactiveFormsModule, ConfirmDialogModule, RouterLink],
   templateUrl: './web-feature-homes-list.component.html',
   styleUrls: ['./web-feature-homes-list.component.scss'],
   encapsulation: ViewEncapsulation.Emulated,
@@ -46,7 +47,7 @@ export class WebFeatureHomesListComponent implements OnInit {
 
   ngOnInit() {
     this.storeFacade.getHomes();
-    this.homesVm$.subscribe(console.log)
+    this.storeFacade.setSelectedHomeId(null)
   }
 
   onSubmit() {

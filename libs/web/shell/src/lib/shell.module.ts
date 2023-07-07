@@ -14,6 +14,10 @@ const routes: Routes = [
           (await import('@smart-home/web/feature-homes-list'))
             .WebFeatureHomesListComponent,
       },
+      {
+        path: 'homes/:id',
+        loadComponent: async () => (await import('@smart-home/web/feature-home-details')).WebFeatureHomeDetailsComponent,
+      }
     ],
   },
 ];

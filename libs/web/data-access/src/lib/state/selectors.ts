@@ -21,8 +21,11 @@ const alarmVmSelector = createSelector(featureSelector, state => ({
     status: state.alarmStatus
 }))
 
+export const selectedHomeIdSelector = createSelector(featureSelector, state => state.selectedHomeId)
+
 export const webSelectors = {
     homesVmSelector,
     roomsVmSelector,
-    alarmVmSelector
+    alarmVmSelector,
+    selectedHomeIdSelector
 }

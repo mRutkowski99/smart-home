@@ -19,6 +19,7 @@ export const webActions = createActionGroup({
         'Delete Home': props<{id: string}>(),
         'Delete Home Success': emptyProps(),
         'Delete Home Fail': props<{error: string}>(),
+        'Set Selected Home Id': props<{id: string | null}>(),
 
         'Get Rooms': props<{homeId: string}>(),
         'Get Rooms Success': props<{rooms: RoomDetailsVm[]}>(),

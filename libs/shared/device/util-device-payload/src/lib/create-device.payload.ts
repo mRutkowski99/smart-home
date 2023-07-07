@@ -1,9 +1,5 @@
-import {DeviceValueType} from "@smart-home/shared/util";
-import {AddressType, ControlledValue} from "@prisma/client";
+import {DeviceBasePayload} from "./device-base.payload";
 
-export interface CreateDevicePayload {
+export interface CreateDevicePayload extends DeviceBasePayload {
     roomId: string;
-    name: string;
-    valueType: DeviceValueType,
-    addresses: {address: string, addressType: AddressType, controlledValue: ControlledValue}[];
 }

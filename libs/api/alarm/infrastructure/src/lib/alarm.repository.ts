@@ -10,7 +10,7 @@ export class AlarmRepository {
 
   async getByHomeId(homeId: string): Promise<Alarm | null> {
     return alarmFactory(
-      await this.prisma.alarmSchema.findUnique({ where: { homeId } })
+      await this.prisma.alarmSchema.findFirst({ where: { homeId } })
     );
   }
 

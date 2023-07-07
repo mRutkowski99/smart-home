@@ -1,0 +1,65 @@
+<form [formGroup]="deviceForm" (ngSubmit)="onSubmit()">
+  <div class="flex justify-between mb-2">
+    <div class="flex gap-4">
+      <input
+        type="text"
+        pInputText
+        [formControl]="deviceForm.controls.name"
+        placeholder="Name"
+      />
+      <p-dropdown
+        [options]="valueTypes"
+        placeholder="Value type"
+        [formControl]="deviceForm.controls.valueType"
+      >
+      </p-dropdown>
+    </div>
+    <smart-home-ui-fa-icon [icon]="DELETE_ICON" role="button" *ngIf="withDeleteOption" (click)="delete.emit()" />
+  </div>
+  <ng-container formArrayName="addresses">
+    <ng-container *ngFor="let addressForm of addresses.controls; let i = index">
+      <div [formGroup]="addressForm" class="flex gap-4 items-center mb-2">
+        <input
+          type="text"
+          pInputText
+          [formControl]="addressForm.controls.address"
+          placeholder="Address"
+        />
+        <p-dropdown
+          [options]="controlledValues"
+          [formControl]="addressForm.controls.controlledValue"
+          placeholder="Controlled value"
+        >
+        </p-dropdown>
+        <p-dropdown
+          [options]="
+            addressTypes
+              | filterAddressTypes
+                : (addressForm.controls.controlledValue.valueChanges | async)
+          "
+          [formControl]="addressForm.controls.addressType"
+          placeholder="Address type"
+        ></p-dropdown>
+        <smart-home-ui-fa-icon
+          [icon]="DELETE_ICON"
+          role="button"
+          type="button"
+          (click)="onDeleteAddress(i)"
+        />
+      </div>
+    </ng-container>
+    <div class="flex justify-between">
+      <p-button
+        type="button"
+        (click)="onAddAddress()"
+        [disabled]="addresses.controls.length >= controlledValues.length"
+        >Add address</p-button
+      >
+      <p-button
+        type="submit"
+        [disabled]="deviceForm.invalid || !deviceForm.dirty"
+        >Save</p-button
+      >
+    </div>
+  </ng-container>
+</form>

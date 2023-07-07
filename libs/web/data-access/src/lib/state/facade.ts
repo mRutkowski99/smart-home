@@ -17,6 +17,10 @@ export class WebFacade {
     roomsVm$ = this.store.select(webSelectors.roomsVmSelector)
     alarmVm$ = this.store.select(webSelectors.alarmVmSelector)
 
+    setSelectedHomeId(id: string | null) {
+        this.store.dispatch(webActions.setSelectedHomeId({id}))
+    }
+
     getHomes() {
         this.store.dispatch(webActions.getHomes())
     }

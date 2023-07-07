@@ -1,0 +1,65 @@
+<ng-container *ngIf="roomsVm$ | async as roomVm">
+  <ng-container *ngIf="roomVm.status === 'success'">
+    <p-card styleClass="p-4 mb-4">
+      <ng-template pTemplate="header">
+        <div class="flex justify-between items-center">
+          <span class="text-2xl font-semibold">Rooms</span>
+          <smart-home-ui-fa-icon
+            [icon]="ADD_ICON"
+            role="button"
+            (click)="onAddRoom()"
+          />
+        </div>
+      </ng-template>
+
+      <p-accordion>
+        <p-accordionTab *ngFor="let room of roomVm.rooms">
+          <ng-template pTemplate="header">
+            <div class="flex justify-between items-center w-full">
+              <span>{{ room.name }}</span>
+              <div class="flex gap-4">
+                <smart-home-ui-fa-icon
+                  stopClickPropagation
+                  [icon]="EDIT_ICON"
+                  role="button"
+                  (click)="onUpdateRoom(room.id, room.name)"
+                />
+                <smart-home-ui-fa-icon
+                  stopClickPropagation
+                  [icon]="DELETE_ICON"
+                  role="button"
+                  (click)="onDeleteRoom(room.id)"
+                />
+              </div>
+            </div>
+          </ng-template>
+
+          <div class="pb-2 border-b-2">
+            <smart-home-web-ui-device-form
+              *ngFor="let device of room.devices"
+              [device]="device"
+              [withDeleteOption]="true"
+              (save)="onUpdateDevice(device.id, $event)"
+              (delete)="onDeleteDevice(device.id)"
+            />
+          </div>
+
+          <div class="mt-6">
+            <p-button (click)="onAddDevice(room.id)">Add Device</p-button>
+          </div>
+        </p-accordionTab>
+      </p-accordion>
+    </p-card>
+  </ng-container>
+</ng-container>
+
+<ng-container *ngIf="alarmVm$ | async as alarmVm">
+  <ng-container *ngIf="alarmVm.status === 'success'">
+    <p-card styleClass="p-4">
+      <ng-template pTemplate="header">
+        <span class="text-2xl font-semibold">Alarm</span>
+      </ng-template>
+      <smart-home-web-ui-alarm-form [alarm]="alarmVm.alarm" (save)="onCreateAlarm($event)" (delete)="onDeleteAlarm(alarmVm.alarm?.id)" />
+    </p-card>
+  </ng-container>
+</ng-container>
