@@ -4,8 +4,9 @@ import { RoomDetailsVm } from '@smart-home/shared/room/util-room-vm';
 import { AlarmDetailsVm } from '@smart-home/shared/alarm/util-alarm-vm';
 import { createReducer, on } from '@ngrx/store';
 import { webActions } from './actions';
+import { UserVm } from '@smart-home/shared/user/util-user-vm';
 
-export const WEB_FEATURE_KEY = 'web'
+export const WEB_FEATURE_KEY = 'web';
 
 export interface WebState {
   homes: HomeVm[];
@@ -18,6 +19,9 @@ export interface WebState {
   alarm: AlarmDetailsVm | null;
   alarmStatus: StoreStatus;
   alarmError: string | null;
+  users: UserVm[];
+  usersStatus: StoreStatus;
+  usersError: string | null;
 }
 
 const initialState: WebState = {
@@ -31,11 +35,17 @@ const initialState: WebState = {
   alarm: null,
   alarmStatus: 'loading',
   alarmError: null,
+  users: [],
+  usersStatus: 'loading',
+  usersError: null,
 };
 
 export const reducer = createReducer(
   initialState,
-  on(webActions.setSelectedHomeId, (state, { id }) => ({...state,selectedHomeId: id})),
+  on(webActions.setSelectedHomeId, (state, { id }) => ({
+    ...state,
+    selectedHomeId: id,
+  })),
   on(webActions.getHomes, (state) => ({
     ...state,
     homesStatus: 'loading',
@@ -80,5 +90,22 @@ export const reducer = createReducer(
     ...state,
     alarmError: error,
     alarmStatus: 'error',
+  })),
+
+  on(webActions.getUsers, (state) => ({
+    ...state,
+    usersStatus: 'loading',
+    usersError: null,
+  })),
+
+  on(webActions.getUsersSuccess, (state, { users }) => ({
+    ...state,
+    users,
+    usersStatus: 'success',
+  })),
+  on(webActions.getUsersFail, (state, { error }) => ({
+    ...state,
+    usersError: error,
+    usersStatus: 'error',
   }))
 );

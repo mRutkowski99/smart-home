@@ -7,6 +7,10 @@ import { MainRoutes } from '@smart-home/mobile/shared/util';
 
 const routes: Routes = [
   {
+    path: 'login',
+    loadComponent: async () => (await import('@smart-home/web/feature-auth')).WebFeatureAuthComponent
+  },
+  {
     path: '',
     component: MobileShellFeatureComponent,
     children: [
@@ -39,9 +43,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(routes),
     HttpClientModule,
     MobileSharedAuthDataAccessModule,
+    RouterModule.forChild(routes),
   ],
   exports: [RouterModule],
 })

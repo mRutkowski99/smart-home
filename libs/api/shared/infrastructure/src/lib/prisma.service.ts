@@ -1,4 +1,5 @@
 import {
+  Global,
   INestApplication,
   Injectable,
   Module,
@@ -19,6 +20,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
   }
 }
 
+@Global()
 @Module({
   providers: [PrismaService],
   exports: [PrismaService],

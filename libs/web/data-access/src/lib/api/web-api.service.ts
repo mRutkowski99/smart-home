@@ -9,6 +9,8 @@ import {RoomDetailsVm} from "@smart-home/shared/room/util-room-vm";
 import {CreateDevicePayload, UpdateDevicePayload} from "@smart-home/shared/device/util-device-payload";
 import {AlarmDetailsVm} from "@smart-home/shared/alarm/util-alarm-vm";
 import {CreateAlarmPayload} from "@smart-home/shared/alarm/util-alarm-payload";
+import {UserVm} from "@smart-home/shared/user/util-user-vm";
+import {CreateUserPayload} from "@smart-home/shared/user/util-user-payload";
 
 @Injectable()
 export class WebApiService {
@@ -68,5 +70,21 @@ export class WebApiService {
 
     deleteAlarm(id: string) {
         return this.http.delete(`${getControllerUrl(ApiControllerPrefix.Alarm)}/${id}`)
+    }
+
+    getUsers(homeId: string): Observable<UserVm[]> {
+        return this.http.get<UserVm[]>(`${getControllerUrl(ApiControllerPrefix.User)}/home/${homeId}`);
+    }
+
+    createUser(payload: CreateUserPayload) {
+        return this.http.post(getControllerUrl(ApiControllerPrefix.User), payload)
+    }
+
+    resetPassword(id: string) {
+        return this.http.put(`${getControllerUrl(ApiControllerPrefix.User)}/${id}/reset-password`, null)
+    }
+
+    deleteUser(id: string) {
+        return this.http.delete(`${getControllerUrl(ApiControllerPrefix.User)}/${id}`)
     }
 }

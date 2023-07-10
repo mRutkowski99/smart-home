@@ -1,0 +1,11 @@
+<ion-card>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4 items-stretch">
+        <ion-item>
+            <ion-input type="text" label="Login" [formControl]="loginForm.controls.login" />
+        </ion-item>
+        <ion-input>
+            <ion-input type="password" label="Password" [formControl]="loginForm.controls.password" />
+        </ion-input>
+        <ion-button [disabled]="loginForm.invalid">Login</ion-button>
+    </form>
+</ion-card>

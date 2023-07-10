@@ -7,6 +7,7 @@ import {CreateHomePayload} from "@smart-home/shared/home/util-home-payload";
 import {CreateRoomPayload, UpdateRoomPayload} from "@smart-home/shared/room/util-room-payload";
 import {CreateDevicePayload, UpdateDevicePayload} from "@smart-home/shared/device/util-device-payload";
 import {CreateAlarmPayload} from "@smart-home/shared/alarm/util-alarm-payload";
+import {CreateUserPayload} from "@smart-home/shared/user/util-user-payload";
 
 @Injectable()
 export class WebFacade {
@@ -16,6 +17,7 @@ export class WebFacade {
     homesVm$ = this.store.select(webSelectors.homesVmSelector)
     roomsVm$ = this.store.select(webSelectors.roomsVmSelector)
     alarmVm$ = this.store.select(webSelectors.alarmVmSelector)
+    usersVm$ = this.store.select(webSelectors.usersVmSelector)
 
     setSelectedHomeId(id: string | null) {
         this.store.dispatch(webActions.setSelectedHomeId({id}))
@@ -71,5 +73,21 @@ export class WebFacade {
 
     deleteAlarm(alarmId: string) {
         this.store.dispatch(webActions.deleteAlarm({alarmId}))
+    }
+
+    getUsers(homeId: string) {
+        this.store.dispatch(webActions.getUsers({homeId}))
+    }
+
+    createUser(payload: CreateUserPayload) {
+        this.store.dispatch(webActions.createUser({payload}))
+    }
+
+    deleteUser(userId: string) {
+        this.store.dispatch(webActions.deleteUser({userId}))
+    }
+
+    resetPassword(userId: string) {
+        this.store.dispatch(webActions.resetPassword({userId}))
     }
 }

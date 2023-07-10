@@ -20,6 +20,26 @@ model HomeSchema {
   scenes SceneSchema[]
   alarm  AlarmSchema?
   usage  UsageLogSchema[]
+  users  UserSchema[]
+}
+
+// ----- USER ------
+
+enum UserRole {
+  User
+  Admin
+}
+
+model UserSchema {
+  id                 String   @id @default(uuid())
+  login              String
+  passwordHash       String
+  name               String
+  role               UserRole
+  hasChangedPassword Boolean  @default(false)
+
+  homeId String?
+  home   HomeSchema? @relation(fields: [homeId], references: [id])
 }
 
 // ----- ROOM -----

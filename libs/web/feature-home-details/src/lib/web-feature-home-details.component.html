@@ -55,11 +55,45 @@
 
 <ng-container *ngIf="alarmVm$ | async as alarmVm">
   <ng-container *ngIf="alarmVm.status === 'success'">
-    <p-card styleClass="p-4">
+    <p-card styleClass="p-4 mb-4">
       <ng-template pTemplate="header">
         <span class="text-2xl font-semibold">Alarm</span>
       </ng-template>
       <smart-home-web-ui-alarm-form [alarm]="alarmVm.alarm" (save)="onCreateAlarm($event)" (delete)="onDeleteAlarm(alarmVm.alarm?.id)" />
+    </p-card>
+  </ng-container>
+</ng-container>
+
+<ng-container *ngIf="usersVm$ | async as usersVm">
+  <ng-container *ngIf="usersVm.status === 'success'">
+    <p-card styleClass="p-4">
+      <ng-template pTemplate="header">
+        <div class="flex justify-between items-center">
+          <span class="text-2xl font-semibold">Alarm</span>
+          <smart-home-ui-fa-icon [icon]="ADD_ICON" role="button" (click)="onAddUser()" />
+        </div>
+      </ng-template>
+
+      <p-table [value]="usersVm.users" >
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Login</th>
+            <th>Name</th>
+            <th>Reset password</th>
+            <th>Delete</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+          <td>{{user.login}}</td>
+          <td>{{user.name}}</td>
+          <td>
+            <smart-home-ui-fa-icon [icon]="RESET_ICON" role="button" (click)="onResetPassword(user.id)" />
+          </td>
+          <td>
+            <smart-home-ui-fa-icon [icon]="DELETE_ICON" role="button" (click)="onDeleteUser(user.id)" />
+          </td>
+        </ng-template>
+      </p-table>
     </p-card>
   </ng-container>
 </ng-container>

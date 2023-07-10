@@ -6,6 +6,8 @@ import {CreateHomePayload} from "@smart-home/shared/home/util-home-payload";
 import {CreateDevicePayload, UpdateDevicePayload} from "@smart-home/shared/device/util-device-payload";
 import {CreateAlarmPayload} from "@smart-home/shared/alarm/util-alarm-payload";
 import {CreateRoomPayload, UpdateRoomPayload} from "@smart-home/shared/room/util-room-payload";
+import {UserVm} from "@smart-home/shared/user/util-user-vm";
+import {CreateUserPayload} from "@smart-home/shared/user/util-user-payload";
 
 export const webActions = createActionGroup({
     source: 'Web',
@@ -53,5 +55,18 @@ export const webActions = createActionGroup({
         'Delete Alarm': props<{alarmId: string}>(),
         'Delete Alarm Success': emptyProps(),
         'Delete Alarm Fail': props<{error: string}>(),
+
+        'Get Users': props<{homeId: string}>(),
+        'Get Users Success': props<{users: UserVm[]}>(),
+        'Get Users Fail': props<{error: string}>(),
+        'Create User': props<{payload: CreateUserPayload}>(),
+        'Create User Success': emptyProps(),
+        'Create User Fail': props<{error: string}>(),
+        'Delete User': props<{userId: string}>(),
+        'Delete User Success': emptyProps(),
+        'Delete User Fail': props<{error: string}>(),
+        'Reset Password': props<{userId: string}>(),
+        'Reset Password Success': emptyProps(),
+        'Reset Password Fail': props<{error: string}>(),
     }
 })

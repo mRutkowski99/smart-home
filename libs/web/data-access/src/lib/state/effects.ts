@@ -228,4 +228,36 @@ export class WebEffects {
       withLatestFrom(this.store.select(webSelectors.selectedHomeIdSelector)),
       map(([_, homeId]) => webActions.getAlarm({homeId: homeId as string}))
   ))
+
+    getUsers = createEffect(() => this.actions$.pipe(
+        ofType(webActions.getUsers),
+        switchMap(({homeId}) => this.api.getUsers(homeId).pipe(
+            map((users) => webActions.getUsersSuccess({users})),
+            catchError(() => of(webActions.getUsersFail({error: 'Failed to fetch'})))
+        ))
+    ))
+
+    createUser = createEffect(() => this.actions$.pipe(
+        ofType(webActions.createUser),
+        switchMap((action) => this.api.createUser(action.payload).pipe(
+            map(() => webActions.createUserSuccess()),
+            catchError(() => of(webActions.createUserFail({error: 'Failed to create'})))
+        ))
+    ))
+
+    deleteUser = createEffect(() => this.actions$.pipe(
+        ofType(webActions.deleteUser),
+        switchMap((action) => this.api.deleteUser(action.userId).pipe(
+            map(() => webActions.deleteUserSuccess()),
+            catchError(() => of(webActions.deleteUserFail({error: 'Failed to delete'})))
+        ))
+    ))
+
+    resetPassword = createEffect(() => this.actions$.pipe(
+        ofType(webActions.resetPassword),
+        switchMap((action) => this.api.resetPassword(action.userId).pipe(
+            map(() => webActions.resetPasswordSuccess()),
+            catchError(() => of(webActions.resetPasswordFail({error: 'Failed to reset'})))
+        ))
+    ))
 }

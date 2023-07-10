@@ -1,0 +1,7 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="flex gap-4 items-center">
+        <input pInputText [formControl]="userForm.controls.login" placeholder="Login">
+        <input pInputText [formControl]="userForm.controls.name" placeholder="Name">
+        <p-button type="submit">Save</p-button>
+    </div>
+</form>

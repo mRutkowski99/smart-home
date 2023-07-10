@@ -65,6 +65,7 @@
       "@smart-home/api/scene/use-cases": [
         "libs/api/scene/use-cases/src/index.ts"
       ],
+      "@smart-home/api/shared/auth": ["libs/api/shared/auth/src/index.ts"],
       "@smart-home/api/shared/domain": ["libs/api/shared/domain/src/index.ts"],
       "@smart-home/api/shared/infrastructure": [
         "libs/api/shared/infrastructure/src/index.ts"
@@ -80,6 +81,16 @@
       ],
       "@smart-home/api/usage/use-cases": [
         "libs/api/usage/use-cases/src/index.ts"
+      ],
+      "@smart-home/api/user/domain": ["libs/api/user/domain/src/index.ts"],
+      "@smart-home/api/user/infrastructure": [
+        "libs/api/user/infrastructure/src/index.ts"
+      ],
+      "@smart-home/api/user/presentation": [
+        "libs/api/user/presentation/src/index.ts"
+      ],
+      "@smart-home/api/user/use-cases": [
+        "libs/api/user/use-cases/src/index.ts"
       ],
       "@smart-home/mobile/alarm/data-access": [
         "libs/mobile/alarm/data-access/src/index.ts"
@@ -127,6 +138,9 @@
       "@smart-home/mobile/scene/util": ["libs/mobile/scene/util/src/index.ts"],
       "@smart-home/mobile/shared/auth/data-access": [
         "libs/mobile/shared/auth/data-access/src/index.ts"
+      ],
+      "@smart-home/mobile/shared/auth/feature": [
+        "libs/mobile/shared/auth/feature/src/index.ts"
       ],
       "@smart-home/mobile/shared/device/data-access": [
         "libs/mobile/shared/device/data-access/src/index.ts"
@@ -237,12 +251,19 @@
       "@smart-home/shared/usage/util-usage-vm": [
         "libs/shared/usage/util-usage-vm/src/index.ts"
       ],
+      "@smart-home/shared/user/util-user-payload": [
+        "libs/shared/user/util-user-payload/src/index.ts"
+      ],
+      "@smart-home/shared/user/util-user-vm": [
+        "libs/shared/user/util-user-vm/src/index.ts"
+      ],
       "@smart-home/shared/util": ["libs/shared/util/src/index.ts"],
       "@smart-home/smart-hub/alarm": ["libs/smart-hub/alarm/src/index.ts"],
       "@smart-home/smart-hub/common": ["libs/smart-hub/common/src/index.ts"],
       "@smart-home/smart-hub/device": ["libs/smart-hub/device/src/index.ts"],
       "@smart-home/smart-hub/scene": ["libs/smart-hub/scene/src/index.ts"],
       "@smart-home/web/data-access": ["libs/web/data-access/src/index.ts"],
+      "@smart-home/web/feature-auth": ["libs/web/feature-auth/src/index.ts"],
       "@smart-home/web/feature-home-details": [
         "libs/web/feature-home-details/src/index.ts"
       ],
@@ -259,6 +280,9 @@
       ],
       "@smart-home/web/ui-room-dialog": [
         "libs/web/ui-room-dialog/src/index.ts"
+      ],
+      "@smart-home/web/ui-user-dialog": [
+        "libs/web/ui-user-dialog/src/index.ts"
       ],
       "@smart-home/web/util": ["libs/web/util/src/index.ts"]
     }

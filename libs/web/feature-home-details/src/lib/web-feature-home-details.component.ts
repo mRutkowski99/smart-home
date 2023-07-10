@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { SharedUiFaIconComponent } from '@smart-home/shared/ui-fa-icon';
 import {
+  faArrowRotateLeft,
   faPenToSquare,
   faPlus,
   faTrash,
@@ -26,20 +27,23 @@ import { WebUiDeviceFormComponent } from '@smart-home/web/ui-device-form';
 import {CreateDevicePayload, DeviceBasePayload} from "@smart-home/shared/device/util-device-payload";
 import {WebUiAlarmFormComponent} from "@smart-home/web/ui-alarm-form";
 import {CreateAlarmPayload} from "@smart-home/shared/alarm/util-alarm-payload";
+import {TableModule} from "primeng/table";
+import {WebUiUserDialogComponent} from "@smart-home/web/ui-user-dialog";
 
 @Component({
   selector: 'smart-home-web-feature-home-details',
   standalone: true,
-    imports: [
-        CommonModule,
-        CardModule,
-        SharedUiFaIconComponent,
-        AccordionModule,
-        StopClickPropagationDirective,
-        ButtonModule,
-        WebUiDeviceFormComponent,
-        WebUiAlarmFormComponent,
-    ],
+  imports: [
+    CommonModule,
+    CardModule,
+    SharedUiFaIconComponent,
+    AccordionModule,
+    StopClickPropagationDirective,
+    ButtonModule,
+    WebUiDeviceFormComponent,
+    WebUiAlarmFormComponent,
+    TableModule,
+  ],
   templateUrl: './web-feature-home-details.component.html',
   styleUrls: ['./web-feature-home-details.component.scss'],
   encapsulation: ViewEncapsulation.Emulated,
@@ -49,10 +53,12 @@ import {CreateAlarmPayload} from "@smart-home/shared/alarm/util-alarm-payload";
 export class WebFeatureHomeDetailsComponent implements OnInit {
   roomsVm$ = this.stateFacade.roomsVm$;
   alarmVm$ = this.stateFacade.alarmVm$;
+  usersVm$ = this.stateFacade.usersVm$;
 
   readonly ADD_ICON = faPlus;
   readonly DELETE_ICON = faTrash;
   readonly EDIT_ICON = faPenToSquare;
+  readonly RESET_ICON = faArrowRotateLeft
 
   constructor(
     private stateFacade: WebFacade,
@@ -65,6 +71,7 @@ export class WebFeatureHomeDetailsComponent implements OnInit {
     this.stateFacade.getRooms(this.homeId);
     this.stateFacade.setSelectedHomeId(this.homeId);
     this.stateFacade.getAlarm(this.homeId);
+    this.stateFacade.getUsers(this.homeId)
   }
 
   private get homeId(): string {
@@ -126,5 +133,29 @@ export class WebFeatureHomeDetailsComponent implements OnInit {
   onDeleteAlarm(id: string | undefined) {
     if (!id) return
     this.stateFacade.deleteAlarm(id)
+  }
+
+  onAddUser() {
+    this.dialogService.open(WebUiUserDialogComponent, {
+      header: 'Add user',
+    }).onClose.pipe(first()).subscribe((payload: {login: string, name: string}) => {
+      if (payload) this.stateFacade.createUser({...payload, homeId: this.homeId, role: 'User'})
+    })
+  }
+
+  onResetPassword(id: string) {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to reset password?',
+      header: 'Reset Confirmation',
+      accept: () => this.stateFacade.resetPassword(id),
+    })
+  }
+
+  onDeleteUser(id: string) {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to delete user?',
+      header: 'Delete Confirmation',
+      accept: () => this.stateFacade.deleteUser(id),
+    })
   }
 }
