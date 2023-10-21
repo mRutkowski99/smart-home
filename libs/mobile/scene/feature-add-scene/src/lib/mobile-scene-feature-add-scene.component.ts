@@ -60,7 +60,7 @@ export class MobileSceneFeatureAddSceneComponent implements OnInit {
 
   constructor(
     private sceneFacade: SceneFacade,
-    private presenter: AddScenePresenter
+    public presenter: AddScenePresenter
   ) {}
 
   get nameControl(): FormControl<string> {

@@ -10,8 +10,6 @@ import {AuthService} from "@smart-home/mobile/shared/auth/data-access";
 
 @Component({
   selector: 'smart-home-mobile-shared-auth-feature',
-  standalone: true,
-  imports: [CommonModule, IonicModule, ReactiveFormsModule],
   templateUrl: './mobile-shared-auth-feature.component.html',
   styleUrls: ['./mobile-shared-auth-feature.component.scss'],
   encapsulation: ViewEncapsulation.Emulated,

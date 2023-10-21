@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { SHARED_SCENE_FEATURE_KEY, SharedSceneState } from './scene.reducer';
 
-const featureSelector = createFeatureSelector<SharedSceneState>(
+export const featureSelector = createFeatureSelector<SharedSceneState>(
   SHARED_SCENE_FEATURE_KEY
 );
 

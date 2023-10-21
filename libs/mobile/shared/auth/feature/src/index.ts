@@ -1,1 +1,1 @@
-export * from './lib/mobile-shared-auth-feature.component';
+export * from "./lib/mobile-shared-auth-feature.module";

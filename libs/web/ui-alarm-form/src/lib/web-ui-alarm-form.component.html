@@ -1,9 +1,13 @@
 <form [formGroup]="alarmForm" (ngSubmit)="onSubmit()">
-    <div class="flex gap-4 items-center mb-4">
-        <input pInputText type="text" placeholder="State address" [formControl]="alarmForm.controls.stateAddress">
-        <p-dropdown [options]="addressTypes" [formControl]="alarmForm.controls.stateAddressType" placeholder="State address type"/>
-        <input pInputText type="text" placeholder="Status address" [formControl]="alarmForm.controls.statusAddress">
-        <p-dropdown [options]="addressTypes" [formControl]="alarmForm.controls.statusAddressType" placeholder="Status address type" />
+    <div class="flex flex-col gap-4 items-start mb-4">
+        <div class="flex gap-4 items-center">
+            <input pInputText type="text" placeholder="State address" [formControl]="alarmForm.controls.stateAddress">
+            <p-dropdown [options]="addressTypes" [formControl]="alarmForm.controls.stateAddressType" placeholder="State address type"/>
+        </div>
+        <div class="flex gap-4 items-center">
+            <input pInputText type="text" placeholder="Status address" [formControl]="alarmForm.controls.statusAddress">
+            <p-dropdown [options]="addressTypes" [formControl]="alarmForm.controls.statusAddressType" placeholder="Status address type" />
+        </div>
     </div>
     <div class="flex justify-between items-center">
         <smart-home-ui-fa-icon [icon]="DELETE_ICON" role="button" type="button" />

@@ -7,10 +7,10 @@
     <ion-card-title
       >Alarm: {{ alarm | alarmStatus | titlecase }}</ion-card-title
     >
-    <ion-button *ngIf="alarm.status" (click)="changeState.emit({id: alarm.id, value: !alarm.state})">
+    <ion-button (click)="changeState.emit({id: alarm.id, value: !alarm.state})">
       <smart-home-ui-fa-icon
-        [icon]="alarm.state ? UNLOCK_ICON : LOCK_ICON"
-        color="#000"
+        [icon]="alarm.state ? LOCK_ICON : UNLOCK_ICON"
+        color="var(--ion-color-primary)"
       />
     </ion-button>
   </ion-card-header>

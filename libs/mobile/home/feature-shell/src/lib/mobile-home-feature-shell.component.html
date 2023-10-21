@@ -1,4 +1,7 @@
-<p class="hello">Hello Miłosz</p>
+<div class="hello">
+  <span>Hello Miłosz</span>
+  <smart-home-ui-fa-icon [icon]="LOGOUT_ICON" size="lg" role="button" (click)="onLogout()" />
+</div>
 
 <!--Alarm-->
 <ng-container *ngIf="alarmVm$ | async as alarmVm">
@@ -21,17 +24,12 @@
   </ng-container>
 
   <!--    Success-->
-  <ng-container *ngIf="roomsVm.status === 'success'">
-    <smart-home-ui-slider>
-      <ion-slide *ngFor="let room of roomsVm.rooms" style="width: auto">
-        <smart-home-ui-room-card
+  <div *ngIf="roomsVm.status === 'success'" class="flex flex-wrap">
+        <smart-home-ui-room-card *ngFor="let room of roomsVm.rooms"
           [room]="room"
           [routerLink]="['../', roomRoute, room.id]"
-          style="width: 15rem"
         />
-      </ion-slide>
-    </smart-home-ui-slider>
-  </ng-container>
+  </div>
 
   <!--  Error-->
   <ng-container *ngIf="roomsVm.status === 'error'">
@@ -56,18 +54,17 @@
   </ng-container>
 
   <!--  Success-->
-  <ng-container *ngIf="scenesVm.status === 'success'">
-    <smart-home-ui-slider>
-      <ion-slide *ngFor="let scene of scenesVm.scenes" style="width: auto">
-        <smart-home-ui-scene-card
-                (changeState)="onChangeSceneState($event)"
-          [routerLink]="['../', sceneRoute, scene.id]"
-          [scene]="scene"
-          style="width: 20rem"
-        />
-      </ion-slide>
-    </smart-home-ui-slider>
-  </ng-container>
+<!--  <ng-container *ngIf="scenesVm.status === 'success'">-->
+
+        <div class="flex flex-col items-stretch gap-4">
+          <smart-home-ui-scene-card
+                  *ngFor="let scene of scenesVm.scenes"
+                  (changeState)="onChangeSceneState($event)"
+                  [routerLink]="['../', sceneRoute, scene.id]"
+                  [scene]="scene"
+          />
+        </div>
+<!--  </ng-container>-->
 
   <!--  Error-->
   <ng-container *ngIf="scenesVm.status === 'error'">
@@ -78,14 +75,20 @@
 </ng-container>
 
 
-<!--Devices-->
-<ng-container *ngIf="deviceVm$ | async as deviceVm">
-  <ng-container *ngIf="deviceVm.status === 'success'">
-    <smart-home-ui-slider>
-      <ion-slide *ngFor="let device of deviceVm.devices" style="width: auto">
-        <smart-home-mobile-ui-device-card [device]="device" style="width: 25rem" (select)="onSelectDevice($event)"
-                                          (toggleState)="onChangeDeviceState($event, device.id)"/>
-      </ion-slide>
-    </smart-home-ui-slider>
-  </ng-container>
-</ng-container>
+<!--&lt;!&ndash;Devices&ndash;&gt;-->
+<!--<ng-container *ngIf="deviceVm$ | async as deviceVm">-->
+<!--  <ng-container *ngIf="deviceVm.status === 'success'">-->
+<!--    <smart-home-ui-slider>-->
+<!--      <ion-slide *ngFor="let device of deviceVm.devices" style="width: auto">-->
+<!--        <smart-home-mobile-ui-device-card [device]="device" style="width: 25rem" (select)="onSelectDevice($event)"-->
+<!--                                          (toggleState)="onChangeDeviceState($event, device.id)"/>-->
+<!--      </ion-slide>-->
+<!--    </smart-home-ui-slider>-->
+<!--  </ng-container>-->
+<!--</ng-container>-->
+
+<ion-fab slot="fixed" horizontal="end" vertical="bottom">
+  <ion-fab-button>
+    <smart-home-ui-fa-icon [icon]="ADD_ICON" [routerLink]="['../', 'scenes', 'add']" />
+  </ion-fab-button>
+</ion-fab>

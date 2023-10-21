@@ -3,7 +3,7 @@ import { StoreStatus } from '@smart-home/shared/util';
 import { createReducer, on } from '@ngrx/store';
 import * as Actions from './scene.actions';
 
-export const SHARED_SCENE_FEATURE_KEY = 'sharedScene';
+export const SHARED_SCENE_FEATURE_KEY = 'sharedSceneKey';
 
 export interface SharedSceneState {
   scenes: SceneOverviewVm[];
@@ -17,6 +17,19 @@ const initialState: SharedSceneState = {
   error: null,
 };
 
+const updateSceneState = (
+    state: SharedSceneState,
+    id: string,
+    value: boolean
+): SharedSceneState => {
+  return {
+    ...state,
+    scenes: state.scenes.map((scene) =>
+        scene.id === id ? { ...scene, state: value } : scene
+    ),
+  };
+};
+
 export const sceneReducer = createReducer(
   initialState,
   on(Actions.getScenesOverview, (state) => ({
@@ -27,7 +40,7 @@ export const sceneReducer = createReducer(
   on(Actions.getScenesOverviewSuccess, (state, { scenes }) => ({
     ...state,
     status: 'success',
-    scenes,
+    scenes: scenes,
   })),
   on(Actions.getScenesOverviewFail, (state, { error }) => ({
     ...state,
@@ -41,16 +54,3 @@ export const sceneReducer = createReducer(
     ...updateSceneState(state, id, value),
   }))
 );
-
-const updateSceneState = (
-  state: SharedSceneState,
-  id: string,
-  value: boolean
-): SharedSceneState => {
-  return {
-    ...state,
-    scenes: state.scenes.map((scene) =>
-      scene.id === id ? { ...scene, state: value } : scene
-    ),
-  };
-};

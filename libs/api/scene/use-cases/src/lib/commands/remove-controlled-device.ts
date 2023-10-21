@@ -26,11 +26,7 @@ export class RemoveControlledDeviceHandler
     private deviceRepository: DeviceRepository
   ) {}
 
-  async execute({
-    sceneId,
-    deviceId,
-      homeId
-  }: RemoveControlledDeviceCommand): Promise<void> {
+  async execute({ sceneId, deviceId, homeId }: RemoveControlledDeviceCommand): Promise<void> {
     const scene = this.publisher.mergeObjectContext(
       throwIfNull(
         await this.repository.getById(sceneId),

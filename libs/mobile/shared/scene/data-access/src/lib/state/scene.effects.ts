@@ -7,15 +7,15 @@ import {catchError, map, of, switchMap} from 'rxjs';
 
 @Injectable()
 export class SceneEffects {
-    getSceneOverview = createEffect(() => this.actions$.pipe(
+    private getSceneOverview = createEffect(() => this.actions$.pipe(
         ofType(SceneActions.getScenesOverview),
         switchMap(a => this.api.getScenesOverview().pipe(
-            map(scenes => SceneActions.getScenesOverviewSuccess({scenes})),
+            map(scenes =>  SceneActions.getScenesOverviewSuccess({scenes})),
             catchError(() => of(SceneActions.getScenesOverviewFail({error: 'Connection error. Please try again'})))
         ))
     ))
 
-    updateSceneState = createEffect(() => this.actions$.pipe(
+    private updateSceneState = createEffect(() => this.actions$.pipe(
         ofType(SceneActions.updateSceneState),
         switchMap(a => this.api.updateSceneState(a.id, a.state).pipe(
             map(() => SceneActions.updateSceneStateSuccess()),

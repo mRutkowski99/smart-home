@@ -4,11 +4,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { MobileShellFeatureComponent } from './mobile-shell-feature.component';
 import { MobileSharedAuthDataAccessModule } from '@smart-home/mobile/shared/auth/data-access';
 import { MainRoutes } from '@smart-home/mobile/shared/util';
+import {MobileSharedAuthFeatureModule} from "@smart-home/mobile/shared/auth/feature";
 
 const routes: Routes = [
   {
     path: 'login',
-    loadComponent: async () => (await import('@smart-home/web/feature-auth')).WebFeatureAuthComponent
+    loadChildren: async () => (await import('@smart-home/mobile/shared/auth/feature')).MobileSharedAuthFeatureModule
   },
   {
     path: '',

@@ -1,7 +1,16 @@
 import {webSocket} from "rxjs/webSocket";
 
-export class WebsocketService {
-    private socketSubject = webSocket('ws://localhost:3333')
+export abstract class WebsocketService {
+    constructor(protected url: string) {
+    }
+    protected readonly socketSubject = webSocket(this.url)
     events$ = this.socketSubject.asObservable()
 
+    sendMessage(event: any) {
+        this.socketSubject.next(event)
+    }
+
+    close() {
+        this.socketSubject.complete()
+    }
 }

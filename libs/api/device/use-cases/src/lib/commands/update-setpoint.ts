@@ -34,7 +34,7 @@ export class UpdateSetpointHandler
 
     try {
       device.createNewSetpoint(value);
-    } catch (error: unknown) {
+    } catch (error) {
       throw new BadRequestException(error);
     }
 

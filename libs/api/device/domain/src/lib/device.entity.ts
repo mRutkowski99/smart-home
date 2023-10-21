@@ -121,8 +121,6 @@ export class Device extends AggregateRoot {
       this._setpoint = new DigitalValue(value).value;
       this.state = this._setpoint === DigitalValue.HIGH_STATE;
     }
-
-    //todo: dispatch event
   }
 
   changeState(state: boolean) {

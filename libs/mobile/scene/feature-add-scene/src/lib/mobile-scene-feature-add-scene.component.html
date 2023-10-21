@@ -1,7 +1,7 @@
 <ion-item [formGroup]="form">
   <ion-input [formControl]="nameControl" placeholder="Scene name" />
 </ion-item>
-<smart-home-ui-scene-schedule />
+<smart-home-ui-scene-schedule (update)="presenter.updateSchedule($event)" />
 <ion-list>
   <ion-item>
     <ion-select

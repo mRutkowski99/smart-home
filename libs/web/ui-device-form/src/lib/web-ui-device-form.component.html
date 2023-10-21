@@ -56,6 +56,7 @@
         >Add address</p-button
       >
       <p-button
+              *ngIf="deviceForm.dirty"
         type="submit"
         [disabled]="deviceForm.invalid || !deviceForm.dirty"
         >Save</p-button

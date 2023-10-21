@@ -16,7 +16,7 @@ import {map} from "rxjs";
 import {FilterControlledValuePipe} from "../../../util/src/lib/pipes/filter-controlled-value.pipe";
 import {FilterAddressTypesPipe} from "../../../util/src/lib/pipes/filter-address-types.pipe";
 import {DeviceBasePayload} from "@smart-home/shared/device/util-device-payload";
-import {DeviceDetailsVm} from "@smart-home/shared/device/util-device-vm";
+import {DeviceAddressVm, DeviceDetailsVm} from "@smart-home/shared/device/util-device-vm";
 import {ControlledValuePipe} from "../../../util/src/lib/pipes/controlled-value.pipe";
 
 interface AddressFromGroup {
@@ -43,6 +43,7 @@ export class WebUiDeviceFormComponent {
   @Input() withDeleteOption = false
   @Input() set device(device: DeviceDetailsVm) {
     this.deviceForm.patchValue(device)
+    device.addresses.forEach(address => this.addresses.push(this.getAddressFormGroup(address)))
   }
 
   deviceForm = new FormGroup({
@@ -68,18 +69,18 @@ export class WebUiDeviceFormComponent {
 
   onAddAddress() {
     if (this.addresses.controls.length >= this.controlledValues.length) return
-    this.deviceForm.controls.addresses.push(this.addressFormGroup)
+    this.deviceForm.controls.addresses.push(this.getAddressFormGroup())
   }
 
   onSubmit() {
     this.save.emit(this.deviceForm.getRawValue() as DeviceBasePayload)
   }
 
-  private get addressFormGroup(): FormGroup<AddressFromGroup> {
+  private getAddressFormGroup(value?: DeviceAddressVm): FormGroup<AddressFromGroup> {
     return new FormGroup<AddressFromGroup>({
-      address: new FormControl('', {nonNullable: true, validators: [Validators.required]}),
-      addressType: new FormControl<AddressType | null>(null, { validators: [Validators.required]}),
-      controlledValue: new FormControl<ControlledValue | null>(null, { validators: [Validators.required]}),
+      address: new FormControl(value?.address ?? '', {nonNullable: true, validators: [Validators.required]}),
+      addressType: new FormControl<AddressType | null>(value?.addressType ?? null, { validators: [Validators.required]}),
+      controlledValue: new FormControl<ControlledValue | null>(value?.controlledValue ?? null, { validators: [Validators.required]}),
     })
   }
 }

@@ -34,7 +34,7 @@
             </div>
           </ng-template>
 
-          <div class="pb-2 border-b-2">
+          <div class="pb-2 border-b-2 flex flex-col gap-4 items-stretch">
             <smart-home-web-ui-device-form
               *ngFor="let device of room.devices"
               [device]="device"
@@ -69,7 +69,7 @@
     <p-card styleClass="p-4">
       <ng-template pTemplate="header">
         <div class="flex justify-between items-center">
-          <span class="text-2xl font-semibold">Alarm</span>
+          <span class="text-2xl font-semibold">Users</span>
           <smart-home-ui-fa-icon [icon]="ADD_ICON" role="button" (click)="onAddUser()" />
         </div>
       </ng-template>

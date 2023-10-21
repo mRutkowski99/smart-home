@@ -30,26 +30,30 @@ import {getDeviceValueControlModalPayload} from "@smart-home/mobile/shared/devic
 import {DeviceVm} from "@smart-home/shared/device/util-device-vm";
 import {AlarmFacade, MobileAlarmDataAccessModule} from "@smart-home/mobile/alarm/data-access";
 import {MobileAlarmUiAlarmCardComponent} from "@smart-home/mobile/alarm/ui-alarm-card";
+import {SharedUiFaIconComponent} from "@smart-home/shared/ui-fa-icon";
+import {faArrowRightFromBracket, faPlus} from "@fortawesome/free-solid-svg-icons";
+import {AuthService} from "@smart-home/mobile/shared/auth/data-access";
 
 @Component({
   selector: 'smart-home-mobile-home-feature-shell',
   standalone: true,
-  imports: [
-    CommonModule,
-    IonicModule,
-    MobileSharedUiSliderComponent,
-    MobileSharedRoomDataAccessModule,
-    MobileSharedRoomUiRoomCardComponent,
-    MobileSharedSkeletonUiSkeletonCardComponent,
-    MobileSharedUiErrorComponent,
-    MobileSharedSceneDataAccessModule,
-    MobileSharedSceneUiSceneCardComponent,
-    RouterLink,
-    MobileSharedDeviceDataAccessModule,
-    MobileSharedDeviceUiDeviceCardComponent,
-    MobileAlarmDataAccessModule,
-    MobileAlarmUiAlarmCardComponent
-  ],
+    imports: [
+        CommonModule,
+        IonicModule,
+        MobileSharedUiSliderComponent,
+        MobileSharedRoomDataAccessModule,
+        MobileSharedRoomUiRoomCardComponent,
+        MobileSharedSkeletonUiSkeletonCardComponent,
+        MobileSharedUiErrorComponent,
+        MobileSharedSceneDataAccessModule,
+        MobileSharedSceneUiSceneCardComponent,
+        RouterLink,
+        MobileSharedDeviceDataAccessModule,
+        MobileSharedDeviceUiDeviceCardComponent,
+        MobileAlarmDataAccessModule,
+        MobileAlarmUiAlarmCardComponent,
+        SharedUiFaIconComponent
+    ],
   providers: [DeviceControlFacade],
   templateUrl: './mobile-home-feature-shell.component.html',
   styleUrls: ['./mobile-home-feature-shell.component.scss'],
@@ -65,13 +69,16 @@ export class MobileHomeFeatureShellComponent implements OnInit {
   readonly sceneRoute = MainRoutes.Scenes;
   readonly deviceVm$ = this.deviceFacade.deviceVm$
   readonly alarmVm$ = this.alarmFacade.alarmVm$
+    readonly LOGOUT_ICON = faArrowRightFromBracket
+    readonly ADD_ICON = faPlus
 
   constructor(
     private roomFacade: SharedRoomFacade,
     private scenesFacade: SharedSceneFacade,
     private deviceFacade: SharedDeviceFacade,
     private deviceControlFacade: DeviceControlFacade,
-    private alarmFacade: AlarmFacade
+    private alarmFacade: AlarmFacade,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -132,4 +139,7 @@ export class MobileHomeFeatureShellComponent implements OnInit {
     this.alarmFacade.updateAlarmState(event.id, event.value)
   }
 
+  onLogout() {
+      this.authService.logout()
+  }
 }

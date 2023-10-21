@@ -1,7 +1,7 @@
 import { DayOfWeek, Time } from '@smart-home/shared/util';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { SceneRepository } from '@smart-home/api/scene/infrastructure';
-import { Inject } from '@nestjs/common';
+import {Inject, Logger} from '@nestjs/common';
 import { ClientKafka } from '@nestjs/microservices';
 import { SceneCreatedEvent } from '@smart-home/shared/scene/util-scene-event';
 import { DeviceRepository } from '@smart-home/api/device/infrastructure';
